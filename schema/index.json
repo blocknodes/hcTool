@@ -1,0 +1,5 @@
+{
+  "domains": [
+    {"domain_key": "device", "domain": "设备", "file": "device.json"}
+  ]
+}

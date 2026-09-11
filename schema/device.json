@@ -1,0 +1,51 @@
+{
+  "domain": "设备",
+  "domain_key": "device",
+  "tools": [
+    {
+      "tool_name": "playback_control",
+      "description": "播放控制：暂停、停止、快进、快退、上一集/下一集、随机/循环播放等。仅控制正在播放的内容，不涉及内容检索。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string",
+            "description": "操作类型，如 播放/停止/快进/快退/上/下/设置/查询"
+          },
+          "object": {
+            "type": "string",
+            "description": "控制对象，如 播放控制/播放列表；无明确对象时留空字符串"
+          },
+          "value": {
+            "type": "string",
+            "description": "操作值，如 集、时间点；无则留空字符串"
+          },
+          "device": {"type": "string", "description": "设备名，用户未说填空字符串"},
+          "location": {"type": "string", "description": "位置，用户未说填空字符串"}
+        },
+        "required": ["operation", "object", "value", "device", "location"],
+        "additionalProperties": false
+      }
+    },
+    {
+      "tool_name": "numeric_adjust",
+      "description": "数值调节：亮度、音量、对比度、清晰度、色度等的提高/降低/设置/查询。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string",
+            "description": "提高/降低/设置/查询/打开",
+            "enum": ["提高", "降低", "设置", "查询", "打开"]
+          },
+          "object": {"type": "string", "description": "调节对象的功能名本身，如 亮度、音量"},
+          "value": {"type": "string", "description": "目标值，如 30、100%、默认；未给具体值可留空"},
+          "device": {"type": "string", "description": "设备名，用户未说填空字符串"},
+          "location": {"type": "string", "description": "位置，用户未说填空字符串"}
+        },
+        "required": ["operation", "object", "value", "device", "location"],
+        "additionalProperties": false
+      }
+    }
+  ]
+}
