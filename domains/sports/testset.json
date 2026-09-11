@@ -1,0 +1,2594 @@
+{
+  "domain": "体育",
+  "domain_key": "sports",
+  "count": 186,
+  "records": [
+    {
+      "query": "格斗比赛视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "格斗"
+        }
+      }
+    },
+    {
+      "query": "找个跳伞的比赛视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "跳伞"
+        }
+      }
+    },
+    {
+      "query": "播放跳水比赛视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "跳水"
+        }
+      }
+    },
+    {
+      "query": "进入文班亚马精彩进球集锦",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_star",
+          "value": "文班亚马"
+        }
+      }
+    },
+    {
+      "query": "看下欧洲杯预选赛的视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "欧洲杯"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "预选赛"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "麻烦播放个足球亚巡赛的视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "足球"
+            },
+            {
+              "field": "sport_game",
+              "value": "亚巡赛"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "找一下k联赛的比赛视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "k联赛"
+        }
+      }
+    },
+    {
+      "query": "男子800米决赛视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "田径"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "决赛"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "nba雄鹿比赛视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "NBA"
+            },
+            {
+              "field": "sport_team",
+              "value": "雄鹿"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "搏击格斗的比赛视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "格斗"
+            },
+            {
+              "field": "sport_name",
+              "value": "搏击"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "德甲今天的视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "德甲"
+        }
+      }
+    },
+    {
+      "query": "世界杯视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "世界杯"
+        }
+      }
+    },
+    {
+      "query": "打开速度轮滑视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "速度轮滑"
+        }
+      }
+    },
+    {
+      "query": "搜索下欧联的比赛视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "欧联"
+        }
+      }
+    },
+    {
+      "query": "ac米兰的视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_team",
+          "value": "ac米兰"
+        }
+      }
+    },
+    {
+      "query": "cba总决赛录像",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "CBA"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "总决赛"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "找个自由体操比赛视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "自由体操"
+        }
+      }
+    },
+    {
+      "query": "冰球的视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "冰球"
+        }
+      }
+    },
+    {
+      "query": "帮搜索法甲的集锦",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "法甲"
+        }
+      }
+    },
+    {
+      "query": "短跑比赛视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "短跑"
+        }
+      }
+    },
+    {
+      "query": "搜索下亚冠的比赛视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "亚冠"
+        }
+      }
+    },
+    {
+      "query": "关于皇马的球赛视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_team",
+          "value": "皇马"
+        }
+      }
+    },
+    {
+      "query": "欧冠比赛视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "欧冠"
+        }
+      }
+    },
+    {
+      "query": "赛车比赛视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "赛车"
+        }
+      }
+    },
+    {
+      "query": "播放中超联赛的比赛视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "中超"
+        }
+      }
+    },
+    {
+      "query": "棒球比赛的视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "棒球"
+        }
+      }
+    },
+    {
+      "query": "麻烦搜索击剑回播",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "击剑"
+            },
+            {
+              "field": "live_state",
+              "values": [
+                "3",
+                "4"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "网球的视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "网球"
+        }
+      }
+    },
+    {
+      "query": "我看下羽毛球复赛视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "羽毛球"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "复赛"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "打开库里投篮慢动作视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "篮球"
+            },
+            {
+              "field": "sport_star",
+              "value": "库里"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "观看澳网的视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "澳网"
+        }
+      }
+    },
+    {
+      "query": "太阳队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "菲尼克斯太阳队"
+      }
+    },
+    {
+      "query": "波特兰开拓者队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "波特兰开拓者队"
+      }
+    },
+    {
+      "query": "勒沃库森队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "勒沃库森队"
+      }
+    },
+    {
+      "query": "挪威队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "挪威队"
+      }
+    },
+    {
+      "query": "快船队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "快船队"
+      }
+    },
+    {
+      "query": "菲尼克斯太阳队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "菲尼克斯太阳队"
+      }
+    },
+    {
+      "query": "奇才队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "奇才"
+      }
+    },
+    {
+      "query": "贝尔格莱德红星队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "贝尔格莱德红星队"
+      }
+    },
+    {
+      "query": "天津津门虎队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "天津津门虎"
+      }
+    },
+    {
+      "query": "黄蜂队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "夏洛特黄蜂队"
+      }
+    },
+    {
+      "query": "马赛队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "马赛队"
+      }
+    },
+    {
+      "query": "纽约尼克斯队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "纽约尼克斯队"
+      }
+    },
+    {
+      "query": "瑞士队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "瑞士队"
+      }
+    },
+    {
+      "query": "俄罗斯队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "俄罗斯队"
+      }
+    },
+    {
+      "query": "博卡青年队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "博卡青年队"
+      }
+    },
+    {
+      "query": "法国队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "法国队"
+      }
+    },
+    {
+      "query": "国际米兰队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "国际米兰队"
+      }
+    },
+    {
+      "query": "密尔沃基雄鹿队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "密尔沃基雄鹿队"
+      }
+    },
+    {
+      "query": "老鹰队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "亚特兰大老鹰队"
+      }
+    },
+    {
+      "query": "孟菲斯灰熊队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "孟菲斯灰熊队"
+      }
+    },
+    {
+      "query": "森林狼队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "森林狼队"
+      }
+    },
+    {
+      "query": "印度队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "印度队"
+      }
+    },
+    {
+      "query": "埃塞俄比亚队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "埃塞俄比亚队"
+      }
+    },
+    {
+      "query": "小聚我要看中超联赛积分榜",
+      "expected_tool": "sports_rank_search",
+      "expected_params": {
+        "sport_game": "中超",
+        "sport_rank_type": "积分榜"
+      }
+    },
+    {
+      "query": "小聚我要看意甲积分榜",
+      "expected_tool": "sports_rank_search",
+      "expected_params": {
+        "sport_game": "意甲",
+        "sport_rank_type": "积分榜"
+      }
+    },
+    {
+      "query": "nba抢断榜",
+      "expected_tool": "sports_rank_search",
+      "expected_params": {
+        "sport_game": "NBA",
+        "sport_rank_type": "抢断榜"
+      }
+    },
+    {
+      "query": "中超联赛积分榜",
+      "expected_tool": "sports_rank_search",
+      "expected_params": {
+        "sport_game": "中超",
+        "sport_rank_type": "积分榜"
+      }
+    },
+    {
+      "query": "乒乓球世界杯排名",
+      "expected_tool": "sports_rank_search",
+      "expected_params": {
+        "sport_game": "世界杯",
+        "sport_rank_type": "积分榜"
+      }
+    },
+    {
+      "query": "中甲积分榜",
+      "expected_tool": "sports_rank_search",
+      "expected_params": {
+        "sport_game": "中甲",
+        "sport_rank_type": "积分榜"
+      }
+    },
+    {
+      "query": "亚冠射手榜",
+      "expected_tool": "sports_rank_search",
+      "expected_params": {
+        "sport_game": "亚冠",
+        "sport_rank_type": "射手榜"
+      }
+    },
+    {
+      "query": "中超排名",
+      "expected_tool": "sports_rank_search",
+      "expected_params": {
+        "sport_game": "中超",
+        "sport_rank_type": "积分榜"
+      }
+    },
+    {
+      "query": "意甲的射手榜",
+      "expected_tool": "sports_rank_search",
+      "expected_params": {
+        "sport_game": "意甲",
+        "sport_rank_type": "射手榜"
+      }
+    },
+    {
+      "query": "中超射手排行榜",
+      "expected_tool": "sports_rank_search",
+      "expected_params": {
+        "sport_game": "中超",
+        "sport_rank_type": "射手榜"
+      }
+    },
+    {
+      "query": "播放中超联赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "中超"
+        }
+      }
+    },
+    {
+      "query": "播放西甲联赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "西甲"
+        }
+      }
+    },
+    {
+      "query": "播放欧洲杯",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "欧洲杯"
+        }
+      }
+    },
+    {
+      "query": "搜索羽毛球",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "羽毛球"
+        }
+      }
+    },
+    {
+      "query": "我想看cba",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "CBA"
+        }
+      }
+    },
+    {
+      "query": "跳台滑雪",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "跳台滑雪"
+        }
+      }
+    },
+    {
+      "query": "播放湖人的比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_team",
+          "value": "湖人"
+        }
+      }
+    },
+    {
+      "query": "wcba",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "wcba"
+        }
+      }
+    },
+    {
+      "query": "播放免费的nba视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "NBA"
+        }
+      }
+    },
+    {
+      "query": "播放速度滑冰比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "速度滑冰"
+        }
+      }
+    },
+    {
+      "query": "女子摔跤比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "女子摔跤"
+        }
+      }
+    },
+    {
+      "query": "中国女篮亚洲杯小组赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "女篮亚洲杯"
+            },
+            {
+              "field": "sport_team",
+              "value": "中国"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "小组赛"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "罗马主场对斯图加特的球赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team_home",
+              "value": "罗马"
+            },
+            {
+              "field": "sport_team_guest",
+              "value": "斯图加特"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "我要看独行侠对阵国王的全部赛程",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "独行侠"
+            },
+            {
+              "field": "sport_team",
+              "value": "国王"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "法国对战阿根廷",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "法国"
+            },
+            {
+              "field": "sport_team",
+              "value": "阿根廷"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "我要看篮球赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "篮球"
+        }
+      }
+    },
+    {
+      "query": "勇士队对火箭队nba",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "NBA"
+            },
+            {
+              "field": "sport_team",
+              "value": "勇士"
+            },
+            {
+              "field": "sport_team",
+              "value": "火箭"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "帮我播放勇士vs森林狼的比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "勇士"
+            },
+            {
+              "field": "sport_team",
+              "value": "森林狼"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "湖人vs森林狼",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "湖人"
+            },
+            {
+              "field": "sport_team",
+              "value": "森林狼"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "播放湖人对快船",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "湖人"
+            },
+            {
+              "field": "sport_team",
+              "value": "快船"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "播放里昂主场对战布雷斯特足球比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team_home",
+              "value": "里昂"
+            },
+            {
+              "field": "sport_name",
+              "value": "足球"
+            },
+            {
+              "field": "sport_team_guest",
+              "value": "布雷斯特"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "播放篮球比赛回放",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "篮球"
+            },
+            {
+              "field": "live_state",
+              "values": [
+                "3",
+                "4"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "中超联赛回看",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "中超"
+            },
+            {
+              "field": "live_state",
+              "values": [
+                "3",
+                "4"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "有没有意甲的比赛安排表",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "意甲"
+        }
+      }
+    },
+    {
+      "query": "中超上一轮的比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "中超"
+            },
+            {
+              "field": "round_offset",
+              "value": "-1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "放自行车比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "自行车"
+        }
+      }
+    },
+    {
+      "query": "现在有什么比赛可以看",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_time",
+          "value": "20260824"
+        }
+      }
+    },
+    {
+      "query": "蹦床比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "蹦床"
+        }
+      }
+    },
+    {
+      "query": "英超后面的比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "英超"
+            },
+            {
+              "field": "live_state",
+              "value": "1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "中国比美国比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "中国"
+            },
+            {
+              "field": "sport_team",
+              "value": "美国"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "cba常规赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "cba"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "常规赛"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "掘金对奇才比赛nba",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "NBA"
+            },
+            {
+              "field": "sport_team",
+              "value": "掘金"
+            },
+            {
+              "field": "sport_team",
+              "value": "奇才"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "播放丁俊晖台球比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "台球"
+            },
+            {
+              "field": "sport_star",
+              "value": "丁俊晖"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "皇马客场pk曼城的球赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team_home",
+              "value": "曼城"
+            },
+            {
+              "field": "sport_team_guest",
+              "value": "皇马"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "皇家马德里的比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_team",
+          "value": "皇家马德里"
+        }
+      }
+    },
+    {
+      "query": "播放尼克斯客场对阵太阳比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team_home",
+              "value": "太阳"
+            },
+            {
+              "field": "sport_team_guest",
+              "value": "尼克斯"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "有没有波兰对阵法国的完整赛事",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "波兰"
+            },
+            {
+              "field": "sport_team",
+              "value": "法国"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "播放体育频道篮球",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "篮球"
+        }
+      }
+    },
+    {
+      "query": "nba太阳vs快船回放",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "NBA"
+            },
+            {
+              "field": "sport_team",
+              "value": "太阳"
+            },
+            {
+              "field": "sport_team",
+              "value": "快船"
+            },
+            {
+              "field": "live_state",
+              "values": [
+                "3",
+                "4"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "回看乒乓球比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "乒乓球"
+            },
+            {
+              "field": "live_state",
+              "values": [
+                "3",
+                "4"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "体操赛事",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "体操"
+        }
+      }
+    },
+    {
+      "query": "帮我预约尤文图斯ac米兰队的比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "尤文图斯"
+            },
+            {
+              "field": "sport_team",
+              "value": "ac米兰"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "预约河床队队的足球比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "足球"
+            },
+            {
+              "field": "sport_team",
+              "value": "河床"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "给我预约周六nba常规赛太阳对战老鹰",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "NBA"
+            },
+            {
+              "field": "sport_team",
+              "value": "太阳"
+            },
+            {
+              "field": "sport_team",
+              "value": "老鹰"
+            },
+            {
+              "field": "sport_time",
+              "value": "20260829"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "常规赛"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "帮我预约下nba后天的比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "NBA"
+            },
+            {
+              "field": "sport_time",
+              "value": "20260826"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "给我预约后天杨家玉的比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_time",
+              "value": "20260826"
+            },
+            {
+              "field": "sport_star",
+              "value": "杨家玉"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "预约泰勒弗里茨2月1日的下场球赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_time",
+              "value": "20260201"
+            },
+            {
+              "field": "sport_star",
+              "value": "泰勒·弗里茨"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "预约河床队的球赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "field": "sport_team",
+          "value": "河床"
+        }
+      }
+    },
+    {
+      "query": "预约世界杯决赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "世界杯"
+        }
+      }
+    },
+    {
+      "query": "快船队和爵士队的球赛预测下谁能赢啊",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "快船队"
+            },
+            {
+              "field": "sport_team",
+              "value": "爵士队"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "曼城和利物浦的英超德比战谁能取胜",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "曼城"
+            },
+            {
+              "field": "sport_team",
+              "value": "利物浦队"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "预测拜仁慕尼黑对多特蒙德队谁能获胜",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "拜仁慕尼黑"
+            },
+            {
+              "field": "sport_team",
+              "value": "多特蒙德队"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "皇马vs阿森纳的友谊赛最终谁会赢",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "皇马"
+            },
+            {
+              "field": "sport_team",
+              "value": "阿森纳"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "巴塞尔对阵比尔森你猜谁能获胜",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "巴塞尔"
+            },
+            {
+              "field": "sport_team",
+              "value": "比尔森"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "皇马和阿森纳比赛谁能赢",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "皇马"
+            },
+            {
+              "field": "sport_team",
+              "value": "阿森纳"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "国王vs奇才哪个队能赢",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "国王"
+            },
+            {
+              "field": "sport_team",
+              "value": "奇才"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "山地自行车视频",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "山地自行车"
+        }
+      }
+    },
+    {
+      "query": "请播放一个斯诺克的比赛录像",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_name",
+          "value": "斯诺克"
+        }
+      }
+    },
+    {
+      "query": "查下西甲精华",
+      "expected_tool": "sports_vod_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "西甲"
+        }
+      }
+    },
+    {
+      "query": "土耳其队",
+      "expected_tool": "sports_team_search",
+      "expected_params": {
+        "sport_team": "土耳其队"
+      }
+    },
+    {
+      "query": "调到今晚的足球比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {}
+    },
+    {
+      "query": "这周有比赛吗",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_time_range",
+          "from": "20260824 00:00:00",
+          "to": "20260830 23:59:59"
+        }
+      }
+    },
+    {
+      "query": "欧联最近的比赛安排",
+      "expected_tool": "sports_match_search",
+      "expected_params": {}
+    },
+    {
+      "query": "北京北汽vs山东高速",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "北京北汽"
+            },
+            {
+              "field": "sport_team",
+              "value": "山东高速"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "法国和克罗地亚的球赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "法国"
+            },
+            {
+              "field": "sport_team",
+              "value": "克罗地亚"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "全红婵跳水比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_star",
+              "value": "全红婵"
+            },
+            {
+              "field": "sport_name",
+              "value": "跳水"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "明天的比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_time",
+          "value": "20260825"
+        }
+      }
+    },
+    {
+      "query": "有没有比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "field": "sport_time",
+          "value": "20260824"
+        }
+      }
+    },
+    {
+      "query": "播放nba常规赛火箭和活塞的比赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "NBA"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "常规赛"
+            },
+            {
+              "field": "sport_team",
+              "value": "火箭"
+            },
+            {
+              "field": "sport_team",
+              "value": "活塞"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "播放nba篮球直播赛",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "NBA"
+            },
+            {
+              "field": "sport_name",
+              "value": "篮球"
+            },
+            {
+              "field": "live_state",
+              "value": "2"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "nba詹姆斯",
+      "expected_tool": "sports_match_search",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "NBA"
+            },
+            {
+              "field": "sport_star",
+              "value": "詹姆斯"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "预约德甲奥格斯堡对战弗莱堡比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "德甲"
+            },
+            {
+              "field": "sport_team",
+              "value": "奥格斯堡"
+            },
+            {
+              "field": "sport_team",
+              "value": "弗莱堡"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "我要预约阿尔希拉尔队的球赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "field": "sport_team",
+          "value": "阿尔希拉尔"
+        }
+      }
+    },
+    {
+      "query": "给我预约ac米兰的足球比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "ac米兰"
+            },
+            {
+              "field": "sport_name",
+              "value": "足球"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "我要预约杰伦布伦森的比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "field": "sport_star",
+          "value": "杰伦布伦森"
+        }
+      }
+    },
+    {
+      "query": "预约一下王曼昱1月31日的下场比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_time",
+              "value": "20260131"
+            },
+            {
+              "field": "sport_star",
+              "value": "王曼昱"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "预约皇家马德里的比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "field": "sport_team",
+          "value": "皇家马德里"
+        }
+      }
+    },
+    {
+      "query": "请预约张本智和的比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "field": "sport_star",
+          "value": "张本智和"
+        }
+      }
+    },
+    {
+      "query": "预约贝尔格莱德红星的比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "field": "sport_team",
+          "value": "贝尔格莱德红星"
+        }
+      }
+    },
+    {
+      "query": "帮我预约一场nba球赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "NBA"
+        }
+      }
+    },
+    {
+      "query": "给我预约勒沃库森vs那不勒斯队的足球比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "勒沃库森"
+            },
+            {
+              "field": "sport_team",
+              "value": "那不勒斯"
+            },
+            {
+              "field": "sport_name",
+              "value": "足球"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "给我预约杨家玉的比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "field": "sport_star",
+          "value": "杨家玉"
+        }
+      }
+    },
+    {
+      "query": "我要看黄蜂下一场比赛给我预约",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "黄蜂"
+            },
+            {
+              "field": "live_state",
+              "value": "1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "预约拜仁慕尼黑对多特蒙德队的球赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "拜仁慕尼黑"
+            },
+            {
+              "field": "sport_team",
+              "value": "多特蒙德"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "请预约张本智和1月30日的比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_time",
+              "value": "20260130"
+            },
+            {
+              "field": "sport_star",
+              "value": "张本智和"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "预约覃海洋的游泳比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "游泳"
+            },
+            {
+              "field": "sport_star",
+              "value": "覃海洋"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "给我预约1月24日nba常规赛太阳对战老鹰",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "NBA"
+            },
+            {
+              "field": "sport_team",
+              "value": "太阳"
+            },
+            {
+              "field": "sport_team",
+              "value": "老鹰"
+            },
+            {
+              "field": "sport_time",
+              "value": "20260124"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "常规赛"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "预约一下巴黎圣日耳曼vs里昂的比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "巴黎圣日耳曼"
+            },
+            {
+              "field": "sport_team",
+              "value": "里昂"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "请预约奥林匹克里昂队的比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "field": "sport_team",
+          "value": "奥林匹克里昂"
+        }
+      }
+    },
+    {
+      "query": "帮我预约天津津门虎队的球赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "field": "sport_team",
+          "value": "天津津门虎"
+        }
+      }
+    },
+    {
+      "query": "帮我预约阿尔艾因的足球比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "阿尔艾因"
+            },
+            {
+              "field": "sport_name",
+              "value": "足球"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "我要预约一场勇士和爵士的比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "勇士"
+            },
+            {
+              "field": "sport_team",
+              "value": "爵士"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "帮我预约曼联和利物浦的足球比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "足球"
+            },
+            {
+              "field": "sport_team",
+              "value": "曼联"
+            },
+            {
+              "field": "sport_team",
+              "value": "利物浦"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "帮我预约王楚钦的比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "field": "sport_star",
+          "value": "王楚钦"
+        }
+      }
+    },
+    {
+      "query": "帮我预约一个英超的足球比赛直播",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "英超"
+            },
+            {
+              "field": "sport_name",
+              "value": "足球"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "请预约浙江职业队的比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "field": "sport_team",
+          "value": "浙江职业"
+        }
+      }
+    },
+    {
+      "query": "帮我预约弗拉门戈队的比赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "field": "sport_team",
+          "value": "弗拉门戈"
+        }
+      }
+    },
+    {
+      "query": "预约意甲的球赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "意甲"
+        }
+      }
+    },
+    {
+      "query": "帮我预约25日阿斯顿维拉和勒沃库森的球赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_time",
+              "value": "20260825"
+            },
+            {
+              "field": "sport_team",
+              "value": "阿斯顿维拉"
+            },
+            {
+              "field": "sport_team",
+              "value": "勒沃库森"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "帮我预约阿斯顿维拉和勒沃库森的球赛",
+      "expected_tool": "sports_match_reservation",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "阿斯顿维拉"
+            },
+            {
+              "field": "sport_team",
+              "value": "勒沃库森"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "法国队半决赛谁能赢",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "法国队"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "半决赛"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "中国队对阵韩国队的亚洲杯小组赛哪支球队能获得开门红",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "中国队"
+            },
+            {
+              "field": "sport_team",
+              "value": "韩国队"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "你猜世界杯小组赛英格兰对战克罗地亚谁能出线",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "世界杯"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "小组赛"
+            },
+            {
+              "field": "sport_team",
+              "value": "英格兰"
+            },
+            {
+              "field": "sport_team",
+              "value": "克罗地亚"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "湖人客场挑战掘金的nba季后赛哪支球队取胜",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team_home",
+              "value": "掘金"
+            },
+            {
+              "field": "sport_team_guest",
+              "value": "湖人"
+            },
+            {
+              "field": "sport_game",
+              "value": "NBA"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "季后赛"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "预测一下昨天湖人的比赛",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "湖人"
+            },
+            {
+              "field": "sport_time",
+              "value": "20260823"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "世界杯比赛英格兰和阿根廷谁能赢",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "世界杯"
+            },
+            {
+              "field": "sport_team",
+              "value": "英格兰"
+            },
+            {
+              "field": "sport_team",
+              "value": "阿根廷"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "帮我你猜一下马德里竞技pk塞维利亚谁能赢",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "马德里竞技"
+            },
+            {
+              "field": "sport_team",
+              "value": "塞维利亚"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "预测下冬奥会女子自由式滑雪比赛项目的前三名预测",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "冬奥会"
+            },
+            {
+              "field": "sport_name",
+              "value": "女子自由式滑雪"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "欧冠决赛皇马和曼城谁能捧起奖杯",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "皇马"
+            },
+            {
+              "field": "sport_team",
+              "value": "曼城"
+            },
+            {
+              "field": "sport_game",
+              "value": "欧冠"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "决赛"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "世界杯小组赛阿根廷队能以小组第一出线吗",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "阿根廷"
+            },
+            {
+              "field": "sport_game",
+              "value": "世界杯"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "小组赛"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "英超联赛本赛季的冠军会是哪支球队",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "英超"
+            },
+            {
+              "field": "sport_season",
+              "value": "本赛季"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "游泳世锦赛中国队能否在奖牌榜上进入前三",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "游泳世锦赛"
+            },
+            {
+              "field": "sport_team",
+              "value": "中国"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "足总杯决赛曼城vs曼联谁能捧杯",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "足总杯"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "决赛"
+            },
+            {
+              "field": "sport_team",
+              "value": "曼城"
+            },
+            {
+              "field": "sport_team",
+              "value": "曼联"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "wtt比赛孙颖莎和王曼昱比赛结果预测",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "wtt"
+            },
+            {
+              "field": "sport_star",
+              "value": "孙颖莎"
+            },
+            {
+              "field": "sport_star",
+              "value": "王曼昱"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "预测一下进入世界杯决赛的队伍吧",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_competition_phase",
+              "value": "决赛"
+            },
+            {
+              "field": "sport_game",
+              "value": "世界杯"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "预测nba季后赛的比赛结果",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "NBA"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "季后赛"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "猜一下2月份的乒乓球亚洲杯的比分",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "乒乓球亚洲杯"
+            },
+            {
+              "field": "sport_time_range",
+              "from": "20260201 00:00:00",
+              "to": "20260228 23:59:59"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "你猜测花样滑冰锦标赛谁能赢",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "花样滑冰锦标赛"
+        }
+      }
+    },
+    {
+      "query": "cba季后赛中广东宏远能否实现三连冠",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "cba"
+            },
+            {
+              "field": "sport_team",
+              "value": "广东宏远"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "季后赛"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "你猜测冬奥会的钢架雪车比赛哪个国家会夺冠",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "冬奥会"
+            },
+            {
+              "field": "sport_name",
+              "value": "钢架雪车"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "猜一下世界杯葡萄牙队能取得冠军吗",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "世界杯"
+            },
+            {
+              "field": "sport_team",
+              "value": "葡萄牙"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "query": "世界杯谁能夺冠",
+      "expected_tool": "sports_match_forecast",
+      "expected_params": {
+        "query": {
+          "field": "sport_game",
+          "value": "世界杯"
+        }
+      }
+    }
+  ]
+}

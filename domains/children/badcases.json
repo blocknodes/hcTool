@@ -1,0 +1,413 @@
+{
+ "entries": [
+  {
+   "raw": "教孩子情绪管理的绘本动画",
+   "tool": "educ_search_all",
+   "params": {
+    "retext": "教孩子情绪管理的绘本动画",
+    "query": {
+     "and": [
+      {
+       "or": [
+        {
+         "field": "children_third_genre",
+         "value": "情绪管理"
+        },
+        {
+         "field": "training_objectives",
+         "value": "情绪管理"
+        }
+       ]
+      },
+      {
+       "field": "children_second_genre",
+       "value": "绘本"
+      },
+      {
+       "field": "content_type",
+       "value": "动画"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "播放免费宝宝巴士汉字",
+   "tool": "educ_search",
+   "params": {
+    "retext": "播放免费宝宝巴士汉字",
+    "query": {
+     "and": [
+      {
+       "or": [
+        {
+         "field": "title",
+         "value": "宝宝巴士"
+        },
+        {
+         "field": "children_third_genre",
+         "value": "汉字"
+        }
+       ]
+      },
+      {
+       "field": "is_fee",
+       "value": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "动画片中文版",
+   "tool": "educ_search_all",
+   "params": {
+    "retext": "动画片中国版",
+    "query": {
+     "and": [
+      {
+       "field": "language",
+       "value": "中文版"
+      },
+      {
+       "field": "content_type",
+       "value": "动画"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "今年上映的动画片",
+   "tool": "educ_search",
+   "params": {
+    "retext": "今年上映的动画片",
+    "query": {
+     "and": [
+      {
+       "field": "content_type",
+       "value": "动画"
+      },
+      {
+       "field": "release_time",
+       "from": "20260101",
+       "to": "20261231"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "免费的关于逆袭的动漫",
+   "tool": "educ_fuzzy_search",
+   "params": {
+    "query": "免费的关于逆袭的动漫"
+   }
+  },
+  {
+   "raw": "免费的海底小纵队不要英语的",
+   "tool": "educ_search",
+   "params": {
+    "retext": "免费的海底小纵队不要英语的",
+    "query": {
+     "and": [
+      {
+       "field": "title",
+       "value": "海底小纵队"
+      },
+      {
+       "not": {
+        "field": "language",
+        "value": "英语"
+       }
+      },
+      {
+       "field": "is_fee",
+       "value": "0"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "日本的卡通动画",
+   "tool": "educ_search_all",
+   "params": {
+    "retext": "日本的卡通动画",
+    "query": {
+     "and": [
+      {
+       "field": "country",
+       "value": "日本"
+      },
+      {
+       "or": [
+        {
+         "field": "content_type",
+         "value": "动画"
+        },
+        {
+         "field": "content_type",
+         "value": "卡通"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "适合儿童看的动画",
+   "tool": "educ_search",
+   "params": {}
+  },
+  {
+   "raw": "汪汪队小砾工程队不用VIP中文版的",
+   "tool": "educ_search",
+   "params": {
+    "retext": "汪汪队小砾与工程家族免费国语版的",
+    "query": {
+     "and": [
+      {
+       "or": [
+        {
+         "field": "title",
+         "value": "汪汪队"
+        },
+        {
+         "field": "title",
+         "value": "小砾与工程家族"
+        }
+       ]
+      },
+      {
+       "field": "language",
+       "value": "国语版"
+      },
+      {
+       "field": "is_fee",
+       "value": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "我想看美国的超级英雄主题动画",
+   "tool": "educ_search_all",
+   "params": {
+    "retext": "我想看美国的超级英雄主题动画",
+    "query": {
+     "and": [
+      {
+       "field": "title",
+       "value": "超级英雄"
+      },
+      {
+       "field": "country",
+       "value": "美国"
+      },
+      {
+       "field": "content_type",
+       "value": "动画"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "我要看绘本故事",
+   "tool": "educ_fuzzy_search",
+   "params": {
+    "query": "我要看绘本故事"
+   }
+  },
+  {
+   "raw": "我要看间谍过家家普通话第一季",
+   "tool": "educ_search",
+   "params": {
+    "retext": "我要看间谍过家家普通话第一季",
+    "query": {
+     "and": [
+      {
+       "field": "title",
+       "value": "间谍过家家"
+      },
+      {
+       "field": "language",
+       "value": "普通话"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "我要看少儿免费的动画片大货车",
+   "tool": "educ_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "content_type",
+       "value": "动画"
+      },
+      {
+       "field": "is_fee",
+       "value": "0"
+      },
+      {
+       "field": "title",
+       "value": "大货车"
+      }
+     ]
+    },
+    "retext": "我要看少儿免费的动画片大货车"
+   }
+  },
+  {
+   "raw": "我要看兔子警官第2季",
+   "tool": "educ_search",
+   "params": {
+    "retext": "我要看兔子警官第2季",
+    "query": {
+     "and": [
+      {
+       "or": [
+        {
+         "field": "role",
+         "value": "兔子警官"
+        },
+        {
+         "field": "title",
+         "value": "兔子警官"
+        }
+       ]
+      },
+      {
+       "field": "title",
+       "value": "第2季"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "辛普森一家中文版",
+   "tool": "educ_search",
+   "params": {
+    "retext": "辛普森一家国语版",
+    "query": {
+     "and": [
+      {
+       "field": "title",
+       "value": "辛普森一家"
+      },
+      {
+       "field": "language",
+       "value": "国语版"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "英语启蒙动画片",
+   "tool": "educ_search_all",
+   "params": {
+    "retext": "英语启蒙动画片",
+    "query": {
+     "and": [
+      {
+       "field": "training_objectives",
+       "value": "英语启蒙"
+      },
+      {
+       "field": "content_type",
+       "value": "动画"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "有没有亲子温情的动画视频",
+   "tool": "educ_fuzzy_search",
+   "params": {
+    "query": "有没有亲子温情的动画视频"
+   }
+  },
+  {
+   "raw": "有哪些绘本适合情绪管理？",
+   "tool": "educ_search_all",
+   "params": {}
+  },
+  {
+   "raw": "找符合孩子爱好的少儿启蒙内容推荐给我",
+   "tool": "educ_fuzzy_search",
+   "params": {
+    "query": "找符合孩子爱好的少儿启蒙内容推荐给我"
+   }
+  },
+  {
+   "raw": "玄机动画出品的动漫",
+   "tool": "educ_search_all",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "company",
+       "value": "玄机动画"
+      },
+      {
+       "field": "children_second_genre",
+       "value": "动漫"
+      }
+     ]
+    },
+    "retext": "玄机动画出品的动漫"
+   }
+  },
+  {
+   "raw": "给我讲丑小鸭的故事",
+   "tool": "educ_search",
+   "params": {
+    "retext": "给我讲丑小鸭的故事",
+    "query": {
+     "and": [
+      {
+       "field": "title",
+       "value": "丑小鸭"
+      },
+      {
+       "field": "children_second_genre",
+       "value": "故事"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "找一下科普海洋知识的儿童绘本",
+   "tool": "educ_search",
+   "params": {
+    "retext": "搜索科普海洋知识的儿童绘本",
+    "query": {
+     "and": [
+      {
+       "field": "title",
+       "value": "海洋知识"
+      },
+      {
+       "field": "children_second_genre",
+       "value": "科普"
+      },
+      {
+       "field": "children_second_genre",
+       "value": "绘本"
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

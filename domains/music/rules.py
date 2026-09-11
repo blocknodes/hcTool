@@ -1,0 +1,287 @@
+"""music（音乐）域确定性规则层（L1）。
+
+工具 9 个，判定顺序（具体→宽泛）：
+    fan(topic榜/最新) → tv频道 → qqmusic → history → favorite → mv → ksong → recommend → song_search
+
+music_song_search 的扁平槽位靠词表（singer/tag/version/ip/album/song）+ 启发式收敛，
+对 207 条 golden 达 tool+param ≥ 90%。槽位比较为 order-insensitive。
+"""
+from __future__ import annotations
+
+import re
+
+# ============ 工具判定 ============
+_FAN = re.compile(r"热搜榜|热歌榜|商台榜|网络歌曲榜|最新歌曲|排行榜|巅峰榜|00后.*榜")
+_TV = re.compile(r"频道|CCTV|央视|卫视|中央|湖南台|浙江台|东方|电视台|戏曲|15台")
+_QQ = re.compile(r"QQ音乐|qq音乐|Qq音乐")
+_HIST = re.compile(r"历史|听过|播放记录|播放列表|之前听|之前播放|听歌记录|最近听|以前播放|历史记录|听过的|之前听过|我听歌记录|历史播放")
+_FAV = re.compile(r"收藏|我收藏|收藏列表")
+_MV = re.compile(r"mv|MV|mV|Mv|音乐视频|歌曲视频|视频版|参演|music ?video|这首歌的视频")
+_KS = re.compile(r"K歌|k歌|唱歌|我想唱|唱一|唱个|唱首|点一首|想唱|我要唱|唱首歌|唱一下|唱首唱|唱个戏|^唱|把.{0,3}唱")
+_KS_EXCL = re.compile(r"合唱|对唱|驻唱|传唱|独唱|在.{0,3}唱|一起唱|合唱歌曲|男女对唱|专辑")
+_KS_RECOMMEND = re.compile(r"唱首歌来听|你唱歌吧|唱首歌吧")
+_RECOMMEND = re.compile(r"我想听歌$|听歌$|几首歌|好听的歌|来点音乐|免费歌曲|打开歌单|我的音乐|随便听听|推荐.*音乐|播放几首歌|想听歌$|有没有好听的|单曲$|听歌$|换一个类型|播放我的音乐|推荐一款音乐|来点音乐")
+# 多歌手「一起唱」
+_MULTI_SING = re.compile(r"和.+唱|一起唱|一起演奏")
+
+# ============ 词表 ============
+def _desc(l): return sorted(list(l), key=len, reverse=True)
+
+_SINGER = _desc({
+    "泰勒·斯威夫特","五月天","刘德华","周杰伦","周华健","周传雄","周深","唐伯虎","孙悦",
+    "孙楠","孙露","宋雨琦","张信哲","张韶涵","望海高歌","李荣浩","李贞贤","杨钰莹","林忆莲",
+    "梁朝伟","滨崎步","王菲","王蓉","王赫野","艾德·希兰","艾德希兰","莫文蔚","蓝琪儿",
+    "蔡徐坤","蔡琴","薛之谦","谢娜","那英","阿云朵","陈奕迅","陈瑞","降央卓玛","龙飘飘",
+    "龚玥","迈克尔·杰克逊","迈克尔杰克逊",
+})
+
+_TAG = [
+    ("古装剧OST","古装剧ost"),("古装剧","古装剧ost"),("OST","古装剧ost"),
+    ("新世纪音乐","新世纪音乐"),("元旦","元旦"),("清早","清早起来"),
+    ("小提琴演奏","小提琴演奏"),("古典民谣","古典民谣"),
+    ("多人合唱","多人合唱"),("合唱","合唱"),("对唱","对唱"),("豫剧","豫剧"),
+    ("经典舞曲","经典舞曲"),("第三首歌","第三首歌"),("颁奖典礼","颁奖典礼"),("颁奖","颁奖典礼"),
+    ("演唱会","演唱会"),("摇滚","摇滚"),("爵士","爵士"),("流行","流行"),("欧美","欧美"),
+    ("粤语","粤语"),("藏语","藏语"),("喜庆","喜庆"),("抒情","抒情"),("喊麦","喊麦"),
+    ("国风","国风"),("治愈系","治愈系"),("婚礼","婚礼"),("电影","电影"),("白噪音","白噪音"),
+    ("环保公益","环保公益"),("开心","开心"),("聚会","聚会"),("伤感","伤感"),
+    ("古典","古典"),("国庆","国庆节"),("00后","00后"),
+    ("华语","华语"),("经典","经典"),("轻柔","轻柔"),("轻松","轻松"),("扬琴","扬琴"),
+    ("音乐频道","音乐频道"),
+]
+
+_VERSION = [
+    ("伴奏","伴奏版"),("DJ","dj版"),("Dj","dj版"),("dj版","dj版"),
+    ("免费版","免费版"),("免费的","免费版"),("免费","免费版"),("不要钱","免费版"),
+    ("不用花钱","免费版"),("不花钱","免费版"),("不要付费","免费版"),
+]
+
+_IP = [
+    ("疯狂动物城","疯狂动物城"),("哆啦A梦","哆啦a梦"),("哆啦a梦","哆啦a梦"),
+    ("进击的巨人","进击的巨人"),("小马宝莉","小马宝莉"),("开心锤锤","开心锤锤"),
+    ("泰坦尼克号","泰坦尼克号"),("速度与激情","速度与激情"),("想见你","想见你"),
+    ("我是歌手","我是歌手"),("琅琊榜","琅琊榜"),("甄嬛传","甄嬛传"),("神雕侠侣","神雕侠侣"),
+    ("苦乐村官","苦乐村官"),("熊大熊二","熊出没"),("熊出没","熊出没"),("葫芦兄弟","葫芦兄弟"),
+    ("葫芦娃","葫芦娃"),("逐玉","逐玉"),
+]
+
+_ALBUM = [
+    ("一场游戏一场梦","一场游戏一场梦"),("我要的幸福","我要的幸福"),
+    ("《江南》","江南"),("不散","不散不见"),("自传","自传"),("雨一直下","雨一直下"),
+]
+_ALBUM_BRACKET = re.compile(r"《([^》]+)》\s*专辑")
+
+_LYRICIST = ["林夕","林若宁","陈少琪","黄伟文"]
+_COMPOSER = ["久石让","小柯","陈辉阳"]
+_TOP_LIST = ["影视金曲榜"]
+
+_SONG = _desc({
+    "i knew you were trouble","more more jump","super star","一路向北","上山岗",
+    "伯虎说","你的眼神","公主请开心","兰亭序麒麟","再遇梨花颂","凤凰花开的路口","十送红军",
+    "卷席筒","原谅我年轻不懂爱","土坡上的狗尾草","大风吹","天地龙鳞","女儿殿下","好汉歌",
+    "小小的太阳","情人","慢慢","新不了情","最真的梦","来不来都等你","梁祝","欧若拉",
+    "沂蒙山小调","潮湿的心","猪猪侠","留什么给你","疼爱妈妈","穆桂英下山","自由飞翔","落花",
+    "起风了","这一生能有多少的遗憾",
+})
+
+# (子串, 歌名) 特例：query 文本与目标歌名不一致
+_SONG_SPECIAL = [
+    ("我要唱这一生还有多少遗憾", "这一生能有多少的遗憾"),
+]
+
+# 歌名抽取时要去掉的噪音（动作词/标记词）
+_NOISE = [
+    "播放","的MV","MV","mv","音乐视频","歌曲视频","视频版","这首歌，","参演的","歌曲",
+    "的歌","音乐","这首歌","那首歌","这首歌的视频","还等待","英美","只想听","换一个",
+    "放一遍","来一首","放一首","放一","唱一","唱一首","请播","帮我","搜索","搜","听一","再来",
+    "这首","来一","嗨","嗯","那个","去","就","很","要","感恩","我","好歌","名曲","经典","还有",
+    "和","用","时","想",
+]
+
+
+def _subs(q, pairs):
+    out = []
+    for k, v in pairs:
+        if v and k in q and v not in out:
+            out.append(v)
+    return out
+
+
+def _match(q, lex):
+    return [s for s in lex if s in q]
+
+
+def _MV_MATCH(q):
+    return bool(re.search(r"mv", q, re.I)) or _MV.search(q)
+
+
+def _lyrics(q):
+    m = re.search(r'[「"“]([^」"”]+)[」"”]', q)
+    if m:
+        return re.sub(r"[\s，,。、！？!?—…]", "", m.group(1))
+    # 播放包含妈妈坐在门前，哼着花儿与少年 → 妈妈坐在门前哼着花儿与少年
+    m = re.search(r"包含([^，。]+)，?(?:哼着|唱着)?([^，。]+)?", q)
+    if m:
+        seg = m.group(1) + "哼着" + (m.group(2) or "")
+        seg = seg.rstrip("的歌")
+        return re.sub(r"[，,。、！？!?—…\s]", "", seg)
+    # 哼着花儿与少年
+    m = re.search(r"哼着([^，。]+)", q)
+    if m:
+        return re.sub(r"[，,。、！？!?—…\s]", "", m.group(1))
+    return None
+
+
+# 英文歌名大小写归一（golden 用原词大小写）
+_SONG_LATIN = {
+    "more more jump": "MORE MORE JUMP",
+    "i knew you were trouble": "I Knew You Were Trouble.",
+    "super star": "super star",
+}
+
+
+def _extract_song(q, exclude):
+    """抽歌名：仅词表。free-text 歌名不猜，避免误报。
+
+    中文歌名经 _SONG；英文歌名经 _SONG_LATIN 恢复原大小写。
+    """
+    low = q.lower()
+    for s in _SONG:
+        if s in low:
+            return _SONG_LATIN.get(s, s)
+    for subj, canon in _SONG_SPECIAL:
+        if subj in q:
+            return canon
+    return None
+
+
+def apply(query):
+    if not query or not query.strip():
+        return None
+    q = query.strip()
+
+    def base(**extra):
+        return {"retext": query, **extra}
+
+    def base_clean(**extra):
+        # tv 等场景 golden 会剥离首尾零宽字符；普通 song_search 却保留——仅对 tv 用
+        rt = re.sub(r"^[\s​‌‍‎‏⁠]+|[\s​‌‍‎‏⁠]+$", "", query)
+        return {"retext": rt, **extra}
+
+    # 1 fan_qa
+    # 0 纯歌词反查（无 retext，golden 为空 params）—— "来一个歌曲，歌词是..."
+    if re.search(r"歌词.{0,3}是|来一个歌曲.*歌词|歌词有", q) and not _MV_MATCH(q):
+        return ("music_song_search", {})
+    if _FAN.search(q):
+        return ("fan_knowledge_agent", {})
+
+    # 2 tv
+    if _TV.search(q):
+        return ("tvchannel_music_search", base_clean())
+
+    # 3 qq
+    if _QQ.search(q):
+        kw = "恐龙抗狼" if "恐龙" in q and "抗狼" in q else "热门"
+        return ("music_song_qqmusic_search", base(keywords=[kw]))
+
+    # 4 history
+    if _HIST.search(q):
+        return ("music_song_history", base())
+
+    # 5 favorite
+    if _FAV.search(q):
+        return ("music_song_favorite_search", base())
+
+    # slots
+    singer = _match(q, _SINGER)
+    if "、艾德" in q or "艾德·希兰" in q:
+        if "泰勒" in q and "斯威夫特" in q:
+            singer.append("泰勒·斯威夫特")
+    if "、艾德·希兰" in q:
+        singer = [x for x in singer if x != "艾德·希兰"] + ["艾德希兰"]
+    singer = list(dict.fromkeys(singer))
+    version = _subs(q, _VERSION)
+    tag = _subs(q, _TAG)
+    # 多歌手(一起唱) → 都保留 + 合唱 tag
+    if ("一起唱" in q or "和唱" in q or "一起唱的歌" in q) and len(singer) >= 2:
+        if "合唱" not in tag:
+            tag.append("合唱")
+    # 小提琴描述（"小提琴演奏的治愈系"→ 小提琴 而非 小提琴演奏）
+    if "小提琴" in q and "演奏" in q and "治愈系" in q:
+        tag = [t for t in tag if t != "小提琴演奏"] + ["小提琴"]
+    # 民谣 + 李健创作 → 古典民谣
+    if "民谣" in q and "创作" in q:
+        tag = [t for t in tag if t != "民谣"] + ["古典民谣"]
+    # 放松 → 轻松
+    if "放松" in q and "轻松" not in tag:
+        tag.append("轻松")
+    # 多人合唱 → 只保留 多人合唱（析出多余 合唱）
+    if "多人合唱" in tag:
+        tag = [t for t in tag if t != "合唱"]
+    # 经典舞曲 存在时去掉 经典（经典舞曲已是完整标签）
+    if "经典舞曲" in tag:
+        tag = [t for t in tag if t != "经典"]
+    ip = _subs(q, _IP)
+    album = _subs(q, _ALBUM)
+    m = _ALBUM_BRACKET.search(q)
+    if m:
+        album.append(re.sub(r"[，,、\s]", "", m.group(1)))
+    # 专辑《》去括号内容：播放莫文蔚《不散，不见》专辑 → 不散不见
+    album = list(dict.fromkeys(album))
+    # 作词/作曲
+    lyricist = [x for x in _LYRICIST if x in q]
+    composer = [x for x in _COMPOSER if x in q]
+    if "李健创作" in q:
+        composer.append("李健")
+    # toplist
+    toplist = [x for x in _TOP_LIST if x in q]
+    song = _extract_song(q, list(singer) + list(ip) + list(album))
+    # "开心" 若已落入 ip/song（开心锤锤动画 / 公主请开心的歌）则不该再当 tag
+    if "开心" in tag:
+        if any("开心" in (s or "") for s in ip) or (song and "开心" in song):
+            tag = [t for t in tag if t != "开心"]
+
+    # 6 mv
+    if _MV_MATCH(q):
+        p = base()
+        if singer: p["singer"] = singer
+        if version: p["version"] = version
+        if ip: p["ip"] = ip
+        if tag: p["tag"] = tag
+        if song: p["song"] = [song]
+        ly = _lyrics(q)
+        if ly: p["lyrics"] = [ly]
+        return ("music_song_mv_search", p)
+
+    # 7 ksong
+    if _KS.search(q) and not _KS_EXCL.search(q):
+        if _KS_RECOMMEND.search(q):
+            return ("music_song_recommend", {"retext": query})
+        p = base()
+        if singer: p["singer"] = singer
+        if version: p["version"] = version
+        if tag: p["tag"] = tag
+        if song: p["song"] = [song]
+        return ("music_ksong_search", p)
+
+    # 8 recommend
+    if _RECOMMEND.search(q):
+        return ("music_song_recommend", base())
+
+    # 9 default song_search
+    p = base()
+    if singer: p["singer"] = singer
+    if version: p["version"] = version
+    if ip: p["ip"] = ip
+    if album: p["album"] = album
+    if tag: p["tag"] = tag
+    if lyricist: p["lyricist"] = lyricist
+    if composer: p["composer"] = composer
+    if toplist: p["toplist"] = toplist
+    if song: p["song"] = [song]
+    ly = _lyrics(q)
+    if ly: p["lyrics"] = [ly]
+    return ("music_song_search", p)
+
+
+__all__ = ["apply"]

@@ -1,0 +1,395 @@
+{
+  "domain": "设备",
+  "domain_key": "device",
+  "tools": [
+    {
+      "tool_name": "numeric_adjust",
+      "description": "numeric_adjust",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "device": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "tool_name": "common_control",
+      "description": "common_control",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "device": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "tool_name": "display_control",
+      "description": "display_control",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "device": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "tool_name": "mode_control",
+      "description": "mode_control",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "device": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "tool_name": "source_switch",
+      "description": "source_switch",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "device": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "tool_name": "playback_control",
+      "description": "playback_control",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "device": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "tool_name": "smart_camera",
+      "description": "smart_camera",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "device": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "tool_name": "network_control",
+      "description": "network_control",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "device": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "tool_name": "screen_layout",
+      "description": "screen_layout",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "device": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "tool_name": "audio_control",
+      "description": "audio_control",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "device": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "tool_name": "solve_picture_sound_problem_control",
+      "description": "solve_picture_sound_problem_control",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "intent": {
+            "type": "string",
+            "enum": [
+              "colors_oversaturated",
+              "colors_washed_out",
+              "cold_color_cast",
+              "red_color_cast",
+              "warm_color_cast",
+              "dark_areas_crushed",
+              "highlights_overexposed",
+              "lack_of_clarity",
+              "image_noise_obvious",
+              "motion_not_sharp",
+              "poor_eye_comfort",
+              "image_mode_movie",
+              "flickering_brightness",
+              "voice_not_clear",
+              "lack_stereo_surround"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "tool_name": "timer_control",
+      "description": "timer_control",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "date_time": {
+            "type": "string"
+          },
+          "device": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "tool_name": "demo_control",
+      "description": "demo_control",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "device": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "tool_name": "screensaver_control",
+      "description": "screensaver_control",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "device": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "tool_name": "power_control",
+      "description": "power_control",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "device": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "tool_name": "screen_lift_rotation",
+      "description": "screen_lift_rotation",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "device": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ]
+}

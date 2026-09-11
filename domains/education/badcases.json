@@ -1,0 +1,37 @@
+{"entries": [
+    {
+      "raw": "人教版小学语文三年级",
+      "tool": "edu_search",
+      "params": {"query": {"and": [{"field": "figures", "value": "小学"}, {"field": "grade", "value": "三年级"}, {"field": "first_subject", "value": "语文"}, {"field": "material_version", "value": "人教版"}, {"field": "k12_category", "values": ["同步课", "同步拓展课"], "operator": "or"}]}}
+    },
+    {
+      "raw": "播放人教版七年级历史上册",
+      "tool": "edu_search",
+      "params": {"query": {"and": [{"field": "material_version", "value": "人教版"}, {"field": "first_subject", "values": ["历史"]}, {"field": "grade", "value": "七年级"}, {"field": "semester", "value": "上半学期"}, {"field": "k12_category", "values": ["同步课", "同步拓展课"], "operator": "or"}]}}
+    },
+    {
+      "raw": "高中物理和数学",
+      "tool": "edu_search",
+      "params": {"query": {"and": [{"field": "figures", "value": "高中"}, {"or": [{"field": "first_subject", "values": ["物理", "数学"], "operator": "or"}, {"field": "k12_category", "values": ["同步课", "同步拓展课"], "operator": "or"}]}]}}
+    },
+    {
+      "raw": "二年级的语文",
+      "tool": "edu_search",
+      "params": {"query": {"and": [{"field": "figures", "value": "小学"}, {"field": "grade", "value": "二年级"}, {"field": "first_subject", "value": "语文"}, {"field": "k12_category", "values": ["同步课", "同步拓展课"], "operator": "or"}]}}
+    },
+    {
+      "raw": "小学四年级和五年级的语文",
+      "tool": "edu_search",
+      "params": {"query": {"and": [{"field": "grade", "values": ["四年级", "五年级"]}, {"field": "first_subject", "value": "语文"}, {"field": "k12_category", "values": ["同步课", "同步拓展课"], "operator": "or"}]}}
+    },
+    {
+      "raw": "小学四年级和五年级的数学",
+      "tool": "edu_search",
+      "params": {"query": {"and": [{"field": "figures", "value": "小学"}, {"field": "grade", "values": ["四年级", "五年级"], "operator": "or"}, {"field": "first_subject", "value": "数学"}, {"field": "k12_category", "values": ["同步课", "同步拓展课"], "operator": "or"}]}}
+    },
+    {
+      "raw": "小学一二年级的数学",
+      "tool": "edu_search",
+      "params": {"query": {"and": [{"field": "figures", "value": "小学"}, {"field": "grade", "values": ["一年级", "二年级"], "operator": "or"}, {"field": "first_subject", "value": "数学"}, {"field": "k12_category", "values": ["同步课", "同步拓展课"], "operator": "or"}]}}
+    }
+]}

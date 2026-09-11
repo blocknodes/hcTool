@@ -1,0 +1,49 @@
+{
+  "domain": "音乐",
+  "count": 207,
+  "score": {
+    "tool": "207/207 100.0%",
+    "param": "205/207 99.0%",
+    "tool+param": "205/207 99.0%"
+  },
+  "diffs": [
+    {
+      "query": "给我放点适合看书的，古典音乐或轻柔民谣吧",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放朋友聚会时听的歌",
+        "tag": [
+          "古典",
+          "轻柔"
+        ]
+      },
+      "got_tool": "music_song_search",
+      "got_params": {
+        "retext": "给我放点适合看书的，古典音乐或轻柔民谣吧",
+        "tag": [
+          "古典",
+          "轻柔"
+        ]
+      },
+      "kind": "only-param-mismatch"
+    },
+    {
+      "query": "欧若拉的音乐",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "适合在婚礼仪式上放的歌",
+        "song": [
+          "欧若拉"
+        ]
+      },
+      "got_tool": "music_song_search",
+      "got_params": {
+        "retext": "欧若拉的音乐",
+        "song": [
+          "欧若拉"
+        ]
+      },
+      "kind": "only-param-mismatch"
+    }
+  ]
+}
