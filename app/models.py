@@ -34,6 +34,8 @@ class Prediction(BaseModel):
     tool: str = ""                        # 选中的工具名
     params: dict[str, Any] = Field(default_factory=dict)
     error: str = ""
+    # 命中来源：badcase|general_rule|rule_llm_fill|llm_select|fallback（空=未标注，多数非 vod 域）
+    hit_source: str = ""
 
 
 class PredictResponse(BaseModel):

@@ -38,7 +38,8 @@ async def predict(req: PredictRequest) -> PredictResponse:
     logger.info(
         "PREDICT << OUT %s  (%.0fms)",
         json.dumps(
-            {"tool": prediction.tool, "params": prediction.params, "error": prediction.error},
+            {"tool": prediction.tool, "params": prediction.params, "error": prediction.error,
+             "hit_source": prediction.hit_source},
             ensure_ascii=False,
         ),
         (time.perf_counter() - started) * 1000,

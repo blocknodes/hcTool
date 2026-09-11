@@ -31,6 +31,8 @@ DEFAULT_SELECT_PROMPT = """你是电视语音助手的工具选择器。根据�
 
 原则：
 - 严格按每个工具描述的适用场景匹配，不要凭工具名猜测。
+- 优先参考“已标注好的同类问句”（它们是最可靠的路由先例）：从这些样例里挑与当前用户的话最像的，
+  跟随它对应的工具。
 - 只输出工具名本身，不要输出解释、不要包 JSON 对象、不要其他内容。
 """
 
@@ -73,10 +75,14 @@ class Domain:
     select_prompt: str = DEFAULT_SELECT_PROMPT
     fill_prompt: str = DEFAULT_FILL_PROMPT
     fewshot: list[dict[str, Any]] = field(default_factory=list)
+    example_bank: Any = None          # 动态 few-shot 检索池（app.examples.ExampleBank）
 
     # ---- 可选钩子（缺省为恒等）----
     preprocess: Callable | None = None      # (req) -> req
     postprocess: Callable | None = None    # (tool_name, params) -> params
+    rule_select: Callable | None = None    # (query) -> (tool, params|None)|None；命中则跳过 LLM select
+    badcase_lookup: Callable | None = None  # (query) -> (tool, params)|None；L2 最高优先，允许覆盖一切
+    fallback: Callable | None = None        # (query) -> (tool, params)|None；L3 有序兜底，保证非空
 
     @property
     def tools_by_name(self) -> dict[str, Tool]:

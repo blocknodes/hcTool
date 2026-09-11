@@ -23,6 +23,9 @@ class Settings(BaseSettings):
     api_key: str = ""
     model: str = "baseline"    # 与 hcAgent 默认一致
 
+    # select 阶段动态 few-shot 数量（0 表示禁用动态检索）
+    select_shots: int = 6
+
     @property
     def chat_url(self) -> str:
         return f"{self.api_base.rstrip('/')}/chat/completions"

@@ -1,0 +1,422 @@
+{
+  "domain": "影视",
+  "count": 445,
+  "score": {
+    "tool": "440/445 98.9%",
+    "param": "432/445 97.1%",
+    "tool+param": "432/445 97.1%"
+  },
+  "diff_buckets": {
+    "pass": 432,
+    "only-param-mismatch": 8,
+    "fuzzy-involved": 4,
+    "tool-divergence": 1
+  },
+  "diffs": [
+    {
+      "query": "以家人之名DVD版",
+      "expected_tool": "vod_search",
+      "expected_params": {
+        "action": "search",
+        "retext": "以家人之名dvd版",
+        "query": {
+          "and": [
+            {
+              "field": "title",
+              "value": "以家人之名"
+            },
+            {
+              "field": "tag",
+              "value": "dvd版"
+            }
+          ]
+        }
+      },
+      "got_tool": "vod_search",
+      "got_params": {
+        "action": "search",
+        "retext": "以家人之名DVD版",
+        "query": {
+          "and": [
+            {
+              "field": "title",
+              "value": "以家人之名"
+            },
+            {
+              "field": "tag",
+              "value": "dvd版"
+            }
+          ]
+        }
+      },
+      "kind": "only-param-mismatch"
+    },
+    {
+      "query": "好看的内地恋爱综艺",
+      "expected_tool": "vod_search_all",
+      "expected_params": {
+        "action": "search",
+        "retext": "好看的内地恋爱综艺",
+        "query": {
+          "and": [
+            {
+              "field": "area",
+              "value": "内地"
+            },
+            {
+              "field": "category",
+              "value": "综艺"
+            },
+            {
+              "field": "tag",
+              "value": "恋爱体验"
+            }
+          ]
+        },
+        "sort": {
+          "hot": {
+            "order": "desc"
+          }
+        }
+      },
+      "got_tool": "vod_fuzzy_search",
+      "got_params": {
+        "query": "好看的内地恋爱综艺"
+      },
+      "kind": "fuzzy-involved"
+    },
+    {
+      "query": "VIP的视频",
+      "expected_tool": "vod_search",
+      "expected_params": {
+        "action": "search",
+        "retext": "VIP的视频",
+        "query": {
+          "and": [
+            {
+              "field": "category",
+              "values": [
+                "电影",
+                "电视剧"
+              ],
+              "operator": "or"
+            },
+            {
+              "field": "is_fee",
+              "value": 1
+            }
+          ]
+        }
+      },
+      "got_tool": "vod_search",
+      "got_params": {
+        "action": "search",
+        "retext": "VIP的视频",
+        "query": {
+          "field": "is_fee",
+          "value": 1
+        }
+      },
+      "kind": "only-param-mismatch"
+    },
+    {
+      "query": "获得香港电影金像奖的电影",
+      "expected_tool": "vod_search",
+      "expected_params": {},
+      "got_tool": "vod_search_all",
+      "got_params": {
+        "action": "search",
+        "retext": "获得香港电影金像奖的电影",
+        "query": {
+          "and": [
+            {
+              "field": "prize",
+              "value": "香港电影金像奖"
+            },
+            {
+              "field": "area",
+              "value": "香港"
+            },
+            {
+              "field": "category",
+              "value": "电影"
+            }
+          ]
+        }
+      },
+      "kind": "tool-divergence"
+    },
+    {
+      "query": "搜索詹姆斯·邦德的电影",
+      "expected_tool": "vod_search",
+      "expected_params": {},
+      "got_tool": "vod_search",
+      "got_params": {
+        "action": "search",
+        "retext": "搜索詹姆斯·邦德的电影",
+        "query": {
+          "field": "category",
+          "value": "电影"
+        }
+      },
+      "kind": "only-param-mismatch"
+    },
+    {
+      "query": "看免费恐怖悬疑电影",
+      "expected_tool": "vod_search",
+      "expected_params": {
+        "action": "play",
+        "retext": "看免费恐怖悬疑电影",
+        "query": {
+          "and": [
+            {
+              "field": "category",
+              "value": "电影"
+            },
+            {
+              "field": "tag",
+              "values": [
+                "恐怖",
+                "悬疑"
+              ],
+              "operator": "and"
+            },
+            {
+              "field": "is_fee",
+              "value": 0
+            }
+          ]
+        }
+      },
+      "got_tool": "vod_search",
+      "got_params": {
+        "action": "search",
+        "retext": "看免费恐怖悬疑电影",
+        "query": {
+          "and": [
+            {
+              "field": "category",
+              "value": "电影"
+            },
+            {
+              "field": "tag",
+              "values": [
+                "恐怖",
+                "悬疑"
+              ],
+              "operator": "and"
+            },
+            {
+              "field": "is_fee",
+              "value": 0
+            }
+          ]
+        }
+      },
+      "kind": "only-param-mismatch"
+    },
+    {
+      "query": "我想看相声喜剧",
+      "expected_tool": "vod_search",
+      "expected_params": {},
+      "got_tool": "vod_search",
+      "got_params": {
+        "action": "search",
+        "retext": "我想看相声喜剧",
+        "query": {
+          "and": [
+            {
+              "field": "category",
+              "value": "相声"
+            },
+            {
+              "field": "tag",
+              "values": [
+                "喜剧",
+                "相声"
+              ],
+              "operator": "and"
+            }
+          ]
+        }
+      },
+      "kind": "only-param-mismatch"
+    },
+    {
+      "query": "已完结的电视剧",
+      "expected_tool": "vod_search",
+      "expected_params": {
+        "action": "search",
+        "retext": "找还在更新中的电视剧",
+        "query": {
+          "and": [
+            {
+              "field": "is_over",
+              "value": 1
+            },
+            {
+              "field": "category",
+              "value": "电视剧"
+            }
+          ]
+        }
+      },
+      "got_tool": "vod_search",
+      "got_params": {
+        "action": "search",
+        "retext": "已完结的电视剧",
+        "query": {
+          "and": [
+            {
+              "field": "category",
+              "value": "电视剧"
+            },
+            {
+              "field": "is_over",
+              "value": 1
+            }
+          ]
+        }
+      },
+      "kind": "only-param-mismatch"
+    },
+    {
+      "query": "我想看电影，不要刘德华的，不要香港的，不要动作的",
+      "expected_tool": "vod_search_all",
+      "expected_params": {
+        "action": "search",
+        "retext": "我想看电影，不要刘德华的，不要香港的，不要动作的",
+        "query": {
+          "and": [
+            {
+              "field": "category",
+              "value": "电影"
+            },
+            {
+              "not": {
+                "or": [
+                  {
+                    "field": "actor",
+                    "value": "刘德华"
+                  },
+                  {
+                    "field": "area",
+                    "value": "香港"
+                  },
+                  {
+                    "field": "tag",
+                    "value": "动作"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "got_tool": "vod_search_all",
+      "got_params": {
+        "action": "search",
+        "retext": "我想看电影，不要刘德华的，不要香港的，不要动作的",
+        "query": {
+          "and": [
+            {
+              "field": "area",
+              "value": "香港"
+            },
+            {
+              "field": "category",
+              "value": "电影"
+            },
+            {
+              "field": "tag",
+              "value": "动作"
+            }
+          ]
+        }
+      },
+      "kind": "only-param-mismatch"
+    },
+    {
+      "query": "我们的当打之年花絮",
+      "expected_tool": "vod_search",
+      "expected_params": {},
+      "got_tool": "vod_fuzzy_search",
+      "got_params": {
+        "query": "我们的当打之年花絮"
+      },
+      "kind": "fuzzy-involved"
+    },
+    {
+      "query": "获得白玉兰奖最佳女主角的电视剧",
+      "expected_tool": "vod_search_all",
+      "expected_params": {
+        "action": "search",
+        "retext": "获得白玉兰奖最佳女主角的电视剧",
+        "query": {
+          "and": [
+            {
+              "field": "prize",
+              "value": "白玉兰奖"
+            },
+            {
+              "field": "sub_prize",
+              "value": "最佳女主角"
+            },
+            {
+              "field": "category",
+              "value": "电视剧"
+            }
+          ]
+        }
+      },
+      "got_tool": "vod_fuzzy_search",
+      "got_params": {
+        "query": "获得白玉兰奖最佳女主角的电视剧"
+      },
+      "kind": "fuzzy-involved"
+    },
+    {
+      "query": "获得香港金像奖最佳男主角的影片",
+      "expected_tool": "vod_search_all",
+      "expected_params": {
+        "action": "search",
+        "retext": "获得香港金像奖最佳男主角的影片",
+        "query": {
+          "and": [
+            {
+              "field": "prize",
+              "value": "香港电影金像奖"
+            },
+            {
+              "field": "sub_prize",
+              "value": "最佳男主角"
+            },
+            {
+              "field": "category",
+              "value": "电影"
+            }
+          ]
+        }
+      },
+      "got_tool": "vod_fuzzy_search",
+      "got_params": {
+        "query": "获得香港金像奖最佳男主角的影片"
+      },
+      "kind": "fuzzy-involved"
+    },
+    {
+      "query": "播放昨天的纪录片",
+      "expected_tool": "vod_history",
+      "expected_params": {
+        "category": "纪录片",
+        "time": "2026-08-23 00:00:00 TO 2026-08-23 23:59:59"
+      },
+      "got_tool": "vod_history",
+      "got_params": {
+        "category": "纪录片",
+        "time": "2026-09-10 00:00:00 TO 2026-09-10 23:59:59"
+      },
+      "kind": "only-param-mismatch"
+    }
+  ]
+}

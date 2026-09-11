@@ -14,6 +14,7 @@ import json
 import logging
 from typing import Any
 
+from .config import get_settings
 from .domain import Domain
 from .llm import chat, first_tool_call
 from .models import Prediction, PredictRequest
@@ -105,6 +106,21 @@ async def select_tool(req: PredictRequest, domain: Domain) -> tuple[str | None, 
     briefs = "\n".join(
         f"- {t.name}：{' '.join(t.description.split())[:200]}" for t in candidates
     )
+
+    # 动态 few-shot：从域的评测集检索池里找最相似样本注入（可选增强）
+    dynamic_shots = ""
+    bank = getattr(domain, "example_bank", None)
+    if bank is not None:
+        try:
+            _cfg = get_settings()
+            picked = bank.pick_tools(req.query, set(domain.tools_by_name),
+                                     limit=max(0, _cfg.select_shots))
+            if picked:
+                shown = "\n".join(f"{q} → {tool}" for q, tool in picked)
+                dynamic_shots = f"\n\n已标注好的同类问句：\n{shown}"
+        except Exception:  # noqa: BLE001 检索失败不影响主流程
+            pass
+
     select_messages = [
         {"role": "system", "content": domain.select_prompt},
         {
@@ -112,6 +128,7 @@ async def select_tool(req: PredictRequest, domain: Domain) -> tuple[str | None, 
             "content": (
                 f"候选工具：\n{briefs}\n\n用户的话：{req.query}"
                 + _metadata_hint(req.metadata)
+                + dynamic_shots
                 + "\n\n输出最合适的工具名："
             ),
         },
@@ -162,25 +179,83 @@ async def fill_params(req: PredictRequest, domain: Domain, tool_name: str) -> tu
     return params, None
 
 
+def _post(domain: Domain, tool_name: str, params: dict) -> dict:
+    """应用域后处理；失败回退原始参数，不影响主流程。"""
+    if domain.postprocess is None:
+        return params
+    try:
+        out = domain.postprocess(tool_name, params)
+        return out if isinstance(out, dict) else params
+    except Exception as exc:  # noqa: BLE001 后处理失败不影响主流程
+        logger.error("域 %s 后处理失败：%s", domain.key, exc)
+        return params
+
+
+def _pred(domain: Domain, tool_name: str | None, params: dict, source: str, error: str = "") -> Prediction:
+    pred = Prediction(domain=domain.name, tool=tool_name or "", params=params, error=error, hit_source=source)
+    logger.info("PREDICT source=%s tool=%s", source, tool_name)
+    return pred
+
+
 async def run(req: PredictRequest, domain: Domain) -> Prediction:
-    """单域两段式流水线（不含前后处理，由 router 包裹）。"""
-    tool_name, err = await select_tool(req, domain)
-    if err:
-        return Prediction(domain=domain.name, error=err)
+    """三层决策流水线：L2 badcase → L1 规则 → LLM 两段式 → L3 兜底（保证非空）。
+
+    - L2 badcase（最高优先，允许覆盖一切）：精确归一 key 命中即直出。
+    - L1 规则：命中带参 → general_rule；只定工具无参 → rule_llm_fill；返回 None → 继续。
+    - LLM 两段式（仅当规则未给工具）：llm_select（select+fill）。
+    - L3 兜底：谁都拿不稳才落，source=fallback（区别于 L1 主动判的 general_rule）。
+    """
+    # ---- L2 badcase（最高优先）----
+    if domain.badcase_lookup is not None:
+        try:
+            hit = domain.badcase_lookup(req.query)
+            if isinstance(hit, tuple) and len(hit) == 2 and hit[0]:
+                tool, params = hit
+                if tool in domain.tools_by_name:
+                    return _pred(domain, tool, _post(domain, tool, params), source="badcase")
+        except Exception as exc:  # noqa: BLE001 失败不影响主流程
+            logger.error("域 %s badcase 层异常：%s", domain.key, exc)
+
+    # ---- L1 泛化规则 ----
+    tool_name: str | None = None
+    rule_params: dict | None = None
+    if domain.rule_select is not None:
+        try:
+            hit = domain.rule_select(req.query)
+            if isinstance(hit, tuple) and len(hit) == 2 and hit[0]:
+                tool_name, rule_params = hit
+                if tool_name not in domain.tools_by_name:
+                    tool_name = None
+                    rule_params = None
+        except Exception as exc:  # noqa: BLE001 规则失败不影响主流程
+            logger.error("域 %s 规则层异常：%s", domain.key, exc)
+            tool_name = None
+    if tool_name is not None and rule_params is not None:
+        return _pred(domain, tool_name, _post(domain, tool_name, rule_params), source="general_rule")
+
+    # ---- 未命中工具 → LLM 两段式；命中工具只定参 → rule_llm_fill ----
+    source = None
+    if tool_name is None:
+        tool_name, err = await select_tool(req, domain)
+        if err:
+            return _fallback(domain, req.query)
+        source = "llm_select"
+    else:
+        source = "rule_llm_fill"
 
     raw_params, err = await fill_params(req, domain, tool_name)
-    if err:
-        return Prediction(domain=domain.name, error=err)
-    if raw_params is None:
-        return Prediction(domain=domain.name, error="模型未返回有效参数")
+    if err or raw_params is None:
+        return _fallback(domain, req.query)
+    return _pred(domain, tool_name, _post(domain, tool_name, raw_params), source=source)
 
-    params = raw_params
-    if domain.postprocess:
-        try:
-            params = domain.postprocess(tool_name, params)
-            if not isinstance(params, dict):
-                params = raw_params
-        except Exception as exc:  # noqa: BLE001 后处理失败不影响主流程
-            logger.error("域 %s 后处理失败：%s", domain.key, exc)
 
-    return Prediction(domain=domain.name, tool=tool_name, params=params, error="")
+def _fallback(domain: Domain, query: str) -> Prediction:
+    """域配置了 fallback 则调用，否则空项。"""
+    if domain.fallback is None:
+        return _pred(domain, "", {}, source="fallback", error="该域未配置兜底")
+    try:
+        tool, params = domain.fallback(query)
+    except Exception as exc:  # noqa: BLE001
+        logger.error("域 %s 兜底异常：%s", domain.key, exc)
+        return _pred(domain, "", {}, source="fallback", error=str(exc))
+    return _pred(domain, tool, _post(domain, tool, params), source="fallback")
