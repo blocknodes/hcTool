@@ -4,11 +4,15 @@ from __future__ import annotations
 
 import asyncio
 import json
+import logging
+import time
 from typing import Any
 
 import httpx
 
 from .config import get_settings
+
+logger = logging.getLogger("hcTools.llm")
 
 # 网关调用的固定参数
 TEMPERATURE = 0.0
@@ -27,8 +31,8 @@ async def chat(
 ) -> dict[str, Any]:
     """调用 /chat/completions，返回 choices[0].message。失败抛 LLMError。"""
     settings = get_settings()
-    if not settings.api_base or not settings.api_key:
-        raise LLMError("HC_API_BASE / HC_API_KEY 未配置")
+    if not settings.api_base:
+        raise LLMError("HC_API_BASE 未配置（网关地址）")
 
     payload: dict[str, Any] = {
         "model": settings.model,
@@ -36,24 +40,37 @@ async def chat(
     }
     if not settings.model.startswith("gpt-5"):
         payload["temperature"] = TEMPERATURE
+        # 参考 hcAgent / compare：禁用 thinking。baseline 不开会在 content 里只回 " thinking"。
+        payload["chat_template_kwargs"] = {"enable_thinking": False}
     if tools:
         payload["tools"] = tools
     if tool_choice is not None:
         payload["tool_choice"] = tool_choice
 
-    headers = {
-        "Authorization": f"Bearer {settings.api_key}",
-        "Content-Type": "application/json",
-    }
+    headers = {"Content-Type": "application/json"}
+    if settings.api_key:
+        headers["Authorization"] = f"Bearer {settings.api_key}"
 
     last_error = ""
+    started = time.perf_counter()
     async with httpx.AsyncClient(timeout=REQUEST_TIMEOUT) as client:
         for attempt in range(MAX_RETRY):
             try:
                 resp = await client.post(settings.chat_url, json=payload, headers=headers)
                 resp.raise_for_status()
                 data = resp.json()
-                return data["choices"][0]["message"]
+                message = data["choices"][0]["message"]
+                logger.info(
+                    "LLM req %s | %s\n"
+                    "  >> IN  %s\n"
+                    "  << OUT %s  (%.0fms)",
+                    settings.model,
+                    " ".join((m.get("role", "?") for m in messages)),
+                    json.dumps(messages, ensure_ascii=False),
+                    json.dumps(message, ensure_ascii=False),
+                    (time.perf_counter() - started) * 1000,
+                )
+                return message
             except httpx.HTTPStatusError as exc:
                 code = exc.response.status_code
                 last_error = f"HTTP {code}: {exc.response.text[:200]}"
