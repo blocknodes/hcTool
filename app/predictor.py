@@ -1,9 +1,8 @@
-"""LLM-first 预测编排：单次 function-calling 完成 域路由 + 工具选择 + 参数抽取。
+"""LLM-first 预测编排：两次 function-calling。
 
-对比旧的三段式方案，这里：
-- 一次 LLM 调用把候选工具全量交给模型，让它自己选并填参；
-- 不做 route_override / apply_rules / postproc 这类确定性改写；
-- 只保留 schema 校验 + 一次带反馈的自修复。
+- 第 1 次：把候选工具全量交给模型，让它只做工具选择（忽略这一次填的参数）。
+- 第 2 次：只交给模型选中的那一个工具，让它专注填参。
+- 全程不做确定性改写（route_override / postproc / 规则），也暂不做违规校验与自修复。
 """
 
 from __future__ import annotations
@@ -14,15 +13,22 @@ from typing import Any
 from .llm import chat, first_tool_call
 from .models import Prediction, PredictRequest
 from .registry import Tool, load_registry
-from .validate import check
 
-SYSTEM_PROMPT = """你是电视语音助手的意图解析器。根据用户的话，从提供的工具中选出最合适的一个并填好参数。
+SELECT_PROMPT = """你是电视语音助手的意图解析器。根据用户的话，从提供的工具中选出最合适的一个。
 
 原则：
 - 通过 function calling 直接调用你选中的那个工具，不要输出解释文字。
-- 只抽取用户明确表达的信息，不臆造、不补充用户没说的条件；用户没提的可选字段不要填。
-- 严格按每个工具 description 和参数 schema 里写的口径取值。
-- 如果提供了 retext 字段，原样填写用户完整原话，不改写、不截断。
+- 只需选对工具；参数这一步不重要，可随意填占位值。
+- 严格按每个工具的 description 判断适用场景。
+"""
+
+FILL_PROMPT = """你是电视语音助手的参数抽取器。已经为你选定了唯一的工具，请根据用户的话填好它的参数。
+
+原则：
+- 通过 function calling 调用给定的这个工具，不要输出解释文字。
+- 只抽取用户明确表达的信息，不臆造、不补充用户没说的条件；用户没提的可选字段留空。
+- 严格按参数 schema 里每个字段的 description / enum 写的口径取值。
+- 如果有 retext 字段，原样填写用户完整原话，不改写、不截断。
 """
 
 
@@ -46,63 +52,47 @@ def _metadata_hint(metadata: dict[str, Any] | None) -> str:
     )
 
 
-def _build_messages(req: PredictRequest) -> list[dict[str, Any]]:
+def _build_messages(system_prompt: str, req: PredictRequest) -> list[dict[str, Any]]:
     user = f"用户的话：{req.query}" + _metadata_hint(req.metadata)
     return [
-        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "system", "content": system_prompt},
         {"role": "user", "content": user},
     ]
 
 
 async def predict(req: PredictRequest) -> Prediction:
     registry = load_registry()
-    tools = registry.openai_tools(req.domain)
-    if not tools:
+    candidates = registry.candidates(req.domain)
+    if not candidates:
         return Prediction(error="没有可用工具（schema 未加载或指定域为空）")
 
-    messages = _build_messages(req)
+    # ---- 第 1 次：LLM 选工具 ----
+    select_tools = [t.as_openai_function() for t in candidates]
     try:
-        message = await chat(messages, tools=tools, tool_choice="required")
-    except Exception as exc:  # LLMError 等
-        return Prediction(error=f"模型调用失败：{exc}")
+        message = await chat(_build_messages(SELECT_PROMPT, req), tools=select_tools, tool_choice="required")
+    except Exception as exc:
+        return Prediction(error=f"工具选择调用失败：{exc}")
 
-    name, params = first_tool_call(message)
+    name, _ = first_tool_call(message)
     tool = registry.by_name.get(name)
-    if tool is None or params is None:
-        return Prediction(error=f"模型未返回有效工具调用（tool={name!r}）")
+    if tool is None:
+        return Prediction(error=f"模型未选出有效工具（tool={name!r}）")
 
-    issues = check(params, tool.parameters)
-    retried = False
+    # ---- 第 2 次：LLM 填参数（只交给选中的那一个工具，强制调用它）----
+    fill_tools = [tool.as_openai_function()]
+    forced = {"type": "function", "function": {"name": tool.name}}
+    try:
+        fill_msg = await chat(_build_messages(FILL_PROMPT, req), tools=fill_tools, tool_choice=forced)
+    except Exception as exc:
+        return Prediction(error=f"参数填充调用失败：{exc}")
 
-    # 一次带反馈的自修复：只在有违规时触发
-    if issues:
-        followup = messages + [
-            message,
-            {
-                "role": "user",
-                "content": "上一次调用的参数不符合工具定义：\n- "
-                + "\n- ".join(issues)
-                + "\n请只修正违规部分后重新调用同一个工具，其余保持不变。",
-            },
-        ]
-        try:
-            fixed_msg = await chat(followup, tools=tools, tool_choice="required")
-            fixed_name, fixed_params = first_tool_call(fixed_msg)
-            if fixed_params is not None:
-                fixed_tool = registry.by_name.get(fixed_name) or tool
-                remaining = check(fixed_params, fixed_tool.parameters)
-                # 只有变好才接受
-                if len(remaining) <= len(issues):
-                    name, tool, params, issues = fixed_name, fixed_tool, fixed_params, remaining
-                retried = True
-        except Exception:
-            pass  # 修复失败保留原结果
+    _, params = first_tool_call(fill_msg)
+    if params is None:
+        return Prediction(error="模型未返回有效参数")
 
     return Prediction(
         domain=tool.domain or _domain_key_to_name(req.domain or ""),
-        tool=name,
+        tool=tool.name,
         params=params,
-        retried=retried,
-        violations=issues,
         error="",
     )

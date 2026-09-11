@@ -3,11 +3,8 @@
 from __future__ import annotations
 
 from functools import lru_cache
-from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
-
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 class Settings(BaseSettings):
@@ -18,22 +15,9 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    # ---- LLM 网关（OpenAI 兼容）----
-    api_base: str = ""            # 例如 https://gateway.example.com/v1
+    api_base: str = ""            # LLM 网关地址，例如 https://gateway.example.com/v1
     api_key: str = ""             # Bearer key
-    model: str = "qwen3-6-35b"
-    temperature: float = 0.0
-    request_timeout: float = 120.0
-    max_retry: int = 3
-
-    # ---- 工具 schema ----
-    schema_dir: Path = BASE_DIR / "schema"
-
-    # ---- 服务 ----
-    host: str = "127.0.0.1"
-    port: int = 8080
-    service_token: str = ""       # 设置后 /predict 需要 Bearer 鉴权
-    max_body_bytes: int = 64 * 1024
+    model: str = "qwen3-6-35b"    # 模型名
 
     @property
     def chat_url(self) -> str:

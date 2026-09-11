@@ -33,8 +33,6 @@ class Prediction(BaseModel):
     domain: str = ""                      # 命中的域（内部中文名）
     tool: str = ""                        # 选中的工具名
     params: dict[str, Any] = Field(default_factory=dict)
-    retried: bool = False                 # 是否触发了一次修复重试
-    violations: list[str] = Field(default_factory=list)  # 最终 schema 违规项
     error: str = ""
 
 
