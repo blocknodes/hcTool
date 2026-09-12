@@ -1,0 +1,20 @@
+{
+  "domain": "泛知识",
+  "domain_key": "qa",
+  "tools": [
+    {
+      "tool_name": "fan_knowledge_agent",
+      "description": "泛知识开放域问答智能体：开放域知识问答、内容生成与推理回复。影视/少儿/教育/音乐场景的媒资检索与知识问答。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "messages": {
+            "type": "array",
+            "description": "多轮对话消息列表",
+            "items": {"type": "object"}
+          }
+        }
+      }
+    }
+  ]
+}

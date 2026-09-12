@@ -408,6 +408,220 @@
      ]
     }
    }
+  },
+  {
+   "raw": "播放1岁半宝宝听的歌曲",
+   "tool": "educ_search",
+   "params": {
+    "retext": "播放1岁半宝宝听的歌曲",
+    "query": {
+     "and": [
+      {
+       "field": "age_range",
+       "from": 1,
+       "to": 1
+      },
+      {
+       "field": "children_second_genre",
+       "value": "儿歌"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "我要听虫儿飞",
+   "tool": "educ_search",
+   "params": {
+    "retext": "我要听虫儿飞",
+    "query": {
+     "field": "title",
+     "value": "虫儿飞"
+    }
+   }
+  },
+  {
+   "raw": "巴士儿歌",
+   "tool": "educ_search",
+   "params": {
+    "retext": "巴士儿歌",
+    "query": {
+     "and": [
+      {
+       "field": "title",
+       "value": "巴士"
+      },
+      {
+       "field": "children_second_genre",
+       "value": "儿歌"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "拔萝卜儿歌",
+   "tool": "educ_search",
+   "params": {
+    "retext": "拔萝卜儿歌",
+    "query": {
+     "and": [
+      {
+       "field": "title",
+       "value": "拔萝卜"
+      },
+      {
+       "field": "children_second_genre",
+       "value": "儿歌"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "白龙马儿歌",
+   "tool": "educ_search",
+   "params": {
+    "retext": "白龙马儿歌",
+    "query": {
+     "and": [
+      {
+       "field": "title",
+       "value": "白龙马"
+      },
+      {
+       "field": "children_second_genre",
+       "value": "儿歌"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "宝宝巴士儿歌免费",
+   "tool": "educ_search",
+   "params": {
+    "retext": "宝宝巴士儿歌免费",
+    "query": {
+     "and": [
+      {
+       "field": "title",
+       "value": "宝宝巴士儿歌"
+      },
+      {
+       "field": "is_fee",
+       "value": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "播放不花钱的儿歌",
+   "tool": "educ_search",
+   "params": {
+    "retext": "播放不花钱的儿歌",
+    "query": {
+     "and": [
+      {
+       "field": "children_second_genre",
+       "value": "儿歌"
+      },
+      {
+       "field": "is_fee",
+       "value": 0
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "怎么给3岁的小朋友选适合听的儿歌",
+   "tool": "educ_search",
+   "params": {
+    "retext": "怎么给3岁的小朋友选适合听的儿歌",
+    "query": {
+     "and": [
+      {
+       "field": "age_range",
+       "from": 3,
+       "to": 3
+      },
+      {
+       "field": "children_second_genre",
+       "value": "儿歌"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "贝乐虎儿歌",
+   "tool": "educ_search",
+   "params": {
+    "retext": "贝乐虎儿歌",
+    "query": {
+     "and": [
+      {
+       "field": "title",
+       "value": "贝乐虎"
+      },
+      {
+       "field": "children_second_genre",
+       "value": "儿歌"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "小兔子乖乖儿歌",
+   "tool": "educ_search",
+   "params": {
+    "retext": "小兔子乖乖儿歌",
+    "query": {
+     "and": [
+      {
+       "field": "title",
+       "value": "小兔子乖乖"
+      },
+      {
+       "field": "children_second_genre",
+       "value": "儿歌"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "英语启蒙儿歌",
+   "tool": "educ_search",
+   "params": {
+    "retext": "英语启蒙儿歌",
+    "query": {
+     "field": "title",
+     "value": "英语启蒙儿歌"
+    }
+   }
+  },
+  {
+   "raw": "播放儿歌爸爸妈妈去上班",
+   "tool": "educ_search",
+   "params": {
+    "retext": "播放儿歌爸爸妈妈去上班",
+    "query": {
+     "and": [
+      {
+       "field": "title",
+       "value": "爸爸妈妈去上班"
+      },
+      {
+       "field": "children_second_genre",
+       "value": "儿歌"
+      }
+     ]
+    }
+   }
   }
  ]
 }

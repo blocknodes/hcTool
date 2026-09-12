@@ -1,37 +1,312 @@
-{"entries": [
-    {
-      "raw": "人教版小学语文三年级",
-      "tool": "edu_search",
-      "params": {"query": {"and": [{"field": "figures", "value": "小学"}, {"field": "grade", "value": "三年级"}, {"field": "first_subject", "value": "语文"}, {"field": "material_version", "value": "人教版"}, {"field": "k12_category", "values": ["同步课", "同步拓展课"], "operator": "or"}]}}
-    },
-    {
-      "raw": "播放人教版七年级历史上册",
-      "tool": "edu_search",
-      "params": {"query": {"and": [{"field": "material_version", "value": "人教版"}, {"field": "first_subject", "values": ["历史"]}, {"field": "grade", "value": "七年级"}, {"field": "semester", "value": "上半学期"}, {"field": "k12_category", "values": ["同步课", "同步拓展课"], "operator": "or"}]}}
-    },
-    {
-      "raw": "高中物理和数学",
-      "tool": "edu_search",
-      "params": {"query": {"and": [{"field": "figures", "value": "高中"}, {"or": [{"field": "first_subject", "values": ["物理", "数学"], "operator": "or"}, {"field": "k12_category", "values": ["同步课", "同步拓展课"], "operator": "or"}]}]}}
-    },
-    {
-      "raw": "二年级的语文",
-      "tool": "edu_search",
-      "params": {"query": {"and": [{"field": "figures", "value": "小学"}, {"field": "grade", "value": "二年级"}, {"field": "first_subject", "value": "语文"}, {"field": "k12_category", "values": ["同步课", "同步拓展课"], "operator": "or"}]}}
-    },
-    {
-      "raw": "小学四年级和五年级的语文",
-      "tool": "edu_search",
-      "params": {"query": {"and": [{"field": "grade", "values": ["四年级", "五年级"]}, {"field": "first_subject", "value": "语文"}, {"field": "k12_category", "values": ["同步课", "同步拓展课"], "operator": "or"}]}}
-    },
-    {
-      "raw": "小学四年级和五年级的数学",
-      "tool": "edu_search",
-      "params": {"query": {"and": [{"field": "figures", "value": "小学"}, {"field": "grade", "values": ["四年级", "五年级"], "operator": "or"}, {"field": "first_subject", "value": "数学"}, {"field": "k12_category", "values": ["同步课", "同步拓展课"], "operator": "or"}]}}
-    },
-    {
-      "raw": "小学一二年级的数学",
-      "tool": "edu_search",
-      "params": {"query": {"and": [{"field": "figures", "value": "小学"}, {"field": "grade", "values": ["一年级", "二年级"], "operator": "or"}, {"field": "first_subject", "value": "数学"}, {"field": "k12_category", "values": ["同步课", "同步拓展课"], "operator": "or"}]}}
+{
+ "entries": [
+  {
+   "raw": "人教版小学语文三年级",
+   "tool": "edu_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "figures",
+       "value": "小学"
+      },
+      {
+       "field": "grade",
+       "value": "三年级"
+      },
+      {
+       "field": "first_subject",
+       "value": "语文"
+      },
+      {
+       "field": "material_version",
+       "value": "人教版"
+      },
+      {
+       "field": "k12_category",
+       "values": [
+        "同步课",
+        "同步拓展课"
+       ],
+       "operator": "or"
+      }
+     ]
     }
-]}
+   }
+  },
+  {
+   "raw": "播放人教版七年级历史上册",
+   "tool": "edu_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "material_version",
+       "value": "人教版"
+      },
+      {
+       "field": "first_subject",
+       "values": [
+        "历史"
+       ]
+      },
+      {
+       "field": "grade",
+       "value": "七年级"
+      },
+      {
+       "field": "semester",
+       "value": "上半学期"
+      },
+      {
+       "field": "k12_category",
+       "values": [
+        "同步课",
+        "同步拓展课"
+       ],
+       "operator": "or"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "高中物理和数学",
+   "tool": "edu_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "figures",
+       "value": "高中"
+      },
+      {
+       "or": [
+        {
+         "field": "first_subject",
+         "values": [
+          "物理",
+          "数学"
+         ],
+         "operator": "or"
+        },
+        {
+         "field": "k12_category",
+         "values": [
+          "同步课",
+          "同步拓展课"
+         ],
+         "operator": "or"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "二年级的语文",
+   "tool": "edu_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "figures",
+       "value": "小学"
+      },
+      {
+       "field": "grade",
+       "value": "二年级"
+      },
+      {
+       "field": "first_subject",
+       "value": "语文"
+      },
+      {
+       "field": "k12_category",
+       "values": [
+        "同步课",
+        "同步拓展课"
+       ],
+       "operator": "or"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "小学四年级和五年级的语文",
+   "tool": "edu_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "grade",
+       "values": [
+        "四年级",
+        "五年级"
+       ]
+      },
+      {
+       "field": "first_subject",
+       "value": "语文"
+      },
+      {
+       "field": "k12_category",
+       "values": [
+        "同步课",
+        "同步拓展课"
+       ],
+       "operator": "or"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "小学四年级和五年级的数学",
+   "tool": "edu_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "figures",
+       "value": "小学"
+      },
+      {
+       "field": "grade",
+       "values": [
+        "四年级",
+        "五年级"
+       ],
+       "operator": "or"
+      },
+      {
+       "field": "first_subject",
+       "value": "数学"
+      },
+      {
+       "field": "k12_category",
+       "values": [
+        "同步课",
+        "同步拓展课"
+       ],
+       "operator": "or"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "小学一二年级的数学",
+   "tool": "edu_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "figures",
+       "value": "小学"
+      },
+      {
+       "field": "grade",
+       "values": [
+        "一年级",
+        "二年级"
+       ],
+       "operator": "or"
+      },
+      {
+       "field": "first_subject",
+       "value": "数学"
+      },
+      {
+       "field": "k12_category",
+       "values": [
+        "同步课",
+        "同步拓展课"
+       ],
+       "operator": "or"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "高中语文课外内容",
+   "tool": "edu_slow_search_data_search",
+   "params": {
+    "query": "高中语文课外内容"
+   }
+  },
+  {
+   "raw": "小学素质课",
+   "tool": "edu_slow_search_data_search",
+   "params": {
+    "query": "小学素质课"
+   }
+  },
+  {
+   "raw": "给初中生推荐的全科考点冲刺课程",
+   "tool": "edu_slow_search_data_search",
+   "params": {
+    "query": "给初中生推荐的全科考点冲刺课程"
+   }
+  },
+  {
+   "raw": "小升初英语辅导课",
+   "tool": "edu_slow_search_data_search",
+   "params": {
+    "query": "小升初英语辅导课t"
+   }
+  },
+  {
+   "raw": "高中生物理考点精讲",
+   "tool": "edu_slow_search_data_search",
+   "params": {
+    "query": "高中生物理考点精讲"
+   }
+  },
+  {
+   "raw": "我要看化学质量守恒定律",
+   "tool": "edu_slow_search_data_search",
+   "params": {
+    "query": "我要看化学质量守恒定律"
+   }
+  },
+  {
+   "raw": "游泳安全知识",
+   "tool": "edu_slow_search_data_search",
+   "params": {
+    "query": "游泳安全知识"
+   }
+  },
+  {
+   "raw": "关于‘三角形内角和’的知识课程有哪些？",
+   "tool": "edu_slow_search_data_search",
+   "params": {
+    "query": "关于‘三角形内角和’的知识课程有哪些？"
+   }
+  },
+  {
+   "raw": "小学语文作文辅导的课程？",
+   "tool": "edu_slow_search_data_search",
+   "params": {
+    "query": "小学语文作文辅导的课程？"
+   }
+  },
+  {
+   "raw": "我要看第一次鸦片战争相关的课程",
+   "tool": "edu_slow_search_data_search",
+   "params": {
+    "query": "我要看第一次鸦片战争相关的课程"
+   }
+  },
+  {
+   "raw": "直角三角形的面积",
+   "tool": "edu_slow_search_data_search",
+   "params": {
+    "query": "直角三角形的面积"
+   }
+  }
+ ]
+}

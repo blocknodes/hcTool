@@ -1,265 +1,441 @@
 {
-  "version": 1,
-  "entries": [
-    {
-      "raw": "射雕英雄传八三版的",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "射雕英雄传八三版的"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "我想看视频",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "我想看视频"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "我要看免费的战斗故事片",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "我要看免费的战斗故事片"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "超高清电视节目",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "超高清电视节目"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "全景拍摄的电影",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "全景拍摄的电影"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "找一些长辈爱看的影视剧",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "找一些长辈爱看的影视剧"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "阿里巴巴影业出品的爱国题材电影",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "阿里巴巴影业出品的爱国题材电影"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "播放王牌对王牌第八季最新一期的第三十分钟",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "播放王牌对王牌第八季最新一期的第三十分钟"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "八一建军节电影推荐",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "八一建军节电影推荐"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "评书隋唐演义",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "评书隋唐演义"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "看下即将上线的待播剧",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "看下即将上线的待播剧"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "我想看听泉赏宝的连线视频",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "我想看听泉赏宝的连线视频"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "唐山电影",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "唐山电影"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "适合冬天追的韩剧有什么",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "适合冬天追的韩剧有什么"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "四个小妖怪在组团后进行西行冒险之旅的电影",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "四个小妖怪在组团后进行西行冒险之旅的电影"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "朱一龙主演的把妻子推到海底的电影",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "朱一龙主演的把妻子推到海底的电影"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "描写律师职场工作的综艺",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "描写律师职场工作的综艺"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "春节全家必看暖心电影",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "春节全家必看暖心电影"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "播放所有免费关于觉醒异能的视频",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "播放所有免费关于觉醒异能的视频"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "假期看的纪录片推荐",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "假期看的纪录片推荐"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "关于苗族非遗文化的纪录片",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "关于苗族非遗文化的纪录片"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "搜索陈祉希担任制片人的电影",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "搜索陈祉希担任制片人的电影"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "鞠躬尽瘁，死而后已的电视剧",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "鞠躬尽瘁，死而后已的电视剧"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "播放功夫我发起疯来连自己都怕。",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "播放功夫我发起疯来连自己都怕。"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "看下熊出没之雪岭熊风，熊就要有个熊样",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "看下熊出没之雪岭熊风，熊就要有个熊样"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "找封神第一部马看到什么,是人决定的",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "找封神第一部马看到什么,是人决定的"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
+ "version": 1,
+ "entries": [
+  {
+   "raw": "射雕英雄传八三版的",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "射雕英雄传八三版的"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "我想看视频",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "我想看视频"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "我要看免费的战斗故事片",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "我要看免费的战斗故事片"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "超高清电视节目",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "超高清电视节目"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "全景拍摄的电影",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "全景拍摄的电影"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "找一些长辈爱看的影视剧",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "找一些长辈爱看的影视剧"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "阿里巴巴影业出品的爱国题材电影",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "阿里巴巴影业出品的爱国题材电影"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "播放王牌对王牌第八季最新一期的第三十分钟",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "播放王牌对王牌第八季最新一期的第三十分钟"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "八一建军节电影推荐",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "八一建军节电影推荐"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "评书隋唐演义",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "评书隋唐演义"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "看下即将上线的待播剧",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "看下即将上线的待播剧"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "我想看听泉赏宝的连线视频",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "我想看听泉赏宝的连线视频"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "唐山电影",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "唐山电影"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "适合冬天追的韩剧有什么",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "适合冬天追的韩剧有什么"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "四个小妖怪在组团后进行西行冒险之旅的电影",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "四个小妖怪在组团后进行西行冒险之旅的电影"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "朱一龙主演的把妻子推到海底的电影",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "朱一龙主演的把妻子推到海底的电影"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "描写律师职场工作的综艺",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "描写律师职场工作的综艺"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "春节全家必看暖心电影",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "春节全家必看暖心电影"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "播放所有免费关于觉醒异能的视频",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "播放所有免费关于觉醒异能的视频"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "假期看的纪录片推荐",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "假期看的纪录片推荐"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "关于苗族非遗文化的纪录片",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "关于苗族非遗文化的纪录片"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "搜索陈祉希担任制片人的电影",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "搜索陈祉希担任制片人的电影"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "鞠躬尽瘁，死而后已的电视剧",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "鞠躬尽瘁，死而后已的电视剧"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "播放功夫我发起疯来连自己都怕。",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "播放功夫我发起疯来连自己都怕。"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "看下熊出没之雪岭熊风，熊就要有个熊样",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "看下熊出没之雪岭熊风，熊就要有个熊样"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "找封神第一部马看到什么,是人决定的",
+   "tool": "vod_fuzzy_search",
+   "params": {
+    "query": "找封神第一部马看到什么,是人决定的"
+   },
+   "note": "规则/兜底误判search→标注fuzzy",
+   "added": "2026-09-11",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "给我放庆余年",
+   "tool": "vod_search",
+   "params": {
+    "action": "play",
+    "retext": "给我放庆余年",
+    "query": {
+     "field": "title",
+     "value": "庆余年"
     }
-  ]
+   }
+  },
+  {
+   "raw": "播放三体",
+   "tool": "vod_search",
+   "params": {
+    "action": "play",
+    "retext": "播放三体",
+    "query": {
+     "field": "title",
+     "value": "三体"
+    }
+   }
+  },
+  {
+   "raw": "播放偷偷藏不住",
+   "tool": "vod_search",
+   "params": {
+    "action": "play",
+    "retext": "播放偷偷藏不住",
+    "query": {
+     "field": "title",
+     "value": "偷偷藏不住"
+    }
+   }
+  },
+  {
+   "raw": "帮我播放风起洛阳",
+   "tool": "vod_search",
+   "params": {
+    "action": "play",
+    "retext": "帮我播放风起洛阳",
+    "query": {
+     "field": "title",
+     "value": "风起洛阳"
+    }
+   }
+  },
+  {
+   "raw": "打开斗罗大陆大结局那一集",
+   "tool": "vod_search",
+   "params": {
+    "action": "play",
+    "retext": "打开斗罗大陆大结局那一集",
+    "query": {
+     "field": "title",
+     "value": "斗罗大陆"
+    }
+   }
+  },
+  {
+   "raw": "给我放西游记第六集",
+   "tool": "vod_search",
+   "params": {
+    "action": "play",
+    "retext": "给我放西游记第六集",
+    "query": {
+     "and": [
+      {
+       "field": "title",
+       "value": "西游记"
+      },
+      {
+       "field": "video_index",
+       "value": 6
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "播放觉醒年代",
+   "tool": "vod_search",
+   "params": {
+    "action": "play",
+    "retext": "播放觉醒年代",
+    "query": {
+     "field": "title",
+     "value": "觉醒年代"
+    }
+   }
+  },
+  {
+   "raw": "播放三国演义火烧赤壁",
+   "tool": "vod_search",
+   "params": {
+    "action": "play",
+    "retext": "播放三国演义火烧赤壁",
+    "query": {
+     "field": "title",
+     "values": [
+      "三国演义",
+      "火烧赤壁"
+     ],
+     "operator": "or"
+    }
+   }
+  },
+  {
+   "raw": "给我放雪中悍刀行",
+   "tool": "vod_search",
+   "params": {
+    "action": "play",
+    "retext": "给我放雪中悍刀行",
+    "query": {
+     "field": "title",
+     "value": "雪中悍刀行"
+    }
+   }
+  },
+  {
+   "raw": "直接播三体第二部",
+   "tool": "vod_search",
+   "params": {
+    "action": "play",
+    "retext": "直接播三体第二部",
+    "query": {
+     "and": [
+      {
+       "field": "title",
+       "value": "三体"
+      },
+      {
+       "field": "series",
+       "value": 2
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "播放虫儿飞",
+   "tool": "vod_search",
+   "params": {
+    "action": "play",
+    "retext": "播放虫儿飞",
+    "query": {
+     "field": "title",
+     "value": "虫儿飞"
+    }
+   }
+  },
+  {
+   "raw": "送你一朵小红花",
+   "tool": "vod_search",
+   "params": {
+    "action": "play",
+    "retext": "送你一朵小红花",
+    "query": {
+     "field": "title",
+     "value": "送你一朵小红花"
+    }
+   }
+  },
+  {
+   "raw": "播放情深深雨濛濛",
+   "tool": "vod_search",
+   "params": {
+    "action": "play",
+    "retext": "播放情深深雨濛濛",
+    "query": {
+     "field": "title",
+     "value": "情深深雨濛濛"
+    }
+   }
+  }
+ ]
 }

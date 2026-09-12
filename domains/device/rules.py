@@ -187,8 +187,10 @@ _PLAY = [
     (re.compile(r"跳到|跳转|从\d+:\d+开始|直接跳到"), "跳转"),
     (re.compile(r"退出播放|退出.{0,2}播放"), "退出"),
     (re.compile(r"暂停|停止播放|停止"), "停止"),
-    (re.compile(r"继续播放|继续.{0,2}[看听]|^开始播放|重新播放|播放[去开]"), "播放"),
-    (re.compile(r"重播|再看一遍|重新看"), "重播"),
+    (re.compile(r"继续播放|继续[播看听][^曲]?|继续.{0,2}(音乐|放音|歌曲|刚才)|继续放|^开始播放|播放[去开]"), "播放"),
+    (re.compile(r"重播|重新看"), "重播"),
+    (re.compile(r"重新放一遍|重放一遍|重新放|重放"), "重播"),
+    (re.compile(r"换一首|不好听|换歌|听不下去|换个|再放一首"), "换一首"),
     (re.compile(r"循环播放|列表循环|循环"), "循环播放"),
     (re.compile(r"顺序播放|播放顺序"), "顺序播放"),
     (re.compile(r"随机播放|随机"), "随机播放"),
@@ -485,6 +487,15 @@ def _timer(q: str) -> tuple[str, dict] | None:
             if n is None:
                 n = num.strip()
             dt = f"{n}{unit}"
+    # 英文单位：1h / 3h后 / 30min
+    if not dt:
+        mh = re.search(r"(\d+)\s*[hH]", q)
+        if mh:
+            dt = mh.group(1) + "小时"
+        else:
+            mmin = re.search(r"(\d+)\s*(?:min|分钟)", q)
+            if mmin:
+                dt = mmin.group(1) + "分钟"
     if not dt:
         return None
     return ("timer_control", {"operation": "打开", "object": "关机",
@@ -713,4 +724,8 @@ def apply(query: str) -> tuple[str, dict] | None:
         return _numeric(q)
     if _power(q):
         return _power(q)
+    # 通用「打开/启动/进入 X(设置/服务/界面)」兜底：未命中任何具体设备控制 → common_control。
+    # 阻断这些 query 落入 LLM select（LLM 易把 X 误判成 demo/source/network 等，golden 统一 common_control）。
+    if re.match(r"^(?:打开|启动|进入|开启|启用|调用|展开|进行|设置)", q):
+        return ("common_control", _slot("打开", _rest(q)))
     return None  # → L3 fallback = common_control

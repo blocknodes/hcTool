@@ -97,7 +97,10 @@ _FUZZY_STRONG = re.compile(
     r"|短剧|微短剧|穿越短剧|免费.*短剧"
     r"|打斗场面|武打场面|对打场面|婚纱摩托|封神镜头|狠镜头"
     r"|叫[你我他][^，。]{1,6}|能力越大|发疯|说出|那句话|那一句"
-    r"|出自哪个|出自哪部|是哪部|哪部剧|什么电影|是不是|是什么剧"
+    r"|出自哪个|出自哪部|出自什么|是哪部|哪部剧|是什么剧|第几集|第几季|是几集"
+    r"|什么电影|是不是|叫什么|什么片段"
+    r"|唱段|对手戏|花絮|剧情介绍"
+    r"|找.{0,8}(?:适合|合适).{0,4}(?:看|看电影|看剧|看片|在家看|宅在)"
 )
 
 # 结构化浏览（search/search_all）确证信号——能确定性折叠出 filter 槽位。
@@ -228,6 +231,15 @@ def apply(query: str) -> tuple[str, dict | None] | None:
     #      → search_all；两者都不命中、或槽位值不在枚举范围内 → fuzzy。
     #      dsl.route_tool 直接看抽出的 schema 字段集，比 _ALL_SIGNAL/_ALL_DIM 正则更贴合定义。
     if _PLAY_VERB.search(q) or _SEEK.search(q) or _STRUCT_DIM.search(q) or _SEARCH_FILTER.search(q):
+        tool = dsl.route_tool(q)
+        if tool != "vod_fuzzy_search":
+            return (tool, dsl.build_search_dsl(q) or None)
+        return ("vod_fuzzy_search", {"query": q})
+
+    # 6.5) search_all 专属维度（出品方/卫视/频道/平台/获奖/地区/语言…）裸查询：
+    #      未命中上方播放/检索动词，但 query 含明确 search_all 维度词（_ALL_DIM 覆地区/语言）。
+    #      dsl 能确定性结构化（route!=fuzzy）→ 规则层直接判，避免交给 LLM select 判低档成 search。
+    if (_ALL_SIGNAL.search(q) or _ALL_DIM.search(q)) and not _FUZZY_STRONG.search(q):
         tool = dsl.route_tool(q)
         if tool != "vod_fuzzy_search":
             return (tool, dsl.build_search_dsl(q) or None)
