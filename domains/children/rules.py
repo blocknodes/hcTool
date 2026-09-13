@@ -15,6 +15,7 @@ import re
 from datetime import date, timedelta
 
 from . import dsl
+from app.rulebase import Rule, RuleSet
 
 _BASE = date(2026, 8, 24)
 
@@ -68,32 +69,34 @@ class Dsl:
     build = staticmethod(dsl.build_query_dsl)
 
 
-def apply(query: str) -> tuple[str, dict | None] | None:
-    if not query or not query.strip():
+def _branch_history(q: str):
+    if not _HIST.search(q):
         return None
-    q = query.strip()
+    t = _time_range(q)
+    return ("educ_history", {"query": t})
 
-    # 1) history
-    if _HIST.search(q):
-        t = _time_range(q)
-        return ("educ_history", {"query": t})
 
-    # 2) relate_recommend
-    if _RELATE.search(q):
-        qn = dsl.build_query_dsl(q)
-        if not qn:
-            # 退化：仅 title
-            qn = {"field": "title", "value": q}
-        # 默认不带 retext（golden 实证 relate 无 retext）
-        if q == "类似大卫不可以的绘本":
-            return ("educ_relate_recommend", {"retext": "大卫不可以", "query": qn})
-        return ("educ_relate_recommend", {"query": qn})
+def _branch_relate(q: str):
+    if not _RELATE.search(q):
+        return None
+    qn = dsl.build_query_dsl(q)
+    if not qn:
+        # 退化：仅 title
+        qn = {"field": "title", "value": q}
+    # 默认不带 retext（golden 实证 relate 无 retext）
+    if q == "类似大卫不可以的绘本":
+        return ("educ_relate_recommend", {"retext": "大卫不可以", "query": qn})
+    return ("educ_relate_recommend", {"query": qn})
 
-    # 3) fuzzy
-    if _FUZZY_STRONG.search(q) or _FUZZY_TAIL.search(q):
-        return ("educ_fuzzy_search", {"query": q})
 
-    # 4) search / search_all
+def _branch_fuzzy(q: str):
+    if not (_FUZZY_STRONG.search(q) or _FUZZY_TAIL.search(q)):
+        return None
+    return ("educ_fuzzy_search", {"query": q})
+
+
+def _branch_search(q: str):
+    # search / search_all
     tool = dsl.route_tool(q)
     if tool == "educ_fuzzy_search":
         return ("educ_fuzzy_search", {"query": q})
@@ -101,3 +104,31 @@ def apply(query: str) -> tuple[str, dict | None] | None:
     if d:
         return (tool, d)
     return ("educ_fuzzy_search", {"query": q})
+
+
+RULE_SET = RuleSet(
+    rules=[
+        Rule(id="children_history", tool="educ_history", priority=1,
+             title="历史记录", explain="命中 播放历史/上次看/浏览记录 等 → 历史工具",
+             decide=_branch_history),
+        Rule(id="children_relate", tool="educ_relate_recommend", priority=2,
+             title="类似推荐", explain="命中 类似/相似/同类型 → 相关推荐（含大卫不可以特例）",
+             decide=_branch_relate),
+        Rule(id="children_fuzzy", tool="educ_fuzzy_search", priority=3,
+             title="描述/台词模糊", explain="命中 台词/描述/喜好 等无法结构化信号 → 整句模糊检索",
+             decide=_branch_fuzzy),
+        Rule(id="children_search", tool="educ_search/search_all", priority=4,
+             title="结构化浏览", explain="dsl 路由到 educ_search/educ_search_all（route 到 fuzzy 或组装成功均交由该规则）",
+             decide=_branch_search),
+    ],
+)
+
+
+def apply(query: str) -> tuple[str, dict | None] | None:
+    if not query or not query.strip():
+        return None
+    sel = RULE_SET.select_with_rule(query)
+    if sel is None:
+        return None
+    tool, params, rule = sel
+    return tool, params, rule.id

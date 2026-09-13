@@ -34,7 +34,8 @@ async def predict(req: PredictRequest) -> PredictResponse:
 
     prediction: Prediction = await run_predict(req)
 
-    resp = PredictResponse(tool=prediction.tool, params=prediction.params)
+    resp = PredictResponse(tool=prediction.tool, params=prediction.params,
+                           hit_source=prediction.hit_source)
     logger.info(
         "PREDICT << OUT %s  (%.0fms)",
         json.dumps(

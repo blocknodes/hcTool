@@ -16,6 +16,8 @@ from __future__ import annotations
 
 import re
 
+from app.rulebase import Rule, RuleSet
+
 # ---------- 字段归一 ----------
 # 年级：口语 → 标准文（初一→七年级，初二→八年级，初三→九年级，一~九年级，高一/高二/高三）
 _GRADE_MAP = [
@@ -250,26 +252,84 @@ def build_dsl(q: str) -> dict | None:
     return {"query": {"and": conds}}
 
 
-def apply(query: str) -> tuple[str, dict | None] | None:
-    if not query or not query.strip():
+def _branch_slow(q: str):
+    if not re.search(r"备课", q):
         return None
-    q = query.strip()
-    # 备课/慢速检索 → edu_slow_search_data_search
-    if re.search(r"备课", q):
-        return ("edu_slow_search_data_search", {"query": q})
-    # 培训机构/一对一等非课程检索 → fuzzy（星火教育高中一对一辅导课程）
-    if re.search(r"教育.{0,6}(培训|辅导|一对一)|(培训|辅导)课程|一对一", q):
-        return ("edu_fuzzy_search", {"query": q})
-    # 期末/复习/押题/总结/真题/自制/手账/阅读专项…一律 fuzzy（非正规课程资源）
-    if re.search(r"期末|复习|考试范围|押题|阅读专项|总结|真题|自制|手账|手工|怎么做|备考", q):
-        return ("edu_fuzzy_search", {"query": q})
+    return ("edu_slow_search_data_search", {"query": q})
+
+
+def _branch_training_org(q: str):
+    # 培训机构/一对一非课程检索 → fuzzy（星火教育高中一对一辅导课程）
+    if not re.search(r"教育.{0,6}(培训|辅导|一对一)|(培训|辅导)课程|一对一", q):
+        return None
+    return ("edu_fuzzy_search", {"query": q})
+
+
+def _branch_non_regular(q: str):
+    # 期末/复习/押题/总结/真题/自制/手账/阅读专项…一律非正规课程资源 → fuzzy
+    if not re.search(r"期末|复习|考试范围|押题|阅读专项|总结|真题|自制|手账|手工|怎么做|备考", q):
+        return None
+    return ("edu_fuzzy_search", {"query": q})
+
+
+def _branch_tutoring(q: str):
     # 辅导（含 同步辅导/一对一/机构）/冲刺/精讲/知识点/易错 → fuzzy，即便有年级+科目
-    if re.search(r"辅导|一对一|冲刺|精讲|知识点|易错|教育.{0,6}培训", q):
-        return ("edu_fuzzy_search", {"query": q})
+    if not re.search(r"辅导|一对一|冲刺|精讲|知识点|易错|教育.{0,6}培训", q):
+        return None
+    return ("edu_fuzzy_search", {"query": q})
+
+
+def _branch_unstructured(q: str):
     # 非结构化 → fuzzy（特色课/抽象短语）直接返回 query=原话
-    if not _is_structured(q):
-        return ("edu_fuzzy_search", {"query": q})
+    if _is_structured(q):
+        return None
+    return ("edu_fuzzy_search", {"query": q})
+
+
+def _branch_edu_search(q: str):
     d = build_dsl(q)
     if d:
         return ("edu_search", d)
+    return None
+
+
+def _branch_edu_search_fallback(q: str):
+    # 兜底：结构化但 DSL 组装失败 → fuzzy
     return ("edu_fuzzy_search", {"query": q})
+
+
+RULE_SET = RuleSet(
+    rules=[
+        Rule(id="edu_slow", tool="edu_slow_search_data_search", priority=1,
+             title="备课/慢速检索", explain="命中 备课 → 慢速检索工具",
+             decide=_branch_slow),
+        Rule(id="edu_training_org", tool="edu_fuzzy_search", priority=2,
+             title="培训机构/一对一", explain="培训机构/辅导课程/一对一 等非课程检索 → fuzzy",
+             decide=_branch_training_org),
+        Rule(id="edu_non_regular", tool="edu_fuzzy_search", priority=3,
+             title="非正规课程资源", explain="期末/复习/押题/总结/真题/自习 等 → fuzzy",
+             decide=_branch_non_regular),
+        Rule(id="edu_coaching", tool="edu_fuzzy_search", priority=4,
+             title="辅导/冲刺/精讲", explain="辅导/冲刺/精讲/知识点/易错 → fuzzy，即便带年级+科目",
+             decide=_branch_tutoring),
+        Rule(id="edu_unstructured", tool="edu_fuzzy_search", priority=5,
+             title="非结构化", explain="无年级/科目/版本/阶段/学期等(K12 结构化) → fuzzy(原话)",
+             decide=_branch_unstructured),
+        Rule(id="edu_structured", tool="edu_search", priority=6,
+             title="K12 结构化", explain="有年级/科目等结构化槽位 → 组装 DSL 检索",
+             decide=_branch_edu_search),
+    ],
+    default=Rule(id="edu_fuzzy_fallback", tool="edu_fuzzy_search", priority=100,
+                 title="结构化兜底 fuzzy", explain="结构化但 DSL 组装失败 → fuzzy(原话)",
+                 decide=_branch_edu_search_fallback),
+)
+
+
+def apply(query: str) -> tuple[str, dict | None] | None:
+    if not query or not query.strip():
+        return None
+    sel = RULE_SET.select_with_rule(query)
+    if sel is None:
+        return None
+    tool, params, rule = sel
+    return tool, params, rule.id

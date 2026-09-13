@@ -10,6 +10,8 @@ from __future__ import annotations
 
 import re
 
+from app.rulebase import Rule, RuleSet
+
 # ============ 工具判定 ============
 _FAN = re.compile(r"热搜榜|热歌榜|商台榜|网络歌曲榜|最新歌曲|排行榜|巅峰榜|00后.*榜")
 _TV = re.compile(r"频道|CCTV|央视|卫视|中央|湖南台|浙江台|东方|电视台|戏曲|15台")
@@ -155,44 +157,18 @@ def _extract_song(q, exclude):
     return None
 
 
-def apply(query):
-    if not query or not query.strip():
-        return None
-    q = query.strip()
+def _base(query: str, **extra):
+    return {"retext": query, **extra}
 
-    def base(**extra):
-        return {"retext": query, **extra}
 
-    def base_clean(**extra):
-        # tv 等场景 golden 会剥离首尾零宽字符；普通 song_search 却保留——仅对 tv 用
-        rt = re.sub(r"^[\s​‌‍‎‏⁠]+|[\s​‌‍‎‏⁠]+$", "", query)
-        return {"retext": rt, **extra}
+def _base_clean(query: str, **extra):
+    # tv 等场景 golden 会剥离首尾零宽字符；普通 song_search 却保留——仅对 tv 用
+    rt = re.sub(r"^[\s​‌‍‎‏⁠]+|[\s​‌‍‎‏⁠]+$", "", query)
+    return {"retext": rt, **extra}
 
-    # 1 fan_qa
-    # 0 纯歌词反查（无 retext，golden 为空 params）—— "来一个歌曲，歌词是..."
-    if re.search(r"歌词.{0,3}是|来一个歌曲.*歌词|歌词有", q) and not _MV_MATCH(q):
-        return ("music_song_search", {})
-    if _FAN.search(q):
-        return ("fan_knowledge_agent", {})
 
-    # 2 tv
-    if _TV.search(q):
-        return ("tvchannel_music_search", base_clean())
-
-    # 3 qq
-    if _QQ.search(q):
-        kw = "恐龙抗狼" if "恐龙" in q and "抗狼" in q else "热门"
-        return ("music_song_qqmusic_search", base(keywords=[kw]))
-
-    # 4 history
-    if _HIST.search(q):
-        return ("music_song_history", base())
-
-    # 5 favorite
-    if _FAV.search(q):
-        return ("music_song_favorite_search", base())
-
-    # slots
+def _compute_slots(q: str) -> dict:
+    """抽取槽位（singer/version/tag/ip/album/lyricist/composer/toplist/song）。纯函数，供各分支复用。"""
     singer = _match(q, _SINGER)
     if "、艾德" in q or "艾德·希兰" in q:
         if "泰勒" in q and "斯威夫特" in q:
@@ -202,7 +178,7 @@ def apply(query):
     singer = list(dict.fromkeys(singer))
     version = _subs(q, _VERSION)
     tag = _subs(q, _TAG)
-    # 多歌手(一起唱) → 都保留 + 合唱 tag
+    # 多歌手(一起唱) → 一起演唱歌曲 + 合唱 tag
     if ("一起唱" in q or "和唱" in q or "一起唱的歌" in q) and len(singer) >= 2:
         if "合唱" not in tag:
             tag.append("合唱")
@@ -240,48 +216,148 @@ def apply(query):
     if "开心" in tag:
         if any("开心" in (s or "") for s in ip) or (song and "开心" in song):
             tag = [t for t in tag if t != "开心"]
+    return {
+        "singer": singer, "version": version, "tag": tag, "ip": ip, "album": album,
+        "lyricist": lyricist, "composer": composer, "toplist": toplist, "song": song,
+    }
 
-    # 6 mv
-    if _MV_MATCH(q):
-        p = base()
-        if singer: p["singer"] = singer
-        if version: p["version"] = version
-        if ip: p["ip"] = ip
-        if tag: p["tag"] = tag
-        if song: p["song"] = [song]
-        ly = _lyrics(q)
-        if ly: p["lyrics"] = [ly]
-        return ("music_song_mv_search", p)
 
-    # 7 ksong
-    if _KS.search(q) and not _KS_EXCL.search(q):
-        if _KS_RECOMMEND.search(q):
-            return ("music_song_recommend", {"retext": query})
-        p = base()
-        if singer: p["singer"] = singer
-        if version: p["version"] = version
-        if tag: p["tag"] = tag
-        if song: p["song"] = [song]
-        return ("music_ksong_search", p)
+def _branch_lyric_fan(query: str):
+    q = query.strip()
+    # 0 纯歌词反查（无 retext，golden 为空参数）—— 例如"来一个歌曲，歌词是..."
+    if re.search(r"歌词.{0,3}是|来一个歌曲.*歌词|歌词有", q) and not _MV_MATCH(q):
+        return ("music_song_search", {})
+    if _FAN.search(q):
+        return ("fan_knowledge_agent", {})
+    return None
 
-    # 8 recommend
-    if _RECOMMEND.search(q):
-        return ("music_song_recommend", base())
 
-    # 9 default song_search
-    p = base()
-    if singer: p["singer"] = singer
-    if version: p["version"] = version
-    if ip: p["ip"] = ip
-    if album: p["album"] = album
-    if tag: p["tag"] = tag
-    if lyricist: p["lyricist"] = lyricist
-    if composer: p["composer"] = composer
-    if toplist: p["toplist"] = toplist
-    if song: p["song"] = [song]
+def _branch_tv(query: str):
+    q = query.strip()
+    if not _TV.search(q):
+        return None
+    return ("tvchannel_music_search", _base_clean(query))
+
+
+def _branch_qq(query: str):
+    q = query.strip()
+    if not _QQ.search(q):
+        return None
+    kw = "恐龙抗狼" if "恐龙" in q and "抗狼" in q else "热门"
+    return ("music_song_qqmusic_search", _base(query, keywords=[kw]))
+
+
+def _branch_history(query: str):
+    q = query.strip()
+    if not _HIST.search(q):
+        return None
+    return ("music_song_history", _base(query))
+
+
+def _branch_favorite(query: str):
+    q = query.strip()
+    if not _FAV.search(q):
+        return None
+    return ("music_song_favorite_search", _base(query))
+
+
+def _branch_mv(query: str):
+    q = query.strip()
+    if not _MV_MATCH(q):
+        return None
+    s = _compute_slots(q)
+    p = _base(query)
+    if s["singer"]: p["singer"] = s["singer"]
+    if s["version"]: p["version"] = s["version"]
+    if s["ip"]: p["ip"] = s["ip"]
+    if s["tag"]: p["tag"] = s["tag"]
+    if s["song"]: p["song"] = [s["song"]]
+    ly = _lyrics(q)
+    if ly: p["lyrics"] = [ly]
+    return ("music_song_mv_search", p)
+
+
+def _branch_ksong(query: str):
+    q = query.strip()
+    if not (_KS.search(q) and not _KS_EXCL.search(q)):
+        return None
+    if _KS_RECOMMEND.search(q):
+        return ("music_song_recommend", {"retext": query})
+    s = _compute_slots(q)
+    p = _base(query)
+    if s["singer"]: p["singer"] = s["singer"]
+    if s["version"]: p["version"] = s["version"]
+    if s["tag"]: p["tag"] = s["tag"]
+    if s["song"]: p["song"] = [s["song"]]
+    return ("music_ksong_search", p)
+
+
+def _branch_recommend(query: str):
+    q = query.strip()
+    if not _RECOMMEND.search(q):
+        return None
+    return ("music_song_recommend", _base(query))
+
+
+def _branch_song_search(query: str):
+    q = query.strip()
+    s = _compute_slots(q)
+    p = _base(query)
+    if s["singer"]: p["singer"] = s["singer"]
+    if s["version"]: p["version"] = s["version"]
+    if s["ip"]: p["ip"] = s["ip"]
+    if s["album"]: p["album"] = s["album"]
+    if s["tag"]: p["tag"] = s["tag"]
+    if s["lyricist"]: p["lyricist"] = s["lyricist"]
+    if s["composer"]: p["composer"] = s["composer"]
+    if s["toplist"]: p["toplist"] = s["toplist"]
+    if s["song"]: p["song"] = [s["song"]]
     ly = _lyrics(q)
     if ly: p["lyrics"] = [ly]
     return ("music_song_search", p)
+
+
+RULE_SET = RuleSet(
+    rules=[
+        Rule(id="music_lyric_fan", tool="fan/music_song_search", priority=1,
+             title="歌词反查/音乐榜单", explain="纯歌词反查或热搜榜/最新歌曲等榜单 → 对应工具",
+             decide=_branch_lyric_fan),
+        Rule(id="music_tv", tool="tvchannel_music_search", priority=2,
+             title="电视频道", explain="命中 频道/CCTV/卫视 等 → 电视音乐检索（剥离零宽）",
+             decide=_branch_tv),
+        Rule(id="music_qq", tool="music_song_qqmusic_search", priority=3,
+             title="QQ 音乐", explain="命中 QQ 音乐 → QQ 音乐检索（恐龙抗狼特例）",
+             decide=_branch_qq),
+        Rule(id="music_history", tool="music_song_history", priority=4,
+             title="历史", explain="命中 历史/听过/播放记录 → 历史",
+             decide=_branch_history),
+        Rule(id="music_favorite", tool="music_song_favorite_search", priority=5,
+             title="收藏", explain="命中 收藏 → 收藏列表",
+             decide=_branch_favorite),
+        Rule(id="music_mv", tool="music_song_mv_search", priority=6,
+             title="MV", explain="命中 mv/音乐视频 → MV 检索",
+             decide=_branch_mv),
+        Rule(id="music_ksong", tool="music_ksong_search", priority=7,
+             title="K歌", explain="命中 K歌/唱歌（排除 合唱/对唱 等）→ K歌检索",
+             decide=_branch_ksong),
+        Rule(id="music_recommend", tool="music_song_recommend", priority=8,
+             title="推荐", explain="命中 听歌/想听歌/好听的歌 → 推荐",
+             decide=_branch_recommend),
+        Rule(id="music_song_search", tool="music_song_search", priority=9,
+             title="歌曲检索（兜底）", explain="其余默认音乐检索（组装全部槽位与歌词）",
+             decide=_branch_song_search),
+    ],
+)
+
+
+def apply(query):
+    if not query or not query.strip():
+        return None
+    sel = RULE_SET.select_with_rule(query)
+    if sel is None:
+        return None
+    tool, params, rule = sel
+    return tool, params, rule.id
 
 
 __all__ = ["apply"]

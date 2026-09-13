@@ -26,6 +26,7 @@ import re
 from typing import Any
 
 from ._vocab import _OBJ_TOOL  # type: ignore
+from app.rulebase import Rule, RuleSet
 
 
 def _slot(op: str, obj: str = "", val: str = "") -> dict:
@@ -694,38 +695,128 @@ def _motion_comp(q: str) -> tuple[str, dict] | None:
     return None
 
 
-def apply(query: str) -> tuple[str, dict] | None:
-    q = query.strip()
-    if not q:
-        return None
+def _music_branch(q: str):
     if q == "音乐功能":
         return ("common_control", _slot("设置", "音乐播放器"))
-    mc = _motion_comp(q)
-    if mc:
-        return mc
+    return None
+
+
+def _motion_branch(q: str):
+    if _motion_comp(q):
+        return _motion_comp(q)
+    return None
+
+
+def _solve_branch(q: str):
     if _solve(q):
         return _solve(q)
+    return None
+
+
+def _feature_branch(q: str):
     r = _feature(q)
     if r:
         return r
+    return None
+
+
+def _timer_branch(q: str):
     if _timer(q):
         return _timer(q)
+    return None
+
+
+def _source_branch(q: str):
     if _source(q):
         return _source(q)
+    return None
+
+
+def _playback_branch(q: str):
     if _playback(q):
         return _playback(q)
+    return None
+
+
+def _layout_branch(q: str):
     if _layout(q):
         return _layout(q)
-    # 模式句优先于数值：声音模式/音效模式/图像模式/XX音效
+    return None
+
+
+def _mode_branch(q: str):
     m = _mode(q)
     if m:
         return m
+    return None
+
+
+def _numeric_branch(q: str):
     if _numeric(q):
         return _numeric(q)
+    return None
+
+
+def _power_branch(q: str):
     if _power(q):
         return _power(q)
-    # 通用「打开/启动/进入 X(设置/服务/界面)」兜底：未命中任何具体设备控制 → common_control。
-    # 阻断这些 query 落入 LLM select（LLM 易把 X 误判成 demo/source/network 等，golden 统一 common_control）。
+    return None
+
+
+def _common_open_branch(q: str):
     if re.match(r"^(?:打开|启动|进入|开启|启用|调用|展开|进行|设置)", q):
         return ("common_control", _slot("打开", _rest(q)))
-    return None  # → L3 fallback = common_control
+    return None
+
+
+_RULE_SET = RuleSet(
+    rules=[
+        Rule(id="dev_music", tool="common_control", priority=1,
+             title="音乐功能入口", explain="裸“音乐功能”→ 音乐播放器",
+             decide=_music_branch),
+        Rule(id="dev_motion_comp", tool="display_control", priority=2,
+             title="运动补偿", explain="运动补偿/运动卡顿 → 打开运动补偿",
+             decide=_motion_branch),
+        Rule(id="dev_solve", tool="solve_picture_sound_problem_control", priority=3,
+             title="画音问题修复", explain="偏色/模糊/噪点/声学等问题 → 问题修复 intent",
+             decide=_solve_branch),
+        Rule(id="dev_feature", tool="common_control", priority=4,
+             title="特性对象控制", explain="网络/屏保/摄像头等特性对象最长命中 → 打开",
+             decide=_feature_branch),
+        Rule(id="dev_timer", tool="timer_control", priority=5,
+             title="定时关机", explain="关机+时间 → 定时关机 date_time",
+             decide=_timer_branch),
+        Rule(id="dev_source", tool="source_switch", priority=6,
+             title="信号源切换", explain="HDMI/VGA/USB/机顶盒/信号源 → 切换",
+             decide=_source_branch),
+        Rule(id="dev_playback", tool="playback_control", priority=7,
+             title="播放控制", explain="快进/暂停/上下集/列表 → 播放控制",
+             decide=_playback_branch),
+        Rule(id="dev_layout", tool="screen_layout", priority=8,
+             title="屏幕布局", explain="分屏/全屏/小屏/画面缩放 → 布局",
+             decide=_layout_branch),
+        Rule(id="dev_mode", tool="mode_control", priority=9,
+             title="模式控制", explain="音效/声音/图像/护眼等模式 → 模式控制",
+             decide=_mode_branch),
+        Rule(id="dev_numeric", tool="numeric_adjust", priority=10,
+             title="数值调节", explain="音量/亮度/对比度/清晰度等 → 数值调节",
+             decide=_numeric_branch),
+        Rule(id="dev_power", tool="power_control", priority=11,
+             title="电源控制", explain="重启/开机/关机 → 电源控制",
+             decide=_power_branch),
+        Rule(id="dev_common_open", tool="common_control", priority=12,
+             title="通用打开兜底", explain="未命中具体控制的“打开X”→ 通用打开",
+             decide=_common_open_branch),
+    ],
+    default=None,
+)
+
+
+def apply(query: str) -> tuple[str, dict] | None:
+    if not query or not query.strip():
+        return None
+    sel = _RULE_SET.select_with_rule(query.strip())
+    if sel is None:
+        return None
+    tool, params, rule = sel
+    return tool, params, rule.id

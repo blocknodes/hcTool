@@ -16,6 +16,7 @@ from __future__ import annotations
 import re
 
 from . import dsl
+from app.rulebase import Rule, RuleSet
 
 # ---------- 工具信号 ----------
 # history：强历史回放语境
@@ -168,30 +169,29 @@ def _relate_params(text: str) -> dict | None:
     return {"query": {"and": nodes}}
 
 
-# ---------- 主入口 ----------
-def apply(query: str) -> tuple[str, dict | None] | None:
-    """返回 (tool, params|None) | None。params=None 表示参数走 LLM fill。"""
-    if not query or not query.strip():
-        return None
-    q = query.strip()
-
-    # 1) history
+# ---------- 主入口（RuleSet 驱动） ----------
+def _history_branch(q: str):
     if _HISTORY.search(q):
         return ("vod_history", _history_params(q))
+    return None
 
-    # 2) personalized
+
+def _personalized_branch(q: str):
     if _PERSONALIZED.search(q):
         cat = _find_category(q)
         return ("vod_personalized_search", {"category": cat} if cat else None)
+    return None
 
-    # 3) relate
+
+def _relate_branch(q: str):
     if _RELATE.search(q):
         p = _relate_params(q)
         if p is not None:
             return ("vod_relate_search", p)
+    return None
 
-    # 3.5) 两个已知演员"X、Y" + 片型（如“搜索金秀贤、金智媛短视频”）→ search。
-    #      严格限定：命名词表 + 顿号连接 + 直接跟片型，避开片段/台词里的逗号。
+
+def _actors_multi_branch(q: str):
     if re.search(r"(?:金秀贤、金智媛|刘德华、.{0,4}或.{0,4})\s*(?:主演|参演|出演|的?(?:电影|电视剧|剧|影片|综艺|短视频|视频|片))", q):
         tool = dsl.route_tool(q)
         if tool != "vod_fuzzy_search":
@@ -199,24 +199,27 @@ def apply(query: str) -> tuple[str, dict | None] | None:
             if d:
                 return (tool, d)
         return ("vod_fuzzy_search", {"query": q})
+    return None
 
-    # 3.6) tag 类浏览（辩论赛经典视频→tag 辩论；无播放动词）→ search
-    if re.search(r"辩论赛经典|竞答.{0,3}视频|.赛.{0,3}视频", q) and not re.search(r"^(?:播放|放|打开|收看|看下|转播|直播)", q):
+
+def _tag_browse_branch(q: str):
+    if re.search(r"辩论赛经典|竞答.{0,3}视频|.赛.{0,3}视频", q) and not re.search(r"^(?:播放|放|打开|看下|转播|直播)", q):
         tool = dsl.route_tool(q)
         if tool != "vod_fuzzy_search":
             d = dsl.build_search_dsl(q)
             if d:
                 return (tool, d)
         return ("vod_fuzzy_search", {"query": q})
+    return None
 
-    # 4) fuzzy 强信号（片段/台词/版型/演出形式/真实事迹）→ fuzzy（结构化无法表达）
+
+def _fuzzy_strong_branch(q: str):
     if _FUZZY_STRONG.search(q):
         return ("vod_fuzzy_search", {"query": q})
+    return None
 
-    # 4.5) 识别出具体片名 + 尾部简短（≤4字）→ search 关键字锚定
-    #      （如“小品小崔家国”“大型电影《汉字五千年》”“以家人之名DVD版”）
-    #      尾部若是台词/片段/长描述（如“叫…”“N分钟的…”“那段”）则归 fuzzy。
-    #      但即便尾部短，若抽出的是 search 装不下的维度（如 语言 language），仍走 search_all。
+
+def _title_tail_branch(q: str):
     _t = dsl._find_title(q)
     if _t and not _ALL_SIGNAL.search(q):
         _tail = q.split(_t, 1)[1]
@@ -225,27 +228,67 @@ def apply(query: str) -> tuple[str, dict | None] | None:
             if tool != "vod_fuzzy_search":
                 return (tool, dsl.build_search_dsl(q) or None)
             return ("vod_fuzzy_search", {"query": q})
+    return None
 
-    # 5/6) search 与 search_all 用三级覆盖判定统一：
-    #      search 命中的维度 → search；仅 search_all 命中的维度（地区/语言/频道/出品方…）
-    #      → search_all；两者都不命中、或槽位值不在枚举范围内 → fuzzy。
-    #      dsl.route_tool 直接看抽出的 schema 字段集，比 _ALL_SIGNAL/_ALL_DIM 正则更贴合定义。
+
+def _search_branch(q: str):
     if _PLAY_VERB.search(q) or _SEEK.search(q) or _STRUCT_DIM.search(q) or _SEARCH_FILTER.search(q):
         tool = dsl.route_tool(q)
         if tool != "vod_fuzzy_search":
             return (tool, dsl.build_search_dsl(q) or None)
         return ("vod_fuzzy_search", {"query": q})
+    return None
 
-    # 6.5) search_all 专属维度（出品方/卫视/频道/平台/获奖/地区/语言…）裸查询：
-    #      未命中上方播放/检索动词，但 query 含明确 search_all 维度词（_ALL_DIM 覆地区/语言）。
-    #      dsl 能确定性结构化（route!=fuzzy）→ 规则层直接判，避免交给 LLM select 判低档成 search。
+
+def _search_all_branch(q: str):
     if (_ALL_SIGNAL.search(q) or _ALL_DIM.search(q)) and not _FUZZY_STRONG.search(q):
         tool = dsl.route_tool(q)
         if tool != "vod_fuzzy_search":
             return (tool, dsl.build_search_dsl(q) or None)
         return ("vod_fuzzy_search", {"query": q})
-
-    # 7) 其它们一律没有把握 → 交给 L3 兜底，不再伪装成 general_rule 的 fuzzy。
-    #    关键语义：L3 落的是 source=fallback（"没稳才落"的网）；若在此判 fuzzy，
-    #    会伪装成 general_rule（自信过高），兜底率指标失真。
     return None
+
+
+_RULE_SET = RuleSet(
+    rules=[
+        Rule(id="vod_history", tool="vod_history", priority=1,
+             title="历史回放", explain="命中观看历史语境，直接组历史参数",
+             decide=_history_branch),
+        Rule(id="vod_personalized", tool="vod_personalized_search", priority=2,
+             title="按偏好推荐", explain="按我的口味/猜我喜欢 → 偏好推荐",
+             decide=_personalized_branch),
+        Rule(id="vod_relate", tool="vod_relate_search", priority=3,
+             title="近似推荐", explain="类似/相似 → 抽标题组 relate 参数",
+             decide=_relate_branch),
+        Rule(id="vod_actors_multi", tool="vod_search", priority=4,
+             title="多演员共搜", explain="两名已知演员+片型 → 三级路由判定",
+             decide=_actors_multi_branch),
+        Rule(id="vod_tag_browse", tool="vod_search", priority=5,
+             title="栏目 tag 浏览", explain="辩论赛/竞答 等栏目 tag → 三级路由",
+             decide=_tag_browse_branch),
+        Rule(id="vod_fuzzy_strong", tool="vod_fuzzy_search", priority=6,
+             title="fuzzy 强信号", explain="片段/台词/版型等无法结构化 → fuzzy 原话",
+             decide=_fuzzy_strong_branch),
+        Rule(id="vod_title_tail", tool="vod_search", priority=7,
+             title="具体片名+短尾", explain="具名片名 + 简短尾部 → search 锚定标题",
+             decide=_title_tail_branch),
+        Rule(id="vod_search", tool="vod_search", priority=8,
+             title="结构化多维检索", explain="播放动词/筛选维度 → 三级路由 search/search_all/fuzzy",
+             decide=_search_branch),
+        Rule(id="vod_search_all", tool="vod_search_all", priority=9,
+             title="search_all 专属维度", explain="出品/卫视/地区/语言/获奖 → 优先 search_all",
+             decide=_search_all_branch),
+    ],
+    default=None,
+)
+
+
+def apply(query: str) -> tuple[str, dict | None] | None:
+    """badcase→rules 入口。命中返回 (tool, params, rule_id)，rule_id 供审计。"""
+    if not query or not query.strip():
+        return None
+    sel = _RULE_SET.select_with_rule(query.strip())
+    if sel is None:
+        return None
+    tool, params, rule = sel
+    return tool, params, rule.id

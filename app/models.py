@@ -41,3 +41,6 @@ class Prediction(BaseModel):
 class PredictResponse(BaseModel):
     tool: str = ""
     params: dict[str, Any] = Field(default_factory=dict)
+    # 可选审计字段：命中来源（badcase|general_rule:规则id|rule_llm_fill|llm_select|fallback）。
+    # hcAgent/SSE 链路不依赖它（兼容），但拿到它即可解释"这条 prediction 是由哪条规则决定的"。
+    hit_source: str = ""

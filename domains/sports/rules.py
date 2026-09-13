@@ -22,6 +22,7 @@ from datetime import date, timedelta
 from typing import Any
 
 from . import dsl
+from app.rulebase import Rule, RuleSet
 
 _BASE = date(2026, 8, 24)
 
@@ -320,33 +321,85 @@ def _is_bare_team(q: str) -> bool:
 
 
 # =====================================================================
-def apply(query: str) -> tuple[str, dict | None] | None:
-    if not query or not query.strip():
+def _branch_reserve(q: str):
+    """预约：下一场比赛且无日期 → 加 live_state 1。"""
+    if not _RESERVE.search(q):
         return None
-    q = query.strip()
+    d = _build(q, mode="reserve")
+    # 预约"下一场比赛"且无日期 → 加 live_state 1（还在等待的比赛）
+    if re.search(r"下一场|下场比赛", q) and not dsl._parse_date_cn(q):
+        node = d.get("query") if d else None
+        lv = {"field": "live_state", "value": "1"}
+        if node is None:
+            d = {"query": lv}
+        elif "field" in node:
+            d["query"] = {"and": [node, lv]}
+        elif "and" in node:
+            node["and"].append(lv)
+    return ("sports_match_reservation", d)
 
-    if _RESERVE.search(q):
-        d = _build(q, mode="reserve")
-        # 预约"下一场比赛"且无日期 → 加 live_state 1（还在等待的比赛）
-        if re.search(r"下一场|下场比赛", q) and not dsl._parse_date_cn(q):
-            node = d.get("query") if d else None
-            lv = {"field": "live_state", "value": "1"}
-            if node is None:
-                d = {"query": lv}
-            elif "field" in node:
-                d["query"] = {"and": [node, lv]}
-            elif "and" in node:
-                node["and"].append(lv)
-        return ("sports_match_reservation", d)
-    if _FORECAST.search(q):
-        return ("sports_match_forecast", _build(q, keep=True, mode="forecast"))
-    if _RANK.search(q):
-        return _rank(q)
-    if _is_bare_team(q):
-        return _team_search(q)
-    if _VIDEO.search(q):
-        return ("sports_vod_search", _build(q, mode="vod"))
+
+def _branch_forecast(q: str):
+    if not _FORECAST.search(q):
+        return None
+    return ("sports_match_forecast", _build(q, keep=True, mode="forecast"))
+
+
+def _branch_rank(q: str):
+    if not _RANK.search(q):
+        return None
+    return _rank(q)
+
+
+def _branch_bare_team(q: str):
+    if not _is_bare_team(q):
+        return None
+    return _team_search(q)
+
+
+def _branch_video(q: str):
+    if not _VIDEO.search(q):
+        return None
+    return ("sports_vod_search", _build(q, mode="vod"))
+
+
+def _branch_match_search(q: str):
+    """赛程兜底（default）：恒跑，命中即 match_search。"""
     d = _build(q)
     if not d and re.search(r"有没有比赛|有比赛嘛|有什么比赛|比赛吗|啥比赛|比赛", q):
         d = {"query": {"field": "sport_time", "value": "20260824"}}
     return ("sports_match_search", d)
+
+
+RULE_SET = RuleSet(
+    rules=[
+        Rule(id="sports_reserve", tool="sports_match_reservation", priority=1,
+             title="预约", explain="命中预约/预定/订/提醒/订阅信号词 → 预约检索",
+             decide=_branch_reserve),
+        Rule(id="sports_forecast", tool="sports_match_forecast", priority=2,
+             title="预测", explain="命中 预测/谁能赢/比分/冠军 等预测信号词 → 预测检索",
+             decide=_branch_forecast),
+        Rule(id="sports_rank", tool="sports_rank_search", priority=3,
+             title="榜单", explain="命中 积分榜/排名/排行/榜 → 榜单检索",
+             decide=_branch_rank),
+        Rule(id="sports_bare_team", tool="sports_team_search", priority=4,
+             title="球队资料", explain="整句为精确队名 → 球队资料检索",
+             decide=_branch_bare_team),
+        Rule(id="sports_video", tool="sports_vod_search", priority=5,
+             title="视频", explain="命中 视频/录像/集锦 等显式视频信号 → 视频检索",
+             decide=_branch_video),
+    ],
+    default=Rule(id="sports_match_search", tool="sports_match_search", priority=100,
+                 title="赛程", explain="其余默认赛程检索（含无信息时的兜底时间）",
+                 decide=_branch_match_search),
+)
+
+
+def apply(query: str) -> tuple[str, dict | None] | None:
+    if not query or not query.strip():
+        return None
+    sel = RULE_SET.select_with_rule(query)
+    if sel is None:
+        return None
+    tool, params, rule = sel
+    return tool, params, rule.id

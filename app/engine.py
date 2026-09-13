@@ -222,16 +222,21 @@ async def run(req: PredictRequest, domain: Domain) -> Prediction:
     if domain.rule_select is not None:
         try:
             hit = domain.rule_select(req.query)
-            if isinstance(hit, tuple) and len(hit) == 2 and hit[0]:
-                tool_name, rule_params = hit
+            if isinstance(hit, tuple) and len(hit) >= 2 and hit[0]:
+                tool_name, rule_params = hit[0], hit[1]
+                # 可选第三元素：命中规则 id（审计用），如 audio 规则表返回 (tool, params, rule_id)
+                rule_id = hit[2] if len(hit) >= 3 else ""
                 if tool_name not in domain.tools_by_name:
                     tool_name = None
                     rule_params = None
+                    rule_id = ""
         except Exception as exc:  # noqa: BLE001 规则失败不影响主流程
             logger.error("域 %s 规则层异常：%s", domain.key, exc)
             tool_name = None
+            rule_id = ""
     if tool_name is not None and rule_params is not None:
-        return _pred(domain, tool_name, _post(domain, tool_name, rule_params), source="general_rule")
+        source = f"general_rule:{rule_id}" if rule_id else "general_rule"
+        return _pred(domain, tool_name, _post(domain, tool_name, rule_params), source=source)
 
     # ---- 未命中工具 → LLM 两段式；命中工具只定参 → rule_llm_fill ----
     source = None
