@@ -240,6 +240,34 @@ def _search_branch(q: str):
     return None
 
 
+# 多主观/软属性 → 整句语义检索(fuzzy)。这类是"品味/质量/附加状态"多条件描述，
+# 结构化 DSL 无法逐维度折叠，交由 fuzzy 全句检索；且多为多轮改写后的复合句。
+# 关键：≥2 个*不同*软属性才触发，单软属性(如"免费电视剧")留给结构化 search。
+_SOFT_ATTR = re.compile(
+    r"演技|口碑|好评|帅气|好看|搞笑|幽默|治愈|温馨|感人|视觉|震撼|吓人|恐怖|"
+    r"剧情|集数|带娃|适合|经典|高清|国语|中文字幕|双语|更新|暑期|周末|"
+    r"嘉宾|明星|播出|新一季|翻拍|重映|黑白|反差|时长"
+)
+
+
+def _multi_soft_fuzzy(q: str) -> bool:
+    """≥2 个不同软属性(口味/内容附加状态/播放描述)齐备 → fuzzy 原话。
+
+    不强制分隔符：多轮改写常为隐式拼接(`周六播出的搞笑综艺有明星嘉宾`)；
+    ≥2 不同软属性即可触发。结构化维度(地区/年份/片型)不算软属性，避免误伤。
+    """
+    markers = set(_SOFT_ATTR.findall(q))
+    # 排除"单个软属性 + 纯结构化维度"，如"最新高评分国产电影"仍只计评分→search
+    soft = len(markers)
+    return soft >= 2
+
+
+def _fuzzy_multisoft_branch(q: str):
+    if _multi_soft_fuzzy(q):
+        return ("vod_fuzzy_search", {"query": q})
+    return None
+
+
 def _search_all_branch(q: str):
     if (_ALL_SIGNAL.search(q) or _ALL_DIM.search(q)) and not _FUZZY_STRONG.search(q):
         tool = dsl.route_tool(q)
@@ -260,22 +288,25 @@ _RULE_SET = RuleSet(
         Rule(id="vod_relate", tool="vod_relate_search", priority=3,
              title="近似推荐", explain="类似/相似 → 抽标题组 relate 参数",
              decide=_relate_branch),
-        Rule(id="vod_actors_multi", tool="vod_search", priority=4,
-             title="多演员共搜", explain="两名已知演员+片型 → 三级路由判定",
+        Rule(id="vod_fuzzy_multisoft", tool="vod_fuzzy_search", priority=4,
+             title="多软属性并接", explain="≥2 不同主观/软属性被 、/且 并接 → 整句语义检索 fuzzy",
+             decide=_fuzzy_multisoft_branch),
+        Rule(id="vod_actors_multi", tool="vod_search", priority=5,
+             title="多演员共搜", explain="两名主演员+评分 → 上级路由判定",
              decide=_actors_multi_branch),
-        Rule(id="vod_tag_browse", tool="vod_search", priority=5,
+        Rule(id="vod_tag_browse", tool="vod_search", priority=7,
              title="栏目 tag 浏览", explain="辩论赛/竞答 等栏目 tag → 三级路由",
              decide=_tag_browse_branch),
-        Rule(id="vod_fuzzy_strong", tool="vod_fuzzy_search", priority=6,
-             title="fuzzy 强信号", explain="片段/台词/版型等无法结构化 → fuzzy 原话",
+        Rule(id="vod_fuzzy_strong", tool="vod_fuzzy_search", priority=8,
+             title="fuzzy 强信号", explain="片段/台词/型型等无法结构化 → fuzzy 原话",
              decide=_fuzzy_strong_branch),
-        Rule(id="vod_title_tail", tool="vod_search", priority=7,
-             title="具体片名+短尾", explain="具名片名 + 简短尾部 → search 锚定标题",
+        Rule(id="vod_title_tail", tool="vod_search", priority=9,
+             title="具体片名+尾部", explain="具名剧名 + 尾部 → search 锚定标题",
              decide=_title_tail_branch),
-        Rule(id="vod_search", tool="vod_search", priority=8,
+        Rule(id="vod_search", tool="vod_search", priority=10,
              title="结构化多维检索", explain="播放动词/筛选维度 → 三级路由 search/search_all/fuzzy",
              decide=_search_branch),
-        Rule(id="vod_search_all", tool="vod_search_all", priority=9,
+        Rule(id="vod_search_all", tool="vod_search_all", priority=11,
              title="search_all 专属维度", explain="出品/卫视/地区/语言/获奖 → 优先 search_all",
              decide=_search_all_branch),
     ],

@@ -271,7 +271,7 @@ def _layout(q: str) -> tuple[str, dict] | None:
 _NUM = [
     ("音量", re.compile(r"音量|声音大小|声量|声音音|声音")),
     ("静音", re.compile(r"静音|把声音关|声音关掉|静音模式|消音|关闭声音|静音开关|声音静音")),
-    ("亮度", re.compile(r"亮度|屏幕亮|屏亮|明亮|太刺眼|屏幕调亮|屏幕调暗|调亮屏幕|调暗屏幕|亮了|暗了")),
+    ("亮度", re.compile(r"亮度|屏幕亮|屏亮|明亮|太刺眼|屏幕调亮|屏幕调暗|调亮屏幕|调暗屏幕|亮了|暗了|(?:电视?)?画面调亮|(?:电视?)?画面调暗|电视?画面调到最|画面调到最")),
     ("对比度", re.compile(r"对比度")),
     ("色度", re.compile(r"色度|色彩饱和度")),
     ("清晰度", re.compile(r"清晰度|解析度")),
@@ -419,9 +419,9 @@ def _numeric_default(obj: str, q: str) -> bool:
 
 
 def _num_value(vlow: str, obj: str = "", q: str = "") -> str:
-    if re.search(r"最大|最高", vlow):
+    if re.search(r"最大|最高|最亮|最明", vlow):
         return "100%"
-    if re.search(r"最低|最小", vlow):
+    if re.search(r"最低|最小|最暗", vlow):
         return "0%"
     if re.search(r"一半|比例一半|调一半", vlow):
         return "50%"
