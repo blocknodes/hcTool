@@ -33,8 +33,8 @@ _PERSONALIZED = re.compile(
 )
 
 # relate：类似/相似
-_RELATE = re.compile(r"类似|相似|相近|差不多|同类型|一个风格|和.{0,10}(?:类似|相似)|"
-                     r"推荐.{0,6}(?:相关|类似|相近)")
+_RELATE = re.compile(r"类似|相似|相近|差不多|同类型|一个风格|和.{0,10}(?:类似|相似|相关)|"
+                     r"推荐.{0,15}(?:相关|类似|相近)")
 
 # 分类目归一（长词优先）
 _CAT_MAP = {
@@ -66,9 +66,9 @@ _SEEK = re.compile(r"第[0-9一二两三四五六七八九十]+(?:集|季|期|�
 # 地区/语言/年代（具体年份）→ search_all 全库多维筛选
 # （注意：最新/最近/近期/今年 等时间副词、4K/3D 等版型属 search，不在此列）
 _ALL_DIM = re.compile(
-    r"韩剧|美剧|英剧|日剧|泰剧|内地|大陆|国产|香港|台湾|港台|美国|英国|日本|"
+    r"韩剧|美剧|英剧|日剧|泰剧|内地|大陆|国产|国产的|国内|国内的|香港|台湾|港台|美国|英国|日本|"
     r"韩国|泰国|印度|欧美|北欧|北美|中国版|国外|好莱坞"
-    r"|粤语|国语|普通话|英语|日语|泰语|韩语|中文|方言"
+    r"|粤语|国语|普通话|英语|日语|泰语|韩语|中文|方言|法语|德语|西语|俄语"
     r"|[12]\d{3}年|[一二三四五六七八九十]+年代"
 )
 
@@ -147,8 +147,8 @@ def _history_params(query: str) -> dict:
 
 
 _BRACKET = re.compile(r"[《（(]\s*([一-龥A-Za-z0-9·]{1,12})\s*[》）)]")
-_TITLE_BEFORE = re.compile(r"(?:和|与|跟)([一-龥A-Za-z0-9·]{2,8}?)(?:系列)?(?:的)?(?:类似|相似|相近|差不多|同类型|一样|一个风格)")
-_TITLE_AFTER = re.compile(r"(?:有没有|推荐)?(?:类似|相似|相近|同类型)([一-龥A-Za-z0-9·]{1,12}?)(?:的)?(?:电视剧|电影|影片|综艺|纪录片|节目|短剧|剧|片)")
+_TITLE_BEFORE = re.compile(r"(?:和|与|跟)([一-龥A-Za-z0-9·]{2,8}?)(?:系列)?(?:的)?(?:类似|相似|相近|差不多|同类型|一样|一个风格|相关)")
+_TITLE_AFTER = re.compile(r"(?:有没有|推荐)?(?:类似|相似|相近|同类型|相关)([一-龥A-Za-z0-9·]{1,12}?)(?:的)?(?:电视剧|电影|影片|综艺|纪录片|节目|短剧|剧|片)")
 
 
 def _relate_title(text: str) -> str:
@@ -158,12 +158,62 @@ def _relate_title(text: str) -> str:
     return ""
 
 
+def _relate_person(text: str) -> tuple[str, str] | None:
+    """「推荐X相关的...」里 X 是可知名导演/演员 → (field, 人名)。
+
+    宫崎骏等动画导演、周星驰等演员作 relate 锚点时，gold 按导演/演员维度检索，
+    而非把「相关」后的残片当 title。用 dsl 的已知人名表判断，避免手工枚举。
+    """
+    for n in dsl._KNOWN_ANIM_DIRECTORS:
+        if re.search(n, text):
+            return ("director", n)
+    for n in dsl._KNOWN_DIRECTORS:
+        if re.search(n, text):
+            return ("director", n)
+    for n in dsl._KNOWN_ACTORS:
+        if re.search(n, text):
+            return ("actor", n)
+    return None
+
+
+def _relate_category_norm(text: str, has_title: bool) -> str | None:
+    """relate 检索的 category 归一（对齐 relate-gold 口径）。
+
+    有具名 title 锚点时：金标准把「X片/动画/动漫」类归为基准载体(电影)，电视剧/纪录片 保留。
+    原因：锚点既是某部具体作品(如 无间道/千与千寻)，其「同类」是同载体影片，而非细分体裁
+    (警匪/动画→都是电影)，故 category 收成 电影/电视剧 而非 动漫 等细分。无 title 锚点时
+    走 记录片/电视剧 的直判，动漫/动画片 才归 动漫(否则「动漫」检索会被错并成电影)。
+    """
+    if re.search(r"电视剧|连续剧|偶像剧|古装剧|爱情剧|科幻剧|警匪剧|探案剧|古装剧|谍战剧|抗战剧|刑侦剧|青春剧|校园剧|破案剧|剧集",
+                 text):
+        return "电视剧"
+    if re.search(r"纪录片|记录片|纪实", text):
+        return "纪录片"
+    if has_title:
+        # 具名 title 锚点的同类推荐：一律归电影(含 动画片/动漫/警匪片/武侠片/动画)。
+        return "电影"
+    cat = _find_category(text)
+    if cat == "动漫":
+        return "动漫"
+    if cat:
+        return cat
+    return None
+
+
 def _relate_params(text: str) -> dict | None:
     title = _relate_title(text)
-    if not title:
+    nodes: list[dict] = []
+    cat = _relate_category_norm(text, bool(title))
+    # 「推荐Xxx/类似」类点人是知名演员/导演 → 按人检索，舍弃残缺 title。
+    person = _relate_person(text)
+    if person:
+        field, value = person
+        if re.search(r"相关|类似|相似|相近", text) and re.search(r"(电影|动画|影片|作品|片)", text):
+            nodes.append({"field": field, "value": value})
+    elif title:
+        nodes.append({"field": "title", "value": title})
+    if not nodes:
         return None
-    nodes: list[dict] = [{"field": "title", "value": title}]
-    cat = _find_category(text)
     if cat:
         nodes.append({"field": "category", "value": cat})
     return {"query": {"and": nodes}}
@@ -187,7 +237,28 @@ def _relate_branch(q: str):
     if _RELATE.search(q):
         p = _relate_params(q)
         if p is not None:
+            # 「X主演/导演的相关Y」：显式演员/导演在，而 title 只是「相关影片」残片
+            # (如 "推荐一些梁朝伟主演的相关影片" 会误抽 title=影)。此时应以 actor/director
+            # 检索为准，丢弃残缺 title。金标准对这类"相关N"是 actor/director 维度。
+            title = p["query"]["and"][0].get("value") if p["query"].get("and") else None
+            if isinstance(title, str) and len(title) <= 1:
+                actor = dsl._actor(q)
+                director = dsl._director(q)
+                if actor or director:
+                    d = dsl.build_search_dsl(q)
+                    if d:
+                        return ("vod_relate_search", d)
             return ("vod_relate_search", p)
+    # 「推荐X」开头（推荐王㔾主演的相关/类似影片、推荐纪录片类、推荐悬疑题材电影…）：
+    # 无具名 title 时，用普通检索 DSL 抽字段，但工具统一归 vod_relate_search（gold 口径）。
+    # 注意「推荐我喜欢的」已被 _PERSONALIZED(priority2) 先行截走，不会误入。
+    if q.startswith(("推荐", "帮我推荐")):
+        tool = dsl.route_tool(q)
+        if tool != "vod_fuzzy_search":
+            d = dsl.build_search_dsl(q)
+            if d:
+                return ("vod_relate_search", d)
+        return ("vod_relate_search", {"query": q})
     return None
 
 

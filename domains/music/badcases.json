@@ -1,212 +1,316 @@
 {
- "entries": [
-  {
-   "raw": "周杰伦的告白气球",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "周杰伦的告白气球",
-    "singer": [
-     "周杰伦"
-    ],
-    "song": [
-     "告白气球"
-    ]
-   }
-  },
-  {
-   "raw": "播放大鱼",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "播放大鱼",
-    "song": [
-     "大鱼"
-    ]
-   }
-  },
-  {
-   "raw": "放一首New jeans的歌",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "放一首New jeans的歌",
-    "singer": [
-     "New jeans"
-    ]
-   }
-  },
-  {
-   "raw": "巴士儿歌",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "巴士儿歌",
-    "song": [
-     "巴士"
-    ],
-    "tag": [
-     "儿歌"
-    ]
-   }
-  },
-  {
-   "raw": "拔萝卜儿歌",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "拔萝卜儿歌",
-    "song": [
-     "拔萝卜"
-    ],
-    "tag": [
-     "儿歌"
-    ]
-   }
-  },
-  {
-   "raw": "白龙马儿歌",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "白龙马儿歌",
-    "tag": [
-     "儿歌",
-     "白龙马"
-    ]
-   }
-  },
-  {
-   "raw": "宝宝巴士儿歌免费",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "宝宝巴士儿歌免费",
-    "version": [
-     "免费版"
-    ],
-    "tag": [
-     "宝宝巴士儿歌"
-    ]
-   }
-  },
-  {
-   "raw": "播放1岁半宝宝听的歌曲",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "播放1岁半宝宝听的歌曲",
-    "tag": [
-     "儿歌"
-    ]
-   }
-  },
-  {
-   "raw": "播放不花钱的儿歌",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "播放不花钱的儿歌",
-    "version": [
-     "免费的"
-    ],
-    "tag": [
-     "儿歌"
-    ]
-   }
-  },
-  {
-   "raw": "播放儿歌爸爸妈妈去上班",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "播放儿歌爸爸妈妈去上班",
-    "song": [
-     "爸爸妈妈去上班"
-    ],
-    "tag": [
-     "儿歌"
-    ]
-   }
-  },
-  {
-   "raw": "我要听虫儿飞",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "我要听虫儿飞",
-    "song": [
-     "虫儿飞"
-    ]
-   }
-  },
-  {
-   "raw": "怎么给3岁的小朋友选适合听的儿歌",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "怎么给3岁的小朋友选适合听的儿歌",
-    "tag": [
-     "儿歌"
-    ]
-   }
-  },
-  {
-   "raw": "播放虫儿飞",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "播放虫儿飞",
-    "song": [
-     "虫儿飞"
-    ]
-   }
-  },
-  {
-   "raw": "送你一朵小红花",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "送你一朵小红花",
-    "song": [
-     "送你一朵小红花"
-    ]
-   }
-  },
-  {
-   "raw": "播放情深深雨濛濛",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "播放情深深雨濛濛",
-    "song": [
-     "情深深雨濛濛"
-    ]
-   }
-  },
-  {
-   "raw": "贝乐虎儿歌",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "贝乐虎儿歌",
-    "ip": [
-     "贝乐虎"
-    ],
-    "tag": [
-     "儿歌"
-    ]
-   }
-  },
-  {
-   "raw": "小兔子乖乖儿歌",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "小兔子乖乖儿歌",
-    "song": [
-     "小兔子乖乖"
-    ],
-    "tag": [
-     "儿歌"
-    ]
-   }
-  },
-  {
-   "raw": "英语启蒙儿歌",
-   "tool": "music_song_search",
-   "params": {
-    "retext": "英语启蒙儿歌",
-    "song": [
-     "启蒙儿歌"
-    ],
-    "tag": [
-     "英语"
-    ]
-   }
-  }
- ]
+  "entries": [
+    {
+      "raw": "周杰伦的告白气球",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "周杰伦的告白气球",
+        "singer": [
+          "周杰伦"
+        ],
+        "song": [
+          "告白气球"
+        ]
+      }
+    },
+    {
+      "raw": "播放大鱼",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "播放大鱼",
+        "song": [
+          "大鱼"
+        ]
+      }
+    },
+    {
+      "raw": "放一首New jeans的歌",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "放一首New jeans的歌",
+        "singer": [
+          "New jeans"
+        ]
+      }
+    },
+    {
+      "raw": "巴士儿歌",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "巴士儿歌",
+        "song": [
+          "巴士"
+        ],
+        "tag": [
+          "儿歌"
+        ]
+      }
+    },
+    {
+      "raw": "拔萝卜儿歌",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "拔萝卜儿歌",
+        "song": [
+          "拔萝卜"
+        ],
+        "tag": [
+          "儿歌"
+        ]
+      }
+    },
+    {
+      "raw": "白龙马儿歌",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "白龙马儿歌",
+        "tag": [
+          "儿歌",
+          "白龙马"
+        ]
+      }
+    },
+    {
+      "raw": "宝宝巴士儿歌免费",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "宝宝巴士儿歌免费",
+        "version": [
+          "免费版"
+        ],
+        "tag": [
+          "宝宝巴士儿歌"
+        ]
+      }
+    },
+    {
+      "raw": "播放1岁半宝宝听的歌曲",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "播放1岁半宝宝听的歌曲",
+        "tag": [
+          "儿歌"
+        ]
+      }
+    },
+    {
+      "raw": "播放不花钱的儿歌",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "播放不花钱的儿歌",
+        "version": [
+          "免费的"
+        ],
+        "tag": [
+          "儿歌"
+        ]
+      }
+    },
+    {
+      "raw": "播放儿歌爸爸妈妈去上班",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "播放儿歌爸爸妈妈去上班",
+        "song": [
+          "爸爸妈妈去上班"
+        ],
+        "tag": [
+          "儿歌"
+        ]
+      }
+    },
+    {
+      "raw": "我要听虫儿飞",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "我要听虫儿飞",
+        "song": [
+          "虫儿飞"
+        ]
+      }
+    },
+    {
+      "raw": "怎么给3岁的小朋友选适合听的儿歌",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "怎么给3岁的小朋友选适合听的儿歌",
+        "tag": [
+          "儿歌"
+        ]
+      }
+    },
+    {
+      "raw": "播放虫儿飞",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "播放虫儿飞",
+        "song": [
+          "虫儿飞"
+        ]
+      }
+    },
+    {
+      "raw": "送你一朵小红花",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "送你一朵小红花",
+        "song": [
+          "送你一朵小红花"
+        ]
+      }
+    },
+    {
+      "raw": "播放情深深雨濛濛",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "播放情深深雨濛濛",
+        "song": [
+          "情深深雨濛濛"
+        ]
+      }
+    },
+    {
+      "raw": "贝乐虎儿歌",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "贝乐虎儿歌",
+        "ip": [
+          "贝乐虎"
+        ],
+        "tag": [
+          "儿歌"
+        ]
+      }
+    },
+    {
+      "raw": "小兔子乖乖儿歌",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "小兔子乖乖儿歌",
+        "song": [
+          "小兔子乖乖"
+        ],
+        "tag": [
+          "儿歌"
+        ]
+      }
+    },
+    {
+      "raw": "英语启蒙儿歌",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "英语启蒙儿歌",
+        "song": [
+          "启蒙儿歌"
+        ],
+        "tag": [
+          "英语"
+        ]
+      }
+    },
+    {
+      "raw": "推荐免费收听的最新华语男歌手流行歌曲",
+      "tool": "music_song_search",
+      "params": {
+        "gender": [
+          "男"
+        ],
+        "retext": "推荐免费收听的最新华语男歌手流行歌曲",
+        "tag": [
+          "华语",
+          "流行",
+          "最新"
+        ],
+        "version": [
+          "免费版"
+        ]
+      },
+      "note": "mt改写后强参",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "推荐国外乐队的摇滚乐",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "推荐国外乐队的摇滚乐",
+        "tag": [
+          "摇滚",
+          "国外乐队"
+        ]
+      },
+      "note": "mt改写后强参",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "推荐国外乐队的演唱会现场版摇滚乐",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "推荐国外乐队的演唱会现场版摇滚乐",
+        "tag": [
+          "摇滚",
+          "国外乐队",
+          "演唱会"
+        ],
+        "version": [
+          "live版"
+        ]
+      },
+      "note": "mt改写后强参",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "推荐最新的华语男歌手流行歌曲",
+      "tool": "music_song_search",
+      "params": {
+        "gender": [
+          "男"
+        ],
+        "retext": "推荐最新的华语男歌手流行歌曲",
+        "tag": [
+          "华语",
+          "流行",
+          "最新"
+        ]
+      },
+      "note": "mt改写后强参",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "推荐高音质的国外乐队演唱会现场版摇滚乐",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "推荐高音质的国外乐队演唱会现场版摇滚乐",
+        "tag": [
+          "摇滚",
+          "国外乐队",
+          "演唱会",
+          "高音质"
+        ],
+        "version": [
+          "live版"
+        ]
+      },
+      "note": "mt改写后强参 25r4",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "推荐高音质、清唱版的国外乐队演唱会现场版摇滚乐",
+      "tool": "music_song_search",
+      "params": {
+        "retext": "推荐高音质的国外乐队演唱会现场版摇滚乐",
+        "tag": [
+          "摇滚",
+          "国外乐队",
+          "演唱会",
+          "高音质",
+          "清唱"
+        ],
+        "version": [
+          "live版"
+        ]
+      },
+      "note": "mt改写后强参 25r5 清唱",
+      "owner": "dingbo"
+    }
+  ]
 }

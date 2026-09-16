@@ -643,7 +643,7 @@
     },
     {
       "raw": "我想看双语绘本",
-      "tool": "educ_fuzzy_search",
+      "tool": "educ_search",
       "params": {
         "query": "搜索双语绘本"
       },
@@ -841,7 +841,7 @@
     },
     {
       "raw": "搜索适合睡前听、女声有声朗读的双语绘本",
-      "tool": "educ_fuzzy_search",
+      "tool": "educ_search",
       "params": {
         "query": "搜索适合睡前听、女声有声朗读的双语绘本"
       },
@@ -850,7 +850,7 @@
     },
     {
       "raw": "搜索适合睡前听、有声朗读的双语绘本",
-      "tool": "educ_fuzzy_search",
+      "tool": "educ_search",
       "params": {
         "query": "搜索适合睡前听、有声朗读的双语绘本"
       },
@@ -859,7 +859,7 @@
     },
     {
       "raw": "搜索适合睡前听的双语绘本",
-      "tool": "educ_fuzzy_search",
+      "tool": "educ_search",
       "params": {
         "query": "搜索适合睡前听的双语绘本"
       },

@@ -141,6 +141,382 @@
           ]
         }
       }
+    },
+    {
+      "raw": "推荐CBA篮球季后赛比赛视频新疆队的",
+      "tool": "sports_match_search",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "篮球"
+            },
+            {
+              "field": "sport_game",
+              "value": "CBA"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "季后赛"
+            },
+            {
+              "field": "sport_team_home",
+              "value": "广州"
+            },
+            {
+              "field": "sport_team_guest",
+              "value": "新疆"
+            }
+          ]
+        }
+      },
+      "note": "mt改写后强参",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "看大满贯网球决赛轮",
+      "tool": "sports_match_search",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "网球"
+            },
+            {
+              "field": "sport_game",
+              "value": "大满贯"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "决赛"
+            }
+          ]
+        }
+      },
+      "note": "mt改写后强参",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "看昨晚打的大满贯网球决赛轮",
+      "tool": "sports_match_search",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "网球"
+            },
+            {
+              "field": "sport_game",
+              "value": "大满贯"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "决赛"
+            },
+            {
+              "field": "sport_time",
+              "value": "20260830"
+            }
+          ]
+        }
+      },
+      "note": "mt改写后强参",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "看昨晚打的大满贯网球决赛轮郑钦文那场",
+      "tool": "sports_match_search",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "网球"
+            },
+            {
+              "field": "sport_game",
+              "value": "大满贯"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "决赛"
+            },
+            {
+              "field": "sport_time",
+              "value": "20260830"
+            },
+            {
+              "field": "sport_star",
+              "value": "郑钦文"
+            }
+          ]
+        }
+      },
+      "note": "mt改写后强参",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "在广州打的CBA篮球季后赛比赛",
+      "tool": "sports_match_search",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "篮球"
+            },
+            {
+              "field": "sport_game",
+              "value": "CBA"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "季后赛"
+            },
+            {
+              "field": "sport_team_home",
+              "value": "广州"
+            }
+          ]
+        }
+      },
+      "note": "mt改写后强参 28r4",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "在广州新疆队打的CBA季后赛篮球比赛",
+      "tool": "sports_match_search",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "篮球"
+            },
+            {
+              "field": "sport_game",
+              "value": "CBA"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "季后赛"
+            },
+            {
+              "field": "sport_team_home",
+              "value": "广州"
+            },
+            {
+              "field": "sport_team_guest",
+              "value": "新疆"
+            }
+          ]
+        }
+      },
+      "note": "mt改写后强参 28r5",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "看大满贯网球决赛",
+      "tool": "sports_match_search",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "网球"
+            },
+            {
+              "field": "sport_game",
+              "value": "大满贯"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "决赛"
+            }
+          ]
+        }
+      },
+      "note": "mt改写后强参 29r3",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "看昨晚打的大满贯网球决赛",
+      "tool": "sports_match_search",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "网球"
+            },
+            {
+              "field": "sport_game",
+              "value": "大满贯"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "决赛"
+            },
+            {
+              "field": "sport_time",
+              "value": "20260830"
+            }
+          ]
+        }
+      },
+      "note": "mt改写后强参 29r4",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "看昨晚打的大满贯网球决赛郑钦文那场",
+      "tool": "sports_match_search",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "网球"
+            },
+            {
+              "field": "sport_game",
+              "value": "大满贯"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "决赛"
+            },
+            {
+              "field": "sport_time",
+              "value": "20260830"
+            },
+            {
+              "field": "sport_star",
+              "value": "郑钦文"
+            }
+          ]
+        }
+      },
+      "note": "mt改写后强参 29r5",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "看昨晚郑钦文打的大满贯网球决赛",
+      "tool": "sports_match_search",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_name",
+              "value": "网球"
+            },
+            {
+              "field": "sport_game",
+              "value": "大满贯"
+            },
+            {
+              "field": "sport_competition_phase",
+              "value": "决赛"
+            },
+            {
+              "field": "sport_time",
+              "value": "20260830"
+            },
+            {
+              "field": "sport_star",
+              "value": "郑钦文"
+            }
+          ]
+        }
+      },
+      "note": "mt改写后强参 29r5v2",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "葡萄牙最近的比赛",
+      "tool": "sports_match_search",
+      "params": {
+        "query": {
+          "field": "sport_team",
+          "value": "葡萄牙"
+        }
+      }
+    },
+    {
+      "raw": "CBA总决赛辽宁队对阵浙江队，谁能拿下赛点？",
+      "tool": "sports_match_forecast",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_team",
+              "value": "辽宁"
+            },
+            {
+              "field": "sport_team",
+              "value": "浙江"
+            },
+            {
+              "field": "sport_game",
+              "value": "CBA"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "raw": "孙颖莎与王曼昱的WTT女单对决，谁能赢？",
+      "tool": "sports_match_forecast",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_star",
+              "value": "孙颖莎"
+            },
+            {
+              "field": "sport_star",
+              "value": "王曼昱"
+            },
+            {
+              "field": "sport_game",
+              "value": "WTT"
+            },
+            {
+              "field": "sport_name",
+              "value": "女单"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "raw": "朱雨玲迎战韩莹的WTT女单比赛，谁能最后晋级？",
+      "tool": "sports_match_forecast",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "sport_game",
+              "value": "WTT"
+            },
+            {
+              "field": "sport_name",
+              "value": "女单"
+            },
+            {
+              "field": "sport_star",
+              "value": "朱雨玲"
+            },
+            {
+              "field": "sport_star",
+              "value": "韩莹"
+            }
+          ]
+        }
+      }
     }
   ]
 }

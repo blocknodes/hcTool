@@ -350,7 +350,7 @@
     },
     {
       "raw": "小学必背古诗有哪些",
-      "tool": "edu_fuzzy_search",
+      "tool": "edu_search",
       "params": {
         "query": "小学必背古诗有哪些"
       },
@@ -383,7 +383,7 @@
     },
     {
       "raw": "带讲解的",
-      "tool": "edu_fuzzy_search",
+      "tool": "edu_search",
       "params": {
         "query": "带讲解的"
       },
@@ -392,7 +392,7 @@
     },
     {
       "raw": "按年级分类",
-      "tool": "edu_fuzzy_search",
+      "tool": "edu_search",
       "params": {
         "query": "按年级分类"
       },
@@ -401,7 +401,7 @@
     },
     {
       "raw": "有朗读示范",
-      "tool": "edu_fuzzy_search",
+      "tool": "edu_search",
       "params": {
         "query": "有朗读示范"
       },

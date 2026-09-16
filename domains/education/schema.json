@@ -16,19 +16,7 @@
     },
     {
       "tool_name": "edu_fuzzy_search",
-      "description": "非结构化整句检索",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "query": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    {
-      "tool_name": "edu_slow_search_data_search",
-      "description": "备课/慢速检索",
+      "description": "非结构化整句检索（含备课/慢速检索）",
       "parameters": {
         "type": "object",
         "properties": {

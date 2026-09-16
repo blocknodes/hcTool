@@ -253,9 +253,10 @@ def build_dsl(q: str) -> dict | None:
 
 
 def _branch_slow(q: str):
+    # 备课/慢速检索：原走 edu_slow_search_data_search，已改名并入 fuzzy 检索
     if not re.search(r"备课", q):
         return None
-    return ("edu_slow_search_data_search", {"query": q})
+    return ("edu_fuzzy_search", {"query": q})
 
 
 def _branch_training_org(q: str):
@@ -300,9 +301,8 @@ def _branch_edu_search_fallback(q: str):
 
 RULE_SET = RuleSet(
     rules=[
-        Rule(id="edu_slow", tool="edu_slow_search_data_search", priority=1,
-             title="备课/慢速检索", explain="命中 备课 → 慢速检索工具",
-             decide=_branch_slow),
+        Rule(id="edu_slow", tool="edu_fuzzy_search", priority=1,
+             title="备课/慢速检索", explain="命中 备课 → 模糊检索", decide=_branch_slow),
         Rule(id="edu_training_org", tool="edu_fuzzy_search", priority=2,
              title="培训机构/一对一", explain="培训机构/辅导课程/一对一 等非课程检索 → fuzzy",
              decide=_branch_training_org),

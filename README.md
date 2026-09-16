@@ -197,7 +197,7 @@ python domains/<key>/bench/run_bench.py --json # JSON 输出（写 result.latest
 |---|---|---|---|---|---|---|
 | 1 | `vod` | `domains/vod/` | 影视 | 6 | `vod_search_all/all/relate/personalized/history`… | 97.1% tool+param（确定性堆栈） |
 | 2 | `audio` | `domains/audio/` | 有声 | 2 | `audio_search`(action play/search, query 透传) / `audio_history` | **100%** 369 |
-| 3 | `education` | `domains/education/` | 教育 | 3 | `edu_search` / `edu_fuzzy_search` / `edu_slow_search_data_search` | **100%** 216 |
+| 3 | `education` | `domains/education/` | 教育 | 2 | `edu_search` / `edu_fuzzy_search`（含原 `edu_slow_search_data_search`，已并入 fuzzy） | **100%** 216 |
 | 4 | `sports` | `domains/sports/` | 体育 | 10 | `sports_match_search/forecast/reservation/vod`（嵌套 DSL），扁平 `rank/team` | **100%** 186 |
 | 5 | `music` | `domains/music/` | 音乐 | 9 | `music_song_search` / `mv` / `qq` / `recommend` / `history` / `tvchannel` / `favorite` / `ksong` / fan_knowledge | **99%** 207 |
 | 6 | `children` | `domains/children/` | 少儿 | 5 | `educ_search_all` / `educ_search` / `educ_fuzzy_search` / `relate_recommend` / `educ_history` | **100%** 327 |

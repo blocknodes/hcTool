@@ -5386,7 +5386,7 @@
     },
     {
       "query": "扇形统计图的备课视频",
-      "expected_tool": "edu_slow_search_data_search",
+      "expected_tool": "edu_fuzzy_search",
       "expected_params": {
         "query": "扇形统计图的备课视频"
       }

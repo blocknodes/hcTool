@@ -51,16 +51,19 @@ _TAG_MAP = {
 }
 
 _AREA_MAP = {
-    "内地": "内地", "大陆": "大陆", "国产": "国产", "香港": "香港", "台湾": "台湾",
+    "内地": "内地", "大陆": "大陆", "国产": "国产", "中国香港": "中国香港", "中国台湾": "中国台湾",
+    "香港": "香港", "台湾": "台湾",
     "港台": "港台", "美国": "美国", "好莱坞": "好莱坞", "英国": "英国", "日本": "日本",
     "韩国": "韩国", "泰国": "泰国", "印度": "印度", "欧美": "欧美", "北欧": "北欧",
     "北美": "北美", "外国": "外国",
     "粤语": "粤语", "国语": "国语", "普通话": "普通话", "英语": "英语", "日语": "日语",
     "泰语": "泰语", "韩语": "韩语", "中文": "中文", "方言": "方言",
+    "法语": "法语", "德语": "德语", "西语": "西语", "西班牙语": "西语", "俄语": "俄语",
 }
 
 _LANG = {"粤语": "粤语", "国语": "国语", "普通话": "普通话", "英语": "英语",
-         "日语": "日语", "泰语": "泰语", "韩语": "韩语", "中文": "普通话", "方言": "方言"}
+         "日语": "日语", "泰语": "泰语", "韩语": "韩语", "中文": "普通话", "方言": "方言",
+         "法语": "法语", "德语": "德语", "西语": "西语", "西班牙语": "西语", "俄语": "俄语"}
 
 _CN = {"一": 1, "二": 2, "两": 2, "三": 3, "四": 4, "五": 5,
        "六": 6, "七": 7, "八": 8, "九": 9, "十": 10, "零": 0}
@@ -190,8 +193,11 @@ def _director(query: str) -> str | None:
     if not m:
         return None
     name = m.group(1)
-    # 剥离起播/检索动词前缀，如「查找斯皮尔伯格」「搜索吴京」
-    name = re.sub(r"^(?:查找|搜索|搜|查一下|找一下|看|放|播放|请|帮我|我要看|我想看)", "", name)
+    # 先剥全句排序/筛选修饰前缀（播放量最高的陈可辛 → 陈可辛），
+    # 再剥动词前缀（查找/搜索/播放…）。顺序不能反：先剥动词会把"播放量最高的"切坏。
+    name = _strip_sort_mod(name)
+    name = re.sub(r"^(?:查找|搜索|搜一下|搜|查一下|帮我找一下|帮我找|找一下|帮我搜索|帮我搜|看|放|播放|请|帮我|我要看|我想看|推荐一些|推荐)", "", name)
+    name = name.lstrip("的")
     return name if name else None
 
 
@@ -210,16 +216,37 @@ _ACTOR_ALIAS = {"郭德纲儿子": "郭麒麟"}
 _KNOWN_ACTORS = (
     "汤姆·克鲁斯", "汤姆克鲁斯", "马里奥·毛瑞尔", "马里奥毛瑞尔",
     "郭麒麟", "赵丽蓉", "章子怡", "刘德华", "邓超", "方中信", "金秀贤", "郭德纲儿子",
+    "周星驰", "梁朝伟", "周润发", "胡歌", "张译", "王宝强", "黄渤", "沈腾", "葛优",
+    "张国荣", "刘亦菲", "杨幂", "孙俪", "赵丽颖", "马伊琍", "殷桃", "靳东", "王凯", "雷佳音",
+    "徐克", "白百何",
 )
 # 角色 → role（“有许三多的那部电视剧”“播放吴石将军的电视剧”）
 _KNOWN_ROLES = ("许三多", "吴石将军")
-_KNOWN_DIRECTORS = ("张艺谋",)
+_KNOWN_DIRECTORS = ("张艺谋", "陈可辛", "冯小刚", "宁浩", "王家卫", "徐克", "乌尔善",
+                    "陈凯歌", "高希希", "李少红", "陈思诚", "孔笙", "郭帆", "吴京",
+                    "宫崎骏", "郑晓龙")
+_KNOWN_ANIM_DIRECTORS = ("宫崎骏", "新海诚", "今敏", "庵野秀明")
 
 
 def _norm_actor(name: str) -> str:
     if name in _ACTOR_ALIAS:
         return _ACTOR_ALIAS[name]
     return _ACTOR_NORM.get(name, name)
+
+
+_SORT_MOD = (
+    "评分最高的一部", "人气最高的一部", "播放量最高的一部", "最新的一部", "最经典的一部",
+    "评分最高", "人气最高", "播放量最高", "播放最高", "最新", "最经典", "最热", "评分高",
+)
+
+
+def _strip_sort_mod(name: str) -> str:
+    """剥掉实体值前置的排序/筛选修饰（评分最高的胡歌 → 胡歌）。
+    这些修饰是全句 sort 条件，由 _apply_sort 单独拾取，不属于实体名。"""
+    for mod in _SORT_MOD:
+        if name.startswith(mod):
+            return name[len(mod):].lstrip("的")   # “评分最高的胡歌”→剩“胡歌”
+    return name
 
 
 def _known_in(query: str, table) -> str | None:
@@ -245,8 +272,11 @@ def _actor(query: str) -> str | None:
     m = re.search(r"([一-龥A-Za-z0-9·]{2,10}?)(?:主演|参演|友情出演|出演|参演过的?|演\s*的{0,2}\s*(?:电影|电视剧|剧|影片|短片|纪录片|的?片))", query)
     if m:
         name = m.group(1)
-        name = re.sub(r"^(?:查找|搜索|搜|查|看|放|请|我要|我想|帮我|找)", "", name)
-        # 剥尾“导”：(斯皮尔伯格导演) 里的“导演”以“演”结尾，会把“导”误吞进 actor
+        name = re.sub(r"^(?:查找|搜索|搜|查|看|放|请|我要|我想|帮我|找|推荐一些|推荐)", "", name)
+        # 剥排序/筛选修饰前缀（评分最高的胡歌 → 胡歌；人气最高的赵丽颖 → 赵丽颖）。
+        # 这类修饰是全句范围的 sort 条件，不属于 actor 实体本身；dsl _apply_sort 已单独拾取成 sort。
+        name = _strip_sort_mod(name)
+        # 剥尾音标：(斯皮尔伯格导演) 里的“导演”以“演”结尾，会把“导”误吞进 actor
         name = name.rstrip("导")
         # “X导演的电影”里“演”来自“导演”，不是 actor；X 后紧跟“导演”则不是主演语境
         end = query.find(name) + len(name) if name and name in query else -1
@@ -510,8 +540,12 @@ def build_search_dsl(query: str) -> dict | None:
     #   2) 具名标题 + 定位（第N集/分钟/秒）→ 直接开播，或
     #   3) 具名标题 + 起播动词（戏曲铡美案/秦腔三滴血 这类点名播放）且无筛选维度。
     _hit = _extract_title(q)
+    # 排序/筛选句（评分最高/人气最高/播放量最高/最新…的X）是浏览检索，不是点播；
+    # 即使句首恰好以"播放"开头（播放量最高…）也不定 play。
+    if re.search(r"评分最高|人气最高|播放(?:量|数)?最高|播放最高|最新的一部|最经典的", q):
+        action = "search"
     # 检索动词头（搜索/查/找…）→ 明确 search，永不定为 play
-    if re.match(r"^(?:搜索|搜|查找|查一下|找一下|找|查)", q):
+    elif re.match(r"^(?:搜索|搜|查找|查一下|找一下|找|查)", q):
         action = "search"
     else:
         # 强起播动词头 → 无条件 play
@@ -671,6 +705,8 @@ def build_search_dsl(query: str) -> dict | None:
         result.setdefault("sort", {})["hot"] = {"order": "desc"}
     if re.search(r"评分高|高分|高评分|评分.{0,2}高", q):
         result.setdefault("sort", {})["rate"] = {"order": "desc"}
+    if re.search(r"播放(?:量|数)最高|播放量高|播放量|播放最高", q):
+        result.setdefault("sort", {})["play"] = {"order": "desc"}
 
     query_node = conds[0] if len(conds) == 1 else {"and": conds}
     result["query"] = query_node
@@ -731,8 +767,25 @@ def _field_value_valid(field: str, node: dict) -> bool:
     return bool(node.get("value"))
 
 
+_DESC_EPITHET = re.compile(r"那个[^，。、的]{1,8}的[^，。]{1,20}(电影|影片|动画|动画片|动画片儿|动漫|电视剧|剧|片|作品)")
+_DESC_LIST = re.compile(r"(?:不是|不)[^，。]{2,10}、(?:很?[^，。]{1,8}的|评分|最近|最新)[^，。]{0,10}[、，][^，。]{2,10}(?:片|剧|电影|电视)")
+
+
+def _is_desc_fuzzy(query: str) -> bool:
+    """描述型检索(用外延描述而非封闭枚举) → fuzzy。如“那个演功夫拍的胖子导演拍的高分电影”、
+    “不是国产的、评分很高的、最近几年的科幻片”这类不好收成封闭 schema 枚举的问题。
+    金标准对这类归 vod_fuzzy_search（自由文本检索），bench 无「那个…的」用例，判定安全。"""
+    if _DESC_EPITHET.search(query):
+        return True
+    if _DESC_LIST.search(query):
+        return True
+    return False
+
+
 def route_tool(query: str) -> str:
     """三级判定：vod_search | vod_search_all | vod_fuzzy_search。"""
+    if _is_desc_fuzzy(query):
+        return "vod_fuzzy_search"
     d = build_search_dsl(query)
     if not d:
         return "vod_fuzzy_search"
