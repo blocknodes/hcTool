@@ -10,10 +10,48 @@
         "properties": {
           "messages": {
             "type": "array",
-            "description": "多轮对话消息列表",
-            "items": {"type": "object"}
+            "description": "由历史对话组成的消息列表。System Message(可选)放首位表示模型角色/目标；User Message(必选)为用户输入；Assistant Message(可选)为模型历史回复。",
+            "items": {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "type": "string",
+                  "description": "消息角色",
+                  "enum": ["system", "user", "assistant"]
+                },
+                "content": {
+                  "type": "string",
+                  "description": "消息文本内容"
+                }
+              },
+              "required": ["role", "content"]
+            }
+          },
+          "riskRespStrategy": {
+            "type": "string",
+            "description": "安全审核捕获敏感词后的响应策略，不允许为空，默认 all_replace。fixed=固定回复；all_replace=返回完全替换的内容；risk_words=返回敏感词列表",
+            "enum": ["fixed", "all_replace", "risk_words"]
+          },
+          "sceneTypeIntentList": {
+            "type": "array",
+            "description": "场景类型和场景子意图列表。用于区分不同业务场景，并决定是否下发媒资以及匹配哪套系统提示词。开放域知识问答下发 knowledge_qa(不带 intent)。",
+            "items": {
+              "type": "object",
+              "properties": {
+                "sceneType": {
+                  "type": "string",
+                  "description": "场景类型，用于区分不同业务场景。枚举值：video(影视)、child(少儿)、audio_qa(有声问答)、sport_qa(体育问答)、agent_music(音乐)、education_qa(教育)、device_control_qa(设备控制问答)、knowledge_qa(开放域知识)"
+                },
+                "intent": {
+                  "type": "string",
+                  "description": "场景子意图，仅音乐(agent_music)与体育(sport_qa)业务需要下发；其余场景缺省。音乐：music_chat_qa(不绑定特定歌曲的通用音乐领域知识问答，走纯问答链路)、music_info_qa(指向具体歌曲/歌手/乐队/专辑的客观属性事实查询，需执行歌曲检索，若问句绑定特定歌曲即便问音乐类型也归为此类)。体育：sports_match_forecast(单场未开始/进行中比赛的胜负比分预测)、sports_forecast(赛事级冠军/晋级队伍/最终排名等整体结果预测)、sports_match_summary(已结束单场比赛赛况/关键事件总结)、sports_summary(多场已结束比赛或全赛事周期的整体赛况汇总)、sports_match_info_search(单场比赛时间/场地/对阵等基础属性查询)、sports_chat_qa(无明确绑定具体比赛/人物的通用体育知识问答，亦作为体育意图识别兜底)、sports_person_search(运动员/教练等人物履历成就信息查询)、sports_rank_llm_search(球队积分榜/球员数据榜/赛事排名等榜单数据查询)、sports_match_event_qa_search(比赛事件问答，如红黄牌)、sports_match_lineup_search(比赛阵容查询)"
+                }
+              },
+              "required": ["sceneType"]
+            }
           }
-        }
+        },
+        "required": ["messages"]
       }
     }
   ]

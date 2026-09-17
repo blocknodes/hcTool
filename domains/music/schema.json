@@ -932,10 +932,27 @@
     },
     {
       "tool_name": "fan_knowledge_agent",
-      "description": "泛知识问答/榜单代理，兜底。",
+      "description": "泛知识问答/榜单代理，兜底。参数由 app/fanparams.py 按产品契约构造，场景下发 agent_music。",
       "parameters": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "messages": {
+            "type": "array",
+            "description": "由历史对话组成的消息列表，User Message 为用户输入。",
+            "items": {"type": "object"}
+          },
+          "riskRespStrategy": {
+            "type": "string",
+            "description": "安全审核敏感词响应策略，不允许为空，默认 all_replace。",
+            "enum": ["fixed", "all_replace", "risk_words"]
+          },
+          "sceneTypeIntentList": {
+            "type": "array",
+            "description": "场景类型与子意图列表；音乐场景 sceneType=agent_music，intent 取 music_chat_qa(通用音乐知识问答) / music_info_qa(指向具体歌曲/歌手/专辑的事实查询)。",
+            "items": {"type": "object"}
+          }
+        },
+        "required": ["messages"]
       }
     }
   ]

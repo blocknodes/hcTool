@@ -1,7 +1,7 @@
 """泛知识（qa）域。
 
 开放域知识问答 / 元信息查询 → fan_knowledge_agent（参数按产品契约构造：
-messages + riskRespStrategy 必填，sceneType/need_media 见 fanparams）。
+messages 必填、riskRespStrategy 非空、场景走 sceneTypeIntentList；见 app/fanparams.py）。
 规则层按高置信问答信号命中即出；兜底恒 fan_knowledge_agent。
 任意路径（badcase/规则/LLM fill/兜底）出的 fan_knowledge_agent 参数都必须走 fanparams。
 """
@@ -21,8 +21,9 @@ _dir = Path(__file__).resolve().parent
 tools = _load_schema_json(_dir)
 
 def _post_params(tool_name: str, params: dict) -> dict:
-    """fan_knowledge_agent 的最终参数必须按产品契约（messages+riskRespStrategy 必填）。
-    LLM fill 路径可能只给出 messages，这里统一补全，保证任一来源参数完整。"""
+    """fan_knowledge_agent 的最终参数必须按产品契约重建。
+    LLM fill 路径可能只给出 messages，这里统一补全 messages/riskRespStrategy/
+    sceneTypeIntentList，保证任一来源参数完整且形状一致。"""
     if tool_name == "fan_knowledge_agent":
         q = ""
         msgs = params.get("messages") if isinstance(params, dict) else None

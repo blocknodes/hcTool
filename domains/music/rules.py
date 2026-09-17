@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import re
 
+from app.fanparams import fan_params
 from app.rulebase import Rule, RuleSet
 
 # ============ 工具判定 ============
@@ -228,7 +229,7 @@ def _branch_lyric_fan(query: str):
     if re.search(r"歌词.{0,3}是|来一个歌曲.*歌词|歌词有", q) and not _MV_MATCH(q):
         return ("music_song_search", {})
     if _FAN.search(q):
-        return ("fan_knowledge_agent", {})
+        return ("fan_knowledge_agent", fan_params(q, scene_hint="agent_music"))
     return None
 
 
