@@ -14,8 +14,7 @@
       "query": "我收听的广播剧播放记录",
       "expected_tool": "audio_history",
       "expected_params": {
-        "action": "search",
-        "category": "广播剧"
+        "action": "search"
       }
     },
     {
@@ -37,8 +36,7 @@
       "query": "我听过的有声书",
       "expected_tool": "audio_history",
       "expected_params": {
-        "action": "search",
-        "category": "有声书"
+        "action": "search"
       }
     },
     {
@@ -95,7 +93,6 @@
       "expected_tool": "audio_history",
       "expected_params": {
         "action": "search",
-        "category": "广播剧",
         "time": "2026-07-18 00:00:00 TO 2026-08-24 23:59:59"
       }
     },
@@ -103,8 +100,7 @@
       "query": "我想听我最近听过的有声书",
       "expected_tool": "audio_history",
       "expected_params": {
-        "action": "play",
-        "category": "有声书"
+        "action": "play"
       }
     },
     {
@@ -128,7 +124,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "搜一下叫夜访吸血鬼的有声书"
+        "query": "搜索叫夜访吸血鬼的有声书"
       }
     },
     {
@@ -256,7 +252,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "小兵张嘎儿童版有声剧在哪？"
+        "query": "小兵张嘎儿童版有声剧在哪"
       }
     },
     {
@@ -344,7 +340,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "帮我播放科教类有声节目"
+        "query": "帮我播放科教有声节目"
       }
     },
     {
@@ -376,7 +372,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "找一下大秦帝国的有声书"
+        "query": "搜索大秦帝国的有声书"
       }
     },
     {
@@ -496,7 +492,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "找一下长安十二时辰有声版"
+        "query": "搜索长安十二时辰有声版"
       }
     },
     {
@@ -512,7 +508,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "请听一下国学启蒙有声版"
+        "query": "请听一下国学经典有声版"
       }
     },
     {
@@ -528,7 +524,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "搜一下骆驼祥子有声版"
+        "query": "搜索骆驼祥子有声版"
       }
     },
     {
@@ -680,7 +676,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "查找隋唐史有声讲解"
+        "query": "搜索隋唐史有声讲解"
       }
     },
     {
@@ -808,7 +804,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "查找职场技能提升音频"
+        "query": "搜索职场技能提升音频"
       }
     },
     {
@@ -864,7 +860,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "找一下觉醒年代的有声版"
+        "query": "搜索觉醒年代的有声版"
       }
     },
     {
@@ -896,7 +892,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "我想听关于毛主席的有声读物"
+        "query": "我想听关于毛泽东的有声读物"
       }
     },
     {
@@ -984,7 +980,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "查找大奉打更人第888章有声版"
+        "query": "搜索大奉打更人第888章有声版"
       }
     },
     {
@@ -1008,7 +1004,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "从第50集开始播放庆余年小说"
+        "query": "从第50集播放庆余年小说"
       }
     },
     {
@@ -1056,7 +1052,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "收听斗罗大陆大结局那一集"
+        "query": "收听斗罗大陆最后一集那一集"
       }
     },
     {
@@ -1152,7 +1148,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "听一下财经早知道音频今日第一期"
+        "query": "听一下财经早知道音频今天第一期"
       }
     },
     {
@@ -1160,7 +1156,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "查找十万个为什么第十集有声书"
+        "query": "搜索十万个为什么第十集有声书"
       }
     },
     {
@@ -1176,7 +1172,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "放第三集的米吴科学大探险有声版"
+        "query": "放第三集的米吴科学漫画大探险有声版"
       }
     },
     {
@@ -1200,7 +1196,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "找一下围城有声版第3章"
+        "query": "搜索围城有声版第3章"
       }
     },
     {
@@ -1208,7 +1204,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "播放有声版的宝贝JOJO第1集"
+        "query": "播放有声版的超级宝贝jojo第1集"
       }
     },
     {
@@ -1240,7 +1236,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "给我放个 VOA 慢速英语音频第十篇"
+        "query": "给我放个voa慢速英语音频第十篇"
       }
     },
     {
@@ -1248,7 +1244,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "给我听 TED 演讲英文音频第五集"
+        "query": "给我听ted演讲英文音频第五集"
       }
     },
     {
@@ -1256,7 +1252,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "海信小聚播放米小圈有声故事第十四集"
+        "query": "播放米小圈有声故事第十四集"
       }
     },
     {
@@ -1576,7 +1572,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "我想听职场类的小说"
+        "query": "我想听职场的小说"
       }
     },
     {
@@ -1608,7 +1604,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "我想听历史类的书，比如讲唐朝的"
+        "query": "我想听历史类的书比如讲唐朝的"
       }
     },
     {
@@ -1624,7 +1620,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "搜一下恐怖灵异的故事"
+        "query": "搜索恐怖灵异的故事"
       }
     },
     {
@@ -1832,7 +1828,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "关于明朝历史的有声书都有哪些？"
+        "query": "关于明朝历史的有声书都有哪些"
       }
     },
     {
@@ -1840,7 +1836,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "讲唐朝历史的音频有哪些推荐？"
+        "query": "讲唐朝历史的音频有哪些推荐"
       }
     },
     {
@@ -1848,7 +1844,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "关于清朝历史的广播节目有哪些？"
+        "query": "关于清朝历史的广播节目有哪些"
       }
     },
     {
@@ -1864,7 +1860,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "三国历史相关的有声书有哪些？"
+        "query": "三国历史相关的有声书有哪些"
       }
     },
     {
@@ -1872,7 +1868,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "讲解春秋战国的音频有哪些？"
+        "query": "讲解春秋战国的音频有哪些"
       }
     },
     {
@@ -1880,7 +1876,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "历史悬疑类有声书有哪些？"
+        "query": "历史悬疑有声书有哪些"
       }
     },
     {
@@ -1896,7 +1892,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "帮我查找适合孩子听的历史节目"
+        "query": "帮我搜索适合孩子听的历史节目"
       }
     },
     {
@@ -1920,7 +1916,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "正史讲解类历史节目有哪些？"
+        "query": "正史讲解类历史节目有哪些"
       }
     },
     {
@@ -1928,7 +1924,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "野史类历史音频有哪些推荐？"
+        "query": "野史类历史音频有哪些推荐"
       }
     },
     {
@@ -1936,7 +1932,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "除了明朝那些事儿，还有哪些明史有声书？"
+        "query": "除了明朝那些事儿还有哪些明史有声书"
       }
     },
     {
@@ -1944,7 +1940,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "播放古风类的广播剧"
+        "query": "播放古风的广播剧"
       }
     },
     {
@@ -2341,7 +2337,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "找一下民国言情类广播剧"
+        "query": "搜索民国言情广播剧"
       }
     },
     {
@@ -2373,7 +2369,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "我要听社会职场类有声内容"
+        "query": "我要听社会职场有声内容"
       }
     },
     {
@@ -2405,7 +2401,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "播放古风仙侠类广播剧"
+        "query": "播放古风仙侠广播剧"
       }
     },
     {
@@ -2413,7 +2409,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "帮我搜灵异悬疑类故事"
+        "query": "帮我搜灵异悬疑故事"
       }
     },
     {
@@ -2429,7 +2425,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "播放心理科普类有声音频"
+        "query": "播放心理科普有声音频"
       }
     },
     {
@@ -2437,7 +2433,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "找一下都市爱情类广播剧"
+        "query": "搜索都市爱情类广播剧"
       }
     },
     {
@@ -2581,7 +2577,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "查找有声剧场榜最火的广播剧"
+        "query": "搜索有声剧场榜最火的广播剧"
       }
     },
     {
@@ -2613,7 +2609,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "搜一下近期有声书热播榜前五名"
+        "query": "搜索近期有声书热播榜前五名"
       }
     },
     {
@@ -2629,7 +2625,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "给我播放今日热播榜第一的有声书"
+        "query": "给我播放今天热播榜第一的有声书"
       }
     },
     {
@@ -2653,7 +2649,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "搜一下好评榜上的悬疑小说"
+        "query": "搜索好评榜上的悬疑小说"
       }
     },
     {
@@ -2709,7 +2705,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "play",
-        "query": "我要听本周新上线的推荐有声书"
+        "query": "我要听本周最新的推荐有声书"
       }
     },
     {
@@ -2797,7 +2793,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "搜今日上新排行最高的有声书"
+        "query": "搜今天上新排行最高的有声书"
       }
     },
     {
@@ -2845,7 +2841,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "帮我找口碑榜上的职场类有声节目"
+        "query": "帮我找口碑榜上的职场有声节目"
       }
     },
     {
@@ -2877,7 +2873,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "搜一下南派三叔写的所有有声书"
+        "query": "搜索南派三叔写的所有有声书"
       }
     },
     {
@@ -2941,7 +2937,7 @@
       "expected_tool": "audio_search",
       "expected_params": {
         "action": "search",
-        "query": "有没有郑渊洁的童话有声书？"
+        "query": "有没有郑渊洁的童话有声书"
       }
     }
   ]

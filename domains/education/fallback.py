@@ -1,4 +1,4 @@
-"""education 域 L3 兜底：落到 edu_fuzzy_search（query=原话，恒可构造）。"""
+"""education 域 L3 兜底：落到 edu_fuzzy_search（retext=原话，恒可构造）。"""
 from __future__ import annotations
 
 from .rules import _is_structured
@@ -11,4 +11,4 @@ def fallback(query: str) -> tuple[str, dict]:
         d = build_dsl(q)
         if d:
             return "edu_search", d
-    return "edu_fuzzy_search", {"query": q}
+    return "edu_fuzzy_search", {"retext": q}

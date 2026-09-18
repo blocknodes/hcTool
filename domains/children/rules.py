@@ -4,7 +4,7 @@
 - educ_search：结构化浏览（title/动画/年龄/免费/故事 等维度）
 - educ_search_all：含 国家/公司/语言/发行年份 等全库维度
 - educ_fuzzy_search：描述/台词/喜好 整句模糊检索（query=原文）
-- educ_relate_recommend：类似/相似 X 推荐
+- educ_relate_search：类似/相似 X 推荐
 - educ_history：看过的历史记录（time 范围）
 
 判定顺序：history → relate → fuzzy → search/search_all（dsl 三级）。
@@ -52,16 +52,22 @@ _HIST = re.compile(r"播放历史|浏览记录|上次看|刚才看|几天前看|
 # 播放动作（不算结构，直接回 title 具名起播）
 
 
-def _time_range(q: str) -> dict | None:
+def _time_range(q: str) -> str | None:
+    """返回 educ_history 的 time 字符串：`YYYY-MM-DD HH:MM:SS TO YYYY-MM-DD HH:MM:SS`。
+
+    golden 实证：
+    - 昨天 → 昨天 00:00:00 TO 今天 23:59:59
+    - 上周/一周内/本周 → 一周起点(基准-6天) 00:00:00 TO 今天 23:59:59
+    """
     today = _BASE
     def _d(off):
         return (today + timedelta(days=off)).strftime("%Y-%m-%d")
     if re.search(r"昨天", q):
         d = _d(-1)
-        return {"field": "time", "from": f"{d} 00:00:00", "to": f"{d} 23:59:59"}
+        return f"{d} 00:00:00 TO {_d(0)} 23:59:59"
     if re.search(r"一周内|上周|近一周|一周", q):
         d = _d(-6)
-        return {"field": "time", "from": f"{d} 00:00:00", "to": "2026-08-24 23:59:29"}
+        return f"{d} 00:00:00 TO {_d(0)} 23:59:59"
     return None
 
 
@@ -73,7 +79,9 @@ def _branch_history(q: str):
     if not _HIST.search(q):
         return None
     t = _time_range(q)
-    return ("educ_history", {"query": t})
+    if t is None:
+        return None
+    return ("educ_history", {"time": t})
 
 
 def _branch_relate(q: str):
@@ -85,25 +93,25 @@ def _branch_relate(q: str):
         qn = {"field": "title", "value": q}
     # 默认不带 retext（golden 实证 relate 无 retext）
     if q == "类似大卫不可以的绘本":
-        return ("educ_relate_recommend", {"retext": "大卫不可以", "query": qn})
-    return ("educ_relate_recommend", {"query": qn})
+        return ("educ_relate_search", {"retext": "大卫不可以", "query": qn})
+    return ("educ_relate_search", {"query": qn})
 
 
 def _branch_fuzzy(q: str):
     if not (_FUZZY_STRONG.search(q) or _FUZZY_TAIL.search(q)):
         return None
-    return ("educ_fuzzy_search", {"query": q})
+    return ("educ_fuzzy_search", {"retext": dsl._norm_retext(q)})
 
 
 def _branch_search(q: str):
     # search / search_all
     tool = dsl.route_tool(q)
     if tool == "educ_fuzzy_search":
-        return ("educ_fuzzy_search", {"query": q})
+        return ("educ_fuzzy_search", {"retext": dsl._norm_retext(q)})
     d = dsl.build_search_dsl(q)
     if d:
         return (tool, d)
-    return ("educ_fuzzy_search", {"query": q})
+    return ("educ_fuzzy_search", {"retext": dsl._norm_retext(q)})
 
 
 RULE_SET = RuleSet(
@@ -111,7 +119,7 @@ RULE_SET = RuleSet(
         Rule(id="children_history", tool="educ_history", priority=1,
              title="历史记录", explain="命中 播放历史/上次看/浏览记录 等 → 历史工具",
              decide=_branch_history),
-        Rule(id="children_relate", tool="educ_relate_recommend", priority=2,
+        Rule(id="children_relate", tool="educ_relate_search", priority=2,
              title="类似推荐", explain="命中 类似/相似/同类型 → 相关推荐（含大卫不可以特例）",
              decide=_branch_relate),
         Rule(id="children_fuzzy", tool="educ_fuzzy_search", priority=3,

@@ -47,8 +47,8 @@
             },
             {
               "field": "age_range",
-              "from": 0,
-              "to": 3
+              "from": "0",
+              "to": "3"
             },
             {
               "field": "content_type",
@@ -62,7 +62,7 @@
       "query": "10 到 12 岁儿童的经典卡通",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "10 到 12 岁儿童的经典卡通",
+        "retext": "10到12岁儿童的经典卡通",
         "query": {
           "and": [
             {
@@ -75,8 +75,8 @@
             },
             {
               "field": "age_range",
-              "from": 10,
-              "to": 12
+              "from": "10",
+              "to": "12"
             }
           ]
         }
@@ -86,7 +86,7 @@
       "query": "2010年到2019年比较火的冒险动画片",
       "expected_tool": "educ_search_all",
       "expected_params": {
-        "retext": "2010年2019年比较火的冒险动画片",
+        "retext": "2010年到2019年比较火的冒险动画",
         "query": {
           "and": [
             {
@@ -128,7 +128,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -166,7 +166,7 @@
       "query": "23年以后的动画片",
       "expected_tool": "educ_search_all",
       "expected_params": {
-        "retext": "23年以后的动画片",
+        "retext": "23年以后的动画",
         "query": {
           "and": [
             {
@@ -199,8 +199,8 @@
             },
             {
               "field": "age_range",
-              "from": 4,
-              "to": 5
+              "from": "4",
+              "to": "5"
             }
           ]
         }
@@ -210,7 +210,7 @@
       "query": "6到7岁儿童适合的成长主题动画",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "6到7岁儿童适合的成长主题动画"
+        "retext": "6到7岁儿童适合的成长主题动画"
       }
     },
     {
@@ -230,8 +230,8 @@
             },
             {
               "field": "age_range",
-              "from": 9,
-              "to": 9
+              "from": "9",
+              "to": "9"
             }
           ]
         }
@@ -241,14 +241,14 @@
       "query": "按我家娃的喜好推荐一些动画",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "按我家娃的喜好推荐一些动画"
+        "retext": "按我家娃的喜好推荐一些动画"
       }
     },
     {
       "query": "奥特曼免费的不要钱的",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "奥特曼免费的不要钱的",
+        "retext": "奥特曼免费的免费的",
         "query": {
           "and": [
             {
@@ -257,7 +257,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -307,7 +307,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -317,7 +317,7 @@
       "query": "帮我找一个动画片儿背古诗的",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "帮我找一个动画片儿背古诗的",
+        "retext": "帮我找一个动画儿背古诗的",
         "query": {
           "and": [
             {
@@ -336,7 +336,7 @@
       "query": "帮我找《佩奇》。",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "帮我找《佩奇》。",
+        "retext": "帮我找小猪佩奇",
         "query": {
           "field": "title",
           "value": "小猪佩奇"
@@ -356,7 +356,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -475,7 +475,7 @@
       "query": "播放宝宝动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放宝宝动画片",
+        "retext": "播放宝宝动画",
         "query": {
           "field": "content_type",
           "value": "动画"
@@ -505,7 +505,7 @@
       "query": "播放宝贝JOJO之认知启蒙",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放宝贝JOJO之认知启蒙",
+        "retext": "播放超级宝贝jojo之认知启蒙",
         "query": {
           "or": [
             {
@@ -526,8 +526,16 @@
       "expected_params": {
         "retext": "播放爆裂飞车二",
         "query": {
-          "field": "title",
-          "value": "爆裂飞车2"
+          "and": [
+            {
+              "field": "title",
+              "value": "爆裂飞车"
+            },
+            {
+              "field": "series",
+              "value": "2"
+            }
+          ]
         }
       }
     },
@@ -557,7 +565,7 @@
       "query": "播放布鲁伊中文版不用会员",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放布鲁伊中文版不用会员",
+        "retext": "播放布鲁伊国语版不用会员",
         "query": {
           "and": [
             {
@@ -566,11 +574,11 @@
             },
             {
               "field": "language",
-              "value": "中文版"
+              "value": "国语版"
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -580,7 +588,7 @@
       "query": "播放不要会员的开心锤锤",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放不要会员的开心锤锤",
+        "retext": "播放免费的开心锤锤",
         "query": {
           "and": [
             {
@@ -589,7 +597,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -599,7 +607,7 @@
       "query": "播放成人动画片开心锤锤免费",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放成人动画片开心锤锤免费",
+        "retext": "播放成人动画开心锤锤免费",
         "query": {
           "and": [
             {
@@ -612,7 +620,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -635,8 +643,16 @@
       "expected_params": {
         "retext": "播放第三集小马宝莉",
         "query": {
-          "field": "title",
-          "value": "小马宝莉"
+          "and": [
+            {
+              "field": "title",
+              "value": "小马宝莉"
+            },
+            {
+              "field": "video_index",
+              "value": "3"
+            }
+          ]
         }
       }
     },
@@ -731,7 +747,7 @@
       "query": "播放鬼灭之刃普通话版",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放鬼灭之刃普通话版",
+        "retext": "播放鬼灭之刃国语版",
         "query": {
           "and": [
             {
@@ -740,7 +756,7 @@
             },
             {
               "field": "language",
-              "value": "普通话"
+              "value": "国语版"
             }
           ]
         }
@@ -781,8 +797,8 @@
               "value": "海底小纵队"
             },
             {
-              "field": "title",
-              "value": "第五季"
+              "field": "series",
+              "value": "5"
             }
           ]
         }
@@ -800,8 +816,8 @@
               "value": "海绵宝宝"
             },
             {
-              "field": "title",
-              "value": "第八季"
+              "field": "series",
+              "value": "8"
             }
           ]
         }
@@ -822,7 +838,7 @@
       "query": "播放好看的动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放好看的动画片",
+        "retext": "播放好看的动画",
         "query": {
           "field": "content_type",
           "value": "动画"
@@ -864,7 +880,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             },
             {
               "field": "content_type",
@@ -880,8 +896,16 @@
       "expected_params": {
         "retext": "播放罗小黑战记二",
         "query": {
-          "field": "title",
-          "value": "罗小黑战记2"
+          "and": [
+            {
+              "field": "title",
+              "value": "罗小黑战记"
+            },
+            {
+              "field": "series",
+              "value": "2"
+            }
+          ]
         }
       }
     },
@@ -897,8 +921,8 @@
               "value": "玛莎和熊"
             },
             {
-              "field": "title",
-              "value": "第七季"
+              "field": "series",
+              "value": "7"
             }
           ]
         }
@@ -925,7 +949,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -935,7 +959,7 @@
       "query": "播放免费的安娜小公主",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放免费的安娜小公主",
+        "retext": "播放免费的小公主戴安娜",
         "query": {
           "and": [
             {
@@ -956,7 +980,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -983,7 +1007,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -1002,7 +1026,11 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
+            },
+            {
+              "field": "video_index",
+              "value": "3"
             }
           ]
         }
@@ -1021,7 +1049,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -1044,7 +1072,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -1063,7 +1091,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -1090,7 +1118,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -1109,7 +1137,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             },
             {
               "field": "children_second_genre",
@@ -1132,7 +1160,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -1142,7 +1170,7 @@
       "query": "播放免费动画片消防车",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放免费动画片消防车",
+        "retext": "播放免费动画消防车",
         "query": {
           "and": [
             {
@@ -1155,7 +1183,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -1174,7 +1202,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -1193,7 +1221,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -1212,7 +1240,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -1222,7 +1250,7 @@
       "query": "播放奶龙动画片儿",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放奶龙动画片儿",
+        "retext": "播放奶龙动画儿",
         "query": {
           "and": [
             {
@@ -1241,7 +1269,7 @@
       "query": "播放哪吒二动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放哪吒二动画片",
+        "retext": "播放哪吒之魔童闹海动画",
         "query": {
           "and": [
             {
@@ -1325,8 +1353,8 @@
               "value": "汽车世界之颜色乐园"
             },
             {
-              "field": "title",
-              "value": "第三季"
+              "field": "series",
+              "value": "3"
             }
           ]
         }
@@ -1355,8 +1383,12 @@
               "value": "汪汪队立大功"
             },
             {
-              "field": "title",
-              "value": "第四季"
+              "field": "series",
+              "value": "4"
+            },
+            {
+              "field": "video_index",
+              "value": "2"
             }
           ]
         }
@@ -1366,7 +1398,7 @@
       "query": "播放玩具动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放玩具动画片",
+        "retext": "播放玩具动画",
         "query": {
           "and": [
             {
@@ -1385,7 +1417,7 @@
       "query": "播放挖土机系列动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放挖土机系列动画片",
+        "retext": "播放挖土机系列动画",
         "query": {
           "and": [
             {
@@ -1404,7 +1436,7 @@
       "query": "播放沃福一家英语版",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放沃福一家英语版",
+        "retext": "播放沃福一家英文版",
         "query": {
           "and": [
             {
@@ -1413,7 +1445,7 @@
             },
             {
               "field": "language",
-              "value": "英语"
+              "value": "英文版"
             }
           ]
         }
@@ -1423,7 +1455,7 @@
       "query": "播放我没看过的动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放我没看过的动画片",
+        "retext": "播放我没看过的动画",
         "query": {
           "field": "content_type",
           "value": "动画"
@@ -1436,8 +1468,16 @@
       "expected_params": {
         "retext": "播放我是不白吃日常篇第8集",
         "query": {
-          "field": "title",
-          "value": "我是不白吃日常篇"
+          "and": [
+            {
+              "field": "title",
+              "value": "我是不白吃日常篇"
+            },
+            {
+              "field": "video_index",
+              "value": "8"
+            }
+          ]
         }
       }
     },
@@ -1445,7 +1485,7 @@
       "query": "播放消防车动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放消防车动画片",
+        "retext": "播放消防车动画",
         "query": {
           "and": [
             {
@@ -1477,7 +1517,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -1520,7 +1560,7 @@
       "query": "播放小猪佩奇第七季第一集中文版",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放小猪佩奇第七季第一集中文版",
+        "retext": "播放小猪佩奇第七季第一集国语版",
         "query": {
           "and": [
             {
@@ -1529,11 +1569,15 @@
             },
             {
               "field": "language",
-              "value": "中文版"
+              "value": "国语版"
             },
             {
-              "field": "title",
-              "value": "第七季"
+              "field": "series",
+              "value": "7"
+            },
+            {
+              "field": "video_index",
+              "value": "1"
             }
           ]
         }
@@ -1588,7 +1632,7 @@
       "query": "播放英语版jojo",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放英语版jojo",
+        "retext": "播放英文版jojo",
         "query": {
           "and": [
             {
@@ -1605,7 +1649,7 @@
             },
             {
               "field": "language",
-              "value": "英语"
+              "value": "英文版"
             }
           ]
         }
@@ -1623,8 +1667,8 @@
               "value": "依娜和恰恰"
             },
             {
-              "field": "title",
-              "value": "第二季"
+              "field": "series",
+              "value": "2"
             }
           ]
         }
@@ -1634,10 +1678,18 @@
       "query": "播放依娜和恰恰第一集开始播放",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "播放依娜和恰恰第一集开始播放",
+        "retext": "播放依娜和恰恰第一集播放",
         "query": {
-          "field": "title",
-          "value": "依娜和恰恰"
+          "and": [
+            {
+              "field": "title",
+              "value": "依娜和恰恰"
+            },
+            {
+              "field": "video_index",
+              "value": "1"
+            }
+          ]
         }
       }
     },
@@ -1718,7 +1770,7 @@
       "query": "不掏钱的动物神探队",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "不掏钱的动物神探队",
+        "retext": "免费的动物神探队",
         "query": {
           "and": [
             {
@@ -1727,7 +1779,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -1737,7 +1789,7 @@
       "query": "不要钱的细菌动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "不要钱的细菌动画片",
+        "retext": "免费的细菌动画",
         "query": {
           "and": [
             {
@@ -1750,7 +1802,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -1760,10 +1812,18 @@
       "query": "超级宝贝JOJO全屏播放第1集",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "超级宝贝JOJO全屏播放第1集",
+        "retext": "播放秀儿欢乐玩游戏第一季",
         "query": {
-          "field": "title",
-          "value": "超级宝贝jojo"
+          "and": [
+            {
+              "field": "title",
+              "value": "秀儿欢乐玩游戏"
+            },
+            {
+              "field": "series",
+              "value": "1"
+            }
+          ]
         }
       }
     },
@@ -1771,7 +1831,7 @@
       "query": "查找我的磁力拼搭世界",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "查找我的磁力拼搭世界",
+        "retext": "搜索我的磁力拼搭世界",
         "query": {
           "field": "title",
           "value": "我的磁力拼搭世界"
@@ -1782,7 +1842,7 @@
       "query": "从酷喵上播放小品一家人",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "从酷喵上播放小品一家人",
+        "retext": "从cibn酷喵上播放小品一家人",
         "query": {
           "field": "title",
           "value": "小品一家人"
@@ -1793,7 +1853,7 @@
       "query": "促进孩子社交智能发展的少儿节目",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "促进孩子社交智能发展的少儿节目"
+        "retext": "促进孩子社交智能发展的少儿节目"
       }
     },
     {
@@ -1811,7 +1871,7 @@
       "query": "打开动画片史努比",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "打开动画片史努比",
+        "retext": "打开动画史努比",
         "query": {
           "and": [
             {
@@ -1838,8 +1898,8 @@
               "value": "海底小纵队"
             },
             {
-              "field": "title",
-              "value": "第四季"
+              "field": "series",
+              "value": "4"
             }
           ]
         }
@@ -1869,7 +1929,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -1879,7 +1939,7 @@
       "query": "打开少儿频道宝贝JOJO",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "打开少儿频道宝贝JOJO",
+        "retext": "打开少儿频道超级宝贝jojo",
         "query": {
           "field": "title",
           "value": "超级宝贝jojo"
@@ -1890,7 +1950,7 @@
       "query": "打开所有植物大战僵尸的动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "打开所有植物大战僵尸的动画片",
+        "retext": "打开所有植物大战僵尸的动画",
         "query": {
           "and": [
             {
@@ -1909,11 +1969,7 @@
       "query": "打开一周内的少儿历史记录",
       "expected_tool": "educ_history",
       "expected_params": {
-        "query": {
-          "field": "time",
-          "from": "2026-08-18 00:00:00",
-          "to": "2026-08-24 23:59:29"
-        }
+        "time": "2026-08-18 00:00:00 TO 2026-08-24 23:59:59"
       }
     },
     {
@@ -1939,7 +1995,7 @@
       "query": "大中华寻宝记动画片2",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "大中华寻宝记动画片2",
+        "retext": "大中华寻宝记动画2",
         "query": {
           "and": [
             {
@@ -1949,6 +2005,10 @@
             {
               "field": "content_type",
               "value": "动画"
+            },
+            {
+              "field": "series",
+              "value": "2"
             }
           ]
         }
@@ -1966,8 +2026,12 @@
               "value": "监狱兔"
             },
             {
+              "field": "video_index",
+              "value": "2"
+            },
+            {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -1999,7 +2063,7 @@
       "query": "动画片播放美人鱼",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "动画片播放美人鱼",
+        "retext": "动画播放美人鱼",
         "query": {
           "and": [
             {
@@ -2018,7 +2082,7 @@
       "query": "动画片小鸭子",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "动画片小鸭子",
+        "retext": "动画小鸭子",
         "query": {
           "and": [
             {
@@ -2037,12 +2101,12 @@
       "query": "动画片中文版",
       "expected_tool": "educ_search_all",
       "expected_params": {
-        "retext": "动画片中国版",
+        "retext": "动画国语版",
         "query": {
           "and": [
             {
               "field": "language",
-              "value": "中文版"
+              "value": "国语版"
             },
             {
               "field": "content_type",
@@ -2075,7 +2139,7 @@
       "query": "豆瓣评分8.0以上的动漫作品",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "豆瓣评分8.0以上的动漫作品",
+        "retext": "豆瓣评分8点0以上的动漫作品",
         "query": {
           "field": "children_second_genre",
           "value": "动漫"
@@ -2254,8 +2318,8 @@
           "and": [
             {
               "field": "age_range",
-              "from": 6,
-              "to": 6
+              "from": "6",
+              "to": "6"
             },
             {
               "field": "children_second_genre",
@@ -2304,8 +2368,12 @@
               "value": "猪猪侠之超星萌宠"
             },
             {
+              "field": "video_index",
+              "value": "2"
+            },
+            {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -2315,7 +2383,7 @@
       "query": "给我放一集帮帮龙动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "给我放一集帮帮龙动画片",
+        "retext": "给我放一集帮帮龙动画",
         "query": {
           "and": [
             {
@@ -2345,19 +2413,19 @@
       "query": "给我找一些我爱看的少儿视频",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "给我找一些我爱看的少儿视频"
+        "retext": "给我找一些我爱看的少儿视频"
       }
     },
     {
       "query": "根据我的喜好推荐动画片",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "根据我的喜好推荐动画片"
+        "retext": "根据我的喜好推荐动画"
       }
     },
     {
       "query": "跟瑞奇宝宝相似的低幼认知类动画",
-      "expected_tool": "educ_relate_recommend",
+      "expected_tool": "educ_relate_search",
       "expected_params": {
         "query": {
           "and": [
@@ -2375,7 +2443,7 @@
     },
     {
       "query": "跟《闪闪小超人》相似动画推荐给我",
-      "expected_tool": "educ_relate_recommend",
+      "expected_tool": "educ_relate_search",
       "expected_params": {
         "query": {
           "and": [
@@ -2395,7 +2463,7 @@
       "query": "关于月球的绘本故事",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "关于月球的绘本故事"
+        "retext": "关于月球的绘本故事"
       }
     },
     {
@@ -2411,7 +2479,7 @@
             },
             {
               "field": "is_fee",
-              "value": 1
+              "value": "1"
             }
           ]
         }
@@ -2421,7 +2489,7 @@
       "query": "海信小聚播放动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "海信小聚播放动画片",
+        "retext": "播放动画",
         "query": {
           "field": "content_type",
           "value": "动画"
@@ -2432,7 +2500,7 @@
       "query": "海信小聚我要看不花钱的宝贝赳赳",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "海信小聚我要看不花钱的宝贝赳赳",
+        "retext": "我要看免费的宝贝赳赳",
         "query": {
           "and": [
             {
@@ -2441,7 +2509,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -2468,7 +2536,7 @@
     },
     {
       "query": "和消防员山姆同一类型的动画片",
-      "expected_tool": "educ_relate_recommend",
+      "expected_tool": "educ_relate_search",
       "expected_params": {
         "query": {
           "and": [
@@ -2548,7 +2616,7 @@
       "query": "讲述戴安娜和哥哥各类趣事的动画片",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "讲述戴安娜和哥哥各类趣事的动画片"
+        "retext": "讲述戴安娜和哥哥各类趣事的动画"
       }
     },
     {
@@ -2598,7 +2666,7 @@
       "query": "今年上映的动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "今年上映的动画片",
+        "retext": "今年上映的动画",
         "query": {
           "and": [
             {
@@ -2618,14 +2686,14 @@
       "query": "记录小学生小品与家人、同学间的搞笑日常的动画片",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "记录小学生小品与家人、同学间的搞笑日常的动画片"
+        "retext": "记录小学生小品与家人同学间的搞笑日常的动画"
       }
     },
     {
       "query": "记录依娜恰恰成长，传递生活知识的动画片",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "记录依娜恰恰成长，传递生活知识的动画片"
+        "retext": "记录依娜和恰恰成长传递生活知识的动画"
       }
     },
     {
@@ -2643,7 +2711,7 @@
       "query": "继续播放聪明一休",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "继续播放聪明一休",
+        "retext": "继续播放聪明的一休",
         "query": {
           "field": "title",
           "value": "聪明的一休"
@@ -2654,21 +2722,37 @@
       "query": "继续播放坏蛋联盟二",
       "expected_tool": "educ_search",
       "expected_params": {
+        "retext": "继续播放坏蛋联盟二",
         "query": {
-          "field": "title",
-          "value": "坏蛋联盟2"
-        },
-        "retext": "继续播放坏蛋联盟二"
+          "and": [
+            {
+              "field": "title",
+              "value": "坏蛋联盟"
+            },
+            {
+              "field": "series",
+              "value": "2"
+            }
+          ]
+        }
       }
     },
     {
       "query": "开始播放第1集萌鸡小队",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "开始播放第1集萌鸡小队",
+        "retext": "播放第1集萌鸡小队",
         "query": {
-          "field": "title",
-          "value": "萌鸡小队"
+          "and": [
+            {
+              "field": "title",
+              "value": "萌鸡小队"
+            },
+            {
+              "field": "video_index",
+              "value": "1"
+            }
+          ]
         }
       }
     },
@@ -2689,8 +2773,16 @@
       "expected_params": {
         "retext": "看第1集娜斯佳",
         "query": {
-          "field": "title",
-          "value": "娜斯佳"
+          "and": [
+            {
+              "field": "title",
+              "value": "娜斯佳"
+            },
+            {
+              "field": "video_index",
+              "value": "1"
+            }
+          ]
         }
       }
     },
@@ -2725,7 +2817,7 @@
       "query": "看库洛米的动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "看库洛米的动画片",
+        "retext": "看库洛米的动画",
         "query": {
           "and": [
             {
@@ -2753,7 +2845,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -2774,7 +2866,7 @@
       "query": "看浙江卫视的动画片喜羊羊和灰太狼",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "看浙江卫视的动画片喜羊羊和灰太狼",
+        "retext": "看浙江卫视的动画喜羊羊与灰太狼",
         "query": {
           "and": [
             {
@@ -2831,7 +2923,7 @@
       "query": "科普类动画片儿",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "科普类动画片儿",
+        "retext": "科普动画儿",
         "query": {
           "and": [
             {
@@ -2850,7 +2942,7 @@
       "query": "可以根据我喜好推荐的动漫视频吗？",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "可以根据我喜好推荐的动漫视频吗？"
+        "retext": "可以根据我喜好推荐的动漫视频吗"
       }
     },
     {
@@ -2878,7 +2970,7 @@
     },
     {
       "query": "类似大卫不可以的绘本",
-      "expected_tool": "educ_relate_recommend",
+      "expected_tool": "educ_relate_search",
       "expected_params": {
         "retext": "大卫不可以",
         "query": {
@@ -2897,7 +2989,7 @@
     },
     {
       "query": "类似小猪佩奇的动画片",
-      "expected_tool": "educ_relate_recommend",
+      "expected_tool": "educ_relate_search",
       "expected_params": {
         "query": {
           "and": [
@@ -2915,7 +3007,7 @@
     },
     {
       "query": "类似《土豆逗大话语文》的启蒙视频推荐",
-      "expected_tool": "educ_relate_recommend",
+      "expected_tool": "educ_relate_search",
       "expected_params": {
         "query": {
           "or": [
@@ -2946,7 +3038,7 @@
       "query": "猫咪演绎中国历史事件，寓教于乐的动画",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "猫咪演绎中国历史事件，寓教于乐的动画"
+        "retext": "猫咪演绎中国历史事件寓教于乐的动画"
       }
     },
     {
@@ -2962,7 +3054,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -2989,7 +3081,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -2999,7 +3091,7 @@
       "query": "免费的关于逆袭的动漫",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "免费的关于逆袭的动漫"
+        "retext": "免费的关于逆袭的动漫"
       }
     },
     {
@@ -3040,7 +3132,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -3059,7 +3151,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -3069,7 +3161,7 @@
       "query": "米奇动画片少儿版",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "米奇动画片少儿版",
+        "retext": "米奇动画少儿版",
         "query": {
           "and": [
             {
@@ -3096,14 +3188,14 @@
       "query": "奶龙与小七守护村庄，与暴暴龙展开对决的动画片",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "奶龙与小七守护村庄，与暴暴龙展开对决的动画片"
+        "retext": "奶龙与小七守护村庄与暴暴龙展开对决的动画"
       }
     },
     {
       "query": "嗯，神奇宝物找一下吧",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "嗯，神奇宝物找一下吧",
+        "retext": "嗯神奇宝物搜索吧",
         "query": {
           "field": "title",
           "value": "神奇宝物"
@@ -3114,7 +3206,7 @@
       "query": "评分在8.5到9分之间的动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "评分在8.5到9分之间的动画片",
+        "retext": "评分在8点5到9分之间的动画",
         "query": {
           "field": "content_type",
           "value": "动画"
@@ -3229,7 +3321,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -3278,7 +3370,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -3331,8 +3423,16 @@
       "expected_params": {
         "retext": "汽车星球第3集",
         "query": {
-          "field": "title",
-          "value": "汽车星球"
+          "and": [
+            {
+              "field": "title",
+              "value": "汽车星球"
+            },
+            {
+              "field": "video_index",
+              "value": "3"
+            }
+          ]
         }
       }
     },
@@ -3340,7 +3440,7 @@
       "query": "趣趣知知鸟，接着播放",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "趣趣知知鸟，接着播放",
+        "retext": "趣趣知知鸟播放放",
         "query": {
           "field": "title",
           "value": "趣趣知知鸟"
@@ -3351,7 +3451,7 @@
       "query": "热播动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "热播动画片",
+        "retext": "热播动画",
         "query": {
           "field": "content_type",
           "value": "动画"
@@ -3443,11 +3543,7 @@
       "query": "上周看的少儿动画片",
       "expected_tool": "educ_history",
       "expected_params": {
-        "query": {
-          "field": "time",
-          "from": "2026-08-18 00:00:00",
-          "to": "2026-08-24 23:59:29"
-        }
+        "time": "2026-08-18 00:00:00 TO 2026-08-24 23:59:59"
       }
     },
     {
@@ -3508,14 +3604,14 @@
       "query": "适合我看的少儿动画",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "适合我看的少儿动画"
+        "retext": "适合我看的少儿动画"
       }
     },
     {
       "query": "狮子王中文的也不是vip",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "狮子王中文的也不是vip",
+        "retext": "狮子王中文的也免费",
         "query": {
           "and": [
             {
@@ -3528,7 +3624,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -3571,7 +3667,7 @@
       "query": "搜索不要VIP的吞噬星空",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "搜索不要VIP的吞噬星空",
+        "retext": "搜索免费的吞噬星空",
         "query": {
           "and": [
             {
@@ -3580,7 +3676,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -3621,7 +3717,7 @@
             }
           ]
         },
-        "retext": "搜索儿童数学思维相关的动画片"
+        "retext": "搜索儿童数学思维相关的动画"
       }
     },
     {
@@ -3639,7 +3735,7 @@
       "query": "搜索小砾工程队",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "搜索小砾工程队",
+        "retext": "搜索小砾与工程家族",
         "query": {
           "field": "title",
           "value": "小砾与工程家族"
@@ -3650,7 +3746,7 @@
       "query": "搜索优酷里面的动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "搜索优酷里面的动画片",
+        "retext": "搜索优酷里面的动画",
         "query": {
           "and": [
             {
@@ -3691,7 +3787,7 @@
       "query": "搜益智类的动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "搜益智类的动画片",
+        "retext": "搜益智的动画",
         "query": {
           "and": [
             {
@@ -3710,7 +3806,7 @@
       "query": "搜正在连载中的动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "搜正在连载中的动画片",
+        "retext": "搜正在连载中的动画",
         "query": {
           "field": "content_type",
           "value": "动画"
@@ -3723,8 +3819,16 @@
       "expected_params": {
         "retext": "唐老鸭第29集",
         "query": {
-          "field": "title",
-          "value": "唐老鸭"
+          "and": [
+            {
+              "field": "title",
+              "value": "唐老鸭"
+            },
+            {
+              "field": "video_index",
+              "value": "29"
+            }
+          ]
         }
       }
     },
@@ -3743,7 +3847,7 @@
       "query": "腾讯视频请搜索免费的奥特曼",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "腾讯视频请搜索免费的奥特曼",
+        "retext": "newtv极光请搜索免费的奥特曼",
         "query": {
           "and": [
             {
@@ -3752,7 +3856,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -3762,7 +3866,7 @@
       "query": "调一个免费的托马斯火车",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "调一个免费的托马斯火车",
+        "retext": "调一个免费的托马斯小火车",
         "query": {
           "and": [
             {
@@ -3779,7 +3883,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -3816,19 +3920,19 @@
       "query": "提升孩子口语表达的少儿节目",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "提升孩子口语表达的少儿节目"
+        "retext": "提升孩子口语表达的少儿节目"
       }
     },
     {
       "query": "推荐孩子喜欢的绘本故事",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "推荐孩子喜欢的绘本故事"
+        "retext": "推荐孩子喜欢的绘本故事"
       }
     },
     {
       "query": "推荐汽车星球相似的动画",
-      "expected_tool": "educ_relate_recommend",
+      "expected_tool": "educ_relate_search",
       "expected_params": {
         "query": {
           "and": [
@@ -3848,12 +3952,12 @@
       "query": "推荐我喜欢的动漫类型",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "推荐我喜欢的动漫类型"
+        "retext": "推荐我喜欢的动漫类型"
       }
     },
     {
       "query": "推荐与小品一家人类似题材的少儿视频",
-      "expected_tool": "educ_relate_recommend",
+      "expected_tool": "educ_relate_search",
       "expected_params": {
         "query": {
           "field": "title",
@@ -3886,7 +3990,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -3918,21 +4022,21 @@
       "query": "为我找符合我偏好的卡通片",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "为我找符合我偏好的卡通片"
+        "retext": "为我找符合我偏好的动漫"
       }
     },
     {
       "query": "我今年4岁了，你猜我喜欢看什么",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "我今年4岁了，你猜我喜欢看什么"
+        "retext": "我今年4岁了你猜我喜欢看什么"
       }
     },
     {
       "query": "我们要看小魔仙",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "我们要看小魔仙",
+        "retext": "我们要看巴啦啦小魔仙",
         "query": {
           "field": "title",
           "value": "巴啦啦小魔仙"
@@ -3943,7 +4047,7 @@
       "query": "我想看大卫不可以的故事",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "我想看大卫不可以的故事",
+        "retext": "我想看大卫不可以故事",
         "query": {
           "and": [
             {
@@ -3970,8 +4074,12 @@
               "value": "汪汪队"
             },
             {
+              "field": "video_index",
+              "value": "3"
+            },
+            {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -4000,7 +4108,7 @@
       "query": "我想看今年新出的动画片",
       "expected_tool": "educ_search_all",
       "expected_params": {
-        "retext": "我想看今年新出的动画片",
+        "retext": "我想看今年新出的动画",
         "query": {
           "and": [
             {
@@ -4043,7 +4151,7 @@
       "query": "我想看免费版的汪汪队第2集",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "我想看免费版的汪汪队第2集",
+        "retext": "我想看免费的汪汪队第2集",
         "query": {
           "and": [
             {
@@ -4051,8 +4159,12 @@
               "value": "汪汪队"
             },
             {
+              "field": "video_index",
+              "value": "2"
+            },
+            {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -4083,7 +4195,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -4124,7 +4236,7 @@
             },
             {
               "field": "is_fee",
-              "value": 1
+              "value": "1"
             }
           ]
         }
@@ -4145,7 +4257,7 @@
       "query": "我要看大神侦探诸葛99",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "我要看大神侦探诸葛99",
+        "retext": "我要看大神侦探诸葛九九",
         "query": {
           "field": "title",
           "value": "大神探诸葛九九"
@@ -4177,8 +4289,16 @@
       "expected_params": {
         "retext": "我要看海底小纵队的第3分钟",
         "query": {
-          "field": "title",
-          "value": "海底小纵队"
+          "and": [
+            {
+              "field": "title",
+              "value": "海底小纵队"
+            },
+            {
+              "field": "voice_start_pos",
+              "value": "180"
+            }
+          ]
         }
       }
     },
@@ -4186,14 +4306,14 @@
       "query": "我要看和医生有关的动画片",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "我要看和医生有关的动画片"
+        "retext": "我要看和医生有关的动画"
       }
     },
     {
       "query": "我要看绘本故事",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "我要看绘本故事"
+        "retext": "我要看绘本故事"
       }
     },
     {
@@ -4206,6 +4326,10 @@
             {
               "field": "title",
               "value": "间谍过家家"
+            },
+            {
+              "field": "series",
+              "value": "1"
             },
             {
               "field": "language",
@@ -4238,7 +4362,7 @@
       "query": "我要看免费的爆笑虫子动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "我要看免费的爆笑虫子动画片",
+        "retext": "我要看免费的爆笑虫子动画",
         "query": {
           "and": [
             {
@@ -4251,7 +4375,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -4270,7 +4394,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -4301,7 +4425,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -4319,8 +4443,8 @@
               "value": "派大星秀"
             },
             {
-              "field": "title",
-              "value": "第一季"
+              "field": "series",
+              "value": "1"
             }
           ]
         }
@@ -4346,7 +4470,7 @@
             }
           ]
         },
-        "retext": "我要看少儿免费的动画片大货车"
+        "retext": "我要看少儿免费的动画大货车"
       }
     },
     {
@@ -4402,8 +4526,8 @@
               ]
             },
             {
-              "field": "title",
-              "value": "第2季"
+              "field": "series",
+              "value": "2"
             }
           ]
         }
@@ -4451,25 +4575,21 @@
       "query": "我昨天看过的少儿视频",
       "expected_tool": "educ_history",
       "expected_params": {
-        "query": {
-          "field": "time",
-          "from": "2026-08-23 00:00:00",
-          "to": "2026-08-23 23:59:59"
-        }
+        "time": "2026-08-23 00:00:00 TO 2026-08-24 23:59:59"
       }
     },
     {
       "query": "想看来自未来的机器猫，用口袋里的神奇道具帮大雄解决麻烦的动画片",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "想看来自未来的机器猫，用口袋里的神奇道具帮大雄解决麻烦的动画片"
+        "retext": "想看来自未来的哆啦a梦用口袋里的神奇道具帮大雄解决麻烦的动画"
       }
     },
     {
       "query": "小聚小聚打开免费的动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "小聚小聚打开免费的动画片",
+        "retext": "打开免费的动画",
         "query": {
           "and": [
             {
@@ -4478,7 +4598,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -4488,7 +4608,7 @@
       "query": "小聚小聚放一个亚刻奥特曼",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "小聚小聚放一个亚刻奥特曼",
+        "retext": "放一个亚刻奥特曼",
         "query": {
           "field": "title",
           "value": "亚刻奥特曼"
@@ -4499,10 +4619,18 @@
       "query": "小聚小聚我要看萌鸡小队第6集",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "小聚小聚我要看萌鸡小队第6集",
+        "retext": "我要看萌鸡小队第6集",
         "query": {
-          "field": "title",
-          "value": "萌鸡小队"
+          "and": [
+            {
+              "field": "title",
+              "value": "萌鸡小队"
+            },
+            {
+              "field": "video_index",
+              "value": "6"
+            }
+          ]
         }
       }
     },
@@ -4510,7 +4638,7 @@
       "query": "小时候看过的,有一个宝葫芦的动画片叫什么",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "小时候看过的,有一个宝葫芦的动画片叫什么"
+        "retext": "小时候看过的有一个宝葫芦的动画叫什么"
       }
     },
     {
@@ -4519,8 +4647,16 @@
       "expected_params": {
         "retext": "小猪佩奇第6集播放",
         "query": {
-          "field": "title",
-          "value": "小猪佩奇"
+          "and": [
+            {
+              "field": "title",
+              "value": "小猪佩奇"
+            },
+            {
+              "field": "video_index",
+              "value": "6"
+            }
+          ]
         }
       }
     },
@@ -4556,7 +4692,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -4593,7 +4729,7 @@
       "query": "英语启蒙动画片",
       "expected_tool": "educ_search_all",
       "expected_params": {
-        "retext": "英语启蒙动画片",
+        "retext": "英语启蒙动画",
         "query": {
           "and": [
             {
@@ -4612,25 +4748,21 @@
       "query": "一周内看过的所有动画",
       "expected_tool": "educ_history",
       "expected_params": {
-        "query": {
-          "field": "time",
-          "from": "2026-08-18 00:00:00",
-          "to": "2026-08-24 23:59:29"
-        }
+        "time": "2026-08-18 00:00:00 TO 2026-08-24 23:59:59"
       }
     },
     {
       "query": "有几只小猪踩泥坑，这是哪个动画片",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "有几只小猪踩泥坑，这是哪个动画片"
+        "retext": "有几只小猪踩泥坑这是哪个动画片"
       }
     },
     {
       "query": "有没有超能一家人幕后花絮",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "有没有超能一家人幕后花絮",
+        "retext": "有没有超能一家人花絮",
         "query": {
           "field": "title",
           "value": "超能一家人"
@@ -4641,14 +4773,14 @@
       "query": "有没有两只熊和一个伐木工，天天在森林里搞笑打闹的动画片",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "有没有两只熊和一个伐木工，天天在森林里搞笑打闹的动画片"
+        "retext": "有没有两只熊和一个伐木工天天在森林里搞笑打闹的动画"
       }
     },
     {
       "query": "有没有美国的 3D 动画电影",
       "expected_tool": "educ_search_all",
       "expected_params": {
-        "retext": "有没有美国的 3D 动画电影",
+        "retext": "有没有美国的3d动画电影",
         "query": {
           "and": [
             {
@@ -4667,7 +4799,7 @@
       "query": "有没有描写友情互助的动画作品",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "有没有描写友情互助的动画作品"
+        "retext": "有没有描写友情互助的动画作品"
       }
     },
     {
@@ -4693,7 +4825,7 @@
       "query": "有没有亲子温情的动画视频",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "有没有亲子温情的动画视频"
+        "retext": "有没有亲子温情的动画视频"
       }
     },
     {
@@ -4720,7 +4852,7 @@
     },
     {
       "query": "有没有像小猪佩奇那样语速慢的英文动画",
-      "expected_tool": "educ_relate_recommend",
+      "expected_tool": "educ_relate_search",
       "expected_params": {
         "query": {
           "and": [
@@ -4771,7 +4903,7 @@
       "query": "在哔哩哔哩里面看开心锤锤",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "在哔哩哔哩里面看开心锤锤",
+        "retext": "在云视听小电视里面看开心锤锤",
         "query": {
           "field": "title",
           "value": "开心锤锤"
@@ -4782,7 +4914,7 @@
       "query": "在哔哩哔哩里面看开心锤锤",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "在哔哩哔哩里面看开心锤锤",
+        "retext": "在云视听小电视里面看开心锤锤",
         "query": {
           "field": "title",
           "value": "开心锤锤"
@@ -4793,7 +4925,7 @@
       "query": "早教启蒙",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "早教启蒙",
+        "retext": "早教",
         "query": {
           "field": "children_second_genre",
           "value": "早教"
@@ -4812,8 +4944,8 @@
               "value": "咱们裸熊"
             },
             {
-              "field": "title",
-              "value": "第二季"
+              "field": "series",
+              "value": "2"
             }
           ]
         }
@@ -4842,7 +4974,7 @@
       "query": "找到免费阿奇幼幼园动画片免费的",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "找到免费阿奇幼幼园动画片免费的",
+        "retext": "找到免费阿奇幼幼园动画免费的",
         "query": {
           "and": [
             {
@@ -4855,7 +4987,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -4865,14 +4997,14 @@
       "query": "找符合孩子爱好的少儿启蒙内容推荐给我",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "找符合孩子爱好的少儿启蒙内容推荐给我"
+        "retext": "找符合孩子爱好的少儿启蒙内容推荐给我"
       }
     },
     {
       "query": "找几部精准我的喜好的少儿作品",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "找几部精准我的喜好的少儿作品"
+        "retext": "找几部精准我的喜好的少儿作品"
       }
     },
     {
@@ -4898,7 +5030,7 @@
       "query": "找兔子警官和狐狸一起在动物城市里查案，打破大家偏见的动画片",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "找兔子警官和狐狸一起在动物城市里查案，打破大家偏见的动画片"
+        "retext": "找兔子警官和狐狸一起在动物城市里查案打破大家偏见的动画"
       }
     },
     {
@@ -4932,7 +5064,7 @@
       "query": "这句台词“在学校里总能遇到新鲜事！”是哪个动画片的",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "这句台词“在学校里总能遇到新鲜事！”是哪个动画片的"
+        "retext": "这句台词在学校里总能遇到新鲜事是哪个动画的"
       }
     },
     {
@@ -4969,7 +5101,7 @@
       "query": "中央14台的动画片",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "中央14台的动画片",
+        "retext": "中央14台的动画",
         "query": {
           "field": "content_type",
           "value": "动画"
@@ -5015,63 +5147,63 @@
       "query": "“变身！小小科学家”的动画片",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "“变身！小小科学家”的动画片"
+        "retext": "“变身小小科学家的动画"
       }
     },
     {
       "query": "“超级飞侠，出发！”的动画电影",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "“超级飞侠，出发！”的动画电影"
+        "retext": "“超级飞侠出发的动画电影"
       }
     },
     {
       "query": "“大卫，你太淘气了！”是哪个绘本的台词",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "“大卫，你太淘气了！”是哪个绘本的台词"
+        "retext": "大卫你太淘气了是哪个绘本的台词"
       }
     },
     {
       "query": "“海底报告，海底报告”是哪部动画",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "“海底报告，海底报告”是哪部动画"
+        "retext": "海底报告海底报告是哪部动画"
       }
     },
     {
       "query": "“你的愿望就是我的命令。”的绘本是哪个",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "“你的愿望就是我的命令。”的绘本是哪个"
+        "retext": "你的愿望就是我的命令的绘本是哪个"
       }
     },
     {
       "query": "“我是乐迪！每时每刻，准时送达！”的动画片是哪个",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "“我是乐迪！每时每刻，准时送达！”的动画片是哪个"
+        "retext": "我是乐迪每时每刻准时送达的动画是哪个"
       }
     },
     {
       "query": "“我是佩奇，这是我的弟弟乔治” 来自哪部动画",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "“我是佩奇，这是我的弟弟乔治” 来自哪部动画"
+        "retext": "我是小猪佩奇这是我的弟弟乔治来自哪部动画"
       }
     },
     {
       "query": "“真相只有一个！”是哪部动漫的经典台词",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "“真相只有一个！”是哪部动漫的经典台词"
+        "retext": "真相只有一个是哪部动漫的经典台词"
       }
     },
     {
       "query": "“知识就是力量”是哪个绘本里的",
       "expected_tool": "educ_fuzzy_search",
       "expected_params": {
-        "query": "“知识就是力量”是哪个绘本里的"
+        "retext": "知识就是力量是哪个绘本里的"
       }
     },
     {
@@ -5087,12 +5219,12 @@
             },
             {
               "field": "age_range",
-              "from": 9,
-              "to": 10
+              "from": "9",
+              "to": "10"
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -5102,7 +5234,7 @@
       "query": "大卫不可以的绘本",
       "expected_tool": "educ_search",
       "expected_params": {
-        "retext": "大卫不可以的绘本",
+        "retext": "大卫不可以绘本",
         "query": {
           "and": [
             {
@@ -5171,7 +5303,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }

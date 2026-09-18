@@ -1,229 +1,229 @@
 {
-  "entries": [
-    {
-      "raw": "播放下一首",
-      "tool": "playback_control",
-      "params": {
-        "operation": "下",
-        "object": "播放控制",
-        "value": "首",
-        "device": "",
-        "location": ""
-      }
-    },
-    {
-      "raw": "快进30s",
-      "tool": "playback_control",
-      "params": {
-        "operation": "快进",
-        "object": "",
-        "value": "30秒",
-        "device": "",
-        "location": ""
-      }
-    },
-    {
-      "raw": "继续放音乐",
-      "tool": "playback_control",
-      "params": {
-        "operation": "播放",
-        "object": "播放控制",
-        "value": "",
-        "device": "",
-        "location": ""
-      }
-    },
-    {
-      "raw": "切到上一首",
-      "tool": "playback_control",
-      "params": {
-        "operation": "上",
-        "object": "播放控制",
-        "value": "首",
-        "device": "",
-        "location": ""
-      }
-    },
-    {
-      "raw": "不好听换一首",
-      "tool": "playback_control",
-      "params": {
-        "operation": "切换",
-        "object": "播放控制",
-        "value": "首",
-        "device": "",
-        "location": ""
-      }
-    },
-    {
-      "raw": "切换成单曲循环",
-      "tool": "playback_control",
-      "params": {
-        "operation": "单曲循环",
-        "object": "",
-        "value": "",
-        "device": "",
-        "location": ""
-      }
-    },
-    {
-      "raw": "继续播刚才没听完那个",
-      "tool": "playback_control",
-      "params": {
-        "operation": "播放",
-        "object": "",
-        "value": "",
-        "device": "",
-        "location": ""
-      }
-    },
-    {
-      "raw": "帮我快进到15分15秒",
-      "tool": "playback_control",
-      "params": {
-        "operation": "快进到",
-        "object": "",
-        "value": "15分15秒",
-        "device": "",
-        "location": ""
-      }
-    },
-    {
-      "raw": "切到下一集",
-      "tool": "playback_control",
-      "params": {
-        "operation": "下",
-        "object": "播放控制",
-        "value": "集",
-        "device": "",
-        "location": ""
-      }
-    },
-    {
-      "raw": "这集重新放一遍",
-      "tool": "playback_control",
-      "params": {
-        "operation": "重播",
-        "object": "",
-        "value": "",
-        "device": "",
-        "location": ""
-      }
-    },
-    {
-      "raw": "往后退1分钟",
-      "tool": "playback_control",
-      "params": {
-        "operation": "快退",
-        "object": "",
-        "value": "1分钟",
-        "device": "",
-        "location": ""
-      }
-    },
-    {
-      "raw": "色度太低了",
-      "tool": "numeric_adjust",
-      "params": {
-        "device": "",
-        "location": "",
-        "object": "色度",
-        "operation": "提高",
-        "value": ""
-      },
-      "note": "multi轮改写后强参",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "色度太高点",
-      "tool": "numeric_adjust",
-      "params": {
-        "device": "",
-        "location": "",
-        "object": "色度",
-        "operation": "提高",
-        "value": ""
-      },
-      "note": "multi轮改写后强参",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "调高点",
-      "tool": "numeric_adjust",
-      "params": {
-        "device": "",
-        "location": "",
-        "object": "对比度",
-        "operation": "提高",
-        "value": ""
-      },
-      "note": "mt followup坏case",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "改成调亮度",
-      "tool": "numeric_adjust",
-      "params": {
-        "device": "",
-        "location": "",
-        "object": "亮度",
-        "operation": "设置",
-        "value": ""
-      },
-      "note": "mt followup坏case",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "调暗点",
-      "tool": "numeric_adjust",
-      "params": {
-        "device": "",
-        "location": "",
-        "object": "亮度",
-        "operation": "降低",
-        "value": ""
-      },
-      "note": "mt followup坏case",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "调亮",
-      "tool": "numeric_adjust",
-      "params": {
-        "device": "",
-        "location": "",
-        "object": "亮度",
-        "operation": "提高",
-        "value": ""
-      },
-      "note": "mt followup坏case",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "调到最大",
-      "tool": "numeric_adjust",
-      "params": {
-        "device": "",
-        "location": "",
-        "object": "亮度",
-        "operation": "设置",
-        "value": "最大"
-      },
-      "note": "mt followup坏case",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "电视画面调到最大",
-      "tool": "numeric_adjust",
-      "params": {
-        "device": "",
-        "location": "",
-        "object": "亮度",
-        "operation": "设置",
-        "value": "最大"
-      },
-      "note": "mt改写后强参 18r5",
-      "owner": "dingbo"
-    }
-  ]
+ "entries": [
+  {
+   "raw": "播放下一首",
+   "tool": "playback_control",
+   "params": {
+    "operation": "下",
+    "object": "",
+    "value": "首",
+    "device": "",
+    "location": ""
+   }
+  },
+  {
+   "raw": "快进30s",
+   "tool": "playback_control",
+   "params": {
+    "operation": "快进",
+    "object": "",
+    "value": "30秒",
+    "device": "",
+    "location": ""
+   }
+  },
+  {
+   "raw": "继续放音乐",
+   "tool": "playback_control",
+   "params": {
+    "operation": "播放",
+    "object": "播放控制",
+    "value": "",
+    "device": "",
+    "location": ""
+   }
+  },
+  {
+   "raw": "切到上一首",
+   "tool": "playback_control",
+   "params": {
+    "operation": "上",
+    "object": "",
+    "value": "首",
+    "device": "",
+    "location": ""
+   }
+  },
+  {
+   "raw": "不好听换一首",
+   "tool": "playback_control",
+   "params": {
+    "operation": "切换",
+    "object": "",
+    "value": "首",
+    "device": "",
+    "location": ""
+   }
+  },
+  {
+   "raw": "切换成单曲循环",
+   "tool": "playback_control",
+   "params": {
+    "operation": "单曲循环",
+    "object": "",
+    "value": "",
+    "device": "",
+    "location": ""
+   }
+  },
+  {
+   "raw": "继续播刚才没听完那个",
+   "tool": "playback_control",
+   "params": {
+    "operation": "播放",
+    "object": "",
+    "value": "",
+    "device": "",
+    "location": ""
+   }
+  },
+  {
+   "raw": "帮我快进到15分15秒",
+   "tool": "playback_control",
+   "params": {
+    "operation": "快进到",
+    "object": "",
+    "value": "15分15秒",
+    "device": "",
+    "location": ""
+   }
+  },
+  {
+   "raw": "切到下一集",
+   "tool": "playback_control",
+   "params": {
+    "operation": "下",
+    "object": "",
+    "value": "集",
+    "device": "",
+    "location": ""
+   }
+  },
+  {
+   "raw": "这集重新放一遍",
+   "tool": "playback_control",
+   "params": {
+    "operation": "重播",
+    "object": "",
+    "value": "",
+    "device": "",
+    "location": ""
+   }
+  },
+  {
+   "raw": "往后退1分钟",
+   "tool": "playback_control",
+   "params": {
+    "operation": "快退",
+    "object": "",
+    "value": "1分钟",
+    "device": "",
+    "location": ""
+   }
+  },
+  {
+   "raw": "色度太低了",
+   "tool": "numeric_adjust",
+   "params": {
+    "device": "",
+    "location": "",
+    "object": "色度",
+    "operation": "提高",
+    "value": ""
+   },
+   "note": "multi轮改写后强参",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "色度太高点",
+   "tool": "numeric_adjust",
+   "params": {
+    "device": "",
+    "location": "",
+    "object": "色度",
+    "operation": "提高",
+    "value": ""
+   },
+   "note": "multi轮改写后强参",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "调高点",
+   "tool": "numeric_adjust",
+   "params": {
+    "device": "",
+    "location": "",
+    "object": "对比度",
+    "operation": "提高",
+    "value": ""
+   },
+   "note": "mt followup坏case",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "改成调亮度",
+   "tool": "numeric_adjust",
+   "params": {
+    "device": "",
+    "location": "",
+    "object": "亮度",
+    "operation": "设置",
+    "value": ""
+   },
+   "note": "mt followup坏case",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "调暗点",
+   "tool": "numeric_adjust",
+   "params": {
+    "device": "",
+    "location": "",
+    "object": "亮度",
+    "operation": "降低",
+    "value": ""
+   },
+   "note": "mt followup坏case",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "调亮",
+   "tool": "numeric_adjust",
+   "params": {
+    "device": "",
+    "location": "",
+    "object": "亮度",
+    "operation": "提高",
+    "value": ""
+   },
+   "note": "mt followup坏case",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "调到最大",
+   "tool": "numeric_adjust",
+   "params": {
+    "device": "",
+    "location": "",
+    "object": "亮度",
+    "operation": "设置",
+    "value": "最大"
+   },
+   "note": "mt followup坏case",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "电视画面调到最大",
+   "tool": "numeric_adjust",
+   "params": {
+    "device": "",
+    "location": "",
+    "object": "亮度",
+    "operation": "设置",
+    "value": "最大"
+   },
+   "note": "mt改写后强参 18r5",
+   "owner": "dingbo"
+  }
+ ]
 }

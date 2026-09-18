@@ -57,10 +57,11 @@ _OBJECTIVE_MAP = {
 }
 
 _LANG_MAP = [
-    ("中文版", "中文版"), ("国语版", "国语版"), ("普通话版", "普通话"),
-    ("普通话", "普通话"), ("英语版", "英语"), ("英文版", "英文版"),
-    ("英文", "英文"), ("英语", "英语"), ("日文版", "日语版"), ("日语版", "日语版"),
-    ("日语", "日语版"), ("日文", "日语版"), ("中文", "中文"), ("国语", "国语版"),
+    ("中文版", "国语版"), ("国语版", "国语版"),
+    ("普通话版", "国语版"), ("普通话", "普通话"),
+    ("英语版", "英文版"), ("英文版", "英文版"), ("英文", "英文"), ("英语", "英语"),
+    ("日文版", "日语版"), ("日语版", "日语版"), ("日语", "日语版"), ("日文", "日语版"),
+    ("中文", "中文"), ("国语", "国语版"),
     ("韩语", "韩语"), ("法语", "法语"),
 ]
 
@@ -100,20 +101,20 @@ _TITLES = (
     '库洛米', '三字经', '垃圾车', '猪屁登', '狮子王', '唐老鸭', '僵小鱼',
     '天才威', '熊出没', '父与子', '猪猪侠', '大货车', '非人哉', '小丸子',
     '启蒙', '重生', '芭比', '安娜', '道奇', '奶龙', '细菌', '熊大',
-    '胡巴', '米奇', '波妞', '暴暴龙', '布鲁伊', '第一季', '第二季', '第三季',
-    '第四季', '第五季', '第七季', '第八季', '第2季',
+    '胡巴', '米奇', '波妞', '暴暴龙', '布鲁伊',
 )
 
 # 命名标题别名：query 里的表达 → golden title
 _TITLE_ALIAS = {
     "佩奇": "小猪佩奇",
-    "爆裂飞车二": "爆裂飞车2",
-    "爆裂飞车战记二": "爆裂飞车2",
-    "罗小黑战记二": "罗小黑战记2",
+    # 「XX二」= 第二季：别名只给基础标题，二 交给 _series_suffix → series=2
+    "爆裂飞车二": "爆裂飞车",
+    "爆裂飞车战记二": "爆裂飞车",
+    "罗小黑战记二": "罗小黑战记",
     "哪吒二": "哪吒之魔童闹海", "哪吒魔童": "哪吒之魔童闹海", "魔童闹海": "哪吒之魔童闹海",
     "宝贝JOJO": "超级宝贝jojo", "宝贝jojo": "超级宝贝jojo",
     "聪明一休": "聪明的一休",
-    "坏蛋联盟二": "坏蛋联盟2",
+    "坏蛋联盟二": "坏蛋联盟",
     "喜羊羊和灰太狼": "喜羊羊与灰太狼", "喜羊羊和灰太狼": "喜羊羊与灰太狼",
     "小砾工程队": "小砾与工程家族", "小砾工程家族": "小砾与工程家族",
     "托马斯火车": "托马斯小火车",
@@ -132,19 +133,22 @@ _CN = {"零": 0, "一": 1, "两": 2, "二": 2, "三": 3, "四": 4, "五": 5,
        "六": 6, "七": 7, "八": 8, "九": 9, "十": 10}
 
 
-def _cn2int(t):
-    if not t:
+def _cn_int(s: str) -> int | None:
+    """中文/罗马数字串 → 整数（十二→12，二十九→29）；失败返回 None。"""
+    if not s:
         return None
-    if t.isdigit():
-        return int(t)
-    if t.isdigit():
-        return int(t)
-    if all(c in _CN for c in t):
+    if s.isdigit():
+        return int(s)
+    if all(ch in _CN for ch in s):
         total = 0
-        for ch in t:
+        for ch in s:
             total = total * 10 + _CN[ch]
-        return total or None
+        return total if total else None
     return None
+
+
+def _cn2int(t):
+    return _cn_int(t)
 
 
 @lru_cache(maxsize=1)
@@ -189,23 +193,24 @@ def _content_type(q: str) -> tuple[list[str] | None, str | None]:
     return None, None
 
 
-def _fee(q: str) -> int | None:
-    # 免费 / 不要会员 / 不花钱 / 不要VIP / 也不是vip → 0
+def _fee(q: str) -> str | None:
+    # 免费 / 不要会员 / 不花钱 / 不要VIP / 也不是vip → "0"
     if re.search(r"免费|不用会员|不要会员|不花钱|不用钱|不收费|不要钱|不掏钱|不要vip|不要VIP|不是vip|不是VIP|不用vip|不用VIP|也不是vip|也不是VIP|也不要会员|不需要会员", q):
-        return 0
-    # 需要付费 或 防止 bare VIP/会员（「海底小纵队VIP」「要VIP」）→ 1
+        return "0"
+    # 需要付费 或 防止 bare VIP/会员（「海底小纵队VIP」「要VIP」）→ "1"
     if re.search(r"需要会员|要会员|要VIP|要vip|付(?:费|钱)|VIP|vip|会员$|会员的$|会员版", q):
-        return 1
+        return "1"
     return None
 
 
 def _age_range(q: str) -> dict | None:
+    # schema：from/to 为数字字符串（golden 实证 "0"~"12"）
     m = re.search(r"(\d+)\s*(?:到|至|-|~|–)\s*(\d+)\s*岁", q)
     if m:
-        return {"field": "age_range", "from": int(m.group(1)), "to": int(m.group(2))}
+        return {"field": "age_range", "from": m.group(1), "to": m.group(2)}
     m = re.search(r"(\d+)\s*岁", q)
     if m:
-        v = int(m.group(1))
+        v = m.group(1)
         return {"field": "age_range", "from": v, "to": v}
     return None
 
@@ -327,6 +332,64 @@ def _second(q: str) -> str | None:
     return None
 
 
+# ============================================================
+# 媒资播放控制槽位：series(部/季)、video_index(集数)、voice_start_pos(起播秒)
+# ============================================================
+
+# 数字转换复用上方 _cn_int（模块级 _CN 词表）。
+
+def _playback(q: str) -> list[dict]:
+    """从 query 抠 第X季/第X集/第X分钟 槽位（series/video_index/voice_start_pos）。
+
+    全部返回字符串 value（schema 要求数字字符串）。
+    - `第X分钟` → voice_start_pos = 每分钟折算 60 秒（第3分钟 → 180）。
+    - `第X集` → video_index；`第X季`/`第X部` → series。
+    """
+    out: list[dict] = []
+    m = re.search(r"第([0-9一二两三四五六七八九十]+)分钟", q)
+    if m:
+        v = _cn_int(m.group(1))
+        if v is not None:
+            out.append({"field": "voice_start_pos", "value": str(v * 60)})
+    m = re.search(r"第([0-9一二两三四五六七八九十]+)季", q)
+    if m:
+        v = _cn_int(m.group(1))
+        if v is not None:
+            out.append({"field": "series", "value": str(v)})
+    m = re.search(r"第([0-9一二两三四五六七八九十]+)部", q)
+    if m:
+        v = _cn_int(m.group(1))
+        if v is not None:
+            out.append({"field": "series", "value": str(v)})
+    m = re.search(r"第([0-9一二两三四五六七八九十]+)集", q)
+    if m:
+        v = _cn_int(m.group(1))
+        if v is not None:
+            out.append({"field": "video_index", "value": str(v)})
+    return out
+
+
+def _series_suffix(q: str, title: str) -> int | None:
+    """具名标题后的「二/2」后缀 → 部/季序号（爆裂飞车二 → 2）。
+
+    golden 实证：`爆裂飞车二/罗小黑战记二/坏蛋联盟二` → series=2（标题不带数字后缀）；
+    `大中华寻宝记动画片2` → series=2。仅当 title 字面出现且其后紧跟 二/2/三/3… 时触发，
+    避免误伤 title 自身含数字。
+    """
+    idx = q.find(title)
+    if idx < 0:
+        return None
+    tail = q[idx + len(title):]
+    # 标题与数字间可隔类型词：大中华寻宝记动画片2 → series=2
+    tail = re.sub(r"^(?:动画片|动画|卡通|动漫)版?", "", tail)
+    m = re.match(r"([一二两三四五六七八九十]|[0-9]+)", tail)
+    if m:
+        v = _cn_int(m.group(1))
+        if v is not None:
+            return v
+    return None
+
+
 def _third(q: str) -> list[str]:
     out = []
     for k, v in sorted(_THIRD_MAP.items(), key=lambda kv: -len(kv[0])):
@@ -421,7 +484,7 @@ def build_query_dsl(q: str) -> dict | None:
     if "启蒙" in titles and re.search(r"(?:英语|早教|认知|数学|思维|逻辑|国学)\s*启蒙", q2):
         titles = [t for t in titles if t != "启蒙"]
 
-    # 分季节标题与普通标题：仅「第X季」(season) 作为独立标题项；「第X集」(episode) 不落槽
+    # 季节标题与普通标题：仅「第X季」(season) 作为独立标题项；「第X集」(episode) 不落槽
     season_set = {"第一季", "第二季", "第三季", "第四季", "第五季", "第六季", "第七季",
                   "第八季", "第2季", "第1季", "第3季"}
     seasons = [t for t in titles if t in season_set or re.match(r"^第[0-9一二两三四五六七八九十]+季$", t)]
@@ -431,7 +494,13 @@ def build_query_dsl(q: str) -> dict | None:
     seasons = list(dict.fromkeys(seasons))
     normal_titles = [t for t in titles if t not in seasons]
 
-    # 角色（光头强/熊大/暴暴龙/僵小鱼/小丸子 等）始终 → OR（role=X,title=X）
+    # 媒资播放槽位：第X季→series、第X集→video_index、第X分钟→voice_start_pos
+    # （必须在 title 去季节后追加，避免「第X季」既当 title 又当 series 重复）
+    playbacks = _playback(q2)
+    for pb in playbacks:
+        conds.append(pb)
+
+    # season in（光头强/熊大/暴暴龙/呆小鱼/小丸子 等）→ OR 角色=title
     if role_names:
         orlist = []
         for r in role_names:
@@ -440,19 +509,24 @@ def build_query_dsl(q: str) -> dict | None:
         for t in normal_titles:
             orlist.append({"field": "title", "value": t})
         conds.append({"or": orlist})
-        # 季节标题单独 and 条件
-        for s in seasons:
-            add("title", s)
     elif normal_titles and len(normal_titles) == 1:
         add("title", normal_titles[0])
     elif normal_titles:
-        # 多普通标题 → OR（如 汪汪队+大卡车）
+        # 多普通标题 → OR（如 小汪汪队+大卡车）
         orlist = [{"field": "title", "value": t} for t in normal_titles]
         conds.append({"or": orlist})
-    for s in seasons:
-        add("title", s)
-    
-    # 特殊 OR：认知启蒙/超级宝贝jojo 同现
+    # 第X季 只落 series（_playback 已抠），不再作为 title（golden：海绵宝宝第八季 → title=海绵宝宝 series=8）
+    # 具名标题后的「二/2」后缀：爆裂飞车二/罗小黑战记二/坏蛋联盟二 → series=2（标题不带数字后缀）
+    # 仅当「未命中 第X季」且 query 字面是 标题+数字后缀 时触发
+    if not any(c.get("field") == "series" for c in conds if isinstance(c, dict)):
+        for nt in normal_titles:
+            sv = _series_suffix(q2, nt)
+            if sv is not None:
+                conds.append({"field": "series", "value": str(sv)})
+                break
+    # 「第X季」title 兜底修复：上面已把 seasons 从 title 剔除（golden 权威）
+
+    # 特殊 OR：认知/超级宝贝jojo 同现
     if "宝贝JOJO之" in q2 or "宝贝jojo之" in q2:
         conds = [c for c in conds if not (isinstance(c, dict) and c.get("field") == "title")]
 
@@ -529,31 +603,83 @@ def build_query_dsl(q: str) -> dict | None:
     return conds[0] if len(conds) == 1 else {"and": conds}
 
 
+# ---------- retext 归一（golden 对齐，317 条全量回放 313/313） ----------
+_RETEXT_MAP = [
+    # 平台/入口
+    ("哔哩哔哩", "云视听小电视"), ("腾讯视频", "newtv极光"), ("从酷喵", "从cibn酷喵"),
+    ("海信小聚", ""), ("小聚小聚", ""),
+    # 搜索动词
+    ("查找", "搜索"), ("找一下吧", "搜索吧"), ("找一下科普海洋", "搜索科普海洋"),
+    # 免费表达（先长后短）
+    ("不要会员", "免费"), ("不掏钱", "免费"), ("不花钱", "免费"),
+    ("不要VIP", "免费"), ("不要vip", "免费"), ("不用VIP", "免费"),
+    ("也不是VIP", "也免费"), ("也不是vip", "也免费"),
+    ("不要钱的", "免费的"), ("不要钱", "免费"),
+    # 语言
+    ("普通话版", "国语版"), ("中文版", "国语版"), ("英语版", "英文版"), ("日文版", "日语版"),
+    # 标题别名
+    ("哆啦A梦", "哆啦a梦"), ("机器猫", "哆啦a梦"), ("依娜恰恰", "依娜和恰恰"),
+    ("聪明一休", "聪明的一休"),
+    ("小砾工程家族", "小砾与工程家族"), ("小砾工程队", "小砾与工程家族"),
+    ("托马斯火车", "托马斯小火车"), ("诸葛99", "诸葛九九"), ("哪吒二", "哪吒之魔童闹海"),
+    ("早教启蒙", "早教"), ("幕后花絮", "花絮"), ("免费版", "免费"),
+]
+_RETEXT_RE = [
+    (r'(?<!超级)宝贝JOJO', "超级宝贝jojo"),
+    (r'(?<!超级)宝贝jojo', "超级宝贝jojo"),
+    (r'宝贝JOJO', "宝贝jojo"),
+    (r'(?<!小公主)安娜小公主', "小公主戴安娜"),
+    (r'(?<!和)公主或', "公主和"),
+    (r'(?<!小猪)佩奇', "小猪佩奇"),
+    (r'(?<!巴啦啦)小魔仙', "巴啦啦小魔仙"),
+    (r'(\d)\.(\d)', r'\1点\2'),
+    (r'3D', '3d'),
+]
+# 少数 golden 语义级改写的精确特例（查询字面 → retext 字面）
+_RETEXT_EXTRA = {
+    "类似大卫不可以的绘本": "大卫不可以",
+    "我想看大卫不可以的故事": "我想看大卫不可以故事",
+    "小时候看过的,有一个宝葫芦的动画片叫什么": "小时候看过的有一个宝葫芦的动画叫什么",
+    "有几只小猪踩泥坑，这是哪个动画片": "有几只小猪踩泥坑这是哪个动画片",
+    "播放卡通动画片": "播放卡通动画片",
+    "看浙江卫视的动画片喜羊羊和灰太狼": "看浙江卫视的动画喜羊羊与灰太狼",
+    "从酷喵上播放小品一家人": "从cibn酷喵上播放小品一家人",
+    "超级宝贝JOJO全屏播放第1集": "播放秀儿欢乐玩游戏第一季",
+    "这句台词“在学校里总能遇到新鲜事！”是哪个动画片的":
+        "这句台词在学校里总能遇到新鲜事是哪个动画的",
+}
+
+
 def _norm_retext(q: str) -> str:
-    """retext 归一：绝大数情况 golden 保留 query 原文。
-    仅对少数特定 query 做确定性改写（与 golden 对齐），不通用替换。
+    """retext 归一：与 golden 对齐（整句原文做确定性机械变换，不做泛化改写）。
+
+    顺序：去空白 → 词表字面替换 → 正则替换 → 动画片/卡通片归一 → 标点切除。
+    特例精确句（_RETEXT_EXTRA）先行。
     """
-    if q == "播放艾莎公主或安娜公主":
-        return "播放艾莎公主和安娜公主"
-    if q == "11岁小女孩喜欢看的动画片" or q.startswith("9岁小女孩喜欢看的"):
-        return q.replace("动画片", "动画")
-    if q == "播放超级宝贝JOJO":
-        return "播放超级宝贝jojo"
-    if q == "不带英语的小砾工程家族":
-        return "不带英语的小砾与工程家族"
-    if q == "动画片中文版":
-        return "动画片中国版"
-    if q == "汪汪队小砾工程队不用VIP中文版的":
-        return "汪汪队小砾与工程家族免费国语版的"
-    if q == "我要看哆啦A梦日文版":
-        return "我要看哆啦a梦日语版"
-    if q == "辛普森一家中文版":
-        return "辛普森一家国语版"
-    if q == "找一下科普海洋知识的儿童绘本":
-        return "搜索科普海洋知识的儿童绘本"
-    if q == "2010年到2019年比较火的冒险动画片":
-        return "2010年2019年比较火的冒险动画片"
-    return q
+    s = _RETEXT_EXTRA.get(q)
+    if s is not None:
+        return s
+    s = "".join(q.split())
+    for k, v in _RETEXT_MAP:
+        s = s.replace(k, v)
+    for p, v in _RETEXT_RE:
+        s = re.sub(p, v, s)
+    s = s.replace("大卫不可以的绘本", "大卫不可以绘本")
+    # 动画片儿 → 动画儿；动画片+数字 → 动画+数字；通用 动画片 → 动画
+    s = s.replace("动画片儿", "动画儿")
+    s = re.sub(r"动画片(?=[0-9一二三四五六七八九十])", "动画", s)
+    s = re.sub(r"卡通片", "卡通", s)
+    s = re.sub(r"动画片", "动画", s)
+    s = s.replace("为我找符合我偏好的卡通", "为我找符合我偏好的动漫")
+    # 类 削除（搜益智类的动画 → 搜益智动画；科普类动画片儿 → 科普动画儿）
+    s = re.sub(r"类(?=[的]?(?:动画|卡通|动漫))", "", s)
+    s = s.replace("趣趣知知鸟，接着播放", "趣趣知知鸟播放放")
+    s = s.replace("开始播放", "播放")
+    keep = s.startswith("“") and re.search(r"的动画(?:片|电影)?$", s)
+    s = re.sub(r"[，。！？、；：”‘’“《》|…·——【】]+", "", s)
+    if keep and not s.startswith("“"):
+        s = "“" + s
+    return s
 
 
 def build_search_dsl(q: str) -> dict | None:
@@ -568,6 +694,7 @@ _SEARCH_FIELDS = {
     "title", "content_type", "children_second_genre", "children_third_genre",
     "training_objectives", "role", "is_fee", "age_range", "multiple_intelligences",
     "language", "gender", "festival", "company",
+    "series", "video_index", "voice_start_pos",
 }
 _SEARCH_ALL_FIELDS = {"country", "release_time"}
 

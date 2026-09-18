@@ -27,7 +27,7 @@ ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))          # hcTools/  → from app import … 与 from hcTools… 都能解析
 sys.path.insert(0, str(ROOT.parent))   # 上级     → 以包名 from hcTools… 导入
 
-from hcTools.domains.vod import badcase, fallback, rules  # noqa: E402
+from hcTools.domains.vod import badcase, postproc, fallback, rules  # noqa: E402
 
 
 def _j_key(c):
@@ -69,14 +69,17 @@ def load_badcases():
 
 
 def run_det(query):
-    """badcase → rules.apply → fallback，返回 (tool, params)。"""
-    hit = _BAD.lookup(query)
-    if hit is not None:
+    """badcase → rules.apply → fallback，返回 (tool, params)。
+
+    与生产 engine 一致：结果过域后处理 postproc.normalize。
+    """
+    if hit := (_BAD.lookup(query) if _BAD else None):
         return hit
     r = rules.apply(query)
     if r is not None:
-        return r[0], r[1] or {}
-    return fallback.fallback(query)
+        return r[0], postproc.normalize(r[0], r[1] or {})
+    tool, params = fallback.fallback(query)
+    return tool, postproc.normalize(tool, params)
 
 
 def compute(records):

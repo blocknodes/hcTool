@@ -1,7 +1,39 @@
-{"entries": [
+{
+  "entries": [
     {
       "raw": "张震讲故事之鬼鲸泥鳅",
       "tool": "audio_search",
       "params": {}
+    },
+    {
+      "raw": "请听一下国学启蒙有声版",
+      "tool": "audio_search",
+      "params": {
+        "action": "play",
+        "query": "请听一下国学经典有声版"
+      },
+      "note": "title别名 启蒙→经典",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "放第三集的米吴科学大探险有声版",
+      "tool": "audio_search",
+      "params": {
+        "action": "play",
+        "query": "放第三集的米吴科学漫画大探险有声版"
+      },
+      "note": "title别名 大探险→漫画大探险",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "播放有声版的宝贝JOJO第1集",
+      "tool": "audio_search",
+      "params": {
+        "action": "play",
+        "query": "播放有声版的超级宝贝jojo第1集"
+      },
+      "note": "title别名 宝贝JOJO→超级宝贝jojo",
+      "owner": "dingbo"
     }
-]}
+  ]
+}

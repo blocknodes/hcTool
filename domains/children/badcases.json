@@ -52,7 +52,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -62,12 +62,12 @@
       "raw": "动画片中文版",
       "tool": "educ_search_all",
       "params": {
-        "retext": "动画片中国版",
+        "retext": "动画国语版",
         "query": {
           "and": [
             {
               "field": "language",
-              "value": "中文版"
+              "value": "国语版"
             },
             {
               "field": "content_type",
@@ -81,7 +81,7 @@
       "raw": "今年上映的动画片",
       "tool": "educ_search",
       "params": {
-        "retext": "今年上映的动画片",
+        "retext": "今年上映的动画",
         "query": {
           "and": [
             {
@@ -101,7 +101,7 @@
       "raw": "免费的关于逆袭的动漫",
       "tool": "educ_fuzzy_search",
       "params": {
-        "query": "免费的关于逆袭的动漫"
+        "retext": "免费的关于逆袭的动漫"
       }
     },
     {
@@ -186,7 +186,7 @@
             },
             {
               "field": "is_fee",
-              "value": 0
+              "value": "0"
             }
           ]
         }
@@ -219,26 +219,7 @@
       "raw": "我要看绘本故事",
       "tool": "educ_fuzzy_search",
       "params": {
-        "query": "我要看绘本故事"
-      }
-    },
-    {
-      "raw": "我要看间谍过家家普通话第一季",
-      "tool": "educ_search",
-      "params": {
-        "retext": "我要看间谍过家家普通话第一季",
-        "query": {
-          "and": [
-            {
-              "field": "title",
-              "value": "间谍过家家"
-            },
-            {
-              "field": "language",
-              "value": "普通话"
-            }
-          ]
-        }
+        "retext": "我要看绘本故事"
       }
     },
     {
@@ -261,7 +242,7 @@
             }
           ]
         },
-        "retext": "我要看少儿免费的动画片大货车"
+        "retext": "我要看少儿免费的动画大货车"
       }
     },
     {
@@ -284,8 +265,8 @@
               ]
             },
             {
-              "field": "title",
-              "value": "第2季"
+              "field": "series",
+              "value": "2"
             }
           ]
         }
@@ -314,7 +295,7 @@
       "raw": "英语启蒙动画片",
       "tool": "educ_search_all",
       "params": {
-        "retext": "英语启蒙动画片",
+        "retext": "英语启蒙动画",
         "query": {
           "and": [
             {
@@ -333,7 +314,7 @@
       "raw": "有没有亲子温情的动画视频",
       "tool": "educ_fuzzy_search",
       "params": {
-        "query": "有没有亲子温情的动画视频"
+        "retext": "有没有亲子温情的动画视频"
       }
     },
     {
@@ -345,7 +326,7 @@
       "raw": "找符合孩子爱好的少儿启蒙内容推荐给我",
       "tool": "educ_fuzzy_search",
       "params": {
-        "query": "找符合孩子爱好的少儿启蒙内容推荐给我"
+        "retext": "找符合孩子爱好的少儿启蒙内容推荐给我"
       }
     },
     {
@@ -933,6 +914,27 @@
         "retext": "推荐适合5到6岁孩子跟唱的中文版儿歌"
       },
       "note": "mt改写后强参 12r4",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "超级宝贝JOJO全屏播放第1集",
+      "tool": "educ_search",
+      "params": {
+        "retext": "播放秀儿欢乐玩游戏第一季",
+        "query": {
+          "and": [
+            {
+              "field": "title",
+              "value": "秀儿欢乐玩游戏"
+            },
+            {
+              "field": "series",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "note": "golden 别名：JOJO→秀儿欢乐玩游戏",
       "owner": "dingbo"
     }
   ]

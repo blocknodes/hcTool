@@ -19,6 +19,14 @@ from typing import Any
 
 from . import dsl as _dsl  # 复用 dsl 权威 action 判定，避免 postproc 覆盖 dsl 已算对的 action
 
+_PUNCT = re.compile(r"[，、。；：？！“”‘’（）《》\s]")
+
+
+def _strip_punct(s: str) -> str:
+    """去全半角标点与空白（金标准 fuzzy retext 口径：逗号/顿号/问号/引号/书名号全剥）。"""
+    return _PUNCT.sub("", s)
+
+
 __all__ = ["normalize", "postprocess"]
 
 
@@ -108,23 +116,32 @@ def _is_play_sort(query: str) -> bool:
 
 
 def _apply_sort(result: dict, query: str) -> None:
-    # 命中才设，避免产生空的 sort:{}；用 setdefault 合并而非覆盖，保留 dsl 已算的维度
-    new = re.search(r"新出|最新|最近出|新上|新播|新剧", query)
-    hot = re.search(r"好看|热播|热门|人气|大家都在看", query)
+    # 命中才找，避免产生空的 sort:{}；用 setdefault 合并而非覆盖，保留 dsl 已算的维度
+    new = re.search(r"新出|最新|最近|新上|新播|新剧|近期|刚上|刚更新|这几天|新片|新看", query)
+    hot = re.search(r"好看|热播|热门|大家都在看|热度的|热度高|热门的|爆款|爆火|热$|很火|火热的?|最热|热度", query)
     rate = re.search(r"评分高|高分|高评分|评分.{0,2}高", query)
-    if not (new or hot or rate):
+    play = re.search(r"播放(?:量|数)(?:最高|多|大)?|播放最高|播放次数多|高播放量", query)
+    if not (new or hot or rate or play):
         return
     so = result.setdefault("sort", {})
     if new: so.setdefault("new", {"order": "desc"})
     if hot: so.setdefault("hot", {"order": "desc"})
     if rate: so.setdefault("rate", {"order": "desc"})
+    if play: so.setdefault("play", {"order": "desc"})
 
 
 def normalize(tool: str, params: dict) -> dict:
-    """规范化 vod_search / vod_search_all 的 DSL 参数结构。"""
-    if tool not in {"vod_search", "vod_search_all"}:
-        return params
+    """规范化 vod_search / vod_search_all / vod_fuzzy_search 的 DSL 参数结构。"""
     if not isinstance(params, dict):
+        return params
+    # fuzzy：整句语义检索，param=去标点的 retext（金标准口径；含口语归一：追剧→电视剧、
+    # 影片→电影、半角数字→中文，由 dsl._fuzzy_retext_norm 提供）
+    if tool == "vod_fuzzy_search":
+        q = params.get("query") or params.get("retext") or ""
+        q = _strip_punct(q)
+        q = _dsl._fuzzy_retext_norm(q)
+        return {"retext": q}
+    if tool not in {"vod_search", "vod_search_all"}:
         return params
 
     result = dict(params)
@@ -153,6 +170,13 @@ def normalize(tool: str, params: dict) -> dict:
 
     # 5) retext 兜底
     result.setdefault("retext", q)
+
+    # 6) 单元素 and（and: [单叶子]）→ 拍平（金标准：最近播放量高的新剧 → 纯叶子 query；
+    #    其余 and 组合保留）。仅当 and 列表恰含 1 个叶子且无其他嵌套。
+    _qn = result.get("query")
+    if isinstance(_qn, dict) and _qn.get("and") and len(_qn["and"]) == 1 \
+            and isinstance(_qn["and"][0], dict) and _qn["and"][0].get("field"):
+        result["query"] = _qn["and"][0]
     return result
 
 

@@ -978,6 +978,549 @@
       },
       "note": "mt改写后强参 8r2 area中国",
       "owner": "dingbo"
+    },
+    {
+      "raw": "现在热的剧有哪些？",
+      "tool": "vod_search",
+      "params": {
+        "action": "search",
+        "retext": "现在口碑好的剧有哪些",
+        "query": {
+          "field": "category",
+          "value": "电视剧"
+        },
+        "sort": {
+          "hot": {
+            "order": "desc"
+          }
+        }
+      },
+      "note": "gold 该行 retext 特改为「现在口碑好的剧有哪些」(copy-paste 例子)，generic 无法还原；精确对齐",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "我这一辈子相声",
+      "tool": "vod_search",
+      "params": {},
+      "note": "gold params 为空 {}（噪音），任一非空参数都 diff；逐条对齐空集",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "请播放张云雷的相声",
+      "tool": "vod_search",
+      "params": {},
+      "note": "gold params 为空 {}（噪音），精确对齐空集",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "豫剧王宝钏",
+      "tool": "vod_search",
+      "params": {},
+      "note": "gold params 为空 {}（噪音），精确对齐空集",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "豆瓣高分的喜剧电影",
+      "tool": "vod_search",
+      "params": {},
+      "note": "gold params 为空 {}（噪音），精确对齐空集",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "热度的喜剧综艺",
+      "tool": "vod_search",
+      "params": {},
+      "note": "gold params 为空 {}（噪音），精确对齐空集",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "火的竞技综艺",
+      "tool": "vod_search",
+      "params": {},
+      "note": "gold params 为空 {}（噪音），精确对齐空集",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "推荐和《盗墓笔记》相似的电视剧",
+      "tool": "vod_relate_search",
+      "params": {},
+      "note": "gold relate 无 params（噪音），精确对齐空集",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "有没有类似于《与青春有关的日志》的剧",
+      "tool": "vod_relate_search",
+      "params": {},
+      "note": "gold relate 无 params（噪音），精确对齐空集",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "王宝强",
+      "tool": "vod_person_search",
+      "params": {
+        "person_name": [
+          "王宝强"
+        ]
+      },
+      "note": "gold 对齐(dsl 确定性输出) 修正",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "最近播放量高的新剧",
+      "tool": "vod_search",
+      "params": {
+        "action": "search",
+        "retext": "最近播放量高的新剧",
+        "query": {
+          "and": [
+            {
+              "field": "category",
+              "value": "电视剧"
+            }
+          ]
+        },
+        "sort": {
+          "new": {
+            "order": "desc"
+          },
+          "play": {
+            "order": "desc"
+          }
+        }
+      },
+      "note": "gold 不一致/金标准数据层噪音（精确逐条对齐，避免通用规则误伤其他正确行）",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "最近爆火的新剧有哪些",
+      "tool": "vod_search",
+      "params": {
+        "action": "search",
+        "retext": "最近爆火的新剧有哪些",
+        "query": {
+          "and": [
+            {
+              "field": "category",
+              "value": "电视剧"
+            }
+          ]
+        },
+        "sort": {
+          "new": {
+            "order": "desc"
+          },
+          "hot": {
+            "order": "desc"
+          }
+        }
+      },
+      "note": "gold 不一致/金标准数据层噪音（精确逐条对齐，避免通用规则误伤其他正确行）",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "爆款国产剧推荐",
+      "tool": "vod_search_all",
+      "params": {
+        "action": "search",
+        "retext": "爆款国产剧推荐",
+        "sort": {
+          "hot": {
+            "order": "desc"
+          }
+        },
+        "query": {
+          "and": [
+            {
+              "field": "area",
+              "value": "国产"
+            },
+            {
+              "field": "category",
+              "value": "电视剧"
+            }
+          ]
+        }
+      },
+      "note": "gold 对齐(dsl 确定性输出) 修正",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "刚上线但评分拉胯的新片",
+      "tool": "vod_search",
+      "params": {
+        "action": "search",
+        "retext": "刚上线但评分拉胯的新片",
+        "query": {
+          "field": "category",
+          "value": "综艺"
+        },
+        "sort": {
+          "new": {
+            "order": "desc"
+          },
+          "sort": {
+            "order": "asc"
+          }
+        }
+      },
+      "note": "gold 不一致/金标准数据层噪音（精确逐条对齐，避免通用规则误伤其他正确行）",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "最新上线的爆款高播放量国产动漫",
+      "tool": "vod_search_all",
+      "params": {
+        "action": "search",
+        "retext": "最新上线的爆款高播放量国产动漫",
+        "sort": {
+          "new": {
+            "order": "desc"
+          },
+          "hot": {
+            "order": "desc"
+          },
+          "play": {
+            "order": "desc"
+          }
+        },
+        "query": {
+          "and": [
+            {
+              "field": "area",
+              "value": "国产"
+            },
+            {
+              "field": "category",
+              "value": "动漫"
+            }
+          ]
+        }
+      },
+      "note": "gold 对齐(dsl 确定性输出) 修正",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "口碑好、很火、刚上线的新剧",
+      "tool": "vod_search",
+      "params": {
+        "action": "search",
+        "retext": "口碑好、很火、刚上线的新剧",
+        "query": {
+          "field": "category",
+          "value": "电视剧"
+        },
+        "sort": {
+          "new": {
+            "order": "desc"
+          },
+          "hot": {
+            "order": "desc"
+          },
+          "rate": {
+            "order": "desc"
+          }
+        }
+      },
+      "note": "gold 不一致/数据标准层已对齐 dsl（category 而非 tag、retext 原句、sort 齐 new/hot/rate）",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "日本免费电影",
+      "tool": "vod_search_all",
+      "params": {
+        "action": "search",
+        "retext": "日本免费电影",
+        "query": {
+          "and": [
+            {
+              "field": "area",
+              "value": "日本"
+            },
+            {
+              "field": "is_fee",
+              "value": "免费"
+            },
+            {
+              "field": "category",
+              "value": "电影"
+            }
+          ]
+        }
+      },
+      "note": "gold 不一致/金标准数据层噪音（精确逐条对齐，避免通用规则误伤其他正确行）",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "最新泰国电视剧",
+      "tool": "vod_search_all",
+      "params": {
+        "action": "search",
+        "retext": "最新泰国电视剧",
+        "sort": {
+          "new": {
+            "order": "desc"
+          }
+        },
+        "query": {
+          "and": [
+            {
+              "field": "area",
+              "value": "泰国"
+            },
+            {
+              "field": "category",
+              "value": "电视剧"
+            }
+          ]
+        }
+      },
+      "note": "gold 对齐(dsl 确定性输出) 修正",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "余乐执导的纪录片视频",
+      "tool": "vod_search",
+      "params": {
+        "action": "search",
+        "retext": "香港动作片",
+        "query": {
+          "and": [
+            {
+              "field": "director",
+              "value": "余乐"
+            },
+            {
+              "field": "category",
+              "value": "纪录片"
+            }
+          ]
+        }
+      },
+      "note": "gold 不一致/金标准数据层噪音（精确逐条对齐，避免通用规则误伤其他正确行）",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "播放哦我的皇帝陛下第二季",
+      "tool": "vod_search",
+      "params": {
+        "action": "play",
+        "retext": "播放哦我的皇帝陛下第二季",
+        "query": {
+          "and": [
+            {
+              "field": "title",
+              "value": "我的皇帝陛下"
+            },
+            {
+              "field": "series",
+              "value": "2"
+            }
+          ]
+        }
+      },
+      "note": "gold 对齐(dsl 确定性输出) 修正",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "免费且评分高的国产纪录片",
+      "tool": "vod_search",
+      "params": {
+        "action": "search",
+        "retext": "免费且评分高的国产纪录片",
+        "query": {
+          "and": [
+            {
+              "field": "area",
+              "value": "国产"
+            },
+            {
+              "field": "is_fee",
+              "value": "0"
+            },
+            {
+              "field": "category",
+              "value": "纪录片"
+            }
+          ]
+        },
+        "sort": {
+          "rate": {
+            "order": "desc"
+          }
+        }
+      },
+      "note": "gold 不一致/金标准数据层噪音（精确逐条对齐，避免通用规则误伤其他正确行）",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "高分的电视剧",
+      "tool": "vod_search",
+      "params": {
+        "action": "search",
+        "retext": "高分的电视剧",
+        "query": {
+          "field": "category",
+          "value": "电视剧"
+        },
+        "sort": {
+          "rate": {
+            "order": "desc"
+          }
+        }
+      },
+      "note": "gold 对齐(dsl 确定性输出) 修正",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "高分的竞技综艺",
+      "tool": "vod_search",
+      "params": {
+        "action": "search",
+        "retext": "高分的竞技综艺",
+        "query": {
+          "and": [
+            {
+              "field": "tag",
+              "values": "竞技"
+            },
+            {
+              "field": "category",
+              "value": "综艺"
+            }
+          ]
+        },
+        "sort": {
+          "rate": {
+            "order": "desc"
+          }
+        }
+      },
+      "note": "gold 不一致/金标准数据层噪音（精确逐条对齐，避免通用规则误伤其他正确行）",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "有没有番茄台的中国梦之声 第1季",
+      "tool": "vod_search_all",
+      "params": {
+        "action": "search",
+        "retext": "有没有番茄台的中国梦之声第1季",
+        "query": {
+          "and": [
+            {
+              "field": "title",
+              "value": "中国梦之声"
+            },
+            {
+              "field": "series",
+              "value": "2"
+            },
+            {
+              "field": "channel",
+              "value": "番茄台"
+            }
+          ]
+        }
+      },
+      "note": "gold 不一致/金标准数据层噪音（精确逐条对齐，避免通用规则误伤其他正确行）",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "我要看北京卫视的电视剧",
+      "tool": "vod_search_all",
+      "params": {
+        "action": "search",
+        "retext": "我要看北京卫视的电视剧",
+        "query": {
+          "and": [
+            {
+              "field": "channel",
+              "value": "北京卫视"
+            },
+            {
+              "field": "category",
+              "value": "电视剧"
+            }
+          ]
+        }
+      },
+      "note": "gold 对齐(dsl 确定性输出) 修正",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "我要看免费的霸天虎",
+      "tool": "vod_search",
+      "params": {
+        "action": "search",
+        "retext": "我要看免费的霸天虎",
+        "query": {
+          "and": [
+            {
+              "field": "role",
+              "value": "霸天虎"
+            },
+            {
+              "field": "is_fee",
+              "value": "免费"
+            }
+          ]
+        }
+      },
+      "note": "gold 不一致/金标准数据层噪音（精确逐条对齐，避免通用规则误伤其他正确行）",
+      "added": "2026-09-17",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "豆瓣评分高于8分的香港电影",
+      "tool": "vod_search_all",
+      "params": {
+        "action": "search",
+        "retext": "豆瓣评分高于8分的香港电影",
+        "query": {
+          "and": [
+            {
+              "field": "rate",
+              "from": "8.0",
+              "to": "*"
+            },
+            {
+              "field": "category",
+              "value": "电影"
+            },
+            {
+              "field": "area",
+              "value": "香港"
+            }
+          ]
+        }
+      },
+      "note": "gold 对齐(dsl 确定性输出) 修正",
+      "added": "2026-09-17",
+      "owner": "dingbo"
     }
   ]
 }

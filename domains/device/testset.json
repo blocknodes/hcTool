@@ -1,7 +1,7 @@
 {
-  "domain": "设备",
+  "domain": "智能设备",
   "domain_key": "device",
-  "count": 1140,
+  "count": 1699,
   "records": [
     {
       "query": "打开demo演示",
@@ -734,7 +734,7 @@
       "expected_tool": "display_control",
       "expected_params": {
         "operation": "打开",
-        "object": "uledxdr",
+        "object": "uled_xdr",
         "value": "",
         "device": "",
         "location": ""
@@ -965,7 +965,7 @@
       "expected_tool": "display_control",
       "expected_params": {
         "operation": "打开",
-        "object": "imaxenhanced",
+        "object": "imax_enhanced",
         "value": "",
         "device": "",
         "location": ""
@@ -1108,7 +1108,7 @@
       "expected_tool": "display_control",
       "expected_params": {
         "operation": "打开",
-        "object": "多分区localdimming背光",
+        "object": "多分区local_dimming背光",
         "value": "",
         "device": "",
         "location": ""
@@ -2220,7 +2220,7 @@
       "expected_params": {
         "operation": "查询",
         "object": "亮度",
-        "value": "",
+        "value": "默认",
         "device": "",
         "location": ""
       }
@@ -2396,7 +2396,7 @@
       "expected_params": {
         "operation": "提高",
         "object": "亮度",
-        "value": "",
+        "value": "默认",
         "device": "",
         "location": ""
       }
@@ -2407,7 +2407,7 @@
       "expected_params": {
         "operation": "降低",
         "object": "亮度",
-        "value": "",
+        "value": "默认",
         "device": "",
         "location": ""
       }
@@ -2463,6 +2463,17 @@
         "operation": "设置",
         "object": "亮度",
         "value": "70",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "亮度开关",
+      "expected_tool": "numeric_adjust",
+      "expected_params": {
+        "operation": "打开",
+        "object": "亮度控制",
+        "value": "",
         "device": "",
         "location": ""
       }
@@ -2677,6 +2688,17 @@
       }
     },
     {
+      "query": "睡前关机",
+      "expected_tool": "timer_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "关机",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
       "query": "30分钟后自动关机",
       "expected_tool": "timer_control",
       "expected_params": {
@@ -2810,6 +2832,17 @@
       }
     },
     {
+      "query": "关机时间查询",
+      "expected_tool": "timer_control",
+      "expected_params": {
+        "operation": "查询",
+        "object": "剩余关机时长",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
       "query": "关机时间设置",
       "expected_tool": "timer_control",
       "expected_params": {
@@ -2836,7 +2869,7 @@
       "query": "把电视打开",
       "expected_tool": "power_control",
       "expected_params": {
-        "operation": "打开",
+        "operation": "",
         "object": "开机",
         "value": "",
         "device": "",
@@ -2921,6 +2954,17 @@
       }
     },
     {
+      "query": "电视开机",
+      "expected_tool": "power_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "开机",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
       "query": "开启电视机",
       "expected_tool": "power_control",
       "expected_params": {
@@ -2965,6 +3009,17 @@
       }
     },
     {
+      "query": "电视开机",
+      "expected_tool": "power_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "开机",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
       "query": "打开电视开关",
       "expected_tool": "power_control",
       "expected_params": {
@@ -2991,7 +3046,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快进",
-        "object": "播放控制",
+        "object": "",
         "value": "10秒",
         "device": "",
         "location": ""
@@ -3002,7 +3057,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快进",
-        "object": "播放控制",
+        "object": "",
         "value": "30秒",
         "device": "",
         "location": ""
@@ -3013,7 +3068,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快进",
-        "object": "播放控制",
+        "object": "",
         "value": "60秒",
         "device": "",
         "location": ""
@@ -3024,7 +3079,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快退",
-        "object": "播放控制",
+        "object": "",
         "value": "10秒",
         "device": "",
         "location": ""
@@ -3035,7 +3090,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快退",
-        "object": "播放控制",
+        "object": "",
         "value": "30秒",
         "device": "",
         "location": ""
@@ -3046,7 +3101,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快退",
-        "object": "播放控制",
+        "object": "",
         "value": "60秒",
         "device": "",
         "location": ""
@@ -3057,7 +3112,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快进到",
-        "object": "播放控制",
+        "object": "",
         "value": "1:30",
         "device": "",
         "location": ""
@@ -3068,7 +3123,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快进到",
-        "object": "播放控制",
+        "object": "",
         "value": "5:00",
         "device": "",
         "location": ""
@@ -3079,7 +3134,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快进到",
-        "object": "播放控制",
+        "object": "",
         "value": "10:00",
         "device": "",
         "location": ""
@@ -3090,7 +3145,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快退到",
-        "object": "播放控制",
+        "object": "",
         "value": "1:30",
         "device": "",
         "location": ""
@@ -3101,7 +3156,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快退到",
-        "object": "播放控制",
+        "object": "",
         "value": "5:00",
         "device": "",
         "location": ""
@@ -3112,7 +3167,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快退到",
-        "object": "播放控制",
+        "object": "",
         "value": "10:00",
         "device": "",
         "location": ""
@@ -3123,7 +3178,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "跳转",
-        "object": "播放控制",
+        "object": "",
         "value": "1:30",
         "device": "",
         "location": ""
@@ -3134,7 +3189,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "跳转",
-        "object": "播放控制",
+        "object": "",
         "value": "5:00",
         "device": "",
         "location": ""
@@ -3145,7 +3200,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "跳转",
-        "object": "播放控制",
+        "object": "",
         "value": "10:00",
         "device": "",
         "location": ""
@@ -3156,7 +3211,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "跳转",
-        "object": "播放控制",
+        "object": "",
         "value": "1:30",
         "device": "",
         "location": ""
@@ -3167,7 +3222,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "跳转",
-        "object": "播放控制",
+        "object": "",
         "value": "5:00",
         "device": "",
         "location": ""
@@ -3178,7 +3233,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "跳转",
-        "object": "播放控制",
+        "object": "",
         "value": "10:00",
         "device": "",
         "location": ""
@@ -3244,7 +3299,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "下",
-        "object": "播放列表",
+        "object": "播放控制",
         "value": "集",
         "device": "",
         "location": ""
@@ -3255,7 +3310,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "上",
-        "object": "播放列表",
+        "object": "播放控制",
         "value": "集",
         "device": "",
         "location": ""
@@ -3266,7 +3321,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "下",
-        "object": "播放列表",
+        "object": "播放控制",
         "value": "集",
         "device": "",
         "location": ""
@@ -3277,7 +3332,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "上",
-        "object": "播放列表",
+        "object": "播放控制",
         "value": "集",
         "device": "",
         "location": ""
@@ -3288,7 +3343,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快进",
-        "object": "播放控制",
+        "object": "",
         "value": "1分钟",
         "device": "",
         "location": ""
@@ -3299,7 +3354,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快进",
-        "object": "播放控制",
+        "object": "",
         "value": "2分",
         "device": "",
         "location": ""
@@ -3310,7 +3365,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快进",
-        "object": "播放控制",
+        "object": "",
         "value": "5分钟",
         "device": "",
         "location": ""
@@ -3321,7 +3376,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快退",
-        "object": "播放控制",
+        "object": "",
         "value": "10秒",
         "device": "",
         "location": ""
@@ -3332,7 +3387,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快退",
-        "object": "播放控制",
+        "object": "",
         "value": "30秒",
         "device": "",
         "location": ""
@@ -3343,7 +3398,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快退",
-        "object": "播放控制",
+        "object": "",
         "value": "60秒",
         "device": "",
         "location": ""
@@ -3354,7 +3409,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "跳转",
-        "object": "播放控制",
+        "object": "",
         "value": "01:30",
         "device": "",
         "location": ""
@@ -3365,7 +3420,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "跳转",
-        "object": "播放控制",
+        "object": "",
         "value": "5:00",
         "device": "",
         "location": ""
@@ -3376,7 +3431,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "跳转",
-        "object": "播放控制",
+        "object": "",
         "value": "10:00",
         "device": "",
         "location": ""
@@ -3387,7 +3442,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "跳转",
-        "object": "播放控制",
+        "object": "",
         "value": "01:30",
         "device": "",
         "location": ""
@@ -3398,7 +3453,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "跳转",
-        "object": "播放控制",
+        "object": "",
         "value": "10:00",
         "device": "",
         "location": ""
@@ -3409,7 +3464,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "重播",
-        "object": "播放控制",
+        "object": "",
         "value": "",
         "device": "",
         "location": ""
@@ -3420,7 +3475,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快退",
-        "object": "播放控制",
+        "object": "",
         "value": "2分",
         "device": "",
         "location": ""
@@ -3431,7 +3486,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快进",
-        "object": "播放控制",
+        "object": "",
         "value": "10秒",
         "device": "",
         "location": ""
@@ -3442,7 +3497,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快进",
-        "object": "播放控制",
+        "object": "",
         "value": "30秒",
         "device": "",
         "location": ""
@@ -3453,7 +3508,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "跳转",
-        "object": "播放控制",
+        "object": "",
         "value": "5:00",
         "device": "",
         "location": ""
@@ -3464,7 +3519,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快退",
-        "object": "播放控制",
+        "object": "",
         "value": "1分钟",
         "device": "",
         "location": ""
@@ -3475,7 +3530,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快退",
-        "object": "播放控制",
+        "object": "",
         "value": "5分钟",
         "device": "",
         "location": ""
@@ -3486,7 +3541,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快进",
-        "object": "播放控制",
+        "object": "",
         "value": "60秒",
         "device": "",
         "location": ""
@@ -3497,7 +3552,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快退",
-        "object": "播放控制",
+        "object": "",
         "value": "10秒",
         "device": "",
         "location": ""
@@ -3508,7 +3563,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快退",
-        "object": "播放控制",
+        "object": "",
         "value": "30秒",
         "device": "",
         "location": ""
@@ -3519,7 +3574,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快退",
-        "object": "播放控制",
+        "object": "",
         "value": "60秒",
         "device": "",
         "location": ""
@@ -3530,7 +3585,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "跳转",
-        "object": "播放控制",
+        "object": "",
         "value": "",
         "device": "",
         "location": ""
@@ -3541,6 +3596,17 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "跳转",
+        "object": "",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "暂停",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "暂停",
         "object": "播放控制",
         "value": "",
         "device": "",
@@ -3574,7 +3640,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "下",
-        "object": "播放列表",
+        "object": "播放控制",
         "value": "个",
         "device": "",
         "location": ""
@@ -3585,7 +3651,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "上",
-        "object": "播放列表",
+        "object": "播放控制",
         "value": "个",
         "device": "",
         "location": ""
@@ -3596,7 +3662,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快进",
-        "object": "播放控制",
+        "object": "",
         "value": "",
         "device": "",
         "location": ""
@@ -3607,7 +3673,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快退",
-        "object": "播放控制",
+        "object": "",
         "value": "",
         "device": "",
         "location": ""
@@ -3618,7 +3684,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快进",
-        "object": "播放控制",
+        "object": "",
         "value": "",
         "device": "",
         "location": ""
@@ -3629,8 +3695,41 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "快退",
-        "object": "播放控制",
+        "object": "",
         "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切换到HDMI1",
+      "expected_tool": "source_switch",
+      "expected_params": {
+        "operation": "设置",
+        "object": "信号源",
+        "value": "hdmi1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切换到HDMI2",
+      "expected_tool": "source_switch",
+      "expected_params": {
+        "operation": "设置",
+        "object": "信号源",
+        "value": "hdmi2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切换到HDMI3",
+      "expected_tool": "source_switch",
+      "expected_params": {
+        "operation": "设置",
+        "object": "信号源",
+        "value": "hdmi3",
         "device": "",
         "location": ""
       }
@@ -3795,7 +3894,7 @@
       "expected_params": {
         "operation": "设置",
         "object": "信号源",
-        "value": "VGA",
+        "value": "VGA模式",
         "device": "",
         "location": ""
       }
@@ -3806,7 +3905,7 @@
       "expected_params": {
         "operation": "设置",
         "object": "信号源",
-        "value": "USB",
+        "value": "USB模式",
         "device": "",
         "location": ""
       }
@@ -4169,7 +4268,7 @@
       "expected_params": {
         "operation": "降低",
         "object": "清晰度",
-        "value": "",
+        "value": "默认",
         "device": "",
         "location": ""
       }
@@ -4180,7 +4279,7 @@
       "expected_params": {
         "operation": "提高",
         "object": "清晰度",
-        "value": "",
+        "value": "默认",
         "device": "",
         "location": ""
       }
@@ -4202,7 +4301,7 @@
       "expected_params": {
         "operation": "查询",
         "object": "清晰度",
-        "value": "",
+        "value": "默认",
         "device": "",
         "location": ""
       }
@@ -4378,7 +4477,7 @@
       "expected_params": {
         "operation": "提高",
         "object": "清晰度",
-        "value": "",
+        "value": "默认",
         "device": "",
         "location": ""
       }
@@ -5099,6 +5198,17 @@
       }
     },
     {
+      "query": "外部设备",
+      "expected_tool": "source_switch",
+      "expected_params": {
+        "operation": "打开",
+        "object": "HDMI选择",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
       "query": "HDMI输入源",
       "expected_tool": "source_switch",
       "expected_params": {
@@ -5147,7 +5257,7 @@
       "expected_tool": "source_switch",
       "expected_params": {
         "operation": "设置",
-        "object": "hdmi选择",
+        "object": "信号源",
         "value": "",
         "device": "",
         "location": ""
@@ -5158,7 +5268,7 @@
       "expected_tool": "source_switch",
       "expected_params": {
         "operation": "设置",
-        "object": "hdmi选择",
+        "object": "信号源",
         "value": "",
         "device": "",
         "location": ""
@@ -5257,7 +5367,7 @@
       "expected_tool": "network_control",
       "expected_params": {
         "operation": "打开",
-        "object": "无线网络",
+        "object": "网络设置",
         "value": "",
         "device": "",
         "location": ""
@@ -5268,7 +5378,7 @@
       "expected_tool": "network_control",
       "expected_params": {
         "operation": "打开",
-        "object": "无线网络",
+        "object": "网络设置",
         "value": "",
         "device": "",
         "location": ""
@@ -5279,7 +5389,7 @@
       "expected_tool": "network_control",
       "expected_params": {
         "operation": "打开",
-        "object": "无线网络",
+        "object": "网络设置",
         "value": "",
         "device": "",
         "location": ""
@@ -5290,7 +5400,7 @@
       "expected_tool": "network_control",
       "expected_params": {
         "operation": "打开",
-        "object": "无线网络",
+        "object": "网络设置",
         "value": "",
         "device": "",
         "location": ""
@@ -5312,7 +5422,7 @@
       "expected_tool": "network_control",
       "expected_params": {
         "operation": "打开",
-        "object": "无线网络",
+        "object": "网络设置",
         "value": "",
         "device": "",
         "location": ""
@@ -5334,7 +5444,7 @@
       "expected_tool": "network_control",
       "expected_params": {
         "operation": "打开",
-        "object": "无线网络",
+        "object": "网络设置",
         "value": "",
         "device": "",
         "location": ""
@@ -5346,6 +5456,17 @@
       "expected_params": {
         "operation": "打开",
         "object": "无线网络",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "WiFi设置",
+      "expected_tool": "network_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "网络设置",
         "value": "",
         "device": "",
         "location": ""
@@ -5880,6 +6001,17 @@
       }
     },
     {
+      "query": "把声音关掉",
+      "expected_tool": "numeric_adjust",
+      "expected_params": {
+        "operation": "打开",
+        "object": "静音",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
       "query": "关闭声音",
       "expected_tool": "numeric_adjust",
       "expected_params": {
@@ -6342,6 +6474,39 @@
       }
     },
     {
+      "query": "小窗显示",
+      "expected_tool": "screen_layout",
+      "expected_params": {
+        "operation": "缩小",
+        "object": "画面",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "小窗口",
+      "expected_tool": "screen_layout",
+      "expected_params": {
+        "operation": "缩小",
+        "object": "画面",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "迷你屏",
+      "expected_tool": "screen_layout",
+      "expected_params": {
+        "operation": "缩小",
+        "object": "画面",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
       "query": "设置小屏幕",
       "expected_tool": "screen_layout",
       "expected_params": {
@@ -6354,6 +6519,28 @@
     },
     {
       "query": "缩小画面",
+      "expected_tool": "screen_layout",
+      "expected_params": {
+        "operation": "缩小",
+        "object": "画面",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "小窗模式",
+      "expected_tool": "screen_layout",
+      "expected_params": {
+        "operation": "缩小",
+        "object": "画面",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "开启小窗",
       "expected_tool": "screen_layout",
       "expected_params": {
         "operation": "缩小",
@@ -6397,11 +6584,33 @@
       }
     },
     {
+      "query": "小窗观看",
+      "expected_tool": "screen_layout",
+      "expected_params": {
+        "operation": "缩小",
+        "object": "画面",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
       "query": "小屏播放",
       "expected_tool": "screen_layout",
       "expected_params": {
-        "operation": "打开",
-        "object": "小屏",
+        "operation": "缩小",
+        "object": "画面",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "小窗播放",
+      "expected_tool": "screen_layout",
+      "expected_params": {
+        "operation": "缩小",
+        "object": "画面",
         "value": "",
         "device": "",
         "location": ""
@@ -6620,7 +6829,7 @@
       "query": "声音模式选择",
       "expected_tool": "mode_control",
       "expected_params": {
-        "operation": "设置",
+        "operation": "打开",
         "object": "声音模式",
         "value": "",
         "device": "",
@@ -6631,7 +6840,7 @@
       "query": "声音模式设置",
       "expected_tool": "mode_control",
       "expected_params": {
-        "operation": "设置",
+        "operation": "打开",
         "object": "声音模式",
         "value": "",
         "device": "",
@@ -6675,7 +6884,7 @@
       "query": "音效模式",
       "expected_tool": "mode_control",
       "expected_params": {
-        "operation": "设置",
+        "operation": "打开",
         "object": "声音模式",
         "value": "",
         "device": "",
@@ -6708,7 +6917,7 @@
       "query": "声音配置",
       "expected_tool": "mode_control",
       "expected_params": {
-        "operation": "设置",
+        "operation": "打开",
         "object": "声音模式",
         "value": "",
         "device": "",
@@ -6730,7 +6939,7 @@
       "query": "声音模式调整",
       "expected_tool": "mode_control",
       "expected_params": {
-        "operation": "设置",
+        "operation": "打开",
         "object": "声音模式",
         "value": "",
         "device": "",
@@ -6741,7 +6950,7 @@
       "query": "声音模式切换",
       "expected_tool": "mode_control",
       "expected_params": {
-        "operation": "设置",
+        "operation": "打开",
         "object": "声音模式",
         "value": "",
         "device": "",
@@ -6983,7 +7192,7 @@
       "query": "图像模式选择",
       "expected_tool": "mode_control",
       "expected_params": {
-        "operation": "设置",
+        "operation": "打开",
         "object": "图像模式",
         "value": "",
         "device": "",
@@ -7464,6 +7673,17 @@
       }
     },
     {
+      "query": "单曲循环",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "单曲播放",
+        "object": "播放列表",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
       "query": "循环播放",
       "expected_tool": "playback_control",
       "expected_params": {
@@ -7479,7 +7699,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "播放",
-        "object": "播放控制",
+        "object": "",
         "value": "",
         "device": "",
         "location": ""
@@ -7490,7 +7710,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "顺序播放",
-        "object": "播放列表",
+        "object": "",
         "value": "",
         "device": "",
         "location": ""
@@ -7501,7 +7721,7 @@
       "expected_tool": "playback_control",
       "expected_params": {
         "operation": "循环播放",
-        "object": "播放列表",
+        "object": "",
         "value": "",
         "device": "",
         "location": ""
@@ -10115,6 +10335,39 @@
       }
     },
     {
+      "query": "打开剩余关机时长",
+      "expected_tool": "timer_control",
+      "expected_params": {
+        "operation": "查询",
+        "object": "剩余关机时长",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "启动剩余关机时长",
+      "expected_tool": "timer_control",
+      "expected_params": {
+        "operation": "查询",
+        "object": "剩余关机时长",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "进入剩余关机时长",
+      "expected_tool": "timer_control",
+      "expected_params": {
+        "operation": "查询",
+        "object": "剩余关机时长",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
       "query": "打开待机唤醒",
       "expected_tool": "screensaver_control",
       "expected_params": {
@@ -12379,6 +12632,5674 @@
       "expected_tool": "solve_picture_sound_problem_control",
       "expected_params": {
         "intent": "lack_stereo_surround"
+      }
+    },
+    {
+      "query": "低音不够沉",
+      "expected_tool": "solve_picture_sound_problem_control",
+      "expected_params": {
+        "operation": "提高",
+        "object": "低音调音台",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "低音太弱",
+      "expected_tool": "solve_picture_sound_problem_control",
+      "expected_params": {
+        "operation": "提高",
+        "object": "低音调音台",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "加强低音",
+      "expected_tool": "solve_picture_sound_problem_control",
+      "expected_params": {
+        "operation": "提高",
+        "object": "低音调音台",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "1.3倍速播放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "倍速",
+        "value": "1.3",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "倍速加快",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "提高",
+        "object": "倍速",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切换到1.5倍速播放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "倍速",
+        "value": "1.5",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "用1倍速放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "倍速",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "调成1.25倍速",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "倍速",
+        "value": "1.25",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "2倍速播放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "倍速",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换成0.5倍速",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "倍速",
+        "value": "0.5",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "0.75倍速放着",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "倍速",
+        "value": "0.75",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "调到1.5倍速",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "倍速",
+        "value": "1.5",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "用1.5倍速讲",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "倍速",
+        "value": "1.5",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "1.5倍速放着听",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "倍速",
+        "value": "1.5",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换成3倍速",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "倍速",
+        "value": "3.0",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "调成0.8倍速",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "倍速",
+        "value": "0.8",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "播放倍速调小",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "降低",
+        "object": "倍速",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我调到2倍速播放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "倍速",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切换成倍速播放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "倍速",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "0.8倍速播放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "倍速",
+        "value": "0.8",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "调到默认倍速",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "倍速",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "别再播放了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我不想听了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "别放了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "不要播了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "别播了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "先别播了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换一部",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "部",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切一部",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "部",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "下一部",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "部",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "上一部",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "部",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "听个别的",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换一个",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切换下一个",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换个节目",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切下一个",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要换一个听",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "听下一部",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "部",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "这个不好换一个",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "嗯我想听个别的",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "给我切一个",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "下一个节目",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换一个看看",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我还是想听上一个",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "来个别的",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换个别的听",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切到下一个",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "不好听换一部",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "部",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "听别的吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我换一个",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "这个不好换下一个",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "放下一个",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "随机换一部",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "部",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "播下一部",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "部",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "听上一部",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "部",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "播下一集",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "集",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "播上一集",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "集",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切到下一集",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "集",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切到上一集",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "集",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我切下一集",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "集",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "跳到下一集",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "集",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "跳上一集",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "集",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "放下一集",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "集",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "放上一集",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "集",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "给我换下一集",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "集",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换到上一集",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "集",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "往前切一集",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "集",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "往后切一集",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "集",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "暂停播放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "停止播放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "别放了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "停止播放歌曲",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "退出音乐播放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "音乐播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "别播了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "这首歌一点都不好听，别放了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "这首歌一点都不好听，暂停",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "暂停一下",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "停一下音乐",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把音乐停了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "先暂停音乐",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "停一下这首歌",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把歌暂停了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "音乐先停一下",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "暂停会儿",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把播放停掉",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "歌曲暂停",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "别放了吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "别放这首歌了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "别唱了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "别放了呗",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "不要放了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "这首别放了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "音乐别放了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "音乐播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "别放音乐了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "别再放了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "不要再放了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "关掉音乐",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "音乐播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "退出播放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把音乐关了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "音乐播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "不听了关掉",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把音乐退出来",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "音乐播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "关了这首歌",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "音乐播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "退出音乐吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "音乐播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把歌关掉",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "音乐播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "音乐关了吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "音乐播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "不听了退出来",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "退出",
+        "object": "",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "不好听别放了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "音量",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "太吵了暂停",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "这首不好听停掉",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "太吵了别放了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "难听死了暂停",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "不喜欢这首停了吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "太吵停一下",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "不好听不想听了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "这首太吵别放了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我暂停音乐",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "麻烦停一下音乐",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我把歌停了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我关掉音乐",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "音乐播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "太晚了停掉音乐",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我退出播放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "停止",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "恢复播放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "继续播放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "继续",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "继续放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "接着放音乐",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把音乐接着放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "音乐继续放吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把音乐放着继续",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "继续放歌吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "接着放刚才那首歌",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把这首歌接着放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "继续放这首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "接着播放吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "继续放音乐",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "继续放歌听",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "继续刚才那首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "接着放刚才停的歌",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把暂停的歌接着放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "接着播刚才那首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "继续刚才听的",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我继续放音乐",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "麻烦接着放歌",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我把音乐接着放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我继续播放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我接着听",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "接着放呗",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "继续放着呗",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "往下放吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "接着播吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "继续放下去",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "音乐接着放呗",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "继续给我放着",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "播放",
+        "object": "播放控制",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "下一曲",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "听下一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换下一首歌",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "放下一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "播放下一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "再来一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "再换一首歌",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "再换一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切歌",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切下一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "跳到下一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "往下换一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换到下一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "放下一首歌",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "听下一首歌",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "下一首吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切到下一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "来下一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "下一曲呗",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换首别的",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换一首听",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换一首吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换一首别的歌",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "给我换一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我换一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换个歌吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换一首歌呗",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换一首别的听",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换一首别的吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "再来一首别的",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "再换一个",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "个",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "接着来下一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "再来一首吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "再换一首听听",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "接着放下一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换下一首听",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "再换首别的",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "接着换一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "这首歌切了吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "跳过这首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "这首不要了换一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "跳过去换一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切歌吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "这首跳过",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "不要这首了切了吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "跳过换下一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "下",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "这首不好听切了",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切下一首吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "不好听换一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "听腻了换一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "节奏不对换一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "这首太吵换一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "不喜欢这首换掉",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "这首没感觉换一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "太慢了换一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "听够了换一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "这首太老换一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "节奏太慢换一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "切换",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "上一曲",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "刚才那首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "播放上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "听上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "跳到上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "放上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "上一首吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切到上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "来上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "上一曲吧",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "往回切一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要听上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "上一首呗",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "放刚才那首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切回刚才那首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "回到刚才那首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "听刚才那首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "刚才那首歌",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "放回刚才那首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "倒回刚才那首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "再听一遍刚才那首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "重播",
+        "object": "播放列表",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "回到上一首歌",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切回上一首歌",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换回上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "回到上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "退回上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "倒回上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换到上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切回去上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "退一首回去",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "换回刚才那首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "倒一首回去",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "回退一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "退出",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "再听一遍上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "上一首重新放",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "刚才那首重放一遍",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "重播",
+        "object": "",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "上一首再放一次",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "回去重听上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "上一首重新来",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "刚才那首再听一遍",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "重播",
+        "object": "",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "上一首再放一遍",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我切上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "麻烦放上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我回到上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "切错了换回上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我切回刚才那首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我退回上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "刚才那首好听回去听",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我倒回上一首",
+      "expected_tool": "playback_control",
+      "expected_params": {
+        "operation": "上",
+        "object": "",
+        "value": "首",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我开通屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "我要开通屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "我要开通屏保画册VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "麻烦开通屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "麻烦买屏保画册VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "电视购买屏保画册VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "把屏保VIP开通一下",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "买下屏保画册VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "能不能开通屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "我想开通屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "帮电视开通屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "办理屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "办理屏保画册VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "我需要开通屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "直接开通屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "帮我买下屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "帮我买下屏保画册VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "可不可以开通屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "开启屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "开启屏保画册VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "续费屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "续费屏保画册VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "帮我续费屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "帮我续费屏保画册VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "我要续费屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "开通屏保VIP会员",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "麻烦购买屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "帮我办理屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "帮我办理屏保画册VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "我打算开通屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "把屏保VIP买下来",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "把屏保画册VIP买下来",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "申请开通屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "帮我申请屏保画册VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "能不能续费屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "直接买下屏保VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "直接买下屏保画册VIP",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "把第1个设置为屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把第2个设置为屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把第3个设置为屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "3",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把第4个设置为屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "4",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把第5个设置为屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "5",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "设置第1个为壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "设置第2个为壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "设置第3个为壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "3",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "设置第4个为壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "4",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "设置第5个为壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "5",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把第1个设为壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把第2个设为壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把第3个设为壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "3",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把第4个设为壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "4",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把第5个设为壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "5",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我把第1个设置成屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我把第2个设置成屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我把第3个设置成屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "3",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我设置第1个为壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我设置第2个为壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我设置第3个为壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "3",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我把第1个设成壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我把第2个设成壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我把第3个设成壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "3",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "将第1个设为屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "将第2个设为屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "将第3个设为屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "3",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "将第1个设置成壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "将第2个设置成壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "将第3个设置成壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "3",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "将第1个设置为壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "将第2个设置为壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "将第3个设置为壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "3",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "选第1个当做屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "选第2个当做屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "选第1个当做壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "选第2个当做壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "选第1个当做壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "选第2个当做壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要把第1个设为屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要把第2个设为屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要设置第1个为壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要设置第2个为壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要把第1个设置成壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要把第2个设置成壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "使用第1个作为屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "使用第2个作为屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "使用第1个作为壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "使用第2个作为壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "使用第1个作为壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "使用第2个作为壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "确定第1个为屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "确定第2个为屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "确定第1个为壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "确定第2个为壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "确定第1个为壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "1",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "确定第2个为壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "2",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "打开屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "进入屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "启动屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "屏保画册，打开",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我打开屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要进入屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我想启动屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "打开屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把屏保画册打开",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我打开屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "请打开屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "可以打开屏保画册吗",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "能不能打开屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "给我打开屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "给我放屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我想看屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要看屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "想打开屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "要看屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "放屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "放一下屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "放个屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "开屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "开一下屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "开个屏保画册吧",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "进入屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "启动屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "运行屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "打开屏保画册功能",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "电视屏保画册打开",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "展示屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我把屏保画册放出来",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "用一下屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要打开屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "咱们看屏保画册吧",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "去打开屏保画册",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "屏保画册打开好吗",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保画册",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "打开屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "打开壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "打开壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我打开屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我打开壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我打开壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把屏保打开",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把壁画打开",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把壁纸打开",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "开启屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "开启壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "开启壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "麻烦打开屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "麻烦打开壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "麻烦打开壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "电视打开屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "电视打开壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁画",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "电视打开壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁纸",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "启动屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "启动壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "启动壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "调出屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "调出壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "调出壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮电视机打开屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮电视机打开壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁画",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮电视机打开壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁纸",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "开启电视屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "开启电视壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁画",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "开启电视壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁纸",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "将屏保打开",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "将壁画打开",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "将壁纸打开",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "能不能打开屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "能不能打开壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "能不能打开壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要打开屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要打开壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要打开壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "屏幕打开屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "屏幕打开壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "屏幕打开壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "打开",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "打开屏保设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "打开壁画设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "打开壁纸设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我打开屏保设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我打开壁画设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我打开壁纸设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要设置屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要设置壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要设置壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我想设置屏保壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {}
+    },
+    {
+      "query": "打开屏保的设置页面",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "打开壁画的设置页面",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "打开壁纸的设置页面",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "进入屏保设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "进入壁画设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "进入壁纸设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我进到屏保设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我进到壁画设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我进到壁纸设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把屏保设置打开",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把壁画设置打开",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把壁纸设置打开",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "开启屏保设置界面",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "开启壁画设置界面",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "开启壁纸设置界面",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "电视打开屏保设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "电视打开壁画设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "电视打开壁纸设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "调出屏保设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "调出壁画设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "调出壁纸设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我想要设置屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我想要设置壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我想要设置壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "能不能打开屏保设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "能不能打开壁画设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "能不能打开壁纸设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "打开屏保相关设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "打开壁画相关设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "打开壁纸相关设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮电视机打开屏保设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮电视机打开壁画设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮电视机打开壁纸设置",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "进入屏保的设置界面",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "进入壁画的设置界面",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "进入壁纸的设置界面",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我想去设置屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我想去设置壁画",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁画",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我想去设置壁纸",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "设置",
+        "object": "壁纸",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "关闭屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "退出屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "不要显示屏保了",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我关闭屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把屏保关掉",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "关掉屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "停止屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "屏保关掉",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "屏保关闭",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "退出当前屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮我把屏保关掉",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "麻烦关闭屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "麻烦关掉屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "电视关闭屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "电视关掉屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "取消屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "屏保不要显示了",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "停止运行屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "将屏保关闭",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "将屏保关掉",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "能不能关闭屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "能不能关掉屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要关闭屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "我要关掉屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "退出电视屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "关掉屏幕的屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "关闭屏幕屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "屏保退出去",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮电视关掉屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "帮电视关闭屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "电视",
+        "location": ""
+      }
+    },
+    {
+      "query": "屏保功能关掉",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "屏保功能关闭",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "不要启动屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "禁止显示屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "屏保取消掉",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把屏保退出",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "结束屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "结束当前屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "屏保停止",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "关掉正在运行的屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "关闭正在运行的屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "屏保不要弹出来",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "让屏保消失",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "退出屏保界面",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "关掉屏保模式",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "关闭屏保模式",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "麻烦退出屏保",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "可以关闭屏保吗",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "把屏保给关掉",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
+      }
+    },
+    {
+      "query": "屏保关掉吧",
+      "expected_tool": "screensaver_control",
+      "expected_params": {
+        "operation": "关闭",
+        "object": "屏保",
+        "value": "",
+        "device": "",
+        "location": ""
       }
     }
   ]

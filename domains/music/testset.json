@@ -1,7 +1,7 @@
 {
   "domain": "音乐",
   "domain_key": "music",
-  "count": 207,
+  "count": 495,
   "records": [
     {
       "query": "K歌潮湿的心",
@@ -193,7 +193,7 @@
     },
     {
       "query": "歌曲热搜榜MV",
-      "expected_tool": "fan_knowledge_agent",
+      "expected_tool": "music_song_search",
       "expected_params": {}
     },
     {
@@ -311,7 +311,7 @@
     },
     {
       "query": "海信小聚00后热歌榜的歌曲",
-      "expected_tool": "fan_knowledge_agent",
+      "expected_tool": "music_song_search",
       "expected_params": {}
     },
     {
@@ -356,7 +356,7 @@
     },
     {
       "query": "我想听YouTube音乐排行榜的歌",
-      "expected_tool": "fan_knowledge_agent",
+      "expected_tool": "music_song_search",
       "expected_params": {}
     },
     {
@@ -368,7 +368,7 @@
           "免费版"
         ],
         "tag": [
-          "华语"
+          "华语流行"
         ]
       }
     },
@@ -429,6 +429,11 @@
       }
     },
     {
+      "query": "播放2023年的网红歌",
+      "expected_tool": "music_song_search",
+      "expected_params": {}
+    },
+    {
       "query": "我想听龚玥的十送红军",
       "expected_tool": "music_song_search",
       "expected_params": {
@@ -442,6 +447,11 @@
       }
     },
     {
+      "query": "我想听90年代的歌曲",
+      "expected_tool": "music_song_search",
+      "expected_params": {}
+    },
+    {
       "query": "播放专辑一场游戏一场梦",
       "expected_tool": "music_song_search",
       "expected_params": {
@@ -450,6 +460,11 @@
           "一场游戏一场梦"
         ]
       }
+    },
+    {
+      "query": "影视金曲",
+      "expected_tool": "music_song_search",
+      "expected_params": {}
     },
     {
       "query": "我想听雨一直下里的音乐",
@@ -467,7 +482,7 @@
       "expected_params": {
         "retext": "欧美地区的音乐",
         "tag": [
-          "欧美"
+          "欧美流行"
         ]
       }
     },
@@ -477,7 +492,7 @@
       "expected_params": {
         "retext": "经典的男女对唱歌曲",
         "tag": [
-          "对唱",
+          "男女对唱",
           "经典"
         ]
       }
@@ -535,7 +550,7 @@
       "expected_params": {
         "retext": "给我找‌新世纪音乐",
         "tag": [
-          "新世纪音乐"
+          "新世纪纯音乐"
         ]
       }
     },
@@ -674,6 +689,17 @@
       }
     },
     {
+      "query": "我要听 周杰伦或者林俊杰的歌",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "我要听 周杰伦或者林俊杰的歌",
+        "singer": [
+          "周杰伦",
+          "林俊杰"
+        ]
+      }
+    },
+    {
       "query": "开心的歌",
       "expected_tool": "music_song_search",
       "expected_params": {
@@ -785,7 +811,8 @@
           "李健"
         ],
         "tag": [
-          "古典民谣"
+          "古典",
+          "民谣"
         ]
       }
     },
@@ -835,7 +862,8 @@
         ],
         "tag": [
           "演唱会",
-          "经典舞曲"
+          "舞曲",
+          "经典"
         ]
       }
     },
@@ -875,7 +903,7 @@
       "expected_params": {
         "retext": "播放朋友聚会时听的歌",
         "tag": [
-          "聚会"
+          "家庭聚会"
         ]
       }
     },
@@ -963,7 +991,7 @@
     },
     {
       "query": "来点香港商台榜的歌",
-      "expected_tool": "fan_knowledge_agent",
+      "expected_tool": "music_song_search",
       "expected_params": {}
     },
     {
@@ -1069,7 +1097,7 @@
       "expected_params": {
         "retext": "小提琴演奏的治愈系乐曲",
         "tag": [
-          "治愈系",
+          "温暖治愈",
           "小提琴"
         ]
       }
@@ -1109,7 +1137,7 @@
     },
     {
       "query": "播放最新歌曲",
-      "expected_tool": "fan_knowledge_agent",
+      "expected_tool": "music_song_search",
       "expected_params": {}
     },
     {
@@ -1219,7 +1247,7 @@
     },
     {
       "query": "播放网络歌曲榜的歌",
-      "expected_tool": "fan_knowledge_agent",
+      "expected_tool": "music_song_search",
       "expected_params": {}
     },
     {
@@ -1228,7 +1256,7 @@
       "expected_params": {
         "retext": "推荐一些适合多人合唱的流行歌曲",
         "tag": [
-          "多人合唱",
+          "合唱",
           "流行"
         ]
       }
@@ -1953,6 +1981,2442 @@
       "expected_tool": "music_song_recommend",
       "expected_params": {
         "retext": "唱首歌来听"
+      }
+    },
+    {
+      "query": "帮我找央视音乐频道的演唱会现场版",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "帮我找央视音乐频道的演唱会现场版"
+      }
+    },
+    {
+      "query": "切到CCTV-15的民歌专场",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "切到CCTV-15的民歌专场"
+      }
+    },
+    {
+      "query": "我想看央视十五套的儿童歌曲",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "我想看央视十五套的儿童歌曲"
+      }
+    },
+    {
+      "query": "CCTV15的校园民谣合集",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "CCTV15的校园民谣合集"
+      }
+    },
+    {
+      "query": "播放中央十五台的红歌经典",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "播放中央十五台的红歌经典"
+      }
+    },
+    {
+      "query": "CCTV-15音乐频道的茶馆小调",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "CCTV-15音乐频道的茶馆小调"
+      }
+    },
+    {
+      "query": "播放央视音乐频道的民乐精选",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "播放央视音乐频道的民乐精选"
+      }
+    },
+    {
+      "query": "查找CCTV-15的民歌专辑",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "查找CCTV-15的民歌专辑"
+      }
+    },
+    {
+      "query": "给我放CCTV音乐频道的国乐盛典",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "给我放CCTV音乐频道的国乐盛典"
+      }
+    },
+    {
+      "query": "中央音乐频道的诗经古曲",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "中央音乐频道的诗经古曲"
+      }
+    },
+    {
+      "query": "我想听CCTV-15的二胡名曲",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "我想听CCTV-15的二胡名曲"
+      }
+    },
+    {
+      "query": "CCTV15音乐频道的怀旧经典",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "CCTV15音乐频道的怀旧经典"
+      }
+    },
+    {
+      "query": "搜CCTV-15的拉丁音乐专题",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "搜CCTV-15的拉丁音乐专题"
+      }
+    },
+    {
+      "query": "播放CCTV音乐频道的港台金曲",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "播放CCTV音乐频道的港台金曲"
+      }
+    },
+    {
+      "query": "CCTV-15的奥斯卡电影原声",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "CCTV-15的奥斯卡电影原声"
+      }
+    },
+    {
+      "query": "央视音乐台的劲歌金曲",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "央视音乐台的劲歌金曲"
+      }
+    },
+    {
+      "query": "CCTV-15的草原天籁",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "CCTV-15的草原天籁"
+      }
+    },
+    {
+      "query": "中央音乐频道的新春音乐会",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "中央音乐频道的新春音乐会"
+      }
+    },
+    {
+      "query": "CCTV15的电视连续剧主题曲",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "CCTV15的电视连续剧主题曲"
+      }
+    },
+    {
+      "query": "CCTV-15的华语流行榜",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "CCTV-15的华语流行榜"
+      }
+    },
+    {
+      "query": "播放湖南卫视的快乐大本营主题曲",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "播放湖南卫视的快乐大本营主题曲"
+      }
+    },
+    {
+      "query": "我想听江苏卫视非诚勿扰里播过的歌",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "我想听江苏卫视非诚勿扰里播过的歌"
+      }
+    },
+    {
+      "query": "浙江卫视中国好声音的歌",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "浙江卫视中国好声音的歌"
+      }
+    },
+    {
+      "query": "东方卫视的梦想改造家插曲",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "东方卫视的梦想改造家插曲"
+      }
+    },
+    {
+      "query": "北京卫视的养生堂片头曲",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "北京卫视的养生堂片头曲"
+      }
+    },
+    {
+      "query": "深圳卫视的年代秀歌曲",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "深圳卫视的年代秀歌曲"
+      }
+    },
+    {
+      "query": "辽宁卫视春晚的歌",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "辽宁卫视春晚的歌"
+      }
+    },
+    {
+      "query": "山东卫视的经典老歌",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "山东卫视的经典老歌"
+      }
+    },
+    {
+      "query": "广东卫视的粤剧金曲",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "广东卫视的粤剧金曲"
+      }
+    },
+    {
+      "query": "天津卫视相声大会的歌",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "天津卫视相声大会的歌"
+      }
+    },
+    {
+      "query": "河南卫视梨园春的戏曲",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "河南卫视梨园春的戏曲"
+      }
+    },
+    {
+      "query": "安徽卫视国剧盛典的配乐",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "安徽卫视国剧盛典的配乐"
+      }
+    },
+    {
+      "query": "我想看哪个台有老歌节目",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "我想看哪个台有老歌节目"
+      }
+    },
+    {
+      "query": "搜索电视台演过的民歌",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "搜索电视台演过的民歌"
+      }
+    },
+    {
+      "query": "电视台播放过的怀旧金曲",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "电视台播放过的怀旧金曲"
+      }
+    },
+    {
+      "query": "中央六台播过的电影歌曲",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "中央六台播过的电影歌曲"
+      }
+    },
+    {
+      "query": "我想听音乐电视台的歌",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "我想听音乐电视台的歌"
+      }
+    },
+    {
+      "query": "CCTV-3综艺频道的歌舞节目",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "CCTV-3综艺频道的歌舞节目"
+      }
+    },
+    {
+      "query": "请放音乐广播频道的轻音乐",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "请放音乐广播频道的轻音乐"
+      }
+    },
+    {
+      "query": "电视台歌友会唱过的歌",
+      "expected_tool": "tvchannel_music_search",
+      "expected_params": {
+        "retext": "电视台歌友会唱过的歌"
+      }
+    },
+    {
+      "query": "把收藏的歌放给我听",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "把收藏的歌放给我听"
+      }
+    },
+    {
+      "query": "从我的收藏里挑一首播放",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "从我的收藏里挑一首播放"
+      }
+    },
+    {
+      "query": "从我的收藏里找一首出来",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "从我的收藏里找一首出来"
+      }
+    },
+    {
+      "query": "把收藏的歌曲放一遍",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "把收藏的歌曲放一遍"
+      }
+    },
+    {
+      "query": "我要听我收藏的所有歌",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "我要听我收藏的所有歌"
+      }
+    },
+    {
+      "query": "播放收藏里的歌曲",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "播放收藏里的歌曲"
+      }
+    },
+    {
+      "query": "来一首收藏里比较好听的",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "来一首收藏里比较好听的"
+      }
+    },
+    {
+      "query": "放收藏歌单中最近添加的",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "放收藏歌单中最近添加的"
+      }
+    },
+    {
+      "query": "播放我收藏的华语经典",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "播放我收藏的华语经典"
+      }
+    },
+    {
+      "query": "我想听我收藏的英文歌",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "我想听我收藏的英文歌"
+      }
+    },
+    {
+      "query": "切一首我收藏的民歌",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "切一首我收藏的民歌"
+      }
+    },
+    {
+      "query": "来点我收藏的轻音乐",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "来点我收藏的轻音乐"
+      }
+    },
+    {
+      "query": "放我收藏歌单里最常听的",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "放我收藏歌单里最常听的"
+      }
+    },
+    {
+      "query": "播放我收藏的粤语歌",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "播放我收藏的粤语歌"
+      }
+    },
+    {
+      "query": "来一首我收藏的古风歌曲",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "来一首我收藏的古风歌曲"
+      }
+    },
+    {
+      "query": "放我收藏里最新收藏的那首",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "放我收藏里最新收藏的那首"
+      }
+    },
+    {
+      "query": "我想听我收藏的儿歌",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "我想听我收藏的儿歌"
+      }
+    },
+    {
+      "query": "播放我收藏的钢琴曲",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "播放我收藏的钢琴曲"
+      }
+    },
+    {
+      "query": "播我收藏的日文歌",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "播我收藏的日文歌"
+      }
+    },
+    {
+      "query": "来一首我收藏的纯音乐",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "来一首我收藏的纯音乐"
+      }
+    },
+    {
+      "query": "放我收藏里的老歌",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "放我收藏里的老歌"
+      }
+    },
+    {
+      "query": "我想听我收藏的广场舞歌曲",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "我想听我收藏的广场舞歌曲"
+      }
+    },
+    {
+      "query": "播放我收藏的影视原声",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "播放我收藏的影视原声"
+      }
+    },
+    {
+      "query": "切我收藏的民谣",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "切我收藏的民谣"
+      }
+    },
+    {
+      "query": "从收藏里选一首DJ",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "从收藏里选一首DJ"
+      }
+    },
+    {
+      "query": "放收藏歌单里心情好听的",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "放收藏歌单里心情好听的"
+      }
+    },
+    {
+      "query": "我收藏里有摇滚吗",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "我收藏里有摇滚吗"
+      }
+    },
+    {
+      "query": "给我随机播一首收藏的歌",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "给我随机播一首收藏的歌"
+      }
+    },
+    {
+      "query": "把收藏里欢快的歌放出来",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "把收藏里欢快的歌放出来"
+      }
+    },
+    {
+      "query": "挑一首我收藏的粤语老歌",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "挑一首我收藏的粤语老歌"
+      }
+    },
+    {
+      "query": "放我收藏的爵士乐",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "放我收藏的爵士乐"
+      }
+    },
+    {
+      "query": "我想听我收藏的儿童歌曲",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "我想听我收藏的儿童歌曲"
+      }
+    },
+    {
+      "query": "放我收藏的校园民谣",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "放我收藏的校园民谣"
+      }
+    },
+    {
+      "query": "播一首我收藏的欧美热歌",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "播一首我收藏的欧美热歌"
+      }
+    },
+    {
+      "query": "放我收藏的怀旧金曲",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "放我收藏的怀旧金曲"
+      }
+    },
+    {
+      "query": "来一首我收藏的治愈系音乐",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "来一首我收藏的治愈系音乐"
+      }
+    },
+    {
+      "query": "播放我收藏的电子舞曲",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "播放我收藏的电子舞曲"
+      }
+    },
+    {
+      "query": "放一首我收藏的闽南语歌",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "放一首我收藏的闽南语歌"
+      }
+    },
+    {
+      "query": "播放我收藏的新年歌曲",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "播放我收藏的新年歌曲"
+      }
+    },
+    {
+      "query": "我想听我收藏的日语歌",
+      "expected_tool": "music_song_favorite_search",
+      "expected_params": {
+        "retext": "我想听我收藏的日语歌"
+      }
+    },
+    {
+      "query": "继续播放我上次没听完的歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "继续播放我上次没听完的歌"
+      }
+    },
+    {
+      "query": "我想听上一首听过的歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "我想听上一首听过的歌"
+      }
+    },
+    {
+      "query": "播放昨天的播放记录",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "播放昨天的播放记录"
+      }
+    },
+    {
+      "query": "放我之前单曲循环过的那首",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "放我之前单曲循环过的那首"
+      }
+    },
+    {
+      "query": "我想再听一次上次听过的歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "我想再听一次上次听过的歌"
+      }
+    },
+    {
+      "query": "从我的播放历史里挑一首",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "从我的播放历史里挑一首"
+      }
+    },
+    {
+      "query": "播放昨天听过的歌曲",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "播放昨天听过的歌曲"
+      }
+    },
+    {
+      "query": "放我昨天播放列表的歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "放我昨天播放列表的歌"
+      }
+    },
+    {
+      "query": "我上次点过的那首歌再来一遍",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "我上次点过的那首歌再来一遍"
+      }
+    },
+    {
+      "query": "播放我最近播放过的歌单",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "播放我最近播放过的歌单"
+      }
+    },
+    {
+      "query": "给我放听歌记录里的歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "给我放听歌记录里的歌"
+      }
+    },
+    {
+      "query": "切一首我之前单曲循环的歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "切一首我之前单曲循环的歌"
+      }
+    },
+    {
+      "query": "再来一首我之前听过的英文歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "再来一首我之前听过的英文歌"
+      }
+    },
+    {
+      "query": "播放听歌历史里最近的那首",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "播放听歌历史里最近的那首"
+      }
+    },
+    {
+      "query": "放我最近反复听过的那首歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "放我最近反复听过的那首歌"
+      }
+    },
+    {
+      "query": "继续放我昨天没听完的那张专辑",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "继续放我昨天没听完的那张专辑"
+      }
+    },
+    {
+      "query": "播放我上一次的播放记录",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "播放我上一次的播放记录"
+      }
+    },
+    {
+      "query": "我想听我今天听过的歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "我想听我今天听过的歌"
+      }
+    },
+    {
+      "query": "播放近一周的听歌记录",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "播放近一周的听歌记录"
+      }
+    },
+    {
+      "query": "放我之前听过的那首歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "放我之前听过的那首歌"
+      }
+    },
+    {
+      "query": "切到我历史里点过的那一首",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "切到我历史里点过的那一首"
+      }
+    },
+    {
+      "query": "播放我最近播放过的同一首歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "播放我最近播放过的同一首歌"
+      }
+    },
+    {
+      "query": "从听歌历史里再选一首",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "从听歌历史里再选一首"
+      }
+    },
+    {
+      "query": "播放上周听过的歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "播放上周听过的歌"
+      }
+    },
+    {
+      "query": "我想再听一遍我曾经听过的歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "我想再听一遍我曾经听过的歌"
+      }
+    },
+    {
+      "query": "从我的听歌记录里挑出喜欢的",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "从我的听歌记录里挑出喜欢的"
+      }
+    },
+    {
+      "query": "播放我昨天循环过的歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "播放我昨天循环过的歌"
+      }
+    },
+    {
+      "query": "放我听歌历史里点红心的那首",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "放我听歌历史里点红心的那首"
+      }
+    },
+    {
+      "query": "播放最近三天听过的歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "播放最近三天听过的歌"
+      }
+    },
+    {
+      "query": "放我最近收藏前听过的歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "放我最近收藏前听过的歌"
+      }
+    },
+    {
+      "query": "切到听歌记录里最近的一首",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "切到听歌记录里最近的一首"
+      }
+    },
+    {
+      "query": "播放我上周点过的歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "播放我上周点过的歌"
+      }
+    },
+    {
+      "query": "放我听歌历史里点赞过的歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "放我听歌历史里点赞过的歌"
+      }
+    },
+    {
+      "query": "继续播我昨晚没放完的歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "继续播我昨晚没放完的歌"
+      }
+    },
+    {
+      "query": "从播放历史里选首华语歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "从播放历史里选首华语歌"
+      }
+    },
+    {
+      "query": "播放我一个月前听过的歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "播放我一个月前听过的歌"
+      }
+    },
+    {
+      "query": "我想再听一次我听过的那首民谣",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "我想再听一次我听过的那首民谣"
+      }
+    },
+    {
+      "query": "从历史记录里挑一首DJ",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "从历史记录里挑一首DJ"
+      }
+    },
+    {
+      "query": "继续放我之前的播放",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "继续放我之前的播放"
+      }
+    },
+    {
+      "query": "播放我前两天循环过的歌",
+      "expected_tool": "music_song_history",
+      "expected_params": {
+        "retext": "播放我前两天循环过的歌"
+      }
+    },
+    {
+      "query": "我想听音乐",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "我想听音乐"
+      }
+    },
+    {
+      "query": "我要听歌",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "我要听歌"
+      }
+    },
+    {
+      "query": "播放音乐",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "播放音乐"
+      }
+    },
+    {
+      "query": "播放歌曲",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "播放歌曲"
+      }
+    },
+    {
+      "query": "放首歌吧",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "放首歌吧"
+      }
+    },
+    {
+      "query": "放一首歌",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "放一首歌"
+      }
+    },
+    {
+      "query": "放首歌",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "放首歌"
+      }
+    },
+    {
+      "query": "放首歌来",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "放首歌来"
+      }
+    },
+    {
+      "query": "来首歌",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "来首歌"
+      }
+    },
+    {
+      "query": "来首歌听",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "来首歌听"
+      }
+    },
+    {
+      "query": "来首歌听听",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "来首歌听听"
+      }
+    },
+    {
+      "query": "来首音乐",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "来首音乐"
+      }
+    },
+    {
+      "query": "来一首歌",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "来一首歌"
+      }
+    },
+    {
+      "query": "来一首",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "来一首"
+      }
+    },
+    {
+      "query": "听歌吧",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "听歌吧"
+      }
+    },
+    {
+      "query": "随便放一首",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "随便放一首"
+      }
+    },
+    {
+      "query": "随便来一首",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "随便来一首"
+      }
+    },
+    {
+      "query": "随便来首歌",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "随便来首歌"
+      }
+    },
+    {
+      "query": "随便放首歌",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "随便放首歌"
+      }
+    },
+    {
+      "query": "有什么好听的歌",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "有什么好听的歌"
+      }
+    },
+    {
+      "query": "来首好听的",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "来首好听的"
+      }
+    },
+    {
+      "query": "有没有好歌",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "有没有好歌"
+      }
+    },
+    {
+      "query": "有什么好歌",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "有什么好歌"
+      }
+    },
+    {
+      "query": "推荐首歌",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "推荐首歌"
+      }
+    },
+    {
+      "query": "推荐一首歌",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "推荐一首歌"
+      }
+    },
+    {
+      "query": "推荐首歌来听",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "推荐首歌来听"
+      }
+    },
+    {
+      "query": "推荐首歌听听",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "推荐首歌听听"
+      }
+    },
+    {
+      "query": "点首歌",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "点首歌"
+      }
+    },
+    {
+      "query": "点首歌听",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "点首歌听"
+      }
+    },
+    {
+      "query": "切首歌",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "切首歌"
+      }
+    },
+    {
+      "query": "给我唱首歌",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "给我唱首歌"
+      }
+    },
+    {
+      "query": "放点音乐",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "放点音乐"
+      }
+    },
+    {
+      "query": "放点歌",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "放点歌"
+      }
+    },
+    {
+      "query": "来点音乐",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "来点音乐"
+      }
+    },
+    {
+      "query": "来点歌",
+      "expected_tool": "music_song_recommend",
+      "expected_params": {
+        "retext": "来点歌"
+      }
+    },
+    {
+      "query": "换一个世上只有妈妈好",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放世上只有妈妈好",
+        "song": [
+          "世上只有妈妈好"
+        ]
+      }
+    },
+    {
+      "query": "换个一路向北",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放一路向北",
+        "song": [
+          "一路向北"
+        ]
+      }
+    },
+    {
+      "query": "切个周杰伦的一路向北",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放周杰伦的一路向北",
+        "song": [
+          "一路向北"
+        ],
+        "singer": [
+          "周杰伦"
+        ]
+      }
+    },
+    {
+      "query": "换一首不同的歌，来张学友的再见",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放张学友的再见",
+        "song": [
+          "再见"
+        ],
+        "singer": [
+          "张学友"
+        ]
+      }
+    },
+    {
+      "query": "这首不好听，换周杰伦的稻香",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放周杰伦的稻香",
+        "song": [
+          "稻香"
+        ],
+        "singer": [
+          "周杰伦"
+        ]
+      }
+    },
+    {
+      "query": "下一首土坡上狗尾巴草",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放土坡上狗尾巴草",
+        "song": [
+          "土坡上狗尾巴草"
+        ]
+      }
+    },
+    {
+      "query": "换一首战火燃烧",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放战火燃烧",
+        "song": [
+          "战火燃烧"
+        ]
+      }
+    },
+    {
+      "query": "给我换一个背对背拥抱",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放背对背拥抱",
+        "song": [
+          "背对背拥抱"
+        ]
+      }
+    },
+    {
+      "query": "下一个红山果",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放红山果",
+        "song": [
+          "红山果"
+        ]
+      }
+    },
+    {
+      "query": "换一个大花轿",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放大花轿",
+        "song": [
+          "大花轿"
+        ]
+      }
+    },
+    {
+      "query": "换一个奥特曼歌曲",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放奥特曼歌曲",
+        "ip": [
+          "奥特曼"
+        ]
+      }
+    },
+    {
+      "query": "再换一个大香蕉",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放大香蕉",
+        "song": [
+          "大香蕉"
+        ]
+      }
+    },
+    {
+      "query": "再换一个离别开出花",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放离别开出花",
+        "song": [
+          "离别开出花"
+        ]
+      }
+    },
+    {
+      "query": "再换一个野狼disco",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放野狼disco",
+        "song": [
+          "野狼disco"
+        ]
+      }
+    },
+    {
+      "query": "请播放下一首今生最爱",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放今生最爱",
+        "song": [
+          "今生最爱"
+        ]
+      }
+    },
+    {
+      "query": "换一首孤勇者",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放孤勇者",
+        "song": [
+          "孤勇者"
+        ]
+      }
+    },
+    {
+      "query": "换一个起风了",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放起风了",
+        "song": [
+          "起风了"
+        ]
+      }
+    },
+    {
+      "query": "换个青花瓷",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放青花瓷",
+        "song": [
+          "青花瓷"
+        ]
+      }
+    },
+    {
+      "query": "换一首大鱼",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放大鱼",
+        "song": [
+          "大鱼"
+        ]
+      }
+    },
+    {
+      "query": "换一个平凡之路",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放平凡之路",
+        "song": [
+          "平凡之路"
+        ]
+      }
+    },
+    {
+      "query": "切一首周深的大鱼",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放周深的大鱼",
+        "song": [
+          "大鱼"
+        ],
+        "singer": [
+          "周深"
+        ]
+      }
+    },
+    {
+      "query": "切个治愈民谣南山南",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放治愈民谣南山南",
+        "song": [
+          "南山南"
+        ],
+        "tag": [
+          "民谣",
+          "温暖治愈"
+        ]
+      }
+    },
+    {
+      "query": "切一首热门古风赤伶",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放热门古风赤伶",
+        "song": [
+          "赤伶"
+        ],
+        "tag": [
+          "古风"
+        ]
+      }
+    },
+    {
+      "query": "切个动画片主题曲葫芦娃",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放动画片主题曲葫芦娃",
+        "song": [
+          "葫芦娃"
+        ],
+        "tag": [
+          "卡通动画"
+        ]
+      }
+    },
+    {
+      "query": "这首听腻了，换首消愁",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放消愁",
+        "song": [
+          "消愁"
+        ]
+      }
+    },
+    {
+      "query": "这首歌不太喜欢，换一首富士山下",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放富士山下",
+        "song": [
+          "富士山下"
+        ]
+      }
+    },
+    {
+      "query": "不好听，切换到七里香",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放七里香",
+        "song": [
+          "七里香"
+        ]
+      }
+    },
+    {
+      "query": "这首节奏不喜欢，换一个年轮",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放年轮",
+        "song": [
+          "年轮"
+        ]
+      }
+    },
+    {
+      "query": "下一首放孤勇者",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放孤勇者",
+        "song": [
+          "孤勇者"
+        ]
+      }
+    },
+    {
+      "query": "放下一首周杰伦的晴天",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放周杰伦的晴天",
+        "song": [
+          "晴天"
+        ],
+        "singer": [
+          "周杰伦"
+        ]
+      }
+    },
+    {
+      "query": "这首不好听，换个邓紫棋的光年之外",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放邓紫棋的光年之外",
+        "song": [
+          "光年之外"
+        ],
+        "singer": [
+          "邓紫棋"
+        ]
+      }
+    },
+    {
+      "query": "切一首林俊杰的江南",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放林俊杰的江南",
+        "song": [
+          "江南"
+        ],
+        "singer": [
+          "林俊杰"
+        ]
+      }
+    },
+    {
+      "query": "换个毛不易的消愁",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放毛不易的消愁",
+        "song": [
+          "消愁"
+        ],
+        "singer": [
+          "毛不易"
+        ]
+      }
+    },
+    {
+      "query": "下一首陈奕迅的富士山下",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放陈奕迅的富士山下",
+        "song": [
+          "富士山下"
+        ],
+        "singer": [
+          "陈奕迅"
+        ]
+      }
+    },
+    {
+      "query": "给我切个歌，来一首毛阿敏的相思",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放毛阿敏的相思",
+        "song": [
+          "相思"
+        ],
+        "singer": [
+          "毛阿敏"
+        ]
+      }
+    },
+    {
+      "query": "重新换一首，播放动漫主题曲追光者",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放动漫主题曲追光者",
+        "song": [
+          "追光者"
+        ],
+        "tag": [
+          "动漫原声"
+        ]
+      }
+    },
+    {
+      "query": "我要听抖音热歌榜",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "我要听抖音热歌榜",
+        "tag": [
+          "抖音"
+        ]
+      }
+    },
+    {
+      "query": "放几首民谣榜里的歌曲",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "放几首民谣榜里的歌曲",
+        "tag": [
+          "民谣"
+        ]
+      }
+    },
+    {
+      "query": "放摇滚榜的歌曲",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "放摇滚榜的歌曲",
+        "tag": [
+          "摇滚"
+        ]
+      }
+    },
+    {
+      "query": "韩国Melon音乐榜的音乐",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "韩国Melon音乐榜的音乐",
+        "tag": [
+          "韩语"
+        ]
+      }
+    },
+    {
+      "query": "播放欧美金曲榜",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放欧美金曲榜",
+        "tag": [
+          "欧美流行"
+        ]
+      }
+    },
+    {
+      "query": "适合冬日取暖时听的音乐",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "适合冬日取暖时听的音乐"
+      }
+    },
+    {
+      "query": "找一个适合健身时听的歌单播放",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "找一个适合健身时听的歌单播放",
+        "tag": [
+          "运动"
+        ]
+      }
+    },
+    {
+      "query": "找一些有助于专注学习的歌",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "找一些有助于专注学习的歌",
+        "tag": [
+          "工作学习&咖啡厅"
+        ]
+      }
+    },
+    {
+      "query": "找点适合晚餐时的背景音乐",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "找点适合晚餐时的背景音乐",
+        "tag": [
+          "烛光晚餐"
+        ]
+      }
+    },
+    {
+      "query": "播放跑步音乐",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放跑步音乐",
+        "tag": [
+          "跑步&骑行"
+        ]
+      }
+    },
+    {
+      "query": "推荐学习的时候听的歌曲",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "推荐学习的时候听的歌曲",
+        "tag": [
+          "工作学习&咖啡厅"
+        ]
+      }
+    },
+    {
+      "query": "喝咖啡的时候听的歌",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "喝咖啡的时候听的歌",
+        "tag": [
+          "咖啡厅"
+        ]
+      }
+    },
+    {
+      "query": "梅花三弄琴箫合奏",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "梅花三弄琴箫合奏",
+        "song": [
+          "梅花三弄"
+        ],
+        "tag": [
+          "古琴"
+        ]
+      }
+    },
+    {
+      "query": "古筝曲",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "古筝曲",
+        "tag": [
+          "古筝"
+        ]
+      }
+    },
+    {
+      "query": "唢呐演奏的《百鸟朝凤》",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "唢呐演奏的百鸟朝凤",
+        "song": [
+          "百鸟朝凤"
+        ],
+        "tag": [
+          "唢呐"
+        ]
+      }
+    },
+    {
+      "query": "播放钢琴曲",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "播放钢琴曲",
+        "tag": [
+          "钢琴"
+        ]
+      }
+    },
+    {
+      "query": "任同祥的唢呐演奏乐",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "任同祥的唢呐演奏乐",
+        "singer": [
+          "任同祥"
+        ],
+        "tag": [
+          "唢呐"
+        ]
+      }
+    },
+    {
+      "query": "琵琶独奏曲",
+      "expected_tool": "music_song_search",
+      "expected_params": {
+        "retext": "琵琶独奏曲",
+        "tag": [
+          "琵琶"
+        ]
+      }
+    },
+    {
+      "query": "我想看周杰伦的一路向北MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "我想看周杰伦的一路向北MV",
+        "singer": [
+          "周杰伦"
+        ],
+        "song": [
+          "一路向北"
+        ]
+      }
+    },
+    {
+      "query": "我要听七里香专辑MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "我要听七里香专辑MV",
+        "album": [
+          "七里香"
+        ]
+      }
+    },
+    {
+      "query": "雪龙吟视频",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "播放雪龙吟MV",
+        "song": [
+          "雪龙吟"
+        ]
+      }
+    },
+    {
+      "query": "我要听一路向北的MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "我要看勇气大爆发的MV",
+        "song": [
+          "一路向北"
+        ]
+      }
+    },
+    {
+      "query": "我要看小鸡小鸡MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "我要看小鸡小鸡MV",
+        "song": [
+          "小鸡小鸡"
+        ]
+      }
+    },
+    {
+      "query": "我想听社会摇MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "我想看社会摇MV",
+        "song": [
+          "社会摇"
+        ]
+      }
+    },
+    {
+      "query": "吻别mv",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "播放吻别MV",
+        "song": [
+          "吻别"
+        ]
+      }
+    },
+    {
+      "query": "播放一个江南STYLE MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "播放江南STYLE MV",
+        "song": [
+          "江南STYLE"
+        ]
+      }
+    },
+    {
+      "query": "新年快乐歌曲视频",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "播放新年快乐MV",
+        "song": [
+          "新年快乐"
+        ]
+      }
+    },
+    {
+      "query": "播放告白气球的MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "播放告白气球的MV",
+        "song": [
+          "告白气球"
+        ]
+      }
+    },
+    {
+      "query": "我要看周杰伦MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "我要看周杰伦的MV",
+        "singer": [
+          "周杰伦"
+        ]
+      }
+    },
+    {
+      "query": "我要看凤凰传奇的MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "我要看凤凰传奇的MV",
+        "singer": [
+          "凤凰传奇"
+        ]
+      }
+    },
+    {
+      "query": "我要看抖音热歌榜的MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "我要看抖音热歌榜的MV",
+        "tag": [
+          "抖音"
+        ]
+      }
+    },
+    {
+      "query": "随便放点古风歌曲的MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "随便放点古风歌曲的MV",
+        "tag": [
+          "古风"
+        ]
+      }
+    },
+    {
+      "query": "播放民谣MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "播放民谣MV",
+        "tag": [
+          "民谣"
+        ]
+      }
+    },
+    {
+      "query": "播放欧美音乐的MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "播放欧美音乐的MV",
+        "tag": [
+          "欧美流行"
+        ]
+      }
+    },
+    {
+      "query": "我要看韩国歌曲MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "我要看韩国歌曲MV",
+        "tag": [
+          "韩语"
+        ]
+      }
+    },
+    {
+      "query": "我想看90年代的歌曲MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "我想看90年代的歌曲MV"
+      }
+    },
+    {
+      "query": "播放千禧年的歌曲MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "播放千禧年的歌曲MV"
+      }
+    },
+    {
+      "query": "2025年最火的歌的MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "2025年最火的歌的MV"
+      }
+    },
+    {
+      "query": "播放校园歌曲的MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "播放校园歌曲的MV",
+        "tag": [
+          "校园"
+        ]
+      }
+    },
+    {
+      "query": "播放新年歌曲MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "播放新年歌曲MV",
+        "tag": [
+          "新春佳节"
+        ]
+      }
+    },
+    {
+      "query": "我要看三生三世十里桃花的MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "我要看三生三世十里桃花的MV",
+        "ip": [
+          "三生三世十里桃花"
+        ]
+      }
+    },
+    {
+      "query": "我想看韩剧OST的MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "我想看韩剧OST的MV",
+        "tag": [
+          "电视剧原声"
+        ]
+      }
+    },
+    {
+      "query": "帮我播放带“向左向右向前看”的那首歌的MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "帮我播放带向左向右向前看的那首歌的MV",
+        "lyrics": [
+          "向左向右向前看"
+        ]
+      }
+    },
+    {
+      "query": "我要看歌词是“微微笑，小时候的梦我知道”的MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "我要看歌词是微微笑小时候的梦我知道的MV",
+        "lyrics": [
+          "微微笑小时候的梦我知道"
+        ]
+      }
+    },
+    {
+      "query": "播放I AM GLORIA专辑MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "播放I AM GLORIA专辑MV",
+        "album": [
+          "I AM GLORIA"
+        ]
+      }
+    },
+    {
+      "query": "请播放七里香专辑里的MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "请播放七里香专辑里的MV",
+        "album": [
+          "七里香"
+        ]
+      }
+    },
+    {
+      "query": "找田中千绘出演的周杰伦MV",
+      "expected_tool": "music_song_mv_search",
+      "expected_params": {
+        "retext": "找田中千绘出演的周杰伦MV",
+        "singer": [
+          "周杰伦"
+        ]
+      }
+    },
+    {
+      "query": "唱凤凰传奇全部的歌",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱凤凰传奇的歌",
+        "singer": [
+          "凤凰传奇"
+        ]
+      }
+    },
+    {
+      "query": "我要唱萱草花",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "我要唱萱草花",
+        "song": [
+          "萱草花"
+        ]
+      }
+    },
+    {
+      "query": "唱个儿歌拔萝卜",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱个儿歌拔萝卜",
+        "song": [
+          "拔萝卜"
+        ],
+        "tag": [
+          "儿童歌曲"
+        ]
+      }
+    },
+    {
+      "query": "唱点免费的歌",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱点免费的歌",
+        "version": [
+          "免费版"
+        ]
+      }
+    },
+    {
+      "query": "唱首小跳蛙",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱首小跳蛙",
+        "song": [
+          "小跳蛙"
+        ]
+      }
+    },
+    {
+      "query": "演唱久别的人",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "演唱久别的人",
+        "song": [
+          "久别的人"
+        ]
+      }
+    },
+    {
+      "query": "唱没有共产党就没有新中国",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱没有共产党就没有新中国",
+        "song": [
+          "没有共产党就没有新中国"
+        ]
+      }
+    },
+    {
+      "query": "唱个歌稻香",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱个歌稻香",
+        "song": [
+          "稻香"
+        ]
+      }
+    },
+    {
+      "query": "我要唱歌好运来",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "我要唱歌好运来",
+        "song": [
+          "好运来"
+        ]
+      }
+    },
+    {
+      "query": "唱一首云菲菲的歌",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱一首云菲菲的歌",
+        "singer": [
+          "云菲菲"
+        ]
+      }
+    },
+    {
+      "query": "我想唱奥特曼歌曲",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "我想唱奥特曼歌曲",
+        "ip": [
+          "奥特曼"
+        ]
+      }
+    },
+    {
+      "query": "唱一首免费的花园种花",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱一首免费的花园种花",
+        "song": [
+          "花园种花"
+        ],
+        "version": [
+          "免费版"
+        ]
+      }
+    },
+    {
+      "query": "唱儿歌小手拍拍",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱儿歌小手拍拍",
+        "song": [
+          "小手拍拍"
+        ],
+        "tag": [
+          "儿童歌曲"
+        ]
+      }
+    },
+    {
+      "query": "唱个白毛女",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱个白毛女",
+        "song": [
+          "白毛女"
+        ]
+      }
+    },
+    {
+      "query": "唱抖音热歌",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱抖音热歌",
+        "tag": [
+          "抖音"
+        ]
+      }
+    },
+    {
+      "query": "K歌潮湿的心",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "K歌潮湿的心",
+        "song": [
+          "潮湿的心"
+        ]
+      }
+    },
+    {
+      "query": "唱藏海传",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱藏海传",
+        "ip": [
+          "藏海传"
+        ]
+      }
+    },
+    {
+      "query": "唱大花轿",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱大花轿",
+        "song": [
+          "大花轿"
+        ]
+      }
+    },
+    {
+      "query": "请帮我点一首讲不出再见",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "请帮我点一首讲不出再见",
+        "song": [
+          "讲不出再见"
+        ]
+      }
+    },
+    {
+      "query": "我想唱爱我你就抱抱我",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "我想唱爱我你就抱抱我",
+        "song": [
+          "爱我你就抱抱我"
+        ]
+      }
+    },
+    {
+      "query": "演唱童心向党",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "演唱童心向党",
+        "song": [
+          "童心向党"
+        ]
+      }
+    },
+    {
+      "query": "唱圣诞歌",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱圣诞歌",
+        "tag": [
+          "圣诞节"
+        ]
+      }
+    },
+    {
+      "query": "500年桑田沧海K歌版",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "500年桑田沧海K歌版",
+        "song": [
+          "500年桑田沧海"
+        ]
+      }
+    },
+    {
+      "query": "K歌王菲的如愿",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "K歌王菲的如愿",
+        "song": [
+          "如愿"
+        ],
+        "singer": [
+          "王菲"
+        ]
+      }
+    },
+    {
+      "query": "唱一闪一闪亮晶晶",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱一闪一闪亮晶晶",
+        "song": [
+          "一闪一闪亮晶晶"
+        ]
+      }
+    },
+    {
+      "query": "唱小手拍拍",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱小手拍拍",
+        "song": [
+          "小手拍拍"
+        ]
+      }
+    },
+    {
+      "query": "唱个汪汪队",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱个汪汪队",
+        "ip": [
+          "汪汪队"
+        ]
+      }
+    },
+    {
+      "query": "K歌科尔沁夫唱画你",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "K歌科尔沁夫唱画你",
+        "song": [
+          "画你"
+        ],
+        "singer": [
+          "科尔沁夫"
+        ]
+      }
+    },
+    {
+      "query": "唱陈琳的歌",
+      "expected_tool": "music_ksong_search",
+      "expected_params": {
+        "retext": "唱陈琳的歌",
+        "singer": [
+          "陈琳"
+        ]
+      }
+    },
+    {
+      "query": "QQ音乐的妈妈的专辑",
+      "expected_tool": "music_song_qqmusic_search",
+      "expected_params": {
+        "retext": "QQ音乐的妈妈的专辑",
+        "keywords": [
+          "妈妈"
+        ]
+      }
+    },
+    {
+      "query": "QQ音乐来一首歌曲天际",
+      "expected_tool": "music_song_qqmusic_search",
+      "expected_params": {
+        "retext": "QQ音乐来一首歌曲天际",
+        "keywords": [
+          "天际"
+        ]
+      }
+    },
+    {
+      "query": "QQ音乐逆转时空主题曲",
+      "expected_tool": "music_song_qqmusic_search",
+      "expected_params": {
+        "retext": "QQ音乐逆转时空主题曲",
+        "keywords": [
+          "逆转时空"
+        ]
+      }
+    },
+    {
+      "query": "拉丁舞歌曲QQ音乐",
+      "expected_tool": "music_song_qqmusic_search",
+      "expected_params": {
+        "retext": "拉丁舞歌曲QQ音乐",
+        "keywords": [
+          "热门"
+        ]
+      }
+    },
+    {
+      "query": "请播放打开QQ音乐大碗宽面",
+      "expected_tool": "music_song_qqmusic_search",
+      "expected_params": {
+        "retext": "请播放打开QQ音乐大碗宽面",
+        "keywords": [
+          "大碗宽面"
+        ]
+      }
+    },
+    {
+      "query": "用QQ音乐放首歌听",
+      "expected_tool": "music_song_qqmusic_search",
+      "expected_params": {
+        "retext": "用QQ音乐放首歌听",
+        "keywords": [
+          "热门"
+        ]
+      }
+    },
+    {
+      "query": "周传雄黄昏QQ音乐",
+      "expected_tool": "music_song_qqmusic_search",
+      "expected_params": {
+        "retext": "周传雄黄昏QQ音乐",
+        "keywords": [
+          "周传雄",
+          "黄昏"
+        ]
+      }
+    },
+    {
+      "query": "QQ音乐里的斗牛曲",
+      "expected_tool": "music_song_qqmusic_search",
+      "expected_params": {
+        "retext": "QQ音乐里的斗牛曲",
+        "keywords": [
+          "斗牛曲"
+        ]
+      }
+    },
+    {
+      "query": "我想听QQ音乐琴香",
+      "expected_tool": "music_song_qqmusic_search",
+      "expected_params": {
+        "retext": "我想听QQ音乐琴香",
+        "keywords": [
+          "琴香"
+        ]
+      }
+    },
+    {
+      "query": "打开QQ音乐随机播放音乐",
+      "expected_tool": "music_song_qqmusic_search",
+      "expected_params": {
+        "retext": "打开QQ音乐随机播放音乐",
+        "keywords": [
+          "热门"
+        ]
+      }
+    },
+    {
+      "query": "用QQ音乐播放折子戏",
+      "expected_tool": "music_song_qqmusic_search",
+      "expected_params": {
+        "retext": "用QQ音乐播放折子戏",
+        "keywords": [
+          "折子戏"
+        ]
+      }
+    },
+    {
+      "query": "QQ音乐super star",
+      "expected_tool": "music_song_qqmusic_search",
+      "expected_params": {
+        "retext": "QQ音乐super star",
+        "keywords": [
+          "super star"
+        ]
+      }
+    },
+    {
+      "query": "QQ音乐帮我播放南方凯的离别开出花",
+      "expected_tool": "music_song_qqmusic_search",
+      "expected_params": {
+        "retext": "QQ音乐帮我播放南方凯的离别开出花",
+        "keywords": [
+          "南方凯",
+          "离别开出花"
+        ]
+      }
+    },
+    {
+      "query": "播放QQ音乐免费音乐",
+      "expected_tool": "music_song_qqmusic_search",
+      "expected_params": {
+        "retext": "播放QQ音乐免费音乐",
+        "keywords": [
+          "热门"
+        ]
+      }
+    },
+    {
+      "query": "我要听QQ音乐北京欢迎你",
+      "expected_tool": "music_song_qqmusic_search",
+      "expected_params": {
+        "retext": "我要听QQ音乐北京欢迎你",
+        "keywords": [
+          "北京欢迎你"
+        ]
+      }
+    },
+    {
+      "query": "用QQ音乐播放黄家驹的歌",
+      "expected_tool": "music_song_qqmusic_search",
+      "expected_params": {
+        "retext": "用QQ音乐播放黄家驹的歌",
+        "keywords": [
+          "黄家驹"
+        ]
+      }
+    },
+    {
+      "query": "在QQ音乐里面听单依纯的不值得",
+      "expected_tool": "music_song_qqmusic_search",
+      "expected_params": {
+        "retext": "在QQ音乐里面听单依纯的不值得",
+        "keywords": [
+          "单依纯",
+          "不值得"
+        ]
       }
     }
   ]

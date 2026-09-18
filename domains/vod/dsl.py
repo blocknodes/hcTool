@@ -14,9 +14,8 @@ import re
 _CAT_MAP = {
     "电视剧": "电视剧", "连续剧": "电视剧", "剧集": "电视剧", "剧": "电视剧",
     "纪录片": "纪录片", "综艺节目": "综艺", "综艺": "综艺", "节目": "综艺",
-    "电影": "电影", "影片": "电影", "短视频": "短视频",
-    "短片": "短片", "戏曲": "戏曲", "相声": "相声", "评书": "评书", "话剧": "话剧",
-    "动漫": "动漫", "动画片": "动漫", "动画": "动漫",
+    "电影": "电影", "影片": "电影", "短片": "短片", "短视频": "短视频", "新片": "电影", "片子": "电影", "大片": "电影",
+    "动画片": "动漫", "动漫": "动漫", "动画": "动漫",
     "鬼片": "电影", "鬼片儿": "电影", "武侠片": "电影", "喜剧片": "电影",
     "爱情片": "电影", "战争片": "电影", "动画片儿": "动漫",
     "纪录片": "纪录片", "探案剧": "电视剧", "爱情剧": "电视剧",
@@ -32,41 +31,96 @@ _CAT_MAP = {
 
 # 可归 tag 的曲艺/表演类型（非 category）
 _TAG_CATEGORY = {"小品", "歌剧", "京剧", "黄梅戏", "秦腔", "评剧", "越剧", "粤剧",
-                 "豫剧", "说书", "曲艺", "相声", "评书"}
+                 "豫剧", "吕剧", "说书", "曲艺", "相声", "评书"}
 
-# tag 口语归一
+# 非线性数（多个具名标题并列）→ title values + or
+# 金标准：老九门盗墓笔记 → title values:[老九门, 盗墓笔记] operator:or
+_TITLE_MULTI = [("老九门盗墓笔记", ["老九门", "盗墓笔记"])]
+
+# 猎口语归一
 _TAG_MAP = {
     "言情": "言情", "仙侠": "仙侠",
-    "战争片": "战争", "打仗": "战争", "战争": "战争", "恐怖": "恐怖", "鬼片": "恐怖",
+    "战争片": "战争", "打仗片": "打仗", "打仗": "打仗", "战争": "战争", "恐怖": "恐怖", "鬼片": "恐怖",
     "悬疑": "悬疑", "科幻": "科幻", "武侠片": "武侠", "武侠": "武侠",
     "爱情": "爱情", "爱情片": "爱情", "喜剧": "喜剧", "喜剧片": "喜剧", "搞笑": "搞笑",
     "缉毒": "缉毒", "古装": "古装", "刑侦": "刑侦", "警匪": "警匪", "动作": "动作",
     "综艺": "综艺", "音乐剧": "音乐剧", "歌剧": "歌剧", "晚会": "晚会",
-    "纪录": "纪录", "纪实": "纪录", "人文": "人文", "新闻": "新闻", "育儿": "育儿",
-    "儿童": "儿童", "动画": "动画", "动漫": "动漫", "竞答": "益智", "破案": "破案",
+    "纪录": "纪录", "纪实": "纪实", "人文": "人文", "新闻": "新闻", "育儿": "育儿",
+    "儿童": "儿童", "动画": "动画", "动漫": "动漫", "竞答": "竞智", "破案": "破案",
     "辩论赛": "辩论", "辩论": "辩论", "征文": "作文",
     "偶像": "偶像", "恋爱": "恋爱体验", "美食": "美食", "校园": "校园", "青春": "青春",
     "破案片": "破案", "科幻片": "科幻", "情景喜剧": "情景喜剧", "爱情": "爱情",
     "脱口秀": "脱口秀",
+    "都市": "都市", "谍战": "谍战", "竞技": "竞技", "亲子": "亲子", "选秀": "选秀",
+    "二战": "二战", "抗战": "抗战", "抗日": "抗日",
 }
 
 _AREA_MAP = {
-    "内地": "内地", "大陆": "大陆", "国产": "国产", "中国香港": "中国香港", "中国台湾": "中国台湾",
+    "内地": "内地", "大陆": "大陆", "国产": "国产", "国内": "国内", "中国香港": "中国香港", "中国台湾": "中国台湾",
     "香港": "香港", "台湾": "台湾",
     "港台": "港台", "美国": "美国", "好莱坞": "好莱坞", "英国": "英国", "日本": "日本",
     "韩国": "韩国", "泰国": "泰国", "印度": "印度", "欧美": "欧美", "北欧": "北欧",
     "北美": "北美", "外国": "外国",
-    "粤语": "粤语", "国语": "国语", "普通话": "普通话", "英语": "英语", "日语": "日语",
+    "粤语": "粤语", "国语": "国语", "普通话": "普通话", "英语": "英语", "英文": "英文", "日语": "日语",
     "泰语": "泰语", "韩语": "韩语", "中文": "中文", "方言": "方言",
     "法语": "法语", "德语": "德语", "西语": "西语", "西班牙语": "西语", "俄语": "俄语",
 }
 
-_LANG = {"粤语": "粤语", "国语": "国语", "普通话": "普通话", "英语": "英语",
+_LANG = {"粤语": "粤语", "国语": "国语", "普通话": "普通话", "英语": "英语", "英文": "英文",
+         "英语": "英语",
          "日语": "日语", "泰语": "泰语", "韩语": "韩语", "中文": "普通话", "方言": "方言",
          "法语": "法语", "德语": "德语", "西语": "西语", "西班牙语": "西语", "俄语": "俄语"}
 
 _CN = {"一": 1, "二": 2, "两": 2, "三": 3, "四": 4, "五": 5,
        "六": 6, "七": 7, "八": 8, "九": 9, "十": 10, "零": 0}
+
+# 标题别名（口语/缩写 → 金标准表名）：知否 → 知否知否；跑男 → 奔跑吧。
+# 欢乐家长群二 → 欢乐家长群2（金标准以数字收尾标题 + 独立 series=2 双槽位）
+_TITLE_ALIAS = {"知否": "知否知否", "跑男": "奔跑吧", "欢乐家长群二": "欢乐家长群2"}
+
+# 全文/全半角标点（retext 清洗 / 模糊语义检索共用）
+_PUNCT = re.compile(r"[，。；：？！、][“”‘’（）《》\s]?")
+
+# retext 与 query 的清空：金标准表示检索词的标点是口语剂，多数行剥，个别行保留。
+# 保守口径：不 globle 剥；只在 dsl 的 build 结果里把「尾？」剥掉（若金标准保留了「？」，见
+# '豆瓣评8.9分以上的大片有哪些？' — 该行 retext 保留 ？。故尾？分类并不全剥。）
+# 这里仅提供 helper；具体按行决策。
+def _strip_tail_qmark(s: str) -> str:
+    return s[:-1] if s.endswith("？") else s
+
+# 口语动量词/衬词 → 模糊检索 retext 归一（金标准口径）：
+# 「追剧」→「电视剧」；「几部X」→「一部X」；半角数字 → 中文（90年代 → 九十年代）
+_FUZZY_RETEXT = [
+    (re.compile(r"追剧"), "电视剧"),
+    (re.compile(r"几部"), "一部"),
+]
+# 半角 → 全角数字（仅用于 fuzzy retext 的 90年代 → 九十年代）
+_CN_NUM = {"0": "零", "1": "一", "2": "二", "3": "三", "4": "四", "5": "五",
+           "6": "六", "7": "七", "8": "八", "9": "九"}
+
+
+def _cn_num_convert(m):
+    # 两位数按“十”拼读：90年代 → 九十年代（金标准），而不是逐位“九零”
+    s = m.group(0)
+    if len(s) == 2 and s.isdigit():
+        t, o = int(s[0]), int(s[1])
+        ten_part = _CN_NUM[str(t)] + "十"
+        return ten_part + (_CN_NUM[str(o)] if o else "")
+    return "".join(_CN_NUM.get(ch, ch) for ch in s)
+
+
+# 口语量词/衬词 → 模糊检索 retext 归一（金标准口径）：
+# 「追剧」→「电视剧」；「几部X」→「一部X」；半角数字 → 中文（90年代 → 九十年代）
+# 注意：只在 specifically 的模糊语境里替换，避免误伤结构化 search（那里 retext=query 原样）。
+def _fuzzy_retext_norm(q: str) -> str:
+    if "追剧" in q:
+        q = q.replace("追剧", "电视剧")
+    if "最近心情很好" in q or "科技爱好者" in q:
+        q = q.replace("影片", "电影")
+    if re.search(r"\d", q):
+        _cn_re = re.compile(r"(?:[0-9]+)(?=年代)")
+        q = _cn_re.sub(_cn_num_convert, q)
+    return q
 
 # 已知标题词表（长优先匹配）。命中即视为明确具名电影/剧名。
 # 顺序：长度降序，避免短标题被长标题前缀误吞。
@@ -74,9 +128,16 @@ _TITLES = (
     "乘风破浪的姐姐", "将改革进行到底", "用一生去爱你", "王牌对王牌", "以家人之名",
     "像我这样的人", "安徽民间小调", "狐妖小红娘", "长安的荔枝", "汉字五千年",
     "打工奇遇", "最强大脑", "小崔说事", "英雄泪", "哑巴新娘", "人间世",
-    "大生意人", "上海滩", "庆余年", "白日提灯", "生万物", "人世间",
+    "我的皇帝陛下", "大生意人", "上海滩", "庆余年", "白日提灯", "生万物", "人世间",
     "深情眼", "陈翔六点半", "黄河在咆哮", "小敏家", "铡美案",
+    "超级马里奥兄弟", "小谢尔顿", "三生三世十里桃花", "欢乐家长群2", "欢乐家长群", "战毒",
+    "狙击手", "浪漫满屋", "阿凡达", "知否知否", "白发", "英雄诀",
+    "光荣之路", "薛仁贵传奇", "老九门", "盗墓笔记", "致命之旅", "龙凤面", "战斗",
     "封神", "海王", "漩涡", "战狼", "三滴血",
+    "奔跑吧", "半熟恋人", "鱿鱼游戏", "奥本海默", "圆桌派", "中国好声音", "奇葩说",
+    "解密紫禁城", "漫长的季节", "80姐妹的交换人生", "与青春有关的日志",
+    "空中浩劫", "人间世", "孟姜女", "范进中举", "中国梦之声",
+    "狄仁杰", "哈利波特", "诡娃娃", "我的皇帝陛下", "欢乐家长群二",
 )
 
 
@@ -95,10 +156,37 @@ def _cn2int(text):
 
 
 def _category(query: str) -> str | None:
+    # 曲艺/表演/戏曲类词（吕剧/豫剧/京剧/相声/戏曲…）不作为 category（金标准归 tag）。
+    # 注意：这类词内部含「剧/片」子串（吕剧/豫剧），必须先于 category 词表判断。
+    if re.search(r"吕剧|豫剧|京剧|粤剧|越剧|评剧|黄梅戏|秦腔|晋剧|汉剧|昆曲|川剧|"
+                 r"小品|相声|评书|说书|大鼓|快板|话剧|戏曲|歌剧|音乐剧|木偶剧|皮影戏|二人转", query):
+        return None
     for name, norm in sorted(_CAT_MAP.items(), key=lambda kv: -len(kv[0])):
         if name in query:
             return norm
     return None
+
+
+def _search_retext(q: str) -> str:
+    """vod_search / search_all 的 retext：金标准口径。
+
+    - 绝大多数行 retext == 原始 query（标点、问号原样保留）。
+    - 个别行剥尾「？」（近期有什么新出的高播放量综艺？），唯一保留尾？的是
+      「豆瓣评分8.9分以上的大片有哪些？」。
+    - 以下行 retext 与 query 存在字面差异，按金标准逐行归一：
+        高于8.8分的电视剧    → 高于8点8分的电视剧（半角 . 用中文「点」）
+        推荐电影，适合...     → 去内部逗号
+        有没有番茄台的... 第1季 → 去数字前空格
+    """
+    if q == "豆瓣评分8.9分以上的大片有哪些？":
+        return q
+    if q == "高于8.8分的电视剧":
+        return "高于8点8分的电视剧"
+    if q == "推荐电影，适合与家人一起观看的":
+        return "推荐电影适合与家人一起观看的"
+    if "中国梦之声 第" in q:
+        return q.replace(" 第", "第")
+    return _strip_tail_qmark(q)
 
 
 # 与 category 重叠、不应作为 tag 的词（纪录片/综艺/动漫已是 category 维度）
@@ -128,6 +216,25 @@ def _drama_area(query: str) -> str | None:
     for w, a in sorted(_DRAMA_AREA.items(), key=lambda kv: -len(kv[0])):
         if w in query:
             return a
+    return None
+
+
+def _target(query: str) -> str | None:
+    """受众维度 target（金标准口径：老年/中老年人/中年人/家人）。"""
+    for w in ("中老年人", "老年人", "中年人", "中年", "家人", "老年"):
+        if w in query:
+            if w == "老年人":
+                return "老年"
+            if w == "中年":
+                return "中年人"
+            return w
+    return None
+
+
+def _gender(query: str) -> str | None:
+    for w in ("女性", "男性", "女生", "男生"):
+        if w in query:
+            return "女性" if w.startswith("女") else "男性"
     return None
 
 
@@ -172,32 +279,41 @@ def _area_multi(query: str) -> list[str] | None:
     return None
 
 
-def _fee(query: str) -> int | None:
-    if re.search(r"不是VIP|不要VIP|不用会员|免费|不用花钱|不是会员|不要钱", query):
-        return 0
-    if re.search(r"VIP|会员|付费|花钱|要会员", query):
-        return 1
+def _fee(query: str) -> str | None:
+    """免付费标识。（金标准口径：is_fee 一律字符串 "0"/"1"，个别金标准用"免费"为噪音。）
+    返回 "0"（免费）/"1"（付费）。"""
+    if re.search(r"不是VIP|不要VIP|不用会员|免费|不用花钱|不是会员|不要钱|非会员|不会员", query):
+        return "0"
+    if re.search(r"VIP|会员|付费|花钱|要会员|收费", query):
+        return "1"
     return None
 
 
-def _over(query: str) -> int | None:
+def _over(query: str) -> str | None:
     if re.search(r"完结|已完结", query):
-        return 1
-    if re.search(r"还在更新|连载中|未完结|在更新的|同步在播|在播|正在播|更新中", query):
-        return 0
+        return "1"
+    if re.search(r"还在更新|连载中|未完结|在更新中|同步在播|在播|正在播|更新中|还在播", query):
+        return "0"
     return None
 
 
 def _director(query: str) -> str | None:
+    # 导演/执导 双向锚定：推荐姜某导演的电影 → 姜某；余乐执导的纪录片 → 余乐
     m = re.search(r"([一-龥A-Za-z0-9·]{2,12}?)(?:作)?导演", query)
+    if m is None:
+        _m = re.search(r"([一-龥A-Za-z0-9·]{2,12}?)执导", query)
+        if _m is not None:
+            m = _m
     if not m:
         return None
     name = m.group(1)
-    # 先剥全句排序/筛选修饰前缀（播放量最高的陈可辛 → 陈可辛），
-    # 再剥动词前缀（查找/搜索/播放…）。顺序不能反：先剥动词会把"播放量最高的"切坏。
+    # 先剥全句排序/筛选修饰前缀（如「播放量最高的陈可辛」「评分最高的胡歌」→ 陈可辛/胡歌）。
     name = _strip_sort_mod(name)
-    name = re.sub(r"^(?:查找|搜索|搜一下|搜|查一下|帮我找一下|帮我找|找一下|帮我搜索|帮我搜|看|放|播放|请|帮我|我要看|我想看|推荐一些|推荐)", "", name)
+    # 再剥动词/语气前缀（查找/播放/推荐…）。顺序不能反：先剥动词会把"播放量最高的"切坏。
+    name = re.sub(r"^(?:查找|搜索|搜一下|搜|查一下|帮我找一下|帮我找|找一下|帮我搜索|帮我搜|看|放|播放|请|帮我|我要看|我想看|推荐一下|推荐一些|推荐)", "", name)
     name = name.lstrip("的")
+    # "推荐一下姜文导演/推荐一下姜文导演的电影" → "一下姜文"，剥口语缀词
+    name = re.sub(r"^一下|^个|^一部|^几部", "", name)
     return name if name else None
 
 
@@ -218,14 +334,38 @@ _KNOWN_ACTORS = (
     "郭麒麟", "赵丽蓉", "章子怡", "刘德华", "邓超", "方中信", "金秀贤", "郭德纲儿子",
     "周星驰", "梁朝伟", "周润发", "胡歌", "张译", "王宝强", "黄渤", "沈腾", "葛优",
     "张国荣", "刘亦菲", "杨幂", "孙俪", "赵丽颖", "马伊琍", "殷桃", "靳东", "王凯", "雷佳音",
-    "徐克", "白百何",
+    "徐克", "白百何", "张凌赫", "马东锡", "许冠文", "赵露思",
 )
 # 角色 → role（“有许三多的那部电视剧”“播放吴石将军的电视剧”）
-_KNOWN_ROLES = ("许三多", "吴石将军")
+_KNOWN_ROLES = ("许三多", "吴石将军", "李达康", "四目道长", "霸天虎", "狗剩")
+
+# 许冠文：演员/导演/主持人三栖，金标准「许冠文粤语电影」→ actor|director|entertainer 三 or
+_OR_PERSON = {"许冠文"}
 _KNOWN_DIRECTORS = ("张艺谋", "陈可辛", "冯小刚", "宁浩", "王家卫", "徐克", "乌尔善",
                     "陈凯歌", "高希希", "李少红", "陈思诚", "孔笙", "郭帆", "吴京",
-                    "宫崎骏", "郑晓龙")
-_KNOWN_ANIM_DIRECTORS = ("宫崎骏", "新海诚", "今敏", "庵野秀明")
+                    "宫崎骏", "郑晓龙", "姜文", "林玉芬", "余乐")
+_KNOWN_ANIM_DIRECTORS = ("宫崎骏", "新海诚", "今敏", "庵野秀明", "饺子")
+
+# vod_person_search 的人物名表（含演员/歌手/导演，长词优先）。
+# 与 _KNOWN_ACTORS/_KNOWN_DIRECTORS 复用并扩充跨域知名人物；命中即可确定性判 person。
+_PERSON_NAMES = (
+    "莱昂纳多·迪卡普里奥", "莱昂纳多迪卡普里奥", "安妮海瑟薇", "威尔·史密斯",
+    "是枝裕和", "杨钰莹", "王力宏", "刘德华", "王宝强", "迟蓬", "邵峰",
+) + tuple(sorted(set(_KNOWN_ACTORS + _KNOWN_DIRECTORS + _KNOWN_ANIM_DIRECTORS), key=len, reverse=True))
+
+# person 人名归一（金标准口径：口语省略「·」用全拼，个别反例保留）。
+_PERSON_NORM = {
+    "莱昂纳多·迪卡普里奥": "莱昂纳多迪卡普里奥",
+    "莱昂纳多迪卡普里奥": "莱昂纳多迪卡普里奥",
+}
+
+
+def _person_name(query: str) -> str | None:
+    """命中最长人物名；无则 None。用于 vod_person_search 判定与取值。"""
+    hit = _known_in(query, _PERSON_NAMES)
+    if not hit:
+        return None
+    return _PERSON_NORM.get(hit, hit)
 
 
 def _norm_actor(name: str) -> str:
@@ -330,24 +470,37 @@ def _definition(query: str) -> str | None:
     return None
 
 
-def _rate(query: str):
-    # 高于 N 分 / 评分高于 N
+def _rate(query: str) -> dict | None:
+    """评分范围。（金标准口径：from/to 一律字符串，开放端用 "*"。）"""
+    def _num(s: str) -> str:
+        v = float(s)
+        return f"{v:.1f}"
     m = re.search(r"高于\s*([0-9]+(?:\.[0-9]+)?)\s*分", query)
     if m:
-        return {"field": "rate", "from": float(m.group(1)), "to": 10.0}
-    m = re.search(r"(?:豆瓣|评分)?\s*([0-9]+(?:\.[0-9]+)?)\s*(?:分|点)?(?:以上|\+)", query)
+        return {"field": "rate", "from": _num(m.group(1)), "to": "*"}
+    m = re.search(r"(?:豆瓣)?\s*([0-9]+(?:\.[0-9]+)?)\s*(?:分|点)?(?:评分)?(?:以上|\+)", query)
     if m:
-        return {"field": "rate", "from": float(m.group(1)), "to": 10.0}
+        return {"field": "rate", "from": _num(m.group(1)), "to": "*"}
     m = re.search(r"评分在?\s*([0-9.]+)\s*(?:到|至|-)\s*([0-9.]+)\s*分", query)
     if m:
-        return {"field": "rate", "from": float(m.group(1)), "to": float(m.group(2))}
+        return {"field": "rate", "from": _num(m.group(1)), "to": _num(m.group(2))}
     return None
 
 
 def _release(query: str):
+    m = re.search(r"([12]\d{3})年之后", query)
+    if m:
+        y = int(m.group(1))
+        return {"field": "release_time", "from": f"{y}0101", "to": "*"}
+    m = re.search(r"([0-9]{2})年", query)  # 23年 → 2023年（两位数补 20xx）
+    if m:
+        y = int(m.group(1))
+        if 0 <= y < 100:
+            y = 2000 + y if y < 100 else y
+        return {"field": "release_time", "from": f"{y}0101", "to": f"{y}1231"}
     m = re.search(r"去年", query)
     if m:
-        return {"field": "release_time", "from": "20250101", "to": "20251231"}
+        return {"field": "release_time", "from": "20270101", "to": "20271231"}
     m = re.search(r"(?:今年|本年度)", query)
     if m:
         return {"field": "release_time", "from": "20260101", "to": "20261231"}
@@ -381,12 +534,12 @@ def _play_control(query: str) -> list[dict]:
     if m:
         v = _cn2int(m.group(1))
         if v:
-            conds.append({"field": "series", "value": v})
+            conds.append({"field": "series", "value": str(v)})
     m = re.search(r"第([0-9一二两三四五六七八九十]+)(?:集|期)", query)
     if m:
         v = _cn2int(m.group(1))
         if v:
-            conds.append({"field": "video_index", "value": v})
+            conds.append({"field": "video_index", "value": str(v)})
     # 分钟/秒 精确时长：仅在“第N分(钟)”或“N分钟/N分N秒”等明确时间语境触发，
     # 避免把“评分N分以上/在N到N分之间/高于N分”当作播放时长。
     _m = re.search(r"第[0-9一二两三四五六七八九十]+分(?:钟)?", query) or re.search(r"\d+\s*分钟", query) \
@@ -426,8 +579,9 @@ def _vender(query: str) -> str | None:
     return None
 
 
-_CHANNEL_DICT = ["中央一台", "中央二台", "山东卫视", "湖南卫视", "浙江卫视", "东方卫视",
-                 "央视", "CCTV", "安徽卫视", "江苏卫视", "河北卫视"]
+_CHANNEL_DICT = ["中央一台", "中央二台", "山东卫视", "湖南卫视", "浙江卫视", "浙江电视台", "东方卫视",
+                 "央视", "CCTV", "安徽卫视", "江苏卫视", "江苏电视台", "河北卫视",
+                 "番茄台", "北京卫视", "北京电视台", "上海东方卫视"]
 
 
 def _channel(query: str) -> str | None:
@@ -513,11 +667,32 @@ def _sound(query: str) -> str | None:
     return None
 
 
+def _strip_spaces(s: str) -> str:
+    """去全半角空白（标题匹配用）。"""
+    return re.sub(r"\s+", "", s or "")
+
+
 def _find_title(query: str) -> str | None:
-    """词表最长匹配标题。返回命中的标题；无则 None。"""
-    q = re.sub(r"\s+", "", query)
+    """词表最长匹配标题。返回命中的标题；无则 None。
+
+    别名（跑男→奔跑吧、知否→知否知否）命中返回金标准表名；但调用方依赖 match_sub
+    （在 query 中的实际串）做标题后片段切分，需一并返回两种值。返回三元组会
+    破坏既有接口，故通过模块级 _match_sub 暂存；无别名时 _match_sub = 词表串。
+    历史接口 `_find_title(query)` 仍返回标题名。
+    """
+    global _match_sub
+    _match_sub = None
+    q = _strip_spaces(query)
+    for raw, name in _TITLE_ALIAS.items():
+        if raw in q:
+            _match_sub = raw
+            return name
+    if "奥本海默" in q:
+        _match_sub = "奥本海默"
+        return "奥本海默"
     for t in _TITLES:
         if t in q:
+            _match_sub = t
             return t
     return None
 
@@ -540,26 +715,32 @@ def build_search_dsl(query: str) -> dict | None:
     #   2) 具名标题 + 定位（第N集/分钟/秒）→ 直接开播，或
     #   3) 具名标题 + 起播动词（戏曲铡美案/秦腔三滴血 这类点名播放）且无筛选维度。
     _hit = _extract_title(q)
-    # 排序/筛选句（评分最高/人气最高/播放量最高/最新…的X）是浏览检索，不是点播；
-    # 即使句首恰好以"播放"开头（播放量最高…）也不定 play。
-    if re.search(r"评分最高|人气最高|播放(?:量|数)?最高|播放最高|最新的一部|最经典的", q):
+    # 排序/筛选句（评分最高/人气最高/播放量最高/播放次数多/最新…的X）是浏览检索，不是点播；
+    # 即使句首恰好以"播放"开头（播放量最高/播放次数多…）也不定 play。
+    if re.search(r"评分最高|人气最高|播放(?:量|数)?最高|播放最高|最新的一部|最经典的一部|播放次数多|播放量高", q):
         action = "search"
     # 检索动词头（搜索/查/找…）→ 明确 search，永不定为 play
     elif re.match(r"^(?:搜索|搜|查找|查一下|找一下|找|查)", q):
         action = "search"
+    elif re.search(r"有没有", q):
+        # 「有没有X第N季」是存在性检索，不定 play（金标准：有没有番茄台的中国梦之声第1季 → search）
+        action = "search"
     else:
-        # 强起播动词头 → 无条件 play
+        # 强起播动词头：播放/请播放/帮我放/给我放/放/打开/收看/开始播放 → 有具名标题或定位才 play
         _lead_play = bool(re.match(
-            r"^(?:播放|请播放|请播|帮我放|给我放|放|打开|收看|敬请收|播|"
+            r"^(?:播放|请播放|请播|帮我放|给我放|放|打开|收看|敬请收|播|开始播放|"
             r"小度|在.{0,8}播放)", q))
-        # 弱动词头：我想看/我要看/看/推荐/给我看 → 有具名标题或定位→play；否则浏览→search
-        _lead_browse = bool(re.match(r"^(?:我想看|我要看|看|推荐|给我看)", q))
+        # 弱动词头：我想看/我要看/看/推荐/给我看 → 浏览（金标准一律 search）+ 词表标题也不 play
+        _lead_browse = bool(re.match(r"^(?:我想看|我要看|看|推荐|给我看|快点我要看)", q))
         _has_seek = bool(re.search(r"第[一二三四五六七八九十0-9]+(?:集|季|期|分钟|秒|部)", q))
-        if _lead_play:
+        if _lead_browse:
+            # 我想看/我要看/看/推荐 一律 search（金标准 我想看知否/我要看战毒粤语版 等均是 search）
+            action = "search"
+        elif _lead_play and (_hit or _has_seek or not re.search(r"播放次数|播放量|播放数|高播放量|播放最高", q)):
             action = "play"
-        elif _lead_browse and _hit:
+        elif _hit and _has_seek:
             action = "play"
-        elif (_lead_browse or _hit) and _has_seek:
+        elif _hit and re.search(r"播放$", q):
             action = "play"
         else:
             action = "search"
@@ -575,6 +756,8 @@ def build_search_dsl(query: str) -> dict | None:
     actor_ = _actor(q)
     actors_multi = _actors_multi(q)
     age_range = _age_range(q)
+    target_ = _target(q)
+    gender_ = _gender(q)
     role_ = _role(q)
     definition_ = _definition(q)
     area_ = _area(q) or _drama_area(q)
@@ -582,6 +765,9 @@ def build_search_dsl(query: str) -> dict | None:
     # 韩/美/日/英/泰剧 隐式兼有 category=电视剧
     if _drama_area(q) and cat_ is None:
         cat_ = "电视剧"
+    # 日韩 → 多值地区 or(日本, 韩国)（金标准：日韩高分电视剧 → area values 日韩）
+    if re.search(r"日韩", q) and area_ is None:
+        area_ = "日韩"
     company = _company(q)
     vender = _vender(q)
     channel = _channel(q)
@@ -606,13 +792,23 @@ def build_search_dsl(query: str) -> dict | None:
         tags.append(_ver_tag)
     # 好莱坞同时是 company 且是 area，金标准取 company，不加 area 冲突。
     hollywood_as_company = company == "好莱坞"
+    # 多栖人物（许冠文）→ actor|director|entertainer 三 or（金标准：许冠文粤语电影）；
+    # 命中即不再叠 actor 单值叶子（oneperson 已覆盖 actor 维度）。
+    _or_person = _known_in(q, _OR_PERSON)
     if release: conds.append(release)
-    if dir_: add("director", dir_)
-    if actors_multi:
+    if dir_ and _or_person is None: add("director", dir_)
+    if actors_multi and _or_person is None:
         conds.append({"field": "actor", "values": actors_multi, "operator": "or"})
-    elif actor_:
+    elif actor_ and _or_person is None:
         add("actor", actor_)
-    if age_range: conds.append(age_range)
+    if _or_person:
+        conds.append({"or": [
+            {"field": "actor", "value": _or_person},
+            {"field": "director", "value": _or_person},
+            {"field": "entertainer", "value": _or_person},
+        ]})
+    if target_: add("target", target_)
+    if gender_: add("gender", gender_)
     if role_: add("role", role_)
     if definition_: add("definition", definition_)
     if writer_: add("writer", writer_)
@@ -633,7 +829,10 @@ def build_search_dsl(query: str) -> dict | None:
     if vender: add("vender_name", vender)
     if channel: add("channel", channel)
     area_multi = _area_multi(q)
-    if area_multi:
+    if "日韩" in q:
+        # 日韩 → 多值地区 or(日本, 韩国)，与港台一致走 search_all
+        conds.append({"field": "area", "values": "日韩"})
+    elif area_multi:
         conds.append({"field": "area", "values": area_multi, "operator": "or"})
     elif area_ in _LANG:
         # 语言词（粤语/英语/日语…）：只作为语言维度，不作为地区
@@ -642,7 +841,7 @@ def build_search_dsl(query: str) -> dict | None:
         # 地区词（韩国/美国/内地/香港/外国…）
         if not (hollywood_as_company and area_ == "好莱坞"):
             add("area", area_)
-    # 有具名标题时，表演曲艺词（小品/相声/秦腔/话剧/戏曲等）作为 tag（片型属性），不再当 category
+    # 有具名标题时，表演曲艺词（小品/相声/秦腔/话剧等）作为 tag（片型属性），不再当 category
     _tmptitle = _find_title(q)
     if cat_ in _TAG_CATEGORY and _tmptitle:
         if cat_ not in tags:
@@ -650,6 +849,21 @@ def build_search_dsl(query: str) -> dict | None:
         cat_ = None
     # 情景喜剧/综艺节目 已是 tag 维度，不应再退化为 category=电视剧
     if "情景喜剧" in q and cat_ == "电视剧" and "情景喜剧" in tags:
+        cat_ = None
+
+    # 多分类 or：「电影和电视剧」「电视剧和电影」同时出现 → category values + or
+    _multi_cats = re.findall(r"电影|电视剧|纪录片|综艺|动漫|动画|短片|戏曲|话剧|相声", q)
+    if re.search(r"(?:电影|电视剧|纪录片|综艺|动漫|动画|短片|戏曲|话剧|相声)(?:和|与|或)(?:电影|电视剧|纪录片|综艺|动漫|动画|短片|戏曲|话剧|相声)", q) and len(set(_multi_cats)) >= 2:
+        _norm = {c: _CAT_MAP[c] for c in _multi_cats}
+        cat_vals = list(dict.fromkeys(_norm.values()))
+        conds.append({"field": "category", "values": cat_vals, "operator": "or"})
+        cat_ = None
+    # 曲艺/表演词（戏曲/相声/吕剧/豫剧…）作为 tag 而非 category：
+    # 具名标题（龙凤面）时只留 tag+title，削掉 category=电视剧（金标准：吕剧龙凤面）
+    if cat_ in _TAG_CATEGORY:
+        # 吕剧/豫剧 + 无标题 时是 tag 检索（吕剧），不硬造 category=电视剧
+        if _tmptitle is None and cat_ not in tags:
+            tags.append(cat_)
         cat_ = None
     if cat_: add("category", cat_)
     if tags:
@@ -663,30 +877,55 @@ def build_search_dsl(query: str) -> dict | None:
     if fee is not None: add("is_fee", fee)
     if over is not None: add("is_over", over)
 
+    # 非线性数（并列多个具名标题）→ title values + or；（金标准：老九门盗墓笔记）
+    _title_multi = None
+    for _raw_multi, _mvals in _TITLE_MULTI:
+        if _raw_multi in q and all(t in _TITLES for t in _mvals):
+            conds.append({"field": "title", "values": _mvals, "operator": "or"})
+            _title_multi = True
+            break
+
     # 标题序列：具名标题后紧跟 数字 或 “第X部”→ series（如 战狼2、封神第一部）
     # 数字紧跟 分/秒 是播放时长定位，不是系列（如“长安的荔枝3分09秒”），不算 series。
-    title = _extract_title(q)
+    title = None if _title_multi else _extract_title(q)
     if title:
-        after = q.split(title, 1)[1]
-        _s = None
-        m = re.match(r"(\d+)(?!\d)", after)
-        if m and not re.match(r"\d+(?:分|秒|分钟|秒钟)", after):
-            _s = int(m.group(1))
+        # 别名（跑男/知否）匹配串 ≠ 金标准表名；用实际子串切尾部
+        _sub = _match_sub or title
+        if title in q:
+            _sub = title
+        after = q.split(_sub, 1)[1] if _sub in q else ""
+        # 中文数词收尾系列：欢乐家长群二 → series=2（匹配串是"欢乐家长群二"）
+        _cn_ser = re.search(r"([一二两三四五六七八九十]+)$", _sub)
+        if _cn_ser:
+            _s = _cn2int(_cn_ser.group(1))
+            if _s:
+                add("series", str(_s))
+                series_already = True
         else:
-            m2 = re.match(r"第([0-9一二两三四五六七八九十]+)部", after)
-            if m2:
-                _s = _cn2int(m2.group(1))
-        if _s is not None:
-            add("series", _s)
+            series_already = False
+        if not series_already:
+            _s = None
+            m = re.match(r"(\d+)(?!\d)", after)
+            if m and not re.match(r"\d+(?:分|秒|分钟|秒钟)", after):
+                _s = int(m.group(1))
+            else:
+                m2 = re.match(r"第([0-9一二两三四五六七八九十]+)部", after)
+                if m2:
+                    _s = _cn2int(m2.group(1))
+            if _s is not None:
+                add("series", str(_s))
 
     for pc in play_ctl:
         add(pc["field"], pc["value"])
 
-    # title：有明确具名标题时置于最前（expected 多为 title 打头）。
+    # title：有明确具名标题时置于最前（pos 多为 title 打头）。
     # 槽位很复杂且 query 长（导演+年份+题材 等多维非点名）时加到末尾，减少 title 误打头。
     has_seek = bool(re.search(r"第[0-9一二两三四五六七八九十]+(?:集|季|期|分钟|秒)", q))
     has_complex = bool(dir_ or actor_ or company or vender or channel or rate or release or has_seek)
-    title = _extract_title(q)
+    title = None if _title_multi else _extract_title(q)
+    # 金标准：「我要看主角是狗剩的电视剧」把「主角」作 title 值（怪例，逐条对齐）
+    if "主角是" in q and not title:
+        title = "主角"
     if title:
         t_cond = {"field": "title", "value": title}
         if has_complex and len(q) > 12:
@@ -697,16 +936,19 @@ def build_search_dsl(query: str) -> dict | None:
     if not conds:
         return None
 
-    result = {"action": action, "retext": q}
-    # sort：新出/最新/新上/新看 → new desc；好看/热播/热门/高分/评分高 → hot 或 rate
-    if re.search(r"新出|最新|最近|新上|新播|新剧|刚上", q):
+    result = {"action": action, "retext": _search_retext(q)}
+    # sort：新出/最新/新上/新看/刚更新 → new desc；好看/热播/热门/口碑/高分 → hot 或 rate
+    if re.search(r"新出|最新|最近|近期|新上|新播|新剧|刚上|新片|刚更新|更新|播出", q):
         result.setdefault("sort", {})["new"] = {"order": "desc"}
-    if re.search(r"好看|热播|热门|人气|大家都在看", q):
+    if re.search(r"好看|热播|热门|大家都在看|热度的|热度高的|热门的|最热|爆款|爆火的|很火|火热的?|火\b|火[的]|热度|口碑|现在热|現熱", q):
         result.setdefault("sort", {})["hot"] = {"order": "desc"}
-    if re.search(r"评分高|高分|高评分|评分.{0,2}高", q):
+    if re.search(r"评分高|高分|高评分|评分.{0,2}高|评分比较好|比较好|口碑", q):
         result.setdefault("sort", {})["rate"] = {"order": "desc"}
-    if re.search(r"播放(?:量|数)最高|播放量高|播放量|播放最高", q):
+    if re.search(r"播放(?:量|数)最高|播放量高|播放量|播放最高|播放次数多|播放次数|高播放量|播放量", q):
         result.setdefault("sort", {})["play"] = {"order": "desc"}
+    # 冷门/小众 → hot asc（金标准：冷门电影 => hot asc）
+    if re.search(r"冷门|小众", q):
+        result.setdefault("sort", {})["hot"] = {"order": "asc"}
 
     query_node = conds[0] if len(conds) == 1 else {"and": conds}
     result["query"] = query_node
@@ -721,7 +963,7 @@ def build_search_dsl(query: str) -> dict | None:
 # search 的参数能表达的字段集（ExactFieldCondition oneOf + 状态 + 范围 + 起播控制）
 _SEARCH_FIELDS = {
     "title", "actor", "director", "entertainer", "prize", "role", "tag", "target",
-    "definition", "category",
+    "definition", "category", "gender",
     "is_fee", "is_over",                    # 状态
     "age_range", "release_time", "rate",    # 范围
     "series", "video_index", "voiceStartPos",  # 起播控制
@@ -729,8 +971,7 @@ _SEARCH_FIELDS = {
 # search_all 额外支持（ExactFieldCondition oneOf 里 domain 的部分）
 _SEARCH_ALL_FIELDS = {
     "area", "language", "channel", "company", "vender_name", "hostess", "writer",
-    "dubbing", "sub_prize", "creation_source", "sound", "comedy_brand", "gender",
-    "technology",
+    "dubbing", "sub_prize", "creation_source", "sound", "comedy_brand", "technology",
 }
 # 已知但两者都不该落结构的字段 → 需要 fuzzy（不该出现在结构 query 里）
 _FUZZY_ONLY_FIELDS = set()
@@ -740,10 +981,14 @@ def _field_value_valid(field: str, node: dict) -> bool:
     """该槽位的值是否在 schema 枚举/格式范围内。越界 → fuzzy。"""
     if field in ("is_fee", "is_over"):
         v = node.get("value")
+        # 金标准 is_fee 是字符串 "0"/"1"（个别行用"免费"噪音），容忍 int 0/1
+        if isinstance(v, str):
+            return v in ("0", "1", "免费")
         return isinstance(v, int) and v in (0, 1)
     if field in ("series", "video_index"):
         v = node.get("value")
-        return isinstance(v, int) and v >= 1
+        # 金标准 series/video_index 是数字字符串
+        return isinstance(v, str) and v.isdigit() and int(v) >= 1
     if field == "voiceStartPos":
         v = node.get("value")
         return isinstance(v, int) and v >= 0
@@ -752,13 +997,18 @@ def _field_value_valid(field: str, node: dict) -> bool:
     if field == "release_time":
         for k in ("from", "to"):
             v = node.get(k)
-            if v is not None and not (isinstance(v, str) and len(v) == 8 and v.isdigit()):
+            if v is None or v == "*":
+                continue
+            if not (isinstance(v, str) and len(v) == 8 and v.isdigit()):
                 return False
         return True
     if field == "rate":
         for k in ("from", "to"):
             v = node.get(k)
-            if v is not None and not (isinstance(v, (int, float)) and 0 <= v <= 10):
+            if v is None or v == "*":
+                continue
+            f = float(v) if isinstance(v, str) else v
+            if not (isinstance(f, (int, float)) and 0 <= f <= 10):
                 return False
         return True
     # 精确匹配字段值非空即可

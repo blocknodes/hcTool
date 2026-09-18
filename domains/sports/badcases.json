@@ -1,522 +1,760 @@
 {
-  "entries": [
-    {
-      "raw": "cba总决赛录像",
-      "tool": "sports_vod_search",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_game",
-              "value": "CBA"
-            },
-            {
-              "field": "sport_competition_phase",
-              "value": "总决赛"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "raw": "我想看cba",
-      "tool": "sports_match_search",
-      "params": {
-        "query": {
-          "field": "sport_game",
-          "value": "CBA"
-        }
-      }
-    },
-    {
-      "raw": "预约世界杯决赛",
-      "tool": "sports_match_reservation",
-      "params": {
-        "query": {
-          "field": "sport_game",
-          "value": "世界杯"
-        }
-      }
-    },
-    {
-      "raw": "曼城和利物浦的英超德比战谁能取胜",
-      "tool": "sports_match_forecast",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_team",
-              "value": "曼城"
-            },
-            {
-              "field": "sport_team",
-              "value": "利物浦队"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "raw": "调到今晚的足球比赛",
-      "tool": "sports_match_search",
-      "params": {}
-    },
-    {
-      "raw": "欧联最近的比赛安排",
-      "tool": "sports_match_search",
-      "params": {}
-    },
-    {
-      "raw": "中国队对阵韩国队的亚洲杯小组赛哪支球队能获得开门红",
-      "tool": "sports_match_forecast",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_team",
-              "value": "中国队"
-            },
-            {
-              "field": "sport_team",
-              "value": "韩国队"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "raw": "世界杯小组赛阿根廷队能以小组第一出线吗",
-      "tool": "sports_match_forecast",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_team",
-              "value": "阿根廷"
-            },
-            {
-              "field": "sport_game",
-              "value": "世界杯"
-            },
-            {
-              "field": "sport_competition_phase",
-              "value": "小组赛"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "raw": "游泳世锦赛中国队能否在奖牌榜上进入前三",
-      "tool": "sports_match_forecast",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_game",
-              "value": "游泳世锦赛"
-            },
-            {
-              "field": "sport_team",
-              "value": "中国"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "raw": "猜一下世界杯葡萄牙队能取得冠军吗",
-      "tool": "sports_match_forecast",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_game",
-              "value": "世界杯"
-            },
-            {
-              "field": "sport_team",
-              "value": "葡萄牙"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "raw": "推荐CBA篮球季后赛比赛视频新疆队的",
-      "tool": "sports_match_search",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_name",
-              "value": "篮球"
-            },
-            {
-              "field": "sport_game",
-              "value": "CBA"
-            },
-            {
-              "field": "sport_competition_phase",
-              "value": "季后赛"
-            },
-            {
-              "field": "sport_team_home",
-              "value": "广州"
-            },
-            {
-              "field": "sport_team_guest",
-              "value": "新疆"
-            }
-          ]
-        }
+ "entries": [
+  {
+   "raw": "cba总决赛录像",
+   "tool": "sports_vod_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_game",
+       "value": "CBA"
       },
-      "note": "mt改写后强参",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "看大满贯网球决赛轮",
-      "tool": "sports_match_search",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_name",
-              "value": "网球"
-            },
-            {
-              "field": "sport_game",
-              "value": "大满贯"
-            },
-            {
-              "field": "sport_competition_phase",
-              "value": "决赛"
-            }
-          ]
-        }
-      },
-      "note": "mt改写后强参",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "看昨晚打的大满贯网球决赛轮",
-      "tool": "sports_match_search",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_name",
-              "value": "网球"
-            },
-            {
-              "field": "sport_game",
-              "value": "大满贯"
-            },
-            {
-              "field": "sport_competition_phase",
-              "value": "决赛"
-            },
-            {
-              "field": "sport_time",
-              "value": "20260830"
-            }
-          ]
-        }
-      },
-      "note": "mt改写后强参",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "看昨晚打的大满贯网球决赛轮郑钦文那场",
-      "tool": "sports_match_search",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_name",
-              "value": "网球"
-            },
-            {
-              "field": "sport_game",
-              "value": "大满贯"
-            },
-            {
-              "field": "sport_competition_phase",
-              "value": "决赛"
-            },
-            {
-              "field": "sport_time",
-              "value": "20260830"
-            },
-            {
-              "field": "sport_star",
-              "value": "郑钦文"
-            }
-          ]
-        }
-      },
-      "note": "mt改写后强参",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "在广州打的CBA篮球季后赛比赛",
-      "tool": "sports_match_search",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_name",
-              "value": "篮球"
-            },
-            {
-              "field": "sport_game",
-              "value": "CBA"
-            },
-            {
-              "field": "sport_competition_phase",
-              "value": "季后赛"
-            },
-            {
-              "field": "sport_team_home",
-              "value": "广州"
-            }
-          ]
-        }
-      },
-      "note": "mt改写后强参 28r4",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "在广州新疆队打的CBA季后赛篮球比赛",
-      "tool": "sports_match_search",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_name",
-              "value": "篮球"
-            },
-            {
-              "field": "sport_game",
-              "value": "CBA"
-            },
-            {
-              "field": "sport_competition_phase",
-              "value": "季后赛"
-            },
-            {
-              "field": "sport_team_home",
-              "value": "广州"
-            },
-            {
-              "field": "sport_team_guest",
-              "value": "新疆"
-            }
-          ]
-        }
-      },
-      "note": "mt改写后强参 28r5",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "看大满贯网球决赛",
-      "tool": "sports_match_search",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_name",
-              "value": "网球"
-            },
-            {
-              "field": "sport_game",
-              "value": "大满贯"
-            },
-            {
-              "field": "sport_competition_phase",
-              "value": "决赛"
-            }
-          ]
-        }
-      },
-      "note": "mt改写后强参 29r3",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "看昨晚打的大满贯网球决赛",
-      "tool": "sports_match_search",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_name",
-              "value": "网球"
-            },
-            {
-              "field": "sport_game",
-              "value": "大满贯"
-            },
-            {
-              "field": "sport_competition_phase",
-              "value": "决赛"
-            },
-            {
-              "field": "sport_time",
-              "value": "20260830"
-            }
-          ]
-        }
-      },
-      "note": "mt改写后强参 29r4",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "看昨晚打的大满贯网球决赛郑钦文那场",
-      "tool": "sports_match_search",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_name",
-              "value": "网球"
-            },
-            {
-              "field": "sport_game",
-              "value": "大满贯"
-            },
-            {
-              "field": "sport_competition_phase",
-              "value": "决赛"
-            },
-            {
-              "field": "sport_time",
-              "value": "20260830"
-            },
-            {
-              "field": "sport_star",
-              "value": "郑钦文"
-            }
-          ]
-        }
-      },
-      "note": "mt改写后强参 29r5",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "看昨晚郑钦文打的大满贯网球决赛",
-      "tool": "sports_match_search",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_name",
-              "value": "网球"
-            },
-            {
-              "field": "sport_game",
-              "value": "大满贯"
-            },
-            {
-              "field": "sport_competition_phase",
-              "value": "决赛"
-            },
-            {
-              "field": "sport_time",
-              "value": "20260830"
-            },
-            {
-              "field": "sport_star",
-              "value": "郑钦文"
-            }
-          ]
-        }
-      },
-      "note": "mt改写后强参 29r5v2",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "葡萄牙最近的比赛",
-      "tool": "sports_match_search",
-      "params": {
-        "query": {
-          "field": "sport_team",
-          "value": "葡萄牙"
-        }
+      {
+       "field": "sport_competition_phase",
+       "value": "总决赛"
       }
-    },
-    {
-      "raw": "CBA总决赛辽宁队对阵浙江队，谁能拿下赛点？",
-      "tool": "sports_match_forecast",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_team",
-              "value": "辽宁"
-            },
-            {
-              "field": "sport_team",
-              "value": "浙江"
-            },
-            {
-              "field": "sport_game",
-              "value": "CBA"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "raw": "孙颖莎与王曼昱的WTT女单对决，谁能赢？",
-      "tool": "sports_match_forecast",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_star",
-              "value": "孙颖莎"
-            },
-            {
-              "field": "sport_star",
-              "value": "王曼昱"
-            },
-            {
-              "field": "sport_game",
-              "value": "WTT"
-            },
-            {
-              "field": "sport_name",
-              "value": "女单"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "raw": "朱雨玲迎战韩莹的WTT女单比赛，谁能最后晋级？",
-      "tool": "sports_match_forecast",
-      "params": {
-        "query": {
-          "and": [
-            {
-              "field": "sport_game",
-              "value": "WTT"
-            },
-            {
-              "field": "sport_name",
-              "value": "女单"
-            },
-            {
-              "field": "sport_star",
-              "value": "朱雨玲"
-            },
-            {
-              "field": "sport_star",
-              "value": "韩莹"
-            }
-          ]
-        }
-      }
+     ]
     }
-  ]
+   }
+  },
+  {
+   "raw": "我想看cba",
+   "tool": "sports_match_search",
+   "params": {
+    "query": {
+     "field": "sport_game",
+     "value": "CBA"
+    }
+   }
+  },
+  {
+   "raw": "预约世界杯决赛",
+   "tool": "sports_match_reservation",
+   "params": {
+    "query": {
+     "field": "sport_game",
+     "value": "世界杯"
+    }
+   }
+  },
+  {
+   "raw": "曼城和利物浦的英超德比战谁能取胜",
+   "tool": "sports_match_forecast",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_team",
+       "value": "曼城"
+      },
+      {
+       "field": "sport_team",
+       "value": "利物浦队"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "欧联最近的比赛安排",
+   "tool": "sports_match_search",
+   "params": {}
+  },
+  {
+   "raw": "中国队对阵韩国队的亚洲杯小组赛哪支球队能获得开门红",
+   "tool": "sports_match_forecast",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_team",
+       "value": "中国队"
+      },
+      {
+       "field": "sport_team",
+       "value": "韩国队"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "世界杯小组赛阿根廷队能以小组第一出线吗",
+   "tool": "sports_match_forecast",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_team",
+       "value": "阿根廷"
+      },
+      {
+       "field": "sport_game",
+       "value": "世界杯"
+      },
+      {
+       "field": "sport_competition_phase",
+       "value": "小组赛"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "游泳世锦赛中国队能否在奖牌榜上进入前三",
+   "tool": "sports_match_forecast",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_game",
+       "value": "游泳世锦赛"
+      },
+      {
+       "field": "sport_team",
+       "value": "中国"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "猜一下世界杯葡萄牙队能取得冠军吗",
+   "tool": "sports_match_forecast",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_game",
+       "value": "世界杯"
+      },
+      {
+       "field": "sport_team",
+       "value": "葡萄牙"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "推荐CBA篮球季后赛比赛视频新疆队的",
+   "tool": "sports_match_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_name",
+       "value": "篮球"
+      },
+      {
+       "field": "sport_game",
+       "value": "CBA"
+      },
+      {
+       "field": "sport_competition_phase",
+       "value": "季后赛"
+      },
+      {
+       "field": "sport_team_home",
+       "value": "广州"
+      },
+      {
+       "field": "sport_team_guest",
+       "value": "新疆"
+      }
+     ]
+    }
+   },
+   "note": "mt改写后强参",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "看大满贯网球决赛轮",
+   "tool": "sports_match_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_name",
+       "value": "网球"
+      },
+      {
+       "field": "sport_game",
+       "value": "大满贯"
+      },
+      {
+       "field": "sport_competition_phase",
+       "value": "决赛"
+      }
+     ]
+    }
+   },
+   "note": "mt改写后强参",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "看昨晚打的大满贯网球决赛轮",
+   "tool": "sports_match_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_name",
+       "value": "网球"
+      },
+      {
+       "field": "sport_game",
+       "value": "大满贯"
+      },
+      {
+       "field": "sport_competition_phase",
+       "value": "决赛"
+      },
+      {
+       "field": "sport_time",
+       "value": "20260830"
+      }
+     ]
+    }
+   },
+   "note": "mt改写后强参",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "看昨晚打的大满贯网球决赛轮郑钦文那场",
+   "tool": "sports_match_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_name",
+       "value": "网球"
+      },
+      {
+       "field": "sport_game",
+       "value": "大满贯"
+      },
+      {
+       "field": "sport_competition_phase",
+       "value": "决赛"
+      },
+      {
+       "field": "sport_time",
+       "value": "20260830"
+      },
+      {
+       "field": "sport_star",
+       "value": "郑钦文"
+      }
+     ]
+    }
+   },
+   "note": "mt改写后强参",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "在广州打的CBA篮球季后赛比赛",
+   "tool": "sports_match_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_name",
+       "value": "篮球"
+      },
+      {
+       "field": "sport_game",
+       "value": "CBA"
+      },
+      {
+       "field": "sport_competition_phase",
+       "value": "季后赛"
+      },
+      {
+       "field": "sport_team_home",
+       "value": "广州"
+      }
+     ]
+    }
+   },
+   "note": "mt改写后强参 28r4",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "在广州新疆队打的CBA季后赛篮球比赛",
+   "tool": "sports_match_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_name",
+       "value": "篮球"
+      },
+      {
+       "field": "sport_game",
+       "value": "CBA"
+      },
+      {
+       "field": "sport_competition_phase",
+       "value": "季后赛"
+      },
+      {
+       "field": "sport_team_home",
+       "value": "广州"
+      },
+      {
+       "field": "sport_team_guest",
+       "value": "新疆"
+      }
+     ]
+    }
+   },
+   "note": "mt改写后强参 28r5",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "看大满贯网球决赛",
+   "tool": "sports_match_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_name",
+       "value": "网球"
+      },
+      {
+       "field": "sport_game",
+       "value": "大满贯"
+      },
+      {
+       "field": "sport_competition_phase",
+       "value": "决赛"
+      }
+     ]
+    }
+   },
+   "note": "mt改写后强参 29r3",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "看昨晚打的大满贯网球决赛",
+   "tool": "sports_match_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_name",
+       "value": "网球"
+      },
+      {
+       "field": "sport_game",
+       "value": "大满贯"
+      },
+      {
+       "field": "sport_competition_phase",
+       "value": "决赛"
+      },
+      {
+       "field": "sport_time",
+       "value": "20260830"
+      }
+     ]
+    }
+   },
+   "note": "mt改写后强参 29r4",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "看昨晚打的大满贯网球决赛郑钦文那场",
+   "tool": "sports_match_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_name",
+       "value": "网球"
+      },
+      {
+       "field": "sport_game",
+       "value": "大满贯"
+      },
+      {
+       "field": "sport_competition_phase",
+       "value": "决赛"
+      },
+      {
+       "field": "sport_time",
+       "value": "20260830"
+      },
+      {
+       "field": "sport_star",
+       "value": "郑钦文"
+      }
+     ]
+    }
+   },
+   "note": "mt改写后强参 29r5",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "看昨晚郑钦文打的大满贯网球决赛",
+   "tool": "sports_match_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_name",
+       "value": "网球"
+      },
+      {
+       "field": "sport_game",
+       "value": "大满贯"
+      },
+      {
+       "field": "sport_competition_phase",
+       "value": "决赛"
+      },
+      {
+       "field": "sport_time",
+       "value": "20260830"
+      },
+      {
+       "field": "sport_star",
+       "value": "郑钦文"
+      }
+     ]
+    }
+   },
+   "note": "mt改写后强参 29r5v2",
+   "owner": "dingbo"
+  },
+  {
+   "raw": "葡萄牙最近的比赛",
+   "tool": "sports_match_search",
+   "params": {
+    "query": {
+     "field": "sport_team",
+     "value": "葡萄牙"
+    }
+   }
+  },
+  {
+   "raw": "CBA总决赛辽宁队对阵浙江队，谁能拿下赛点？",
+   "tool": "sports_match_forecast",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_team",
+       "value": "辽宁"
+      },
+      {
+       "field": "sport_team",
+       "value": "浙江"
+      },
+      {
+       "field": "sport_game",
+       "value": "CBA"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "孙颖莎与王曼昱的WTT女单对决，谁能赢？",
+   "tool": "sports_match_forecast",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_star",
+       "value": "孙颖莎"
+      },
+      {
+       "field": "sport_star",
+       "value": "王曼昱"
+      },
+      {
+       "field": "sport_game",
+       "value": "WTT"
+      },
+      {
+       "field": "sport_name",
+       "value": "女单"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "朱雨玲迎战韩莹的WTT女单比赛，谁能最后晋级？",
+   "tool": "sports_match_forecast",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_game",
+       "value": "WTT"
+      },
+      {
+       "field": "sport_name",
+       "value": "女单"
+      },
+      {
+       "field": "sport_star",
+       "value": "朱雨玲"
+      },
+      {
+       "field": "sport_star",
+       "value": "韩莹"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "查下西甲精华",
+   "tool": "sports_vod_search",
+   "params": {
+    "query": {
+     "field": "title",
+     "value": "西甲精华"
+    }
+   }
+  },
+  {
+   "raw": "帮搜索法甲的集锦",
+   "tool": "sports_vod_search",
+   "params": {
+    "query": {
+     "field": "sport_game",
+     "value": "法甲"
+    }
+   }
+  },
+  {
+   "raw": "请播放一个斯诺克的比赛录像",
+   "tool": "sports_vod_search",
+   "params": {
+    "query": {
+     "or": [
+      {
+       "field": "sport_name",
+       "value": "斯诺克"
+      },
+      {
+       "field": "sport_game",
+       "value": "斯诺克"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "英超后面的比赛",
+   "tool": "sports_match_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_game",
+       "value": "英超"
+      },
+      {
+       "field": "live_state",
+       "value": "1"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "这周有比赛吗",
+   "tool": "sports_match_search",
+   "params": {}
+  },
+  {
+   "raw": "给我预约周六nba常规赛太阳对战老鹰",
+   "tool": "sports_match_reservation",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_game",
+       "value": "NBA"
+      },
+      {
+       "field": "sport_team",
+       "value": "太阳"
+      },
+      {
+       "field": "sport_team",
+       "value": "老鹰"
+      },
+      {
+       "field": "sport_time",
+       "value": "20260829"
+      },
+      {
+       "field": "sport_competition_phase",
+       "value": "常规赛"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "预约泰勒弗里茨8月25日的下场球赛",
+   "tool": "sports_match_reservation",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_time",
+       "value": "20260825"
+      },
+      {
+       "field": "sport_star",
+       "value": "泰勒·弗里茨"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "世界杯1/8决赛英格兰对丹麦",
+   "tool": "sports_match_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_game",
+       "value": "世界杯"
+      },
+      {
+       "field": "sport_competition_phase",
+       "value": "1/8决赛"
+      },
+      {
+       "field": "sport_team",
+       "values": [
+        "英格兰",
+        "丹麦"
+       ],
+       "operator": "or"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "播放亚运会乒乓球决赛",
+   "tool": "sports_vod_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_game",
+       "value": "亚运会"
+      },
+      {
+       "field": "sport_name",
+       "value": "乒乓球"
+      },
+      {
+       "field": "sport_competition_phase",
+       "value": "决赛"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "播放名古屋亚运会乒乓球决赛",
+   "tool": "sports_vod_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_game",
+       "value": "亚运会"
+      },
+      {
+       "field": "sport_name",
+       "value": "乒乓球"
+      },
+      {
+       "field": "sport_competition_phase",
+       "value": "决赛"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "爱知名古屋亚运会女子体操",
+   "tool": "sports_vod_search",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_game",
+       "value": "亚运会"
+      },
+      {
+       "field": "sport_name",
+       "value": "体操"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "放运动会",
+   "tool": "sports_vod_search",
+   "params": {
+    "query": {
+     "field": "sport_game",
+     "value": "运动会"
+    }
+   }
+  },
+  {
+   "raw": "预约周六西甲21轮巴列卡诺对奥萨苏纳",
+   "tool": "sports_match_reservation",
+   "params": {
+    "query": {
+     "and": [
+      {
+       "field": "sport_time",
+       "value": "20260912"
+      },
+      {
+       "field": "sport_game",
+       "value": "西甲"
+      },
+      {
+       "field": "sport_team",
+       "values": [
+        "巴列卡诺",
+        "奥萨苏纳"
+       ],
+       "operator": "or"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "raw": "山地自行车视频",
+   "tool": "sports_vod_search",
+   "params": {
+    "query": {
+     "field": "sport_name",
+     "value": "自行车"
+    }
+   }
+  }
+ ]
 }

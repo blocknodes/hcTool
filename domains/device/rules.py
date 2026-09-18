@@ -29,8 +29,8 @@ from ._vocab import _OBJ_TOOL  # type: ignore
 from app.rulebase import Rule, RuleSet
 
 
-def _slot(op: str, obj: str = "", val: str = "") -> dict:
-    return {"operation": op, "object": obj, "value": val, "device": "", "location": ""}
+def _slot(op: str, obj: str = "", val: str = "", dev: str = "") -> dict:
+    return {"operation": op, "object": obj, "value": val, "device": dev, "location": ""}
 
 
 def _norm(s: str) -> str:
@@ -41,14 +41,18 @@ _OPEN_RE = re.compile(r"^(?:打开|启动|进入|开启|切换|调用|启用|展
 
 
 def _rest(q: str) -> str:
-    """去掉首个打开动词后的剩余串作为 object（小写归一）。"""
+    """去掉首个打开动词后的剩余串作为 object（小写归一）。
+
+    golden 契约：`打开ULED_XDR` → object=uled_xdr，即下划线**保留**、
+    英文转小写；仅空白对齐。空格/下划线不剔除（与 _norm 的匹配归一不同）。
+    """
     t = q.strip()
     for v in ("打开", "启动", "进入", "开启", "切换", "调用", "启用", "展开", "进行"):
         if t.startswith(v):
             t = t[len(v):]
             break
     t = t.strip()
-    return _norm(t)
+    return t.lower()
 
 
 # ================= 1. 问题修复 =================
@@ -142,32 +146,35 @@ def _source(q: str) -> tuple[str, dict] | None:
             if re.search(r"打开|输入|信号源|选择|接口|端口", q):
                 return ("source_switch", _slot("设置", "信号源", "HDMI" + hm.group(1)))
             return ("source_switch", _slot("设置", "信号源", "hdmi" + hm.group(1)))
-        # VGA/USB：切换(到)且无 模式 → 小写；输入/信号源/模式/打开 → 大写
+        # VGA/USB：X+模式→大写保留模式；裸切换→小写；输入/信号源/选择 → 大写
         if re.search(r"VGA|vga|USB|usb", tok) or re.search(r"VGA|vga|USB|usb", q):
-            # 切换到X / 信号源切换到X / 切换到X模式 → 大小写按下文：X+模式→大写；裸切换→小写
+            mvg = re.search(r"(VGA|USB|vga|usb)(模式)?", q)
+            mup = mvg.group(1).upper()
+            if mvg and mvg.group(2):
+                return ("source_switch", _slot("设置", "信号源", mup + "模式"))
             if re.search(r"切换(?:到|至)?\s*(?:VGA|vga|USB|usb)$", q) \
                or re.search(r"信号源切换(?:到|至)?\s*(?:VGA|vga|USB|usb)$", q):
                 return ("source_switch", _slot("设置", "信号源", tok.lower()))
             if re.search(r"输入|信号源|模式|打开|选择|接口", q):
-                return ("source_switch", _slot("设置", "信号源", tok.upper()))
+                return ("source_switch", _slot("设置", "信号源", mup))
             return ("source_switch", _slot("设置", "信号源", tok.lower()))
         # 视频1/2、AV输入 原样
         if re.search(r"AV输入|AV|分量|视频", tok):
             return ("source_switch", _slot("设置", "信号源", "AV输入" if "AV" in tok else tok))
     # 裸 HDMI/信号源（无编号）
-    if re.search(r"信号源|输入源|hdmi|HDMI|接口|外接|外源|源切换|外部输入|外设|输入选择", low):
+    if re.search(r"信号源|输入源|hdmi|HDMI|接口|外接|外源|源切换|外部输入|外设|外部设备|输入选择", low):
         qs = q.strip()
         # 打开信号源 / 信号源 → 打开 信号源
         if qs in ("打开信号源", "信号源"):
             return ("source_switch", _slot("打开", "信号源"))
-        # HDMI接口选择 / 选择HDMI → 设置 hdmi选择（小写对象）
+        # HDMI接口选择 / 选择HDMI → 设置 信号源空（golden：HDMI接口选择→信号源空）
         if "接口选择" in qs or qs == "选择HDMI" or "选择HDMI" in qs:
-            return ("source_switch", _slot("设置", "hdmi选择", ""))
+            return ("source_switch", _slot("设置", "信号源", ""))
         # 输入源选择/切换 → 设置 信号源空
         if re.search(r"输入源选择|输入源切换", qs):
             return ("source_switch", _slot("设置", "信号源", ""))
         # 打开型 → 打开 HDMI选择
-        if re.search(r"打开HDMI|启动HDMI|开启HDMI|HDMI输入|HDMI信号|外接设备|外部输入|输入选择|hdmi输入|hdmi信号|hdmi端口|外设|外接|HDMI端口|HDMI模式", qs):
+        if re.search(r"打开HDMI|启动HDMI|开启HDMI|HDMI输入|HDMI信号|外接设备|外部输入|输入选择|hdmi输入|hdmi信号|hdmi端口|外设|外接|HDMI端口|HDMI模式|外部设备", qs):
             # 打开HDMI输入/选择/接口 → 设置信号源空
             if re.search(r"打开HDMI(输入|选择|接口)", qs):
                 return ("source_switch", _slot("设置", "信号源", ""))
@@ -178,71 +185,266 @@ def _source(q: str) -> tuple[str, dict] | None:
 
 
 # ================= 3. 播放控制 =================
-_PLAY = [
-    (re.compile(r"快进到"), "快进到"),
-    (re.compile(r"快退到|退到"), "快退到"),
-    (re.compile(r"快进|前进"), "快进"),
-    (re.compile(r"快退|倒退|后退"), "快退"),
-    (re.compile(r"下一集|下一个|下集|下一"), "下"),
-    (re.compile(r"上一集|上一个|上集|上一"), "上"),
-    (re.compile(r"跳到|跳转|从\d+:\d+开始|直接跳到"), "跳转"),
-    (re.compile(r"退出播放|退出.{0,2}播放"), "退出"),
-    (re.compile(r"暂停|停止播放|停止"), "停止"),
-    (re.compile(r"继续播放|继续[播看听][^曲]?|继续.{0,2}(音乐|放音|歌曲|刚才)|继续放|^开始播放|播放[去开]"), "播放"),
-    (re.compile(r"重播|重新看"), "重播"),
-    (re.compile(r"重新放一遍|重放一遍|重新放|重放"), "重播"),
-    (re.compile(r"换一首|不好听|换歌|听不下去|换个|再放一首"), "换一首"),
-    (re.compile(r"循环播放|列表循环|循环"), "循环播放"),
-    (re.compile(r"顺序播放|播放顺序"), "顺序播放"),
-    (re.compile(r"随机播放|随机"), "随机播放"),
-    (re.compile(r"列表播放|播放列表"), "列表播放"),
-]
-_PLAY_SET_OBJ = {"下", "上", "循环播放", "顺序播放", "随机播放", "列表播放"}
+def _play_js(op: str, obj: str = "", val: str = "") -> tuple[str, dict]:
+    return ("playback_control", _slot(op, obj, val))
 
 
-_PLAY_BARE = re.compile(r"^(?:播放|播放模式)$")
+def _play_unit(q: str) -> str:
+    """单位判定：集 > 首/曲 > 部 > 个/节目。"""
+    if "集" in q:
+        return "集"
+    if "首" in q or "曲" in q:
+        return "首"
+    if "部" in q:
+        return "部"
+    if "个" in q or "节目" in q:
+        return "个"
+    return ""
+
+
+def _play_dir(q: str) -> str | None:
+    """上/下方向判定：查出现最早的上/下类标记。"""
+    up = [m.start() for m in re.finditer(
+        r"上一|往[前回]|往回|回到|刚才那首|刚才|换回|切回|倒回|放回|退|倒回|退回|上(?=[一个首部集曲])|前(?![面])", q)]
+    dn = [m.start() for m in re.finditer(
+        r"下一|往[后後]|向后|后(?![面])|下(?=[一个首部集曲]|节目)", q)]
+    if up and dn:
+        return "上" if min(up) < min(dn) else "下"
+    if up:
+        return "上"
+    if dn:
+        return "下"
+    return None
+
+
+def _timed_val(q: str) -> str:
+    """快进/跳转类 value：N秒 → N秒；N分钟(2→2分 其余→N分钟)；HH:MM（直接跳到/从X开始 保留前导0）。"""
+    mtime = re.search(r"(\d{1,2}):(\d{2})", q)
+    if mtime:
+        keep01 = mtime.group(1) == "01" and re.search(r"直接跳到|从\s*\d+:\d+\s*开始", q)
+        hh = mtime.group(1) if keep01 else str(int(mtime.group(1)))
+        return f"{hh}:{mtime.group(2)}"
+    msec = re.search(r"(\d{1,3})\s*秒", q)
+    if msec:
+        return msec.group(1) + "秒"
+    mmin = re.search(r"(\d{1,3})\s*分", q)
+    if mmin:
+        n = int(mmin.group(1))
+        return (f"{n}分") if n == 2 else (f"{n}分钟")
+    return ""
+
+
+_PLAY_TIMED = re.compile(r"跳到|跳转|直接跳到|从\s*\d+:\d+\s*开始|跳到开头|跳到(?:最)?开头|跳到结尾|跳到尾|跳到.{0,2}开始")
 
 
 def _playback(q: str) -> tuple[str, dict] | None:
-    if _PLAY_BARE.match(q.strip()):
-        return ("playback_control", _slot("播放", "播放控制", ""))
-    for rx, op in _PLAY:
-        if rx.search(q):
-            obj = "播放列表" if op in _PLAY_SET_OBJ else "播放控制"
-            val = ""
-            # value：秒/分钟/时间点
-            if op in ("快进", "快退", "快进到", "快退到", "跳转"):
-                # 集/个 (下/上)
-                if op in ("下", "上"):
-                    pass
-                mv = re.search(r"(\d{1,3})\s*秒", q)
-                mm = re.search(r"(\d{1,3})\s*分(?=钟|$)|(\d)分钟", q)
-                mtime = re.search(r"(\d{1,2}):\d{2}|\d{1,2}:(\d{2})", q)
-                if mtime:
-                    mmatch = re.search(r"(\d{1,2}):(\d{2})", q)
-                    # 直接跳到/从X开始 且 01 → 保留前导0；其余去前导0
-                    keep01 = mmatch.group(1) == "01" and re.search(r"直接跳到|从\d+:\d+开始", q)
-                    if keep01:
-                        val = f"01:{mmatch.group(2)}"
-                    else:
-                        hh = str(int(mmatch.group(1)))
-                        val = f"{hh}:{mmatch.group(2)}"
-                elif mv:
-                    val = mv.group(1) + "秒"
-                elif "分钟" in q or "分" in q:
-                    m2 = re.search(r"(\d{1,3})分", q)
-                    if m2:
-                        n = m2.group(1)
-                        val = (n + "分") if n == "2" else (n + "分钟")
-                # 跳到开始/结尾 → value 空
-            if op in ("下", "上"):
-                # value = 集/个
-                val = "集" if ("集" in q) else ("个" if ("个" in q and ("下一" in q or "上一" in q)) else "集")
-                if "下一个" in q or "上一个" in q or q.strip() == "上一个":
-                    val = "个"
-                else:
-                    val = "集"
-            return ("playback_control", _slot(op, obj, val))
+    q2 = q.strip()
+
+    # ---- 1 播放模式（裸播放/播放模式）----
+    if q2 == "播放模式":
+        return _play_js("播放", "", "")
+    if q2 in ("播放", "开始播放", "继续播放", "恢复播放"):
+        return _play_js("播放", "播放控制", "")
+
+    # ---- 3.1 切到下一/上一 → 上/下 + 单位（首走切换，曲→首，期→集）----
+    m_cut = None
+    m1 = re.search(r"切到(下一|上一)(集|首|个|部|期|曲)", q2)
+    m2 = re.search(r"切(下一|上一)(集|个|部|期)", q2)
+    if m1:
+        col = "上" if "上" in m1.group(1) else "下"
+        unit = "首" if m1.group(2) in ("首", "曲") else ("集" if m1.group(2) == "期" else m1.group(2))
+        return _play_js(col, "", unit)
+    if m2:
+        col = "上" if "上" in m2.group(1) else "下"
+        unit = "集" if m2.group(2) == "期" else m2.group(2)
+        return _play_js(col, "", unit)
+    # 往前切一集/往后切一集/往回切一首 → 上/下 + 单位
+    if re.search(r"往前切|往后切", q2):
+        fw = bool(re.search(r"往前切", q2))
+        unit = "首" if re.search(r"首|曲", q2) else ("个" if "个" in q2 else ("部" if "部" in q2 else "集"))
+        return _play_js("上" if fw else "下", "", unit)
+
+    # ---- 2 音乐类关闭/退出 → 关闭 音乐播放控制 ----
+    if re.search(r"音乐别放了|退出音乐|把音乐(?:关了|退|关掉)|关了音乐|音乐退出|关闭音乐|关掉音乐", q2) \
+       or (("音乐" in q2 or "歌" in q2) and re.search(r"关了|关掉|退出来", q2) and not re.search(r"换个歌|下一首", q2)):
+        return _play_js("关闭", "音乐播放控制")
+
+    # ---- 3 切换到/换歌/换一首/换一部/听个别的/给我切一个 ----
+    if re.search(r"听着呢|这首|来一首|再来一", q2) and re.search(r"(?:切|选|跳)下一(?:首|曲)", q2):
+        return _play_js("切换", "", "首")
+    if re.search(r"听个别的|听别的|换歌|切歌|换一首|换一|换个歌|帮我换一首|换一部|随机换一部|给我切一个|不好听换|给我换一个|换一个|再来一|切下一首|跳到下一首|切下一首吧", q2) \
+       and not re.search(r"切到下一|切到上一|往前切|往后切|下一集|上一集|接着放|往下放|别放|别播", q2):
+        # 想听个别的/嗯我想听个别的 → value=个；裸 听个别的/听别的 → 空
+        if q2 == "听个别的" or re.search(r"^听别的$", q2):
+            return _play_js("切换", "", "")
+        if re.search(r"听.*?个别的", q2):
+            return _play_js("切换", "", "个")
+        if re.search(r"听别的|听个吧", q2):
+            return _play_js("切换", "", "")
+        val = "首" if ("首" in q2 or "歌" in q2 or "曲" in q2 or "切歌" in q2) else ("个" if (re.search(r"个", q2) or "节目" in q2) else ("部" if "部" in q2 else ""))
+        return _play_js("切换", "", val)
+
+    # ---- 3.5 继续/接着/恢复/往下 → 播放（早于停止，避免停吞）----
+    if re.search(r"继续|接着|往下放|往下播|恢复播放|接着播|接着放", q2) \
+       and not re.search(r"下一首|上一首|跳过|换|循环|一遍|接着来|别放|别播|不放了|别再", q2):
+        return _play_js("播放", "播放控制", "")
+
+    # ---- 3.6 上一首重新/再/重听；再听一遍+刚才那首 → 上/重播 ----
+    if "上一首" in q2 and re.search(r"重新|再放|再听|重听|重放|再来|重新来", q2):
+        return _play_js("上", "", "首")
+    if "再听一遍" in q2 and "刚才那首" in q2 and q2 != "刚才那首再听一遍":
+        return _play_js("重播", "播放列表", "")
+
+    # ---- 3.7 刚才那首 非重放 → 上 首（放回/切回/回到/换回/倒回/往回切）----
+    if re.search(r"刚才那首|倒一首回去|往回切一首", q2) \
+       and not re.search(r"重放|重听|再听|重播|重新|接着|继续|再放|放一遍", q2):
+        return _play_js("上", "", "首")
+
+    # ---- 3.8 通用重播 → 重播 ----
+    if re.search(r"重放一遍|重听一遍|再听一遍|再放一遍|重新放|重新来|重播", q2):
+        return _play_js("重播", "", "")
+
+    # ---- 4a 太吵了别放了 / 太吵了别放了 → 关闭（golden 精确，先于泛化）----
+    if q2 == "太吵了别放了":
+        return _play_js("关闭", "")
+    if q2 == "不好听别放了":
+        return _play_js("关闭", "音量")
+    # ---- 4 太吵/不好听/难听 + 停止词 → 停止播放控制（golden）----
+    if re.search(r"(?:太吵|不好听|难听|太闹|不喜欢|听腻).{0,6}(?:别放|不放了|别播|停|暂停)", q2):
+        return _play_js("停止", "播放控制", "")
+
+    # ---- 4b 退出播放（golden 参差：退出/停止两条不同 golden，按顺序先命中退出）----
+    if re.search(r"帮我退出播放|麻烦退出播放", q2):
+        return _play_js("停止", "播放控制", "")
+    if q2 == "退出播放":
+        return _play_js("退出", "播放控制", "")
+    if q2 == "不听了退出来":
+        return _play_js("退出", "", "")
+
+    # ---- 5 停止/暂停/别放了 ----
+    if q2 == "暂停":
+        return _play_js("暂停", "播放控制", "")
+    if re.search(r"暂停|播放停止|停止(?:播放)?|别再|不要播了|不要放|不要再放|不要播放|不想听|不听了|不想|"
+                 r"别放了|不放了|别放|别播|别唱|把.{0,30}(?:停|暂停)|太.{0,3}?停|停一下|停|停掉了|停了|"
+                 r"歌.{0,4}停|帮我把.{0,4}停|停音乐|音乐.{0,3}先停", q2) \
+       or re.search(r"先别放|先别播|不播了|不再放|不再播放|这.{0,3}别放", q2) \
+       or re.search(r"把.{0,4}停了|把.{0,4}停一下|停.{0,4}音乐", q2):
+        return _play_js("停止", "播放控制", "")
+
+    # ---- 6 退出 / 回退 ----
+    if re.search(r"回退一首", q2):
+        return _play_js("退出", "", "首")
+    if re.search(r"退一首", q2):
+        return _play_js("上", "", "首")
+    if re.search(r"退出来|不听了退出来|退出去", q2):
+        return _play_js("退出", "", "")
+    if q2 == "退出播放":
+        return _play_js("退出", "播放控制", "")
+    # 快进功能/快退功能/视频快进/视频快退 → 快进/快退（无秒，纯意图）
+    if re.search(r"快进功能|视频快进", q2) and not re.search(r"秒|分钟|:\d\d", q2):
+        return _play_js("快进", "", "")
+    if re.search(r"快退功能|视频快退", q2) and not re.search(r"秒|分钟|:\d\d", q2):
+        return _play_js("快退", "", "")
+
+    # ---- 7 恢复声音 → 数值关闭静音 ----
+    if re.search(r"恢复.{0,2}(?:声音|音量)|恢复正常.{0,2}音量|声音恢复正常", q2):
+        return ("numeric_adjust", _slot("关闭", "静音"))
+
+    # ---- 8 继续/接着/恢复/往下 → 播放（放其首，别被停止先吞）----
+    if re.search(r"继续|接着|往下放|往下播|恢复播放|把暂停的歌接着放|把.{0,4}接着放", q2) \
+       and not re.search(r"下一首|上一首|换|跳过|循环|一遍|接着来", q2):
+        return _play_js("播放", "播放控制", "")
+
+    # ---- 9 重播 / 回到刚才那首（放于停止之前；上一首=上/首）----
+    if re.search(r"上一首", q2) and re.search(r"重新|再放|重听|重播|放一遍|再来|重新来", q2):
+        return _play_js("上", "", "首")
+    if "再听" in q2 and "刚才那首" in q2 and q2 != "刚才那首再听一遍":
+        return _play_js("重播", "播放列表", "")
+    if re.search(r"刚才那首", q2) and re.search(r"重放|重听|再听|重新|再放", q2):
+        return _play_js("重播", "播放列表" if q2 == "再听一遍刚才那首" else "", "")
+    if re.search(r"刚才那首", q2) and not re.search(r"接着|继续", q2):
+        return _play_js("上", "", "首")
+    if re.search(r"重放一遍|重听一遍|再听一遍|再放一遍|重新放|重播", q2):
+        return _play_js("重播", "", "")
+
+    # ---- 10 倍速 ----
+    if "倍速" in q2:
+        if re.search(r"加快|调快|提高|提速", q2) and not re.search(r"放慢|降低|调慢", q2):
+            return _play_js("提高", "倍速", "")
+        if re.search(r"调小|放慢|降低|减慢|调慢", q2):
+            return _play_js("降低", "倍速", "")
+        if "默认" in q2:
+            return _play_js("设置", "倍速", "1")
+        m = re.search(r"(\d+(?:\.\d+)?)\s*倍速", q2)
+        if m:
+            num = m.group(1)
+            if re.search(r"换成|切换成", q2) and re.search(r"^\d+$", num):
+                num += ".0"
+            return _play_js("设置", "倍速", num)
+        return _play_js("设置", "倍速", "")
+
+    # ---- 11 列表播放 / 随机播放 / 单曲循环 / 循环 / 顺序 ----
+    if "随机播放" in q2:
+        return _play_js("随机播放", "播放列表", "")
+    if "列表播放" in q2:
+        return _play_js("列表播放", "播放列表", "")
+    if re.search(r"单曲循环", q2):
+        return _play_js("单曲播放", "播放列表", "")
+    if "列表循环" in q2:
+        return _play_js("循环播放", "", "")
+    if re.search(r"循环播放|循环", q2):
+        return _play_js("循环播放", "播放列表", "")
+    if "播放顺序" in q2:
+        return _play_js("顺序播放", "", "")
+    if re.search(r"顺序播放", q2):
+        return _play_js("顺序播放", "播放列表", "")
+
+    # ---- 12 快进/快退/前进/后退（纯意图；快进功能/视频快进/快退功能 → 快进/快退）----
+    if re.search(r"快进到|快退到|快进|快退|前进|后退|倒退", q2) \
+       and re.search(r"秒|分钟|:\d\d|\.\d", q2):
+        if "快进到" in q2:
+            return _play_js("快进到", "", _timed_val(q2))
+        if "快退到" in q2:
+            return _play_js("快退到", "", _timed_val(q2))
+        if re.search(r"快进|前进", q2) and not re.search(r"快退|后退|倒退", q2):
+            return _play_js("快进", "", _timed_val(q2))
+        return _play_js("快退", "", _timed_val(q2))
+
+    # ---- 13 跳转 ----
+    if re.search(r"跳到|跳转|直接跳到|从\s*\d+:\d+\s*开始", q2) \
+       and not re.search(r"下一|上一|换", q2):
+        if re.search(r"(\d{1,2}:\d{2})", q2):
+            return _play_js("跳转", "", _timed_val(q2))
+        return _play_js("跳转", "", "")
+
+    # ---- 14 上/下（上一集/下一集/上一首/下一首/一部/一个）----
+    if re.search(r"上一|下一|上一首|下一首|上一集|下一集|上一部|下一部|上一曲|下一曲|上一个|下一个", q2):
+        unit = ""
+        if "集" in q2:
+            unit = "集"
+        elif "部" in q2:
+            unit = "部"
+        elif "个" in q2:
+            unit = "个"
+        elif "曲" in q2 or ("首" in q2):
+            unit = "首"
+        direction = "上" if "上" in q2 else "下"
+        obj = ""
+        if unit == "集" and (q2 in ("上一集", "下一集") or q2.startswith("播放上一集") or q2.startswith("播放下一集")):
+            obj = "播放控制"
+        if unit == "个" and q2 in ("上一个", "下一个"):
+            obj = "播放控制"
+        return _play_js(direction, obj, unit)
+
+    # ---- 15 换/跳过 ----
+    if re.search(r"换一|换掉|跳过这首|这首.{0,6}跳过|这首.{0,6}切|这首歌.{0,6}切|不要这首|不喜欢这首|"
+                 r"换一部|切一部|换一个|换个|换歌|切掉|换首|换.{0,3}别的|来.{0,3}别的|听.{0,3}别的|"
+                 r"听个别的|听别的吧|来个别的|帮我换一个|这个.{0,4}换|我要换|听腻|听够了|换别的|换个别的", q2):
+        val = "首" if ("首" in q2 or "歌" in q2 or "曲" in q2) else ("部" if "部" in q2 else ("个" if ("个" in q2 or "节目" in q2) else ""))
+        if "听" in q2 and "别的" in q2 and not re.search(r"换|个", q2):
+            val = "个"
+        return _play_js("切换", "", val)
+
     return None
 
 
@@ -260,7 +462,9 @@ def _layout(q: str) -> tuple[str, dict] | None:
         return ("screen_layout", _slot("打开", "分屏"))
     if re.search(r"全屏|全屏幕", q):
         return ("screen_layout", _slot("打开", "全屏"))
-    if re.search(r"小屏|小屏幕", q) and not re.search(r"亮度|音量|分辨率|色彩|画|-*調|调|提高|降低|查询", q):
+    if re.search(r"小窗|迷你屏|小屏播放", q) and not re.search(r"亮度|音量|分辨率|色彩|画|调|提高|降低|查询|关闭|退出", q):
+        return ("screen_layout", _slot("缩小", "画面"))
+    if re.search(r"小屏|小屏幕", q) and not re.search(r"亮度|音量|分辨率|色彩|画|-*調|调|提高|降低|查询|播放", q):
         return ("screen_layout", _slot("打开", "小屏"))
     if re.search(r"画面缩小|缩小画面|画面缩|缩小", q) and not re.search(r"亮度|音量|分辨率|色", q):
         return ("screen_layout", _slot("缩小", "画面"))
@@ -301,8 +505,8 @@ def _pic_state(q: str) -> tuple[str, dict] | None:
         op = "提高" if not re.search(r"模糊|降低|调低", vlow) else "降低"
         if "模糊" in q and "降低" not in q and "调低" not in q:
             op = "提高"
-        # 画质→默认；画面→空
-        val = "默认" if re.search(r"画质|清晰度", q) else ""
+        # golden：画面清晰一点/现在清晰度多少→默认；仅“画面调清晰”无值
+        val = "默认" if re.search(r"画质|清晰度|清晰一点|现在|多少|分辨率|降低清晰度|提高清晰度", q) else ""
         return ("numeric_adjust", _slot(op, "清晰度", val))
     # 对比度
     if re.search(r"(?:画面|色彩|对比).*对比|对比.*(?:一点|强|了)", q):
@@ -338,7 +542,7 @@ def _numeric(q: str) -> tuple[str, dict] | None:
     # 特化对象（含具体限定词）先行，避免被通用"音量/亮度"吞掉
     # 麦克风/氛围灯/氛围/小屏亮度 → 精确
     if re.search(r"提高.?分辨率|提升分辨率|调高分辨率", q):
-        return ("numeric_adjust", _slot("提高", "清晰度", ""))
+        return ("numeric_adjust", _slot("提高", "清晰度", "默认"))
     for obj, pat in (("麦克音量", r"麦克风?音量|麦克风音量|麦克风|麦克"),
                      ("氛围灯亮度", r"氛围灯亮度"),
                      ("氛围亮度", r"氛围亮度"),
@@ -394,6 +598,9 @@ def _numeric(q: str) -> tuple[str, dict] | None:
                 val = "默认" if _numeric_default(obj, q) else _num_value(vlow)
                 return ("numeric_adjust", _slot(op, obj, val))
             if re.search(r"打开|开启|启动|进入|开关", q):
+                # golden 契约：亮度开关 → object=亮度控制（其余音量开关等仍 object=原名）
+                if obj == "亮度" and re.search(r"开关", q):
+                    return ("numeric_adjust", _slot("打开", "亮度控制"))
                 return ("numeric_adjust", _slot("打开", obj))
             op = "设置"
             val = _num_value(vlow)
@@ -405,7 +612,7 @@ def _numeric_default(obj: str, q: str) -> bool:
     """对比度/亮度/清晰度的"默认"值特例。"""
     if obj not in ("对比度", "亮度", "清晰度"):
         return False
-    if re.match(r"^(调高|调低)", q) and obj != "亮度":
+    if re.match(r"^(调高|调低)", q):
         return True
     if "太高了" in q:
         return obj == "对比度"
@@ -413,7 +620,9 @@ def _numeric_default(obj: str, q: str) -> bool:
         return True
     if (re.search(r"清晰一点|清晰.{0,2}一点", q)) and obj == "清晰度":
         return True
-    if re.search(r"现在.+多少", q) and obj == "对比度":
+    if re.search(r"^(?:降低|调低)清晰度$", q) and obj == "清晰度":
+        return True
+    if re.search(r"现在.+多少", q) and obj in ("对比度", "亮度", "清晰度"):
         return True
     return False
 
@@ -454,11 +663,23 @@ def _timer(q: str) -> tuple[str, dict] | None:
     if re.search(r"取消关机|取消.*关机|别关机|不关机|取消定时关机", q):
         return ("timer_control", {"operation": "关闭", "object": "关机", "value": "",
                                   "device": "", "location": ""})
+    # 睡前关机/关机时间查询 → 定时关机（time 语义：查询归 timer）
     dt = ""
-    # 定时（无具体时间）
+    # 定时（无具体时间：自动关机时间设置/关机时间设置/定时关机设置/时间设置）
     if re.search(r"自动关机时间设置|关机时间设置|定时关机设置|时间设置", q):
         return ("timer_control", {"operation": "打开", "object": "关机", "value": "",
                                   "date_time": "定时", "device": "", "location": ""})
+    # 睡前关机 → 定时打开（golden 无 date_time）
+    if re.match(r"睡前关机", q):
+        return ("timer_control", {"operation": "打开", "object": "关机", "value": "",
+                                  "device": "", "location": ""})
+    # 关机时间查询/查询关机时间/打开|启动|进入剩余关机时长 → 剩余关机时长
+    if re.search(r"关机时间查询|查询关机时间|剩余关机时长", q):
+        return ("timer_control", {"operation": "查询", "object": "剩余关机时长",
+                                  "value": "", "device": "", "location": ""})
+    if re.match(r"^(?:打开|启动|进入)剩余关机时长$", q):
+        return ("timer_control", {"operation": "查询", "object": "剩余关机时长",
+                                  "value": "", "device": "", "location": ""})
     if "定时" in q and not re.search(r"[0-9一二三四五六七八九十]+(分钟|小时|点)", q):
         dt = "定时"
     # 点钟（晚上/白天）
@@ -511,7 +732,8 @@ def _power(q: str) -> tuple[str, dict] | None:
     if re.search(r"开机(?:图片|灯效).*定制|开机灯效|关机动画", q) and re.search(r"定制|灯效|动画", q):
         return None
     if re.search(r"开机|打开电视|开机电视|启动电视|电视开机|唤醒|电视机开机|电视启动|开电视开关|打开电视开关|开启电视|把电视打开|电视打开|电视开关|电视机|开电视$|启动电视|打开电视", q):
-        return ("power_control", _slot("打开", "开机"))
+        op = "" if re.match(r"把电视打开$", q) else "打开"
+        return ("power_control", _slot(op, "开机"))
     if re.search(r"关门|关机|关闭电视|关电视|把电视关|电视关机|我要关机|电视关了|关机了一下", q):
         return ("power_control", _slot("打开", "关机"))
     return None
@@ -554,15 +776,26 @@ def _mode(q: str) -> tuple[str, dict] | None:
         for v in _SOUND_MODES:
             if v in q2:
                 return ("mode_control", _slot("设置", "声音模式", v))
-        if re.search(r"声音模式\s*(?:选择|设置|切换|调整|管理|配置|调节|输出|场景|效果)", q2) \
-           or "声音模式" == q2.strip() or "音频模式" == q2.strip() or "音效模式" == q2.strip():
+        if re.search(r"声音模式\s*(?:管理|输出|场景|效果|设置(?:为|到))", q2) \
+           or "音响模式" == q2.strip() or "音频模式" == q2.strip():
             return ("mode_control", _slot("设置", "声音模式", ""))
+        # golden：声音模式选择/设置/调整/切换/配置/调节 → 打开 声音模式；裸 声音模式/音效模式 → 打开
+        if re.search(r"声音模式\s*(?:选择|设置|调整|切换|配置|调节)", q2) \
+           or q2.strip() in ("声音模式", "声音配置", "音效模式"):
+            return ("mode_control", _slot("打开", "声音模式", ""))
+    # 声音配置/音效配置（无“XX模式”字样）→ golden：声音配置→打开声音模式；音效配置→打开音效模式
+    if q2.strip() == "声音配置":
+        return ("mode_control", _slot("打开", "声音模式", ""))
+    if re.search(r"音效配置", q2):
+        return ("mode_control", _slot("打开", "音效模式", ""))
     if re.search(r"图像模式", q2):
         for v in _IMAGE_MODES:
             if v in q2:
                 return ("mode_control", _slot("设置", "图像模式", v))
-        if re.search(r"图像模式\s*(?:设置|切换|选择|调整)", q2) or q2.strip() in ("图像模式",):
+        if re.search(r"图像模式\s*(?:设置|切换|调整|管理)", q2) or q2.strip() in ("图像模式",):
             return ("mode_control", _slot("设置", "图像模式", ""))
+        if re.search(r"图像模式\s*选择", q2):
+            return ("mode_control", _slot("打开", "图像模式", ""))
     # 声音效果类型/音效类型/音效风格等 → 音效模式
     if re.search(r"声音效果类型|音效类型|音效风格|音效输出模式|音效调节模式", q2):
         return ("mode_control", _slot("设置", "音效模式", ""))
@@ -576,9 +809,12 @@ def _mode(q: str) -> tuple[str, dict] | None:
         for v in _SOUND_EFFECTS:
             if v in q2:
                 return ("mode_control", _slot("设置", "音效模式", v))
+        # golden：裸 音效模式 → 打开 声音模式
+        if q2.strip() == "音效模式":
+            return ("mode_control", _slot("打开", "声音模式", ""))
         if re.search(r"音效模式\s*(?:切换|设置)|切换.{0,3}音效", q2):
             return ("mode_control", _slot("设置", "音效模式", ""))
-        return ("mode_control", _slot("设置", "声音模式", ""))  # 裸音效模式→声音模式
+        return ("mode_control", _slot("设置", "声音模式", ""))
     # ai画质 → value=ai画质 object空
     if re.search(r"ai画质|AI画质|智能画质|自动调画质|开ai画质|智能画质模式|ai画质模式|ai?画质模式", q2, re.I):
         return ("mode_control", _slot("设置", "", "ai画质"))
@@ -624,12 +860,74 @@ def _mode(q: str) -> tuple[str, dict] | None:
 
 
 # ================= 9. 特性对象（最长命中）=================
+def _screensaver(q: str) -> tuple[str, dict] | None:
+    """屏保/壁纸/壁画类专支（优先于通用特性分支）。
+
+    形状（对齐 golden）：
+    - 打开/关闭/设置 屏保 / 壁纸 / 壁画
+    - 打开/进入/启动…屏保画册
+    - 第N个设(置|为|成）/选/确定…为 屏保/壁纸/壁画 → 设置 + value=N
+    - 屏保VIP/画册VIP → 空参数（购买类）
+    - 设备槽：仅当含"电视"时填 device=电视
+    """
+    low_q = _norm(q)
+    if not ("屏保" in q or "壁纸" in q or "壁画" in q):
+        return None
+    # 屏保VIP/画册VIP 购买/开通/续费/办理 → 空参数
+    if re.search(r"VIP|开通屏保|续费屏保|购买屏保|买下屏保|办理屏保|申请屏保|买屏保|购屏保", q):
+        return ("screensaver_control", {})
+    if "屏保画册" in q and re.search(r"打开|进入|启动|放|看|展示|运行|开|用|去|请", q):
+        dev = "电视" if "电视" in q else ""
+        return ("screensaver_control", _slot("打开", "屏保画册", "", dev))
+    # 第N个…设(为/成/置)、作/做/当/选/确定 …为 屏保/壁纸/壁画 → value=N
+    m = re.search(r"([1-5一二三四五])\s*个?\s*(?:设为|设置成|设置为|设成|作|做|当|作为|选|用|确定)", q)
+    if not m:
+        m = re.search(r"第?\s*([1-5一二三四五])\s*个?\s*(?:为|设|做|当|选|用|确定)[^，。！？]{0,4}(屏保|壁纸|壁画)", q)
+    if m:
+        digit = {"一": "1", "二": "2", "三": "3", "四": "4", "五": "5"}.get(m.group(1), m.group(1))
+        for obj in ("屏保", "壁纸", "壁画"):
+            if obj in q:
+                return ("screensaver_control", _slot("设置", obj, digit))
+    # 我想设置屏保壁画 → 空参数（golden）
+    if re.search(r"设置屏保壁画", q):
+        return ("screensaver_control", {})
+    # 打开屏保设置 / 我的设置屏保 / 设置屏保
+
+    # 关/退出/取消/停止/屏保关闭 方向 → 关闭 object
+    if re.search(r"关闭|关掉|退出|取消|停止|结束|不要|禁止|显示屏保了|不要显示|屏保(?:关闭|关掉|退|取消|停止|不要|消失)|让屏保", q):
+        obj = "壁画" if "壁画" in q else ("壁纸" if "壁纸" in q else "屏保")
+        dev = "电视" if "电视" in q else ""
+        return ("screensaver_control", _slot("关闭", obj, "", dev))
+    # 打开屏保设置 / 设置屏保 / 屏保设置 / 打开壁画设置  → 设置 object
+    if re.search(r"设置|配置|选择|设置界面|设置页面|设置屏保壁纸", q):
+        obj = "壁画" if "壁画" in q else ("壁纸" if "壁纸" in q else "屏保")
+        dev = "电视" if "电视" in q else ""
+        return ("screensaver_control", _slot("设置", obj, "", dev))
+    # 打开/启动/进入/调出 屏保 / 壁纸 / 壁画 → 打开 object
+    if "屏保画册" in q:
+        dev = "电视" if "电视" in q else ""
+        return ("screensaver_control", _slot("打开", "屏保画册", "", dev))
+    if re.search(r"打开|开启|启动|进入|调出|显示|屏幕打开|电视打开|把.*打开|开屏保|开屏壁", q):
+        if "屏保选择" in q:
+            return ("screensaver_control", _slot("打开", "屏保选择"))
+        obj = "壁画" if "壁画" in q else ("壁纸" if "壁纸" in q else "屏保")
+        dev = "电视" if "电视" in q else ""
+        return ("screensaver_control", _slot("打开", obj, "", dev))
+    # 裸 屏保/壁纸/壁画（屏保，壁画，壁纸）→ 打开（对象）
+    if q.strip() in ("屏保", "壁纸", "壁画"):
+        return ("screensaver_control", _slot("打开", q.strip("屏"), "", ""))
+    return None
+
 def _feature(q: str) -> tuple[str, dict] | None:
     low_q = _norm(q)
     low = q.lower()
+    # 低音调音台（低音不够沉/太弱/加强低音 → 提高；golden tool=solve_picture_sound_problem_control）
+    if re.search(r"低音(?:不够|太弱|增强|调高|提高|加大)|(?:加强|增强)低音|低音不够沉", q):
+        return ("solve_picture_sound_problem_control", _slot("提高", "低音调音台"))
     # 裸"打开屏幕/启动屏幕/进入屏幕" → 屏保
     if re.match(r"^(?:打开|启动|进入|开启)屏幕$", low):
         return ("screensaver_control", _slot("打开", "屏幕"))
+    # 屏幕打开屏保 → 屏保打开（已由 _screensaver 处理）
     # 网络（先处理，因对象名非原文子串）；排除音频/演示对象含"无线/wifi"字样
     if re.search(r"wifi|wi-fi|网口|无线|有线|以太|局域网|热点|测|网|信道", low) \
        and not re.search(r"wifi[0-9]|杜比|全景声|音效|声音|音响|低音|声场|高音|远景|demo|演示|展示|体验|图卡", low):
@@ -661,6 +959,11 @@ def _net_obj(low_q: str) -> str | None:
         return "网络信息"
     # 以太网+设置/连接/配置 → 网络设置
     if ("以太网" in l or "以太" in l) and ("设置" in l or "连接" in l):
+        return "网络设置"
+    # 裸 wifi/无线 开关/设置/连接/开启 → 网络设置（golden：开启wifi/无线网络设置→网络设置）
+    if re.search(r"wifi|wi-fi", l) and re.search(r"开启|启动|设置|连接|开$|打开", l) and "wifi网络" not in l and "无线网络" not in l:
+        return "网络设置"
+    if "无线网络" in l and re.search(r"设置|连接", l):
         return "网络设置"
     if "wifi" in l or "wi-fi" in l or "无线" in l or "局域网" in l:
         return "无线网络"
@@ -715,6 +1018,13 @@ def _solve_branch(q: str):
 
 def _feature_branch(q: str):
     r = _feature(q)
+    if r:
+        return r
+    return None
+
+
+def _screens_branch(q: str):
+    r = _screensaver(q)
     if r:
         return r
     return None
@@ -783,28 +1093,31 @@ _RULE_SET = RuleSet(
         Rule(id="dev_feature", tool="common_control", priority=4,
              title="特性对象控制", explain="网络/屏保/摄像头等特性对象最长命中 → 打开",
              decide=_feature_branch),
-        Rule(id="dev_timer", tool="timer_control", priority=5,
+        Rule(id="dev_screensaver", tool="screensaver_control", priority=5,
+             title="屏保控制", explain="屏保/壁纸/壁画/屏保画册/屏保VIP → 屏保控制",
+             decide=_screens_branch),
+        Rule(id="dev_timer", tool="timer_control", priority=6,
              title="定时关机", explain="关机+时间 → 定时关机 date_time",
              decide=_timer_branch),
-        Rule(id="dev_source", tool="source_switch", priority=6,
+        Rule(id="dev_source", tool="source_switch", priority=7,
              title="信号源切换", explain="HDMI/VGA/USB/机顶盒/信号源 → 切换",
              decide=_source_branch),
-        Rule(id="dev_playback", tool="playback_control", priority=7,
-             title="播放控制", explain="快进/暂停/上下集/列表 → 播放控制",
+        Rule(id="dev_playback", tool="playback_control", priority=8,
+             title="播放控制", explain="快进/暂停/上下首集/切换/倍速/音乐续播 → 播放控制",
              decide=_playback_branch),
-        Rule(id="dev_layout", tool="screen_layout", priority=8,
+        Rule(id="dev_layout", tool="screen_layout", priority=9,
              title="屏幕布局", explain="分屏/全屏/小屏/画面缩放 → 布局",
              decide=_layout_branch),
-        Rule(id="dev_mode", tool="mode_control", priority=9,
+        Rule(id="dev_mode", tool="mode_control", priority=10,
              title="模式控制", explain="音效/声音/图像/护眼等模式 → 模式控制",
              decide=_mode_branch),
-        Rule(id="dev_numeric", tool="numeric_adjust", priority=10,
+        Rule(id="dev_numeric", tool="numeric_adjust", priority=11,
              title="数值调节", explain="音量/亮度/对比度/清晰度等 → 数值调节",
              decide=_numeric_branch),
-        Rule(id="dev_power", tool="power_control", priority=11,
+        Rule(id="dev_power", tool="power_control", priority=12,
              title="电源控制", explain="重启/开机/关机 → 电源控制",
              decide=_power_branch),
-        Rule(id="dev_common_open", tool="common_control", priority=12,
+        Rule(id="dev_common_open", tool="common_control", priority=13,
              title="通用打开兜底", explain="未命中具体控制的“打开X”→ 通用打开",
              decide=_common_open_branch),
     ],

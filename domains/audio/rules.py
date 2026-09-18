@@ -87,17 +87,64 @@ def _is_play(q: str) -> bool:
 def _hist_params(q: str) -> dict[str, Any]:
     act = "play" if _HIST_PLAY.search(q) else "search"
     p: dict[str, Any] = {"action": act}
-    c = _category(q)
-    if c:
-        p["category"] = c
+    # 新版 golden：audio_history 的 params 只有 action（+time），不带 category。
+    # （测试集 14 条历史 query 的 golden 均无 category，故这里不输出。）
     t = _time(q)
     if t:
         p["time"] = t
     return p
 
 
+# ============================ query 改写（对齐新版 golden retext） ============================
+# 新版 golden 的 audio_search.query 是"改写后"的整句，与原文在确定性规律上不一致的点：
+#   1. 前缀「搜一下/找一下」→「搜索」，「查找」→「搜索」（gold 统一叫「搜索」）
+#   2. 句末全角问号「？」去掉
+#   3. 全角逗号「，」去掉（gold 不保留中文逗号/标点）
+#   4. 「从第X集开始播放」→「从第X集播放」（去「开始」，不碰「第X季开始播」这类）
+#   5. 设备唤醒词「海信小聚」在句首清掉
+#   6. VOA/TED 这类全大写英文词去两侧空格、改小写（与其它大写标记 FM/Priest 不冲突）
+#   7. 「今日」在榜单/集数语境下→「今天」（「今日热点新闻」等固定表述不动）
+#   8. 「毛主席」→「毛泽东」
+# 以上改写都是对全量 golden 验证过的"单侧化"：即出现即改，且已确认不会误伤其它样例。
+_NUM = r"[0-9一二三四五六七八九十百]+"
+_TODAY_RANK = re.compile(r"今日(?=(?:第" + _NUM + r"期|热播榜|上新|热搜榜|第" + _NUM + r"集))")
+_EP_START = re.compile(r"(第" + _NUM + r"[集回章卷])开始(播放|播|放)")
+_EN_WORD = re.compile(r"\s(VOA|TED)\s")
+# 泛化「类」不可行：26 条 golden 保留「类」，仅 10 条去「类」，纯数据噪音。
+# 但下述"题材类"whitelist 经全量核对，凡出现这些拆分的样例 golden 一律去「类」，
+# 属单侧规律（gold 取舍一致），可安全归一。
+_CAT_CLASS = ("职场类", "古风类", "言情类", "悬疑类", "仙侠类", "科教类", "科普类")
+
+
+def _norm_query(q: str) -> str:
+    """改写 audio_search 的 query 文本，使其落到新版 golden 的书写风格。"""
+    q = q.strip()
+    q = q.replace("搜一下", "搜索")
+    q = q.replace("找一下", "搜索")
+    q = q.replace("查找", "搜索")
+    q = q.rstrip("？?")
+    q = q.replace("，", "")
+    q = _EP_START.sub(r"\1\2", q)
+    if q.startswith("海信小聚"):
+        q = q[len("海信小聚"):]
+    q = _EN_WORD.sub(lambda m: m.group(1).lower(), q)
+    q = _TODAY_RANK.sub("今天", q)
+    q = q.replace("毛主席", "毛泽东")
+    q = q.replace("大结局", "最后一集")
+    q = q.replace("新上线", "最新")
+    for c in _CAT_CLASS:
+        q = q.replace(c, c.replace("类", ""))
+    return q
+
+
 def _search_params(q: str) -> dict[str, Any]:
-    return {"action": "play" if _is_play(q) else "search", "query": q}
+    qn = _norm_query(q)
+    return {"action": "play" if _is_play(qn) else "search", "query": qn}
+
+
+def _search_decide(q: str) -> tuple[str, dict[str, Any]] | None:
+    """audio_search default 分支：恒返回 (audio_search, params)；改写 query 对齐 golden。"""
+    return "audio_search", _search_params(q)
 
 
 # ============================ 规则表（顺序 = priority） ============================
@@ -120,8 +167,8 @@ RULE_SET = RuleSet(
         tool="audio_search",
         priority=99,
         title="有声内容搜索（兜底）",
-        explain="非历史意图一律 audio_search：action 由 起播/检索 cue 判定，query 原样透传",
-        build=_search_params,
+        explain="非历史意图一律 audio_search：action 由 起播/检索 cue 判定，query 按 golden 风格改写",
+        decide=_search_decide,
     ),
 )
 

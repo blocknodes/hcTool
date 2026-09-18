@@ -1,7 +1,7 @@
 {
   "domain": "教育",
   "domain_key": "education",
-  "count": 216,
+  "count": 565,
   "records": [
     {
       "query": "高三的物理",
@@ -396,6 +396,10 @@
         "query": {
           "and": [
             {
+              "field": "figures",
+              "value": "小学"
+            },
+            {
               "field": "grade",
               "value": "三年级"
             },
@@ -460,6 +464,10 @@
         "query": {
           "and": [
             {
+              "field": "figures",
+              "value": "小学"
+            },
+            {
               "field": "grade",
               "value": "三年级"
             },
@@ -493,6 +501,10 @@
       "expected_params": {
         "query": {
           "and": [
+            {
+              "field": "figures",
+              "value": "高中"
+            },
             {
               "field": "grade",
               "value": "高一"
@@ -620,7 +632,7 @@
       }
     },
     {
-      "query": "人教版七年级上册政治",
+      "query": "2024人教版七年级上册政治",
       "expected_tool": "edu_search",
       "expected_params": {
         "query": {
@@ -684,7 +696,7 @@
       }
     },
     {
-      "query": "5年级下册英语人教版",
+      "query": "5年级下册英语人教部编版",
       "expected_tool": "edu_search",
       "expected_params": {
         "query": {
@@ -699,7 +711,7 @@
             },
             {
               "field": "material_version",
-              "value": "人教版"
+              "value": "人教部编版"
             },
             {
               "field": "semester",
@@ -932,6 +944,10 @@
       "expected_params": {
         "query": {
           "and": [
+            {
+              "field": "figures",
+              "value": "初中"
+            },
             {
               "field": "grade",
               "value": "八年级"
@@ -1697,38 +1713,9 @@
       }
     },
     {
-      "query": "高中物理和数学",
+      "query": "高中物理必修数学必修一",
       "expected_tool": "edu_search",
-      "expected_params": {
-        "query": {
-          "and": [
-            {
-              "field": "figures",
-              "value": "高中"
-            },
-            {
-              "or": [
-                {
-                  "field": "first_subject",
-                  "values": [
-                    "物理",
-                    "数学"
-                  ],
-                  "operator": "or"
-                },
-                {
-                  "field": "k12_category",
-                  "values": [
-                    "同步课",
-                    "同步拓展课"
-                  ],
-                  "operator": "or"
-                }
-              ]
-            }
-          ]
-        }
-      }
+      "expected_params": {}
     },
     {
       "query": "二年级的语文",
@@ -1791,7 +1778,7 @@
       }
     },
     {
-      "query": "1年级下册语文",
+      "query": "1年级下册阅读",
       "expected_tool": "edu_search",
       "expected_params": {
         "query": {
@@ -1935,6 +1922,10 @@
         "query": {
           "and": [
             {
+              "field": "figures",
+              "value": "初中"
+            },
+            {
               "field": "grade",
               "value": "七年级"
             },
@@ -1994,6 +1985,10 @@
       "expected_params": {
         "query": {
           "and": [
+            {
+              "field": "figures",
+              "value": "小学"
+            },
             {
               "field": "grade",
               "values": [
@@ -2088,6 +2083,10 @@
         "query": {
           "and": [
             {
+              "field": "figures",
+              "value": "初中"
+            },
+            {
               "field": "grade",
               "value": "八年级"
             },
@@ -2158,7 +2157,7 @@
       }
     },
     {
-      "query": "初中七年级语文，要苏教版或北师大版，但不要免费的",
+      "query": "七年级语文，要苏教版或北师大版，但不要免费的",
       "expected_tool": "edu_search",
       "expected_params": {
         "query": {
@@ -4367,6 +4366,10 @@
         "query": {
           "and": [
             {
+              "field": "figures",
+              "value": "小学"
+            },
+            {
               "field": "grade",
               "values": [
                 "三年级",
@@ -5265,7 +5268,7 @@
       }
     },
     {
-      "query": "二年级下册的语文",
+      "query": "二年级下册的阅读",
       "expected_tool": "edu_search",
       "expected_params": {
         "query": {
@@ -5295,7 +5298,7 @@
       }
     },
     {
-      "query": "四年级上册数学人教版",
+      "query": "2026年四年级上册数学人教版",
       "expected_tool": "edu_search",
       "expected_params": {
         "query": {
@@ -5355,7 +5358,7 @@
       }
     },
     {
-      "query": "打开八年级上册生物",
+      "query": "打开八年级上册生物第2章",
       "expected_tool": "edu_search",
       "expected_params": {
         "query": {
@@ -5388,259 +5391,2702 @@
       "query": "扇形统计图的备课视频",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "扇形统计图的备课视频"
+        "retext": "扇形统计图的备课视频"
       }
     },
     {
       "query": "播放万唯名师的教育视频",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "播放万唯名师的教育视频"
+        "retext": "播放万唯名师的教育视频"
       }
     },
     {
       "query": "我要学星火教育高中一对一辅导课程",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "我要学星火教育高中一对一辅导课程"
+        "retext": "我要学星火教育高中一对一辅导课程"
       }
     },
     {
       "query": "有没有学而思的精讲课程",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "有没有学而思的精讲课程"
+        "retext": "有没有学而思的精讲课程"
       }
     },
     {
       "query": "我想看消防安全常识课",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "我想看消防安全常识课"
+        "retext": "我想看消防安全常识课"
       }
     },
     {
       "query": "尤克里里零基础入门课",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "尤克里里零基础入门课"
+        "retext": "尤克里里零基础入门课"
       }
     },
     {
       "query": "我想学下围棋",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "我想学下围棋"
+        "retext": "我想学下围棋"
       }
     },
     {
       "query": "古筝名曲教学入门",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "古筝名曲教学入门"
+        "retext": "古筝名曲教学入门"
       }
     },
     {
       "query": "讲座",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "讲座"
+        "retext": "讲座"
       }
     },
     {
       "query": "有没有瑜伽课",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "有没有瑜伽课"
+        "retext": "有没有瑜伽课"
       }
     },
     {
       "query": "打开儿童演讲训练教程",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "打开儿童演讲训练教程"
+        "retext": "打开儿童演讲训练教程"
       }
     },
     {
       "query": "有没有零基础儿童画画入门教程",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "有没有零基础儿童画画入门教程"
+        "retext": "有没有零基础儿童画画入门教程"
       }
     },
     {
       "query": "我想学中国舞",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "我想学中国舞"
+        "retext": "我想学中国舞"
       }
     },
     {
       "query": "儿童彩铅绘画教学",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "儿童彩铅绘画教学"
+        "retext": "儿童彩铅绘画教学"
       }
     },
     {
       "query": "播放儿童篮球课程",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "播放儿童篮球课程"
+        "retext": "播放儿童篮球课程"
       }
     },
     {
       "query": "小学生自制手账的教程",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "小学生自制手账的教程"
+        "retext": "小学生自制手账的教程"
       }
     },
     {
       "query": "吉他课程",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "吉他课程"
+        "retext": "吉他课程"
       }
     },
     {
       "query": "学习基本功形体训练",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "学习基本功形体训练"
+        "retext": "学习基本功形体训练"
       }
     },
     {
       "query": "少儿足球训练教程",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "少儿足球训练教程"
+        "retext": "少儿足球训练教程"
       }
     },
     {
       "query": "有没有非洲鼓入门课",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "有没有非洲鼓入门课"
+        "retext": "有没有非洲鼓入门课"
       }
     },
     {
       "query": "免费的少儿硬笔书法",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "免费的少儿硬笔书法"
+        "retext": "免费的少儿硬笔书法"
       }
     },
     {
       "query": "安全教育黑板报内容",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "安全教育黑板报内容"
+        "retext": "安全教育黑板报内容"
       }
     },
     {
       "query": "打开免费的二胡",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "打开免费的二胡"
+        "retext": "打开免费的二胡"
       }
     },
     {
       "query": "做贺卡教学视频",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "做贺卡教学视频"
+        "retext": "做贺卡教学视频"
       }
     },
     {
       "query": "我要看关于高一上册政治的复习视频",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "我要看关于高一上册政治的复习视频"
+        "retext": "我要看关于高一上册政治的复习视频"
       }
     },
     {
       "query": "八年级上政治期末复习",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "八年级上政治期末复习"
+        "retext": "八年级上政治期末复习"
       }
     },
     {
       "query": "人教版高一数学同步辅导精讲",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "人教版高一数学同步辅导精讲"
+        "retext": "人教版高一数学同步辅导精讲"
       }
     },
     {
       "query": "9年级上册期末考试的考试范围",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "9年级上册期末考试的考试范围"
+        "retext": "9年级上册期末考试的考试范围"
       }
     },
     {
       "query": "帮我在B站里找到7年级上册历史全部期末考试复习集的视频",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "帮我在B站里找到7年级上册历史全部期末考试复习集的视频"
+        "retext": "帮我在B站里找到7年级上册历史全部期末考试复习集的视频"
       }
     },
     {
       "query": "7年级上册的地理期末检测",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "7年级上册的地理期末检测"
+        "retext": "7年级上册的地理期末检测"
       }
     },
     {
       "query": "请帮我写出九整个9年级的物理易错知识点",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "请帮我写出九整个9年级的物理易错知识点"
+        "retext": "请帮我写出九整个9年级的物理易错知识点"
       }
     },
     {
       "query": "总结七年级下册政治第1单元",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "总结七年级下册政治第1单元"
+        "retext": "总结七年级下册政治第1单元"
       }
     },
     {
       "query": "高考语文冲刺",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "高考语文冲刺"
+        "retext": "高考语文冲刺"
       }
     },
     {
       "query": "播放七年级初一知识精讲内容",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "播放七年级初一知识精讲内容"
+        "retext": "播放七年级初一知识精讲内容"
       }
     },
     {
       "query": "搜索高三压轴题押题解析",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "搜索高三压轴题押题解析"
+        "retext": "搜索高三压轴题押题解析"
       }
     },
     {
       "query": "我要看语文阅读专项提升视频",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "我要看语文阅读专项提升视频"
+        "retext": "我要看语文阅读专项提升视频"
       }
     },
     {
       "query": "有没有课前预习的课程？",
       "expected_tool": "edu_fuzzy_search",
       "expected_params": {
-        "query": "有没有课前预习的课程？"
+        "retext": "有没有课前预习的课程？"
+      }
+    },
+    {
+      "query": "打开小学生课内基础巩固课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "打开小学生课内基础巩固课程"
+      }
+    },
+    {
+      "query": "播放初中全科考点冲刺课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "播放初中全科考点冲刺课程"
+      }
+    },
+    {
+      "query": "给初中生推荐文科阅读课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "给初中生推荐文科阅读课"
+      }
+    },
+    {
+      "query": "适合初中生的专项提升课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "适合初中生的专项提升课"
+      }
+    },
+    {
+      "query": "看高中生高考考点精讲",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "看高中生高考考点精讲"
+      }
+    },
+    {
+      "query": "找高中生各科压轴题讲解",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "找高中生各科压轴题讲解"
+      }
+    },
+    {
+      "query": "学习小学六年级小升初教程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "学习小学六年级小升初教程"
+      }
+    },
+    {
+      "query": "推荐高中生专用备考课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "推荐高中生专用备考课程"
+      }
+    },
+    {
+      "query": "四年级下学期专题复习",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "四年级下学期专题复习"
+      }
+    },
+    {
+      "query": "初中三年级下学期专题复习",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初中三年级下学期专题复习"
+      }
+    },
+    {
+      "query": "英语口语听力考试江苏",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "英语口语听力考试江苏"
+      }
+    },
+    {
+      "query": "播放免费的数学题",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "播放免费的数学题"
+      }
+    },
+    {
+      "query": "四年级数学应用题难题",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "四年级数学应用题难题"
+      }
+    },
+    {
+      "query": "二年级上册语文复习",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "二年级上册语文复习"
+      }
+    },
+    {
+      "query": "我想看数学思维训练营",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我想看数学思维训练营"
+      }
+    },
+    {
+      "query": "快乐英语阅读课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "快乐英语阅读课程"
+      }
+    },
+    {
+      "query": "毛泽东的课文为人民服务",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "毛泽东的课文为人民服务"
+      }
+    },
+    {
+      "query": "我想听第一次鸦片战争的课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我想听第一次鸦片战争的课"
+      }
+    },
+    {
+      "query": "播放声母韵母整体认读音节",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "播放声母韵母整体认读音节"
+      }
+    },
+    {
+      "query": "小聚小聚播放物理实验小课堂",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "小聚小聚播放物理实验小课堂"
+      }
+    },
+    {
+      "query": "直角三角形的面积公式",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "直角三角形的面积公式"
+      }
+    },
+    {
+      "query": "我要学牛顿定律",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我要学牛顿定律"
+      }
+    },
+    {
+      "query": "我要看化学质量守恒定律",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我要看化学质量守恒定律"
+      }
+    },
+    {
+      "query": "直角三角形的面积",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "直角三角形的面积"
+      }
+    },
+    {
+      "query": "播放化学实验小课堂",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "播放化学实验小课堂"
+      }
+    },
+    {
+      "query": "小聚小聚给我播放认识钟表",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "小聚小聚给我播放认识钟表"
+      }
+    },
+    {
+      "query": "播放人体奥秘课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "播放人体奥秘课程"
+      }
+    },
+    {
+      "query": "我要看免费的一年级上册数学加减法1到10",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我要看免费的一年级上册数学加减法1到10"
+      }
+    },
+    {
+      "query": "免费的数学题",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "免费的数学题"
+      }
+    },
+    {
+      "query": "我要看不要VIP的学拼音",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我要看不要VIP的学拼音"
+      }
+    },
+    {
+      "query": "帮我播放免费的算术学习",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "帮我播放免费的算术学习"
+      }
+    },
+    {
+      "query": "生物七年级八年级混合人教版做题小技巧",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "生物七年级八年级混合人教版做题小技巧"
+      }
+    },
+    {
+      "query": "初二外研版英语重难点精讲",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初二外研版英语重难点精讲"
+      }
+    },
+    {
+      "query": "我要看五年级下册北师大版数学知识点",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我要看五年级下册北师大版数学知识点"
+      }
+    },
+    {
+      "query": "初二物理北师大版考点辅导",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初二物理北师大版考点辅导"
+      }
+    },
+    {
+      "query": "初二数学鲁教版考点",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初二数学鲁教版考点"
+      }
+    },
+    {
+      "query": "打开期中复习专题",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "打开期中复习专题"
+      }
+    },
+    {
+      "query": "有没有适合学生的辅导资料",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "有没有适合学生的辅导资料"
+      }
+    },
+    {
+      "query": "找口碑好、评价高的学习课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "找口碑好、评价高的学习课程"
+      }
+    },
+    {
+      "query": "帮我找一些学习内容",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "帮我找一些学习内容"
+      }
+    },
+    {
+      "query": "权威推荐的教育课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "权威推荐的教育课程"
+      }
+    },
+    {
+      "query": "我要学唱歌",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我要学唱歌"
+      }
+    },
+    {
+      "query": "我想学声乐",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我想学声乐"
+      }
+    },
+    {
+      "query": "找概率论与数理统计教学视频",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "找概率论与数理统计教学视频"
+      }
+    },
+    {
+      "query": "同步课新课标考法精讲",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "同步课新课标考法精讲"
+      }
+    },
+    {
+      "query": "高分冲刺课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "高分冲刺课"
+      }
+    },
+    {
+      "query": "同步课薄弱科目专项提升",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "同步课薄弱科目专项提升"
+      }
+    },
+    {
+      "query": "同步课校内拔高训练",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "同步课校内拔高训练"
+      }
+    },
+    {
+      "query": "奥数思维拓展",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "奥数思维拓展"
+      }
+    },
+    {
+      "query": "我想要中考冲刺课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我想要中考冲刺课"
+      }
+    },
+    {
+      "query": "中考物理冲刺提升课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "中考物理冲刺提升课"
+      }
+    },
+    {
+      "query": "二年级下册试卷数学",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "二年级下册试卷数学"
+      }
+    },
+    {
+      "query": "初一的英语卷子",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初一的英语卷子"
+      }
+    },
+    {
+      "query": "高三物理试题",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "高三物理试题"
+      }
+    },
+    {
+      "query": "小升初考试",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "小升初考试"
+      }
+    },
+    {
+      "query": "高一化学实验",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "高一化学实验"
+      }
+    },
+    {
+      "query": "高考数学一轮复习课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "高考数学一轮复习课"
+      }
+    },
+    {
+      "query": "化学冲刺课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "化学冲刺课程"
+      }
+    },
+    {
+      "query": "七年级数学期末总复习",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "七年级数学期末总复习"
+      }
+    },
+    {
+      "query": "高考冲刺",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "高考冲刺"
+      }
+    },
+    {
+      "query": "冲刺复习",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "冲刺复习"
+      }
+    },
+    {
+      "query": "搜索课程生物高考冲刺",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "搜索课程生物高考冲刺"
+      }
+    },
+    {
+      "query": "必刷试卷的期中复习测试卷三",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "必刷试卷的期中复习测试卷三"
+      }
+    },
+    {
+      "query": "TED演讲视频",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "TED演讲视频"
+      }
+    },
+    {
+      "query": "小学全科知识拓展趣味课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "小学全科知识拓展趣味课"
+      }
+    },
+    {
+      "query": "我要看初中升学拔高拓展课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我要看初中升学拔高拓展课"
+      }
+    },
+    {
+      "query": "搜索高中重难点专题课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "搜索高中重难点专题课"
+      }
+    },
+    {
+      "query": "学小学奥数思维拓展课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "学小学奥数思维拓展课程"
+      }
+    },
+    {
+      "query": "初中几何证明专题拔高课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初中几何证明专题拔高课"
+      }
+    },
+    {
+      "query": "查找物理力学专题考点训练课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "查找物理力学专题考点训练课"
+      }
+    },
+    {
+      "query": "有没有语文古诗文鉴赏专题拓展课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "有没有语文古诗文鉴赏专题拓展课"
+      }
+    },
+    {
+      "query": "高中各科命题趋势押题精讲",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "高中各科命题趋势押题精讲"
+      }
+    },
+    {
+      "query": "初中升学真题模拟押题课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初中升学真题模拟押题课"
+      }
+    },
+    {
+      "query": "帮我找各科历年真题讲解课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "帮我找各科历年真题讲解课"
+      }
+    },
+    {
+      "query": "中考高频押题精讲课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "中考高频押题精讲课程"
+      }
+    },
+    {
+      "query": "高中重难点培优拔高精讲",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "高中重难点培优拔高精讲"
+      }
+    },
+    {
+      "query": "我要看数学思维拔高训练课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我要看数学思维拔高训练课"
+      }
+    },
+    {
+      "query": "帮我找理化生竞赛拔高课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "帮我找理化生竞赛拔高课程"
+      }
+    },
+    {
+      "query": "想学理科难点专项内容",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "想学理科难点专项内容"
+      }
+    },
+    {
+      "query": "高考全科考前冲刺精讲",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "高考全科考前冲刺精讲"
+      }
+    },
+    {
+      "query": "初中各科考前提分冲刺课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初中各科考前提分冲刺课"
+      }
+    },
+    {
+      "query": "搜索小升初全科冲刺辅导课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "搜索小升初全科冲刺辅导课"
+      }
+    },
+    {
+      "query": "推荐中小学考前突击冲刺课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "推荐中小学考前突击冲刺课"
+      }
+    },
+    {
+      "query": "同步课薄弱科目专项提升教程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "同步课薄弱科目专项提升教程"
+      }
+    },
+    {
+      "query": "搜索英语语法的教学视频",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "搜索英语语法的教学视频"
+      }
+    },
+    {
+      "query": "高中语文诗歌鉴赏专题训练",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "高中语文诗歌鉴赏专题训练"
+      }
+    },
+    {
+      "query": "初三物理化学中考冲刺",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初三物理化学中考冲刺"
+      }
+    },
+    {
+      "query": "帮我列举中考会用到的物理公式",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "帮我列举中考会用到的物理公式"
+      }
+    },
+    {
+      "query": "帮我搜索物理压轴题",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "帮我搜索物理压轴题"
+      }
+    },
+    {
+      "query": "帮我搜索一下关于物理化学九年级上册的复习题",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "帮我搜索一下关于物理化学九年级上册的复习题"
+      }
+    },
+    {
+      "query": "国际跳棋的视频的视频",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "国际跳棋的视频的视频"
+      }
+    },
+    {
+      "query": "安全教育小课堂",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "安全教育小课堂"
+      }
+    },
+    {
+      "query": "制作彩泥的课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "制作彩泥的课程"
+      }
+    },
+    {
+      "query": "播放人际交往的沟通课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "播放人际交往的沟通课"
+      }
+    },
+    {
+      "query": "学织围巾的教程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "学织围巾的教程"
+      }
+    },
+    {
+      "query": "我要学织毛衣",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我要学织毛衣"
+      }
+    },
+    {
+      "query": "手工剪纸课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "手工剪纸课程"
+      }
+    },
+    {
+      "query": "播放消防安全知识竞赛考试",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "播放消防安全知识竞赛考试"
+      }
+    },
+    {
+      "query": "免费看的配音教学课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "免费看的配音教学课"
+      }
+    },
+    {
+      "query": "找一些关于孩子心理健康相关的课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "找一些关于孩子心理健康相关的课程"
+      }
+    },
+    {
+      "query": "有没有介绍学习方法的视频",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "有没有介绍学习方法的视频"
+      }
+    },
+    {
+      "query": "一年级硬笔书法课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "一年级硬笔书法课"
+      }
+    },
+    {
+      "query": "楷书教程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "楷书教程"
+      }
+    },
+    {
+      "query": "播放少儿硬笔书法",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "播放少儿硬笔书法"
+      }
+    },
+    {
+      "query": "我要看黄姐书法讲座",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我要看黄姐书法讲座"
+      }
+    },
+    {
+      "query": "写钢笔字",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "写钢笔字"
+      }
+    },
+    {
+      "query": "播放练字教学",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "播放练字教学"
+      }
+    },
+    {
+      "query": "硬笔书法基础人门",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "硬笔书法基础人门"
+      }
+    },
+    {
+      "query": "行书基础入门课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "行书基础入门课"
+      }
+    },
+    {
+      "query": "安全教育指南",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "安全教育指南"
+      }
+    },
+    {
+      "query": "练习毛笔字",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "练习毛笔字"
+      }
+    },
+    {
+      "query": "我想学习书法",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我想学习书法"
+      }
+    },
+    {
+      "query": "萨克斯教学",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "萨克斯教学"
+      }
+    },
+    {
+      "query": "播放葫芦丝教学",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "播放葫芦丝教学"
+      }
+    },
+    {
+      "query": "吉他入门",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "吉他入门"
+      }
+    },
+    {
+      "query": "播放古琴教学",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "播放古琴教学"
+      }
+    },
+    {
+      "query": "搜索吹笛子的教程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "搜索吹笛子的教程"
+      }
+    },
+    {
+      "query": "播放免费看的安全教育",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "播放免费看的安全教育"
+      }
+    },
+    {
+      "query": "我要看架子鼓",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我要看架子鼓"
+      }
+    },
+    {
+      "query": "游泳安全知识",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "游泳安全知识"
+      }
+    },
+    {
+      "query": "我要看钢琴",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我要看钢琴"
+      }
+    },
+    {
+      "query": "用电安全手抄报",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "用电安全手抄报"
+      }
+    },
+    {
+      "query": "尤克里里教程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "尤克里里教程"
+      }
+    },
+    {
+      "query": "中国手抄报教程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "中国手抄报教程"
+      }
+    },
+    {
+      "query": "播放手抄报",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "播放手抄报"
+      }
+    },
+    {
+      "query": "重阳节的手抄报",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "重阳节的手抄报"
+      }
+    },
+    {
+      "query": "我要画劳动节手抄报",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我要画劳动节手抄报"
+      }
+    },
+    {
+      "query": "国庆节精美手抄报模板",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "国庆节精美手抄报模板"
+      }
+    },
+    {
+      "query": "搜索雷锋手抄报",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "搜索雷锋手抄报"
+      }
+    },
+    {
+      "query": "建党节小学生手抄报",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "建党节小学生手抄报"
+      }
+    },
+    {
+      "query": "校园安全主题黑板报",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "校园安全主题黑板报"
+      }
+    },
+    {
+      "query": "三年级元旦黑板报",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "三年级元旦黑板报"
+      }
+    },
+    {
+      "query": "消防安全知识手抄报",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "消防安全知识手抄报"
+      }
+    },
+    {
+      "query": "少儿象棋入门课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "少儿象棋入门课程"
+      }
+    },
+    {
+      "query": "有没有少儿跆拳道课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "有没有少儿跆拳道课程"
+      }
+    },
+    {
+      "query": "找羽毛球入门教学",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "找羽毛球入门教学"
+      }
+    },
+    {
+      "query": "乒乓球启蒙课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "乒乓球启蒙课程"
+      }
+    },
+    {
+      "query": "小学生跳绳技巧教学",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "小学生跳绳技巧教学"
+      }
+    },
+    {
+      "query": "足球兴趣培养课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "足球兴趣培养课程"
+      }
+    },
+    {
+      "query": "搜索幼儿芭蕾舞启蒙课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "搜索幼儿芭蕾舞启蒙课"
+      }
+    },
+    {
+      "query": "播放少儿舞蹈入门课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "播放少儿舞蹈入门课"
+      }
+    },
+    {
+      "query": "少儿街舞兴趣培训课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "少儿街舞兴趣培训课"
+      }
+    },
+    {
+      "query": "有没有逻辑思维和推理训练的课程？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "有没有逻辑思维和推理训练的课程？"
+      }
+    },
+    {
+      "query": "有没有教三字经的课程？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "有没有教三字经的课程？"
+      }
+    },
+    {
+      "query": "想找编程启蒙课，有吗？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "想找编程启蒙课，有吗？"
+      }
+    },
+    {
+      "query": "有没有专注力训练课程？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "有没有专注力训练课程？"
+      }
+    },
+    {
+      "query": "播放专注力训练课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "播放专注力训练课程"
+      }
+    },
+    {
+      "query": "想找儿童舞蹈基础课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "想找儿童舞蹈基础课"
+      }
+    },
+    {
+      "query": "少儿 AI 与人工智能课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "少儿 AI 与人工智能课"
+      }
+    },
+    {
+      "query": "有没有少儿编程入门课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "有没有少儿编程入门课"
+      }
+    },
+    {
+      "query": "想找综合素质提升课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "想找综合素质提升课"
+      }
+    },
+    {
+      "query": "有没有少儿编程入门课？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "有没有少儿编程入门课？"
+      }
+    },
+    {
+      "query": "推荐适合小学生的素质兴趣课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "推荐适合小学生的素质兴趣课"
+      }
+    },
+    {
+      "query": "找适合幼儿的创意手工启蒙课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "找适合幼儿的创意手工启蒙课"
+      }
+    },
+    {
+      "query": "我想学儿童画画",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我想学儿童画画"
+      }
+    },
+    {
+      "query": "打开少儿卡通绘画",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "打开少儿卡通绘画"
+      }
+    },
+    {
+      "query": "学习素描画",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "学习素描画"
+      }
+    },
+    {
+      "query": "想学水彩画",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "想学水彩画"
+      }
+    },
+    {
+      "query": "幼儿美术启蒙课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "幼儿美术启蒙课"
+      }
+    },
+    {
+      "query": "学习手绘教程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "学习手绘教程"
+      }
+    },
+    {
+      "query": "幼儿古典舞基础形体课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "幼儿古典舞基础形体课程"
+      }
+    },
+    {
+      "query": "我想学儿童折纸",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我想学儿童折纸"
+      }
+    },
+    {
+      "query": "学习超轻粘土创意手工课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "学习超轻粘土创意手工课"
+      }
+    },
+    {
+      "query": "废旧物品手工制作课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "废旧物品手工制作课"
+      }
+    },
+    {
+      "query": "想学剪纸",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "想学剪纸"
+      }
+    },
+    {
+      "query": "创意DIY课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "创意DIY课程"
+      }
+    },
+    {
+      "query": "儿童手工拼装教程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "儿童手工拼装教程"
+      }
+    },
+    {
+      "query": "适合初学者的拉丁舞网课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "适合初学者的拉丁舞网课"
+      }
+    },
+    {
+      "query": "我想学少儿基础体能训练",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我想学少儿基础体能训练"
+      }
+    },
+    {
+      "query": "学习跳绳的视频",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "学习跳绳的视频"
+      }
+    },
+    {
+      "query": "学习乒乓球打法",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "学习乒乓球打法"
+      }
+    },
+    {
+      "query": "我想学打羽毛球",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我想学打羽毛球"
+      }
+    },
+    {
+      "query": "校园安全运动常识课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "校园安全运动常识课"
+      }
+    },
+    {
+      "query": "打开儿童爵士舞入门教学",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "打开儿童爵士舞入门教学"
+      }
+    },
+    {
+      "query": "搜索小学生古典舞蹈",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "搜索小学生古典舞蹈"
+      }
+    },
+    {
+      "query": "有没有少儿街舞的课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "有没有少儿街舞的课"
+      }
+    },
+    {
+      "query": "打开舞蹈课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "打开舞蹈课"
+      }
+    },
+    {
+      "query": "我想学少儿声乐",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我想学少儿声乐"
+      }
+    },
+    {
+      "query": "学习钢琴",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "学习钢琴"
+      }
+    },
+    {
+      "query": "吉他自学教学",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "吉他自学教学"
+      }
+    },
+    {
+      "query": "葫芦丝教学课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "葫芦丝教学课"
+      }
+    },
+    {
+      "query": "我想学拉二胡",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我想学拉二胡"
+      }
+    },
+    {
+      "query": "琵琶教程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "琵琶教程"
+      }
+    },
+    {
+      "query": "有没有手风琴的视频",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "有没有手风琴的视频"
+      }
+    },
+    {
+      "query": "我想学中国象棋",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我想学中国象棋"
+      }
+    },
+    {
+      "query": "打开围棋启蒙课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "打开围棋启蒙课程"
+      }
+    },
+    {
+      "query": "学习国际象棋",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "学习国际象棋"
+      }
+    },
+    {
+      "query": "五子棋教学",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "五子棋教学"
+      }
+    },
+    {
+      "query": "象棋入门教程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "象棋入门教程"
+      }
+    },
+    {
+      "query": "我想学围棋",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我想学围棋"
+      }
+    },
+    {
+      "query": "我想学硬笔书法",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我想学硬笔书法"
+      }
+    },
+    {
+      "query": "打开小学生楷书入门课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "打开小学生楷书入门课"
+      }
+    },
+    {
+      "query": "高中物理电磁学",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "高中物理电磁学"
+      }
+    },
+    {
+      "query": "学习小学数学分数乘除法专题课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "学习小学数学分数乘除法专题课"
+      }
+    },
+    {
+      "query": "推荐一些小学英语语法知识点的网课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "推荐一些小学英语语法知识点的网课"
+      }
+    },
+    {
+      "query": "讲解小学数学几何重点的课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "讲解小学数学几何重点的课程"
+      }
+    },
+    {
+      "query": "想系统学习下高中语文必背考点知识",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "想系统学习下高中语文必背考点知识"
+      }
+    },
+    {
+      "query": "预习一下四年级小数的意义与性质知识点",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "预习一下四年级小数的意义与性质知识点"
+      }
+    },
+    {
+      "query": "鸡兔同笼解题思路专项讲解",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "鸡兔同笼解题思路专项讲解"
+      }
+    },
+    {
+      "query": "五年级病句修改与句式变换知识点",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "五年级病句修改与句式变换知识点"
+      }
+    },
+    {
+      "query": "学一下四年级修辞手法运用专题讲解",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "学一下四年级修辞手法运用专题讲解"
+      }
+    },
+    {
+      "query": "有没有英语一般现在时用法专项讲解",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "有没有英语一般现在时用法专项讲解"
+      }
+    },
+    {
+      "query": "英语名词单复数变化规则知识点，帮我找一下",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "英语名词单复数变化规则知识点，帮我找一下"
+      }
+    },
+    {
+      "query": "给我推荐英语单词词根趣味记忆专题课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "给我推荐英语单词词根趣味记忆专题课"
+      }
+    },
+    {
+      "query": "有理数加减乘除混合运算知识讲解课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "有理数加减乘除混合运算知识讲解课"
+      }
+    },
+    {
+      "query": "我想学反比例函数图像性质核心知识点",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我想学反比例函数图像性质核心知识点"
+      }
+    },
+    {
+      "query": "看相似三角形判定与性质知识点",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "看相似三角形判定与性质知识点"
+      }
+    },
+    {
+      "query": "找一些分式方程化简求值专项课程吧",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "找一些分式方程化简求值专项课程吧"
+      }
+    },
+    {
+      "query": "文言文实词虚词用法知识点",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "文言文实词虚词用法知识点"
+      }
+    },
+    {
+      "query": "现代文基础阅读理解",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "现代文基础阅读理解"
+      }
+    },
+    {
+      "query": "名著导读必考考点",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "名著导读必考考点"
+      }
+    },
+    {
+      "query": "英语八大时态系统精讲",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "英语八大时态系统精讲"
+      }
+    },
+    {
+      "query": "初中英语定语从句用法知识点",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初中英语定语从句用法知识点"
+      }
+    },
+    {
+      "query": "播放光的反射折射成像专题课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "播放光的反射折射成像专题课"
+      }
+    },
+    {
+      "query": "给我找初中杠杆滑轮机械效率解题知识点",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "给我找初中杠杆滑轮机械效率解题知识点"
+      }
+    },
+    {
+      "query": "学习知识点酸碱盐化学性质",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "学习知识点酸碱盐化学性质"
+      }
+    },
+    {
+      "query": "有没有初中化学实验操作核心考点",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "有没有初中化学实验操作核心考点"
+      }
+    },
+    {
+      "query": "高中导数单调性极值最值知识点",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "高中导数单调性极值最值知识点"
+      }
+    },
+    {
+      "query": "知识点匀变速直线运动公式应用",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "知识点匀变速直线运动公式应用"
+      }
+    },
+    {
+      "query": "复习一下高中动能定理机械能守恒知识",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "复习一下高中动能定理机械能守恒知识"
+      }
+    },
+    {
+      "query": "化学知识点课程平衡电离水解",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "化学知识点课程平衡电离水解"
+      }
+    },
+    {
+      "query": "有没有关于空间向量与立体几何考点的课程",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "有没有关于空间向量与立体几何考点的课程"
+      }
+    },
+    {
+      "query": "查找圆柱与圆锥体积公式推导及应用的精讲课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "查找圆柱与圆锥体积公式推导及应用的精讲课"
+      }
+    },
+    {
+      "query": "有没有导数在函数单调性中的应用知识点讲解课",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "有没有导数在函数单调性中的应用知识点讲解课"
+      }
+    },
+    {
+      "query": "小学数学几何图形知识点梳理",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "小学数学几何图形知识点梳理"
+      }
+    },
+    {
+      "query": "圆的性质及常见考点解析",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "圆的性质及常见考点解析"
+      }
+    },
+    {
+      "query": "给我讲一下现在完成时态用法",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "给我讲一下现在完成时态用法"
+      }
+    },
+    {
+      "query": "生物“光合作用与呼吸作用”的知识讲解",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "生物“光合作用与呼吸作用”的知识讲解"
+      }
+    },
+    {
+      "query": "8年级上册物理所有知识点",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "8年级上册物理所有知识点"
+      }
+    },
+    {
+      "query": "8年级上册物理的凸透镜成像规律",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "8年级上册物理的凸透镜成像规律"
+      }
+    },
+    {
+      "query": "八年级上册物理机械秒表的读数",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "八年级上册物理机械秒表的读数"
+      }
+    },
+    {
+      "query": "小学四年级开设科学课吗？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "小学四年级开设科学课吗？"
+      }
+    },
+    {
+      "query": "小学五年级有道德与法治课吗？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "小学五年级有道德与法治课吗？"
+      }
+    },
+    {
+      "query": "数学基础差应该从哪里补起？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "数学基础差应该从哪里补起？"
+      }
+    },
+    {
+      "query": "英语单词总是记不住怎么办？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "英语单词总是记不住怎么办？"
+      }
+    },
+    {
+      "query": "化学知识点太碎怎么梳理？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "化学知识点太碎怎么梳理？"
+      }
+    },
+    {
+      "query": "2026年小升初要考几科",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "2026年小升初要考几科"
+      }
+    },
+    {
+      "query": "初中二年级的主要学科是什么？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初中二年级的主要学科是什么？"
+      }
+    },
+    {
+      "query": "初中生都要上心理健康课吗？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初中生都要上心理健康课吗？"
+      }
+    },
+    {
+      "query": "政治主观题怎么拿高分？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "政治主观题怎么拿高分？"
+      }
+    },
+    {
+      "query": "课堂笔记应该怎么做才有用？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "课堂笔记应该怎么做才有用？"
+      }
+    },
+    {
+      "query": "历史时间线总是记混怎么办？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "历史时间线总是记混怎么办？"
+      }
+    },
+    {
+      "query": "早读读什么内容效果最好？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "早读读什么内容效果最好？"
+      }
+    },
+    {
+      "query": "初中主科和副科分别有哪些？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初中主科和副科分别有哪些？"
+      }
+    },
+    {
+      "query": "初中物理是从几年级开始学的？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初中物理是从几年级开始学的？"
+      }
+    },
+    {
+      "query": "中考语文必考考点有哪些？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "中考语文必考考点有哪些？"
+      }
+    },
+    {
+      "query": "高中文科需要学哪些科目？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "高中文科需要学哪些科目？"
+      }
+    },
+    {
+      "query": "高中一年级都学哪些科目？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "高中一年级都学哪些科目？"
+      }
+    },
+    {
+      "query": "高中理科要学历史吗？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "高中理科要学历史吗？"
+      }
+    },
+    {
+      "query": "病句修改常见类型有哪些？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "病句修改常见类型有哪些？"
+      }
+    },
+    {
+      "query": "中考和高考难度区别在哪？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "中考和高考难度区别在哪？"
+      }
+    },
+    {
+      "query": "如何提高做题速度和准确率？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "如何提高做题速度和准确率？"
+      }
+    },
+    {
+      "query": "新高考文科组合有哪几科？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "新高考文科组合有哪几科？"
+      }
+    },
+    {
+      "query": "初中课外辅导选一对一还是班课？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初中课外辅导选一对一还是班课？"
+      }
+    },
+    {
+      "query": "阅读课外书对成绩有帮助吗？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "阅读课外书对成绩有帮助吗？"
+      }
+    },
+    {
+      "query": "高中分科如何选择更合适？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "高中分科如何选择更合适？"
+      }
+    },
+    {
+      "query": "开心的近义词有哪些？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "开心的近义词有哪些？"
+      }
+    },
+    {
+      "query": "认真的反义词是什么？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "认真的反义词是什么？"
+      }
+    },
+    {
+      "query": "“火”字旁的字有哪些特点？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "“火”字旁的字有哪些特点？"
+      }
+    },
+    {
+      "query": "1棵树的棵可以组什么词",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "1棵树的棵可以组什么词"
+      }
+    },
+    {
+      "query": "关于母爱的句子有哪些",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "关于母爱的句子有哪些"
+      }
+    },
+    {
+      "query": "“木”字旁的字通常和什么有关？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "“木”字旁的字通常和什么有关？"
+      }
+    },
+    {
+      "query": "宝盖头一般表示什么意思？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "宝盖头一般表示什么意思？"
+      }
+    },
+    {
+      "query": "打开一年级下册同步练习第三页第五题怎么做答案",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "打开一年级下册同步练习第三页第五题怎么做答案"
+      }
+    },
+    {
+      "query": "abb式的词语有什么",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "abb式的词语有什么"
+      }
+    },
+    {
+      "query": "得意忘形怎么造句",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "得意忘形怎么造句"
+      }
+    },
+    {
+      "query": "从的笔顺怎么写",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "从的笔顺怎么写"
+      }
+    },
+    {
+      "query": "病从口入祸从口出是什么意思",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "病从口入祸从口出是什么意思"
+      }
+    },
+    {
+      "query": "别出心裁的近义词",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "别出心裁的近义词"
+      }
+    },
+    {
+      "query": "abab的词语有哪些",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "abab的词语有哪些"
+      }
+    },
+    {
+      "query": "以花开头的成语都有哪些",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "以花开头的成语都有哪些"
+      }
+    },
+    {
+      "query": "报仇雪恨的雪是什么意思",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "报仇雪恨的雪是什么意思"
+      }
+    },
+    {
+      "query": "一个单人旁一个又是什么字",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "一个单人旁一个又是什么字"
+      }
+    },
+    {
+      "query": "植树的植怎么组词",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "植树的植怎么组词"
+      }
+    },
+    {
+      "query": "月亮的拼音怎么写",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "月亮的拼音怎么写"
+      }
+    },
+    {
+      "query": "名列前茅的含义是什么",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "名列前茅的含义是什么"
+      }
+    },
+    {
+      "query": "含有近义词的四字词语有哪些",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "含有近义词的四字词语有哪些"
+      }
+    },
+    {
+      "query": "成语簪缨世族的含义",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "成语簪缨世族的含义"
+      }
+    },
+    {
+      "query": "惊喜的英文怎么写",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "惊喜的英文怎么写"
+      }
+    },
+    {
+      "query": "开建的建怎么写",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "开建的建怎么写"
+      }
+    },
+    {
+      "query": "钢琴的拼音",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "钢琴的拼音"
+      }
+    },
+    {
+      "query": "惊喜的单词",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "惊喜的单词"
+      }
+    },
+    {
+      "query": "惊喜的英语单词",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "惊喜的英语单词"
+      }
+    },
+    {
+      "query": "夕阳的夕组词",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "夕阳的夕组词"
+      }
+    },
+    {
+      "query": "转眼的近义词是什么",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "转眼的近义词是什么"
+      }
+    },
+    {
+      "query": "夕阳的夕能组什么词",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "夕阳的夕能组什么词"
+      }
+    },
+    {
+      "query": "星期四的英语",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "星期四的英语"
+      }
+    },
+    {
+      "query": "1到4的随机数",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "1到4的随机数"
+      }
+    },
+    {
+      "query": "凋零风暴的拼音",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "凋零风暴的拼音"
+      }
+    },
+    {
+      "query": "尺子用英语怎么说？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "尺子用英语怎么说？"
+      }
+    },
+    {
+      "query": "教室的英文单词是什么？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "教室的英文单词是什么？"
+      }
+    },
+    {
+      "query": "香蕉怎么翻译？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "香蕉怎么翻译？"
+      }
+    },
+    {
+      "query": "Do you like traveling的中文是什么",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "Do you like traveling的中文是什么"
+      }
+    },
+    {
+      "query": "How old are you用汉语咋说",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "How old are you用汉语咋说"
+      }
+    },
+    {
+      "query": "把我不想去上班翻译成英文",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "把我不想去上班翻译成英文"
+      }
+    },
+    {
+      "query": "翻译一下知识就是力量",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "翻译一下知识就是力量"
+      }
+    },
+    {
+      "query": "将my heart will go on翻译成中文",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "将my heart will go on翻译成中文"
+      }
+    },
+    {
+      "query": "中文翻译I was minutes late",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "中文翻译I was minutes late"
+      }
+    },
+    {
+      "query": "翻译一下海信电视真不错",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "翻译一下海信电视真不错"
+      }
+    },
+    {
+      "query": "今天星期几用英语怎么说",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "今天星期几用英语怎么说"
+      }
+    },
+    {
+      "query": "怎样养成课前预习的习惯？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "怎样养成课前预习的习惯？"
+      }
+    },
+    {
+      "query": "小升初该如何准备？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "小升初该如何准备？"
+      }
+    },
+    {
+      "query": "高考志愿填报技巧有哪些？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "高考志愿填报技巧有哪些？"
+      }
+    },
+    {
+      "query": "四年级语文阅读理解怎么提高？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "四年级语文阅读理解怎么提高？"
+      }
+    },
+    {
+      "query": "什么是高考赋分",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "什么是高考赋分"
+      }
+    },
+    {
+      "query": "看图写话不会写怎么办？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "看图写话不会写怎么办？"
+      }
+    },
+    {
+      "query": "怎样提高孩子的朗读能力？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "怎样提高孩子的朗读能力？"
+      }
+    },
+    {
+      "query": "体育课对孩子有什么好处？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "体育课对孩子有什么好处？"
+      }
+    },
+    {
+      "query": "勾股定理的定义是什么？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "勾股定理的定义是什么？"
+      }
+    },
+    {
+      "query": "三角函数的具体内容有哪些？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "三角函数的具体内容有哪些？"
+      }
+    },
+    {
+      "query": "牛顿第一定律的适用条件有哪些？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "牛顿第一定律的适用条件有哪些？"
+      }
+    },
+    {
+      "query": "生活中有哪些现象可以用牛顿第一定律解释？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "生活中有哪些现象可以用牛顿第一定律解释？"
+      }
+    },
+    {
+      "query": "牛顿第二定律的公式是什么，各物理量代表什么？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "牛顿第二定律的公式是什么，各物理量代表什么？"
+      }
+    },
+    {
+      "query": "如何理解牛顿第二定律中的正比与反比关系",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "如何理解牛顿第二定律中的正比与反比关系"
+      }
+    },
+    {
+      "query": "牛顿第二定律和第一定律有什么关联？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "牛顿第二定律和第一定律有什么关联？"
+      }
+    },
+    {
+      "query": "牛顿第三定律的定义和内容分别是什么？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "牛顿第三定律的定义和内容分别是什么？"
+      }
+    },
+    {
+      "query": "作用力与反作用力遵循牛顿第三定律的哪些特点？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "作用力与反作用力遵循牛顿第三定律的哪些特点？"
+      }
+    },
+    {
+      "query": "欧姆定律在初中物理常考哪些题型？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "欧姆定律在初中物理常考哪些题型？"
+      }
+    },
+    {
+      "query": "串联和并联电路中如何运用欧姆定律解题？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "串联和并联电路中如何运用欧姆定律解题？"
+      }
+    },
+    {
+      "query": "镜面反射和漫反射都遵循光的反射定律吗？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "镜面反射和漫反射都遵循光的反射定律吗？"
+      }
+    },
+    {
+      "query": "光的反射三大定律分别是什么？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "光的反射三大定律分别是什么？"
+      }
+    },
+    {
+      "query": "能量守恒定律告诉我们能量具有什么特性？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "能量守恒定律告诉我们能量具有什么特性？"
+      }
+    },
+    {
+      "query": "化学反应中的质量守恒定律具体内容怎么说？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "化学反应中的质量守恒定律具体内容怎么说？"
+      }
+    },
+    {
+      "query": "阿基米德原理的具体内容和公式分别是什么？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "阿基米德原理的具体内容和公式分别是什么？"
+      }
+    },
+    {
+      "query": "初中课程设置包括哪些类型？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初中课程设置包括哪些类型？"
+      }
+    },
+    {
+      "query": "信息科技课程从哪个年级开始独立开设？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "信息科技课程从哪个年级开始独立开设？"
+      }
+    },
+    {
+      "query": "初中教育教学改革的核心是什么？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初中教育教学改革的核心是什么？"
+      }
+    },
+    {
+      "query": "我是初中生，每天早上都很困，怎么才能让早自习更有效率？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "我是初中生，每天早上都很困，怎么才能让早自习更有效率？"
+      }
+    },
+    {
+      "query": "上课经常走神，有什么好方法提高课堂专注度？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "上课经常走神，有什么好方法提高课堂专注度？"
+      }
+    },
+    {
+      "query": "有什么科学的记忆方法？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "有什么科学的记忆方法？"
+      }
+    },
+    {
+      "query": "怎么预习新课才有效？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "怎么预习新课才有效？"
+      }
+    },
+    {
+      "query": "错题本有必要做吗？怎么做才有效？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "错题本有必要做吗？怎么做才有效？"
+      }
+    },
+    {
+      "query": "怎么帮助孩子从\"要我学\"变成\"我要学\"？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "怎么帮助孩子从“要我学”变成“我要学”？"
+      }
+    },
+    {
+      "query": "如何培养孩子的成长型思维？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "如何培养孩子的成长型思维？"
+      }
+    },
+    {
+      "query": "八年级学生，该怎么制定合理的学习计划？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "八年级学生，该怎么制定合理的学习计划？"
+      }
+    },
+    {
+      "query": "该让孩子参加课外辅导班吗？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "该让孩子参加课外辅导班吗？"
+      }
+    },
+    {
+      "query": "复习时应该重点复习什么？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "复习时应该重点复习什么？"
+      }
+    },
+    {
+      "query": "怎么帮助孩子提高解题能力？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "怎么帮助孩子提高解题能力？"
+      }
+    },
+    {
+      "query": "怎么培养学习反思能力？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "怎么培养学习反思能力？"
+      }
+    },
+    {
+      "query": "学习时总是死记硬背，不理解原理，怎么办？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "学习时总是死记硬背，不理解原理，怎么办？"
+      }
+    },
+    {
+      "query": "怎么提高学习内驱力？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "怎么提高学习内驱力？"
+      }
+    },
+    {
+      "query": "怎么帮助孩子建立良好的学习节奏？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "怎么帮助孩子建立良好的学习节奏？"
+      }
+    },
+    {
+      "query": "提高学习专注力有什么好方法？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "提高学习专注力有什么好方法？"
+      }
+    },
+    {
+      "query": "怎么建立各学科知识之间的联系？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "怎么建立各学科知识之间的联系？"
+      }
+    },
+    {
+      "query": "学习时总是被动接受，不会主动思考，怎么办？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "学习时总是被动接受，不会主动思考，怎么办？"
+      }
+    },
+    {
+      "query": "提高学习效率的有效方法都有哪些？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "提高学习效率的有效方法都有哪些？"
+      }
+    },
+    {
+      "query": "初中数学怎么学才能提高成绩？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初中数学怎么学才能提高成绩？"
+      }
+    },
+    {
+      "query": "初中英语怎么记单词才有效？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "初中英语怎么记单词才有效？"
+      }
+    },
+    {
+      "query": "小聚，怎么提高初中语文的阅读理解能力？",
+      "expected_tool": "edu_fuzzy_search",
+      "expected_params": {
+        "retext": "小聚，怎么提高初中语文的阅读理解能力？"
       }
     }
   ]

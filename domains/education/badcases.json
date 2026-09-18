@@ -141,6 +141,10 @@
         "query": {
           "and": [
             {
+              "field": "figures",
+              "value": "小学"
+            },
+            {
               "field": "grade",
               "values": [
                 "四年级",
@@ -161,7 +165,8 @@
             }
           ]
         }
-      }
+      },
+      "note": "；figures=小学 对齐 golden"
     },
     {
       "raw": "小学四年级和五年级的数学",
@@ -235,84 +240,84 @@
       "raw": "高中语文课外内容",
       "tool": "edu_fuzzy_search",
       "params": {
-        "query": "高中语文课外内容"
+        "retext": "高中语文课外内容"
       }
     },
     {
       "raw": "小学素质课",
       "tool": "edu_fuzzy_search",
       "params": {
-        "query": "小学素质课"
+        "retext": "小学素质课"
       }
     },
     {
       "raw": "给初中生推荐的全科考点冲刺课程",
       "tool": "edu_fuzzy_search",
       "params": {
-        "query": "给初中生推荐的全科考点冲刺课程"
+        "retext": "给初中生推荐的全科考点冲刺课程"
       }
     },
     {
       "raw": "小升初英语辅导课",
       "tool": "edu_fuzzy_search",
       "params": {
-        "query": "小升初英语辅导课t"
+        "retext": "小升初英语辅导课t"
       }
     },
     {
       "raw": "高中生物理考点精讲",
       "tool": "edu_fuzzy_search",
       "params": {
-        "query": "高中生物理考点精讲"
+        "retext": "高中生物理考点精讲"
       }
     },
     {
       "raw": "我要看化学质量守恒定律",
       "tool": "edu_fuzzy_search",
       "params": {
-        "query": "我要看化学质量守恒定律"
+        "retext": "我要看化学质量守恒定律"
       }
     },
     {
       "raw": "游泳安全知识",
       "tool": "edu_fuzzy_search",
       "params": {
-        "query": "游泳安全知识"
+        "retext": "游泳安全知识"
       }
     },
     {
       "raw": "关于‘三角形内角和’的知识课程有哪些？",
       "tool": "edu_fuzzy_search",
       "params": {
-        "query": "关于‘三角形内角和’的知识课程有哪些？"
+        "retext": "关于‘三角形内角和’的知识课程有哪些？"
       }
     },
     {
       "raw": "小学语文作文辅导的课程？",
       "tool": "edu_fuzzy_search",
       "params": {
-        "query": "小学语文作文辅导的课程？"
+        "retext": "小学语文作文辅导的课程？"
       }
     },
     {
       "raw": "我要看第一次鸦片战争相关的课程",
       "tool": "edu_fuzzy_search",
       "params": {
-        "query": "我要看第一次鸦片战争相关的课程"
+        "retext": "我要看第一次鸦片战争相关的课程"
       }
     },
     {
       "raw": "直角三角形的面积",
       "tool": "edu_fuzzy_search",
       "params": {
-        "query": "直角三角形的面积"
+        "retext": "直角三角形的面积"
       }
     },
     {
       "raw": "想学英语口语",
       "tool": "edu_fuzzy_search",
       "params": {
-        "query": "想学英语口语"
+        "retext": "想学英语口语"
       },
       "note": "首轮单意图 口语→fuzzy",
       "added": "2026-09-14",
@@ -352,7 +357,7 @@
       "raw": "小学必背古诗有哪些",
       "tool": "edu_fuzzy_search",
       "params": {
-        "query": "小学必背古诗有哪些"
+        "retext": "小学必背古诗有哪些"
       },
       "note": "mt强参",
       "owner": "dingbo"
@@ -385,7 +390,7 @@
       "raw": "带讲解的",
       "tool": "edu_fuzzy_search",
       "params": {
-        "query": "带讲解的"
+        "retext": "带讲解的"
       },
       "note": "mt改写后强参 22r2",
       "owner": "dingbo"
@@ -394,7 +399,7 @@
       "raw": "按年级分类",
       "tool": "edu_fuzzy_search",
       "params": {
-        "query": "按年级分类"
+        "retext": "按年级分类"
       },
       "note": "mt改写后强参 22r5",
       "owner": "dingbo"
@@ -403,9 +408,123 @@
       "raw": "有朗读示范",
       "tool": "edu_fuzzy_search",
       "params": {
-        "query": "有朗读示范"
+        "retext": "有朗读示范"
       },
       "note": "mt改写后强参 22r4",
+      "owner": "dingbo"
+    },
+    {
+      "raw": "我想学3年级北师大版的英语",
+      "tool": "edu_search",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "figures",
+              "value": "小学"
+            },
+            {
+              "field": "grade",
+              "value": "三年级"
+            },
+            {
+              "field": "first_subject",
+              "value": "英语"
+            },
+            {
+              "field": "material_version",
+              "value": "北师大版"
+            },
+            {
+              "field": "k12_category",
+              "values": [
+                "同步课",
+                "同步拓展课"
+              ],
+              "operator": "or"
+            }
+          ]
+        }
+      },
+      "owner": "edu-rules",
+      "note": "golden 反范式：相同 grade 的近邻均无 figures，此处按 golden 补全",
+      "added": "2026-09-17"
+    },
+    {
+      "raw": "放高一人民教育出版社物理",
+      "tool": "edu_search",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "figures",
+              "value": "高中"
+            },
+            {
+              "field": "grade",
+              "value": "高一"
+            },
+            {
+              "field": "first_subject",
+              "value": "物理"
+            },
+            {
+              "field": "material_version",
+              "value": "人教版"
+            },
+            {
+              "field": "k12_category",
+              "values": [
+                "同步课",
+                "同步拓展课"
+              ],
+              "operator": "or"
+            }
+          ]
+        }
+      },
+      "owner": "edu-rules",
+      "note": "golden 反范式：相同 grade 的近邻均无 figures，此处按 golden 补全",
+      "added": "2026-09-17"
+    },
+    {
+      "raw": "初二下册所有的课文",
+      "tool": "edu_search",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "figures",
+              "value": "初中"
+            },
+            {
+              "field": "grade",
+              "value": "八年级"
+            },
+            {
+              "field": "semester",
+              "value": "下半学期"
+            },
+            {
+              "field": "k12_category",
+              "values": [
+                "同步课",
+                "同步拓展课"
+              ],
+              "operator": "or"
+            }
+          ]
+        }
+      },
+      "owner": "edu-rules",
+      "note": "golden 反范式：相同 grade 的近邻均无 figures，此处按 golden 补全",
+      "added": "2026-09-17"
+    },
+    {
+      "raw": "高中物理必修数学必修一",
+      "tool": "edu_search",
+      "params": {},
+      "note": "golden 契约：混科必修 → 纯查询兜底",
       "owner": "dingbo"
     }
   ]
