@@ -1250,6 +1250,14 @@
       }
     },
     {
+      "tool_name": "vod_slow_search_data_construction",
+      "description": "提供了根据搜索媒资构建面向终端结构化数据的能力，分包返回",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
       "tool_name": "vod_relate_search",
       "description": "影视媒资相关检索工具(vod_relate_search)。当用户基于某个影视标题、演员、导演或分类请求相似、相关内容时触发。支持4个精确匹配维度(title、actor、director、category)。\\n检索模式：DSL 组合检索（形态 A）。query 为递归布尔树，不同槽位间可 and/or/not 任意嵌套；同一槽位多值用 values + operator。\\n适用场景：用户进行相似媒资查询，如「类似流浪地球的电影」「推荐一些类似刘德华演的赌神的影片」。\\n不适用场景：用户语料包含明显清晰的搜索槽位切非相似推荐场景使用vod_search或vod_search_all；根据用户偏好进行媒资推荐改用vod_personalized_search；查询用户的历史观看记录改用vod_history；描述性等方式表达影视查找意图的场景，包括剧情描述、台词描述、复杂组合条件等改用vod_fuzzy_search。\\n提参约束：同一字段的多个候选值优先用叶子节点的 values + operator=or，不要拆成多个同字段的 or 子节点。排除语义用外层 not 包裹，不要在 value 里写「非」「除了」。本工具仅用于相关推荐，不负责内容起播。",
       "parameters": {

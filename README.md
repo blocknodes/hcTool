@@ -41,12 +41,15 @@
                                       ▼
                      ┌────────────────────────────────────────────┐
                      │        domains/<key>/  每个域一个独立文件夹     │
-                     │  [L2] badcase → [L1] rule → LLM → [L3] fallback │
+                     │  pipeline? ─┬─ Yes → 域自定（vod）              │
+                     │             └─ No  → [L2]badcase→[L1]rule→LLM  │
+                     │                        → [L3] fallback         │
                      └────────────────────────────────────────────┘
 ```
 
 - **内核（app/）不感知任何单域特判**。它只依赖 `<key>/__init__.py` 导出的统一
-  `Domain` 实例（见下节契约），调用 `badcase_lookup → rule_select → LLM → fallback`。
+  `Domain` 实例（见下节契约），默认调用 `badcase_lookup → rule_select → LLM → fallback`。
+  域若挂了 `pipeline` 钩子，则由该钩子**整段接管**（当前仅 vod 使用）。
 - **域隔离（硬约束）**：每个域一个目录，改某个域的 schema / 规则 / prompt / 前后处理，
   不影响也不感知其它域。单个域加载/运行失败只禁用到该域，其余正常（`app.domain.load_domains`
   逐域 try/except 隔离）。
@@ -71,6 +74,7 @@
 | `rule_select` | Callable | (query) → (tool, params\|None)｜**L1**，命中带参则跳过 LLM |
 | `badcase_lookup` | Callable | (query) → (tool, params)｜**L2 最高优先**，允许覆盖一切 |
 | `fallback` | Callable | (query) → (tool, params)｜**L3 兜底**，保证非空 |
+| `pipeline` | Callable | async (req, domain) → `Prediction\|None`｜**整段接管**决策，返回 None 才落回上面各层（当前仅 vod） |
 
 **schema.json 格式**：
 
@@ -106,6 +110,7 @@
 `app/engine.py::run` 是决策主轴。用户问句进域后按以下顺序走，**一旦命中即直出**：
 
 ```
+域 pipeline 钩子（若配置，整段接管；返回 None 才继续 ↓）  ← 当前仅 vod
 L2 badcase（最高优先，可覆盖一切）
   └─ 精确归一 key 命中 → 直出 tool+params（source=badcase），不做任何泛化
 L1 规则（泛化主力）
@@ -119,6 +124,8 @@ L3 兜底（谁都拿不稳才落）
 ```
 
 `hit_source` 完整取值：`badcase | general_rule | rule_llm_fill | llm_select | fallback`。
+vod 走自己的 pipeline，取值另见 `domains/vod/vod_design.md`
+（`badcase | fewshot_cache | llm_onecall | fallback`）。
 
 ### 为什么这么分层（本架构最值得复用的一点）
 
@@ -273,10 +280,19 @@ python domains/<key>/bench/run_bench.py --json # JSON 输出（写 result.latest
 - 网络：`以太网/网线/有线`→有线网络，`无线/wifi/局域网`→无线网络，`测速`→网络测速；
   路由优先级在 `_net_obj` 内以最短反向顺序固定。
 
-### vod（影视）—— 参考域
-- 实现细节见 `domains/vod/vod_design.md` 与 `domains/vod/vod_fallback_refactor.md`。
-- 判据 `needs_search_all`：层 / 模糊 / regex > 8 符号等 → `search_all`；
-  否则结构化 `search` / 语义 `fuzzy`。
+### vod（影视）—— 参考域（唯一的「整段接管」域）
+- 实现细节见 `domains/vod/vod_design.md`；评测见 `domains/vod/bench/README.md`。
+- **不走 select→fill 两段式**，改用 `Domain.pipeline` 钩子整段接管（2026-09-19 起）：
+  `L2 badcase → ① fewshot 归一 key 精确命中直出 → ② 单次 LLM 出 tool+params
+  （BM25 top-8 样例注入）→ ③ L3 fallback`。
+- 两处精确命中**直出不过 postproc**（postproc 会把 golden 的空 `{}`、单元素 `and` 改形）；
+  只有 LLM 生成的宽松参数才过 postproc。
+- fewshot 池 = `testset.json` 266 条，因此默认配置下**大部分条目走缓存直出**，
+  98.9% 是缓存命中率而非泛化能力。真实泛化看 `run_pipeline_eval.py --holdout --no-badcase`（80.6%）。
+- 搜索族的**包含关系**在暴露层就消掉了：只给 LLM `vod_search_all`（`vod_search ⊂ vod_search_all`），
+  落库时再由 `drill_search_tool()` 按字段集**确定性下钻**到 golden 契约的窄工具。
+  prompt **只给字段名与语义、不给枚举值**（枚举会诱导模型在用户没提该维度时硬凑取值）。
+- `rules.py` / `dsl.py` 已退出决策，仅作 `fallback.py` / `postproc.py` 的依赖保留。
 
 ---
 
@@ -286,7 +302,7 @@ python domains/<key>/bench/run_bench.py --json # JSON 输出（写 result.latest
 hcTools/
 ├── app/                  # 共享内核（域无关）
 │   ├── domain.py         # Domain 契约 + 加载器（load_domain / load_domains / _load_schema_json）
-│   ├── engine.py         # select→fill 两段式 + L2/L1/LLM/L3 流水
+│   ├── engine.py         # pipeline 钩子 + select→fill 两段式 + L2/L1/LLM/L3 流水
 │   ├── llm.py            # 网关异步客户端（文本 JSON 兼容 × function calling）
 │   ├── config.py / main.py / models.py / router.py / examples.py
 │
@@ -301,11 +317,14 @@ hcTools/
 │   │   ├── dsl.py            # DSL 槽位/词表/生成（嵌套工具域）
 │   │   ├── postproc.py       # 参数收尾规范化
 │   │   ├── fallback.py       # L3 兜底
+│   │   ├── pipeline.py       #（vod）整段接管：fewshot 缓存 + 单次 LLM
 │   │   ├── badcases.json        # L2 精确覆盖（raw / tool / params）
 │   │   ├── testset.json         # 该域 golden，.records 形如
 │   │   ├── obj_tool_gen.py      #（device）tool名→对象→工具映射
 │   │   └── bench/
-│   │       ├── run_bench.py         # 打分
+│   │       ├── run_bench.py         # 确定性层打分（对照）
+│   │       ├── run_pipeline_eval.py #（vod）真实链路端到端打分 ← 主线
+│   │       ├── eval_llm_onecall.py  #（vod）单次 LLM 定标
 │   │       ├── README.md            # 本域指标/方法
 │   │       └── result.latest.json   # 达标结果
 │   ├── extract_schema.py   # schema 抽取（状态机清洗控制字符）

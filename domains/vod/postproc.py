@@ -137,7 +137,11 @@ def normalize(tool: str, params: dict) -> dict:
     # fuzzy：整句语义检索，param=去标点的 retext（金标准口径；含口语归一：追剧→电视剧、
     # 影片→电影、半角数字→中文，由 dsl._fuzzy_retext_norm 提供）
     if tool == "vod_fuzzy_search":
-        q = params.get("query") or params.get("retext") or ""
+        # 模型偶尔把条件树写进 query（fuzzy 只吃整句），此时必须让位给 retext，
+        # 否则下面 _strip_punct 会收到 dict 抛 TypeError。
+        q = params.get("retext") or params.get("query") or ""
+        if not isinstance(q, str):
+            q = ""
         q = _strip_punct(q)
         q = _dsl._fuzzy_retext_norm(q)
         return {"retext": q}

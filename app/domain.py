@@ -83,6 +83,10 @@ class Domain:
     rule_select: Callable | None = None    # (query) -> (tool, params|None)|None；命中则跳过 LLM select
     badcase_lookup: Callable | None = None  # (query) -> (tool, params)|None；L2 最高优先，允许覆盖一切
     fallback: Callable | None = None        # (query) -> (tool, params)|None；L3 有序兜底，保证非空
+    # 整段流水线接管：async (req, domain) -> Prediction|None。
+    # 非 None 即直接作为最终结果（engine 不再介入）；None/异常则落回上述三层流水线。
+    # 供「不走 select→fill 两段式」的域自定义决策主轴（如 vod 的 fewshot 缓存 + 单次 LLM）。
+    pipeline: Callable | None = None
 
     @property
     def tools_by_name(self) -> dict[str, Tool]:

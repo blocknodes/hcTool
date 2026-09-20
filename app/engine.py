@@ -204,7 +204,18 @@ async def run(req: PredictRequest, domain: Domain) -> Prediction:
     - L1 规则：命中带参 → general_rule；只定工具无参 → rule_llm_fill；返回 None → 继续。
     - LLM 两段式（仅当规则未给工具）：llm_select（select+fill）。
     - L3 兜底：谁都拿不稳才落，source=fallback（区别于 L1 主动判的 general_rule）。
+
+    若域自带整段 pipeline 钩子（如 vod 的单次 LLM 决策），先让它接管；返回 None 再走上面三层。
     """
+    # ---- 域自定义整段流水线（最高优先接管）----
+    if domain.pipeline is not None:
+        try:
+            pred = await domain.pipeline(req, domain)
+            if isinstance(pred, Prediction) and pred.tool:
+                return pred
+        except Exception as exc:  # noqa: BLE001 接管失败不影响既有流水线
+            logger.error("域 %s pipeline 接管异常：%s", domain.key, exc)
+
     # ---- L2 badcase（最高优先）----
     if domain.badcase_lookup is not None:
         try:

@@ -1,0 +1,480 @@
+{
+  "set": "testset",
+  "n": 67,
+  "no_cache": false,
+  "no_shots": false,
+  "score": {
+    "tool": 64,
+    "param": 54,
+    "both": 54,
+    "param_miss": 13,
+    "both_miss": 13,
+    "tool_miss": 3
+  },
+  "hit_source": {
+    "llm_onecall": 67
+  },
+  "misses": [
+    {
+      "query": "王力宏",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_person_search",
+        {
+          "person_name": [
+            "王力宏"
+          ]
+        }
+      ],
+      "got": [
+        "vod_person_search",
+        {
+          "retext": "王力宏"
+        }
+      ]
+    },
+    {
+      "query": "口碑炸裂的爆款综艺",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_fuzzy_search",
+        {
+          "retext": "口碑炸裂的爆款综艺"
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "口碑炸裂的爆款综艺",
+          "query": {
+            "field": "category",
+            "value": "综艺"
+          },
+          "sort": {
+            "hot": {
+              "order": "desc"
+            },
+            "rate": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "现在热的剧有哪些？",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "现在口碑好的剧有哪些",
+          "query": {
+            "field": "category",
+            "value": "电视剧"
+          },
+          "sort": {
+            "hot": {
+              "order": "desc"
+            }
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "现在热的剧有哪些",
+          "query": {
+            "field": "category",
+            "value": "电视剧"
+          },
+          "sort": {
+            "hot": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "豆瓣高分的老经典电影推荐",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_fuzzy_search",
+        {
+          "retext": "豆瓣高分的老经典电影推荐"
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "豆瓣高分的老经典电影推荐",
+          "query": {
+            "field": "category",
+            "value": "电影"
+          },
+          "sort": {
+            "rate": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "中年人爱看什么",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "中年人爱看什么",
+          "query": {
+            "field": "target",
+            "value": "中年人"
+          }
+        }
+      ],
+      "got": [
+        "vod_fuzzy_search",
+        {
+          "retext": "中年人爱看什么"
+        }
+      ]
+    },
+    {
+      "query": "日本免费电影",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search_all",
+        {
+          "action": "search",
+          "retext": "日本免费电影",
+          "query": {
+            "and": [
+              {
+                "field": "area",
+                "value": "日本"
+              },
+              {
+                "field": "is_fee",
+                "value": "免费"
+              },
+              {
+                "field": "category",
+                "value": "电影"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search_all",
+        {
+          "action": "search",
+          "retext": "日本免费电影",
+          "query": {
+            "and": [
+              {
+                "field": "area",
+                "value": "日本"
+              },
+              {
+                "field": "category",
+                "value": "电影"
+              },
+              {
+                "field": "is_fee",
+                "value": "0"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "豫剧王宝钏",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {}
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "豫剧王宝钏",
+          "query": {
+            "and": [
+              {
+                "field": "title",
+                "value": "王宝钏"
+              },
+              {
+                "field": "tag",
+                "value": "豫剧"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "免费观看的纪录片，要9分以上的",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "免费观看的纪录片，要9分以上的",
+          "query": {
+            "and": [
+              {
+                "field": "rate",
+                "from": "9.0",
+                "to": "*"
+              },
+              {
+                "field": "category",
+                "value": "纪录片"
+              },
+              {
+                "field": "is_fee",
+                "value": "0"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "免费观看的纪录片要9分以上的",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "纪录片"
+              },
+              {
+                "field": "is_fee",
+                "value": "0"
+              },
+              {
+                "field": "rate",
+                "from": "9.0",
+                "to": "*"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "我要看知否",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "我要看知否",
+          "query": {
+            "field": "title",
+            "value": "知否知否"
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "我要看知否",
+          "query": {
+            "field": "title",
+            "value": "知否"
+          }
+        }
+      ]
+    },
+    {
+      "query": "高分的竞技综艺",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "高分的竞技综艺",
+          "query": {
+            "and": [
+              {
+                "field": "tag",
+                "values": "竞技"
+              },
+              {
+                "field": "category",
+                "value": "综艺"
+              }
+            ]
+          },
+          "sort": {
+            "rate": {
+              "order": "desc"
+            }
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "高分的竞技综艺",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "综艺"
+              },
+              {
+                "field": "tag",
+                "value": "竞技"
+              }
+            ]
+          },
+          "sort": {
+            "rate": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "有没有适合我这类型观众的综艺",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_personalized_search",
+        {
+          "query": {
+            "field": "category",
+            "value": "综艺"
+          }
+        }
+      ],
+      "got": [
+        "vod_personalized_search",
+        {
+          "retext": "有没有适合我这类型观众的综艺",
+          "category": "综艺"
+        }
+      ]
+    },
+    {
+      "query": "豆瓣评分高于8分的香港电影",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search_all",
+        {
+          "action": "search",
+          "retext": "豆瓣评分高于8分的香港电影",
+          "query": {
+            "and": [
+              {
+                "field": "rate",
+                "from": "8.0",
+                "to": "*"
+              },
+              {
+                "field": "category",
+                "value": "电影"
+              },
+              {
+                "field": "area",
+                "value": "香港"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search_all",
+        {
+          "action": "search",
+          "retext": "豆瓣评分高于8分的香港电影",
+          "query": {
+            "and": [
+              {
+                "field": "area",
+                "value": "香港"
+              },
+              {
+                "field": "category",
+                "value": "电影"
+              },
+              {
+                "field": "rate",
+                "from": "8.0",
+                "to": "*"
+              }
+            ]
+          },
+          "sort": {
+            "rate": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "快点我要看超级马里奥兄弟大电影",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "快点我要看超级马里奥兄弟大电影",
+          "query": {
+            "and": [
+              {
+                "field": "title",
+                "value": "超级马里奥兄弟"
+              },
+              {
+                "field": "category",
+                "value": "电影"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "play",
+          "retext": "快点我要看超级马里奥兄弟大电影",
+          "query": {
+            "field": "title",
+            "value": "超级马里奥兄弟大电影"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "set": "testset",
+  "n": 266,
+  "no_cache": false,
+  "no_shots": false,
+  "score": {
+    "tool": 266,
+    "param": 263,
+    "both": 263,
+    "param_miss": 3,
+    "both_miss": 3
+  },
+  "hit_source": {
+    "fewshot_cache": 239,
+    "badcase": 27
+  },
+  "misses": [
+    {
+      "query": "刚上线但评分拉胯的新片",
+      "hit_source": "badcase",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "刚上线但评分拉胯的新片",
+          "query": {
+            "field": "category",
+            "value": "电影"
+          },
+          "sort": {
+            "new": {
+              "order": "desc"
+            }
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "刚上线但评分拉胯的新片",
+          "query": {
+            "field": "category",
+            "value": "综艺"
+          },
+          "sort": {
+            "new": {
+              "order": "desc"
+            },
+            "sort": {
+              "order": "asc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "余乐执导的纪录片视频",
+      "hit_source": "badcase",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "余乐执导的纪录片视频",
+          "query": {
+            "and": [
+              {
+                "field": "director",
+                "value": "余乐"
+              },
+              {
+                "field": "category",
+                "value": "纪录片"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "香港动作片",
+          "query": {
+            "and": [
+              {
+                "field": "director",
+                "value": "余乐"
+              },
+              {
+                "field": "category",
+                "value": "纪录片"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "有没有番茄台的中国梦之声 第1季",
+      "hit_source": "badcase",
+      "ok_t": true,
+      "exp": [
+        "vod_search_all",
+        {
+          "action": "search",
+          "retext": "有没有番茄台的中国梦之声第1季",
+          "query": {
+            "and": [
+              {
+                "field": "title",
+                "value": "中国梦之声"
+              },
+              {
+                "field": "series",
+                "value": "1"
+              },
+              {
+                "field": "channel",
+                "value": "番茄台"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search_all",
+        {
+          "action": "search",
+          "retext": "有没有番茄台的中国梦之声第1季",
+          "query": {
+            "and": [
+              {
+                "field": "title",
+                "value": "中国梦之声"
+              },
+              {
+                "field": "series",
+                "value": "2"
+              },
+              {
+                "field": "channel",
+                "value": "番茄台"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

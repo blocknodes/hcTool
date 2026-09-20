@@ -1521,6 +1521,16 @@
       "note": "gold 对齐(dsl 确定性输出) 修正",
       "added": "2026-09-17",
       "owner": "dingbo"
+    },
+    {
+      "raw": "刘德华票房超过20亿的电影",
+      "tool": "vod_fuzzy_search",
+      "params": {
+        "retext": "刘德华票房超过20亿的电影"
+      },
+      "note": "票房维度不在字段集(box_office)内，结构化走不通→标注fuzzy",
+      "added": "2026-09-19",
+      "owner": "dingbo"
     }
   ]
 }

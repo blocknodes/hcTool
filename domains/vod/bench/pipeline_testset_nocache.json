@@ -1,0 +1,1742 @@
+{
+  "set": "testset",
+  "n": 266,
+  "no_cache": true,
+  "no_shots": false,
+  "score": {
+    "tool": 250,
+    "param": 218,
+    "both": 218,
+    "param_miss": 48,
+    "both_miss": 48,
+    "tool_miss": 16
+  },
+  "hit_source": {
+    "llm_onecall": 239,
+    "badcase": 27
+  },
+  "misses": [
+    {
+      "query": "邵峰",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_person_search",
+        {
+          "person_name": [
+            "邵峰"
+          ]
+        }
+      ],
+      "got": [
+        "vod_person_search",
+        {
+          "name": "邵峰"
+        }
+      ]
+    },
+    {
+      "query": "莱昂纳多·迪卡普里奥",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_person_search",
+        {
+          "person_name": [
+            "莱昂纳多迪卡普里奥"
+          ]
+        }
+      ],
+      "got": [
+        "vod_person_search",
+        {
+          "person_name": [
+            "莱昂纳多·迪卡普里奥"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "王力宏",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_person_search",
+        {
+          "person_name": [
+            "王力宏"
+          ]
+        }
+      ],
+      "got": [
+        "vod_person_search",
+        {
+          "entertainer": "王力宏"
+        }
+      ]
+    },
+    {
+      "query": "威尔·史密斯",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_person_search",
+        {
+          "person_name": [
+            "威尔·史密斯"
+          ]
+        }
+      ],
+      "got": [
+        "vod_person_search",
+        {
+          "person_name": [
+            "威尔史密斯"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "口碑炸裂的爆款综艺",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_fuzzy_search",
+        {
+          "retext": "口碑炸裂的爆款综艺"
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "口碑炸裂的爆款综艺",
+          "query": {
+            "field": "category",
+            "value": "综艺"
+          },
+          "sort": {
+            "hot": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "老剧里有哪些口碑依然能打的？",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_fuzzy_search",
+        {
+          "retext": "老剧里有哪些口碑依然能打的"
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "老剧里有哪些口碑依然能打的",
+          "query": {
+            "field": "category",
+            "value": "电视剧"
+          },
+          "sort": {
+            "rate": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "有什么高分老电影",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_fuzzy_search",
+        {
+          "retext": "有什么高分老电影"
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "有什么高分老电影",
+          "query": {
+            "field": "category",
+            "value": "电影"
+          },
+          "sort": {
+            "rate": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "刚上线但评分拉胯的新片",
+      "hit_source": "badcase",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "刚上线但评分拉胯的新片",
+          "query": {
+            "field": "category",
+            "value": "电影"
+          },
+          "sort": {
+            "new": {
+              "order": "desc"
+            }
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "刚上线但评分拉胯的新片",
+          "query": {
+            "field": "category",
+            "value": "综艺"
+          },
+          "sort": {
+            "new": {
+              "order": "desc"
+            },
+            "sort": {
+              "order": "asc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "近期最火的宝藏剧推荐",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_fuzzy_search",
+        {
+          "retext": "近期最火的宝藏剧推荐"
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "近期最火的宝藏剧推荐",
+          "query": {
+            "field": "category",
+            "value": "电视剧"
+          },
+          "sort": {
+            "hot": {
+              "order": "desc"
+            },
+            "new": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "刚上线的新剧里，哪个最值得追？",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_fuzzy_search",
+        {
+          "retext": "刚上线的新剧里哪个最值得追"
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "刚上线的新剧里哪个最值得追",
+          "query": {
+            "field": "category",
+            "value": "电视剧"
+          },
+          "sort": {
+            "new": {
+              "order": "desc"
+            },
+            "hot": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "刚上线就播放量破千万的新剧",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_fuzzy_search",
+        {
+          "retext": "刚上线就播放量破千万的新剧"
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "刚上线就播放量破千万的新剧",
+          "query": {
+            "field": "category",
+            "value": "电视剧"
+          },
+          "sort": {
+            "new": {
+              "order": "desc"
+            },
+            "play": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "豆瓣高分的老经典电影推荐",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_fuzzy_search",
+        {
+          "retext": "豆瓣高分的老经典电影推荐"
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "豆瓣高分的老经典电影推荐",
+          "query": {
+            "field": "category",
+            "value": "电影"
+          },
+          "sort": {
+            "rate": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "中产人群喜欢看什么类型的影片",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_fuzzy_search",
+        {
+          "retext": "中产人群喜欢看什么类型的影片"
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "中产人群喜欢看什么类型的影片",
+          "query": {
+            "field": "target",
+            "value": "中产"
+          }
+        }
+      ]
+    },
+    {
+      "query": "中年人爱看什么",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "中年人爱看什么",
+          "query": {
+            "field": "target",
+            "value": "中年人"
+          }
+        }
+      ],
+      "got": [
+        "vod_fuzzy_search",
+        {
+          "retext": "中年人爱看什么"
+        }
+      ]
+    },
+    {
+      "query": "女性应该看的电影和电视剧",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "女性应该看的电影和电视剧",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "values": [
+                  "电视剧",
+                  "电影"
+                ],
+                "operator": "or"
+              },
+              {
+                "field": "gender",
+                "value": "女性"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_personalized_search",
+        {
+          "category": "电影,电视剧"
+        }
+      ]
+    },
+    {
+      "query": "推荐大人和孩子一起观看的影片",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_fuzzy_search",
+        {
+          "retext": "推荐大人和孩子一起观看的影片"
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "推荐大人和孩子一起观看的影片",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "电影"
+              },
+              {
+                "field": "target",
+                "value": [
+                  "大人",
+                  "孩子"
+                ]
+              }
+            ]
+          },
+          "sort": {
+            "hot": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "推荐电影，适合与家人一起观看的",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "推荐电影适合与家人一起观看的",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "电影"
+              },
+              {
+                "field": "target",
+                "value": "家人"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_fuzzy_search",
+        {
+          "retext": "推荐电影适合与家人一起观看的"
+        }
+      ]
+    },
+    {
+      "query": "余乐执导的纪录片视频",
+      "hit_source": "badcase",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "余乐执导的纪录片视频",
+          "query": {
+            "and": [
+              {
+                "field": "director",
+                "value": "余乐"
+              },
+              {
+                "field": "category",
+                "value": "纪录片"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "香港动作片",
+          "query": {
+            "and": [
+              {
+                "field": "director",
+                "value": "余乐"
+              },
+              {
+                "field": "category",
+                "value": "纪录片"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "播放关于哈利波特的视频",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_search",
+        {
+          "action": "play",
+          "retext": "播放关于哈利波特的视频",
+          "query": {
+            "field": "title",
+            "value": "哈利波特"
+          }
+        }
+      ],
+      "got": [
+        "vod_fuzzy_search",
+        {
+          "retext": "播放关于哈利波特的视频"
+        }
+      ]
+    },
+    {
+      "query": "老九门盗墓笔记",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "老九门盗墓笔记",
+          "query": {
+            "field": "title",
+            "values": [
+              "老九门",
+              "盗墓笔记"
+            ],
+            "operator": "or"
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "老九门盗墓笔记",
+          "query": {
+            "or": [
+              {
+                "field": "title",
+                "value": "老九门"
+              },
+              {
+                "field": "title",
+                "value": "盗墓笔记"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "请换薛仁贵传奇",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "请换薛仁贵传奇",
+          "query": {
+            "field": "title",
+            "value": "薛仁贵传奇"
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "play",
+          "retext": "请换薛仁贵传奇",
+          "query": {
+            "field": "title",
+            "value": "薛仁贵传奇"
+          }
+        }
+      ]
+    },
+    {
+      "query": "许冠文粤语电影",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search_all",
+        {
+          "action": "search",
+          "retext": "许冠文粤语电影",
+          "query": {
+            "and": [
+              {
+                "or": [
+                  {
+                    "field": "actor",
+                    "value": "许冠文"
+                  },
+                  {
+                    "field": "director",
+                    "value": "许冠文"
+                  },
+                  {
+                    "field": "entertainer",
+                    "value": "许冠文"
+                  }
+                ]
+              },
+              {
+                "field": "language",
+                "value": "粤语"
+              },
+              {
+                "field": "category",
+                "value": "电影"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search_all",
+        {
+          "action": "search",
+          "retext": "许冠文粤语电影",
+          "query": {
+            "and": [
+              {
+                "field": "actor",
+                "value": "许冠文"
+              },
+              {
+                "field": "language",
+                "value": "粤语"
+              },
+              {
+                "field": "category",
+                "value": "电影"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "剧版三生三世十里桃花",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "剧版三生三世十里桃花",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "电视剧"
+              },
+              {
+                "field": "title",
+                "value": "三生三世十里桃花"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "剧版三生三世十里桃花",
+          "query": {
+            "field": "title",
+            "value": "三生三世十里桃花"
+          }
+        }
+      ]
+    },
+    {
+      "query": "打开我昨天看的那部剧",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_history",
+        {
+          "category": [
+            "电视剧"
+          ],
+          "time": "2026-08-23 00:00:00 TO 2026-08-23 23:59:59"
+        }
+      ],
+      "got": [
+        "vod_history",
+        {
+          "time": "2026-08-11 00:00:00 TO 2026-08-11 23:59:59"
+        }
+      ]
+    },
+    {
+      "query": "豆瓣评分8.9分以上的大片有哪些？",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "豆瓣评分8.9分以上的大片有哪些？",
+          "query": {
+            "and": [
+              {
+                "field": "rate",
+                "from": "8.9",
+                "to": "*"
+              },
+              {
+                "field": "category",
+                "value": "电影"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "豆瓣评分8.9分以上的大片有哪些",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "电影"
+              },
+              {
+                "field": "rate",
+                "from": "8.9",
+                "to": "*"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "免费观看的纪录片，要9分以上的",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "免费观看的纪录片，要9分以上的",
+          "query": {
+            "and": [
+              {
+                "field": "rate",
+                "from": "9.0",
+                "to": "*"
+              },
+              {
+                "field": "category",
+                "value": "纪录片"
+              },
+              {
+                "field": "is_fee",
+                "value": "0"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "免费观看的纪录片要9分以上的",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "纪录片"
+              },
+              {
+                "field": "is_fee",
+                "value": "0"
+              },
+              {
+                "field": "rate",
+                "from": "9.0",
+                "to": "*"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "高分人气电视连续剧国内",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search_all",
+        {
+          "action": "search",
+          "retext": "高分人气电视连续剧国内",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "电视剧"
+              },
+              {
+                "field": "area",
+                "value": "国内"
+              }
+            ]
+          },
+          "sort": {
+            "rate": {
+              "order": "desc"
+            }
+          }
+        }
+      ],
+      "got": [
+        "vod_search_all",
+        {
+          "action": "search",
+          "retext": "高分人气电视连续剧国内",
+          "query": {
+            "and": [
+              {
+                "field": "area",
+                "value": "国内"
+              },
+              {
+                "field": "category",
+                "value": "电视剧"
+              }
+            ]
+          },
+          "sort": {
+            "hot": {
+              "order": "desc"
+            },
+            "rate": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "有类似《鱿鱼游戏》题材的吗？",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_relate_search",
+        {
+          "query": {
+            "field": "title",
+            "value": "鱿鱼游戏"
+          }
+        }
+      ],
+      "got": [
+        "vod_relate_search",
+        {
+          "query": {
+            "and": [
+              {
+                "field": "title",
+                "value": "鱿鱼游戏"
+              },
+              {
+                "field": "category",
+                "value": "电视剧"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "跟跑男相似的综艺",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_relate_search",
+        {
+          "query": {
+            "and": [
+              {
+                "field": "title",
+                "value": "奔跑吧"
+              },
+              {
+                "field": "category",
+                "value": "综艺"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_relate_search",
+        {
+          "query": {
+            "and": [
+              {
+                "field": "title",
+                "value": "跑男"
+              },
+              {
+                "field": "category",
+                "value": "综艺"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "我喜欢看范进中举，再推荐一些相似的内容吧",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_relate_search",
+        {
+          "query": {
+            "field": "title",
+            "value": "范进中举"
+          }
+        }
+      ],
+      "got": [
+        "vod_relate_search",
+        {
+          "query": {
+            "and": [
+              {
+                "field": "title",
+                "value": "范进中举"
+              },
+              {
+                "field": "category",
+                "value": "电视剧"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "我要看知否",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "我要看知否",
+          "query": {
+            "field": "title",
+            "value": "知否知否"
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "我要看知否",
+          "query": {
+            "field": "title",
+            "value": "知否"
+          }
+        }
+      ]
+    },
+    {
+      "query": "有没有免费的欢乐家长群二的视频",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "有没有免费的欢乐家长群二的视频",
+          "query": {
+            "and": [
+              {
+                "field": "title",
+                "value": "欢乐家长群2"
+              },
+              {
+                "field": "series",
+                "value": "2"
+              },
+              {
+                "field": "is_fee",
+                "value": "0"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "有没有免费的欢乐家长群二的视频",
+          "query": {
+            "and": [
+              {
+                "field": "title",
+                "value": "欢乐家长群2"
+              },
+              {
+                "field": "is_fee",
+                "value": "0"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "豆瓣高分的竞技综艺",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "豆瓣高分的竞技综艺",
+          "query": {
+            "and": [
+              {
+                "field": "tag",
+                "value": "竞技"
+              },
+              {
+                "field": "category",
+                "value": "综艺"
+              }
+            ]
+          },
+          "sort": {
+            "rate": {
+              "order": "desc"
+            }
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "豆瓣高分的竞技综艺",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "综艺"
+              },
+              {
+                "field": "tag",
+                "values": "竞技"
+              }
+            ]
+          },
+          "sort": {
+            "rate": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "热度高的古装电视剧",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "热度高的古装电视剧",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "电视剧"
+              },
+              {
+                "field": "tag",
+                "value": "古装"
+              }
+            ]
+          },
+          "sort": {
+            "hot": {
+              "order": "desc"
+            }
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "热度的古装电视剧",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "电视剧"
+              },
+              {
+                "field": "tag",
+                "value": "古装"
+              }
+            ]
+          },
+          "sort": {
+            "hot": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "热度高的喜剧综艺",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "热度高的喜剧综艺",
+          "query": {
+            "and": [
+              {
+                "field": "tag",
+                "value": "喜剧"
+              },
+              {
+                "field": "category",
+                "value": "综艺"
+              }
+            ]
+          },
+          "sort": {
+            "hot": {
+              "order": "desc"
+            }
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "retext": "热度高的喜剧综艺",
+          "action": "search",
+          "sort": {
+            "hot": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "热度高的竞技综艺",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "热度高的竞技综艺",
+          "query": {
+            "and": [
+              {
+                "field": "tag",
+                "value": "竞技"
+              },
+              {
+                "field": "category",
+                "value": "综艺"
+              }
+            ]
+          },
+          "sort": {
+            "hot": {
+              "order": "desc"
+            }
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "热度的竞技综艺",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "综艺"
+              },
+              {
+                "field": "tag",
+                "value": "竞技"
+              }
+            ]
+          },
+          "sort": {
+            "hot": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "找一部与境外网络诈骗相关的电影",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_fuzzy_search",
+        {
+          "retext": "找一部与境外网络诈骗相关的电影"
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "找一部与境外网络诈骗相关的电影",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "电影"
+              },
+              {
+                "field": "tag",
+                "value": "境外网络诈骗"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "有没有适合我这类型观众的综艺",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_personalized_search",
+        {
+          "query": {
+            "field": "category",
+            "value": "综艺"
+          }
+        }
+      ],
+      "got": [
+        "vod_personalized_search",
+        {
+          "retext": "有没有适合我这类型观众的综艺",
+          "query": {
+            "field": "category",
+            "value": "综艺"
+          }
+        }
+      ]
+    },
+    {
+      "query": "有没有番茄台的中国梦之声 第1季",
+      "hit_source": "badcase",
+      "ok_t": true,
+      "exp": [
+        "vod_search_all",
+        {
+          "action": "search",
+          "retext": "有没有番茄台的中国梦之声第1季",
+          "query": {
+            "and": [
+              {
+                "field": "title",
+                "value": "中国梦之声"
+              },
+              {
+                "field": "series",
+                "value": "1"
+              },
+              {
+                "field": "channel",
+                "value": "番茄台"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search_all",
+        {
+          "action": "search",
+          "retext": "有没有番茄台的中国梦之声第1季",
+          "query": {
+            "and": [
+              {
+                "field": "title",
+                "value": "中国梦之声"
+              },
+              {
+                "field": "series",
+                "value": "2"
+              },
+              {
+                "field": "channel",
+                "value": "番茄台"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "东北方言的综艺节目",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_fuzzy_search",
+        {
+          "retext": "东北方言的综艺节目"
+        }
+      ],
+      "got": [
+        "vod_search_all",
+        {
+          "action": "search",
+          "retext": "东北方言的综艺节目",
+          "query": {
+            "and": [
+              {
+                "field": "language",
+                "value": "东北方言"
+              },
+              {
+                "field": "category",
+                "value": "综艺"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "我想看英文版电影阿凡达",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search_all",
+        {
+          "action": "search",
+          "retext": "我想看英文版电影阿凡达",
+          "query": {
+            "and": [
+              {
+                "field": "title",
+                "value": "阿凡达"
+              },
+              {
+                "field": "language",
+                "value": "英文"
+              },
+              {
+                "field": "category",
+                "value": "电影"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search_all",
+        {
+          "action": "search",
+          "retext": "我想看英文版电影阿凡达",
+          "query": {
+            "and": [
+              {
+                "field": "title",
+                "value": "阿凡达"
+              },
+              {
+                "field": "language",
+                "value": "英文版"
+              },
+              {
+                "field": "category",
+                "value": "电影"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "我要看主角是狗剩的电视剧",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "我要看主角是狗剩的电视剧",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "电视剧"
+              },
+              {
+                "field": "title",
+                "value": "主角"
+              },
+              {
+                "field": "role",
+                "value": "狗剩"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "我要看主角是狗剩的电视剧",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "电视剧"
+              },
+              {
+                "field": "role",
+                "value": "狗剩"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "日韩高分电视剧",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search_all",
+        {
+          "action": "search",
+          "retext": "日韩高分电视剧",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "电视剧"
+              },
+              {
+                "field": "area",
+                "values": "日韩"
+              }
+            ]
+          },
+          "sort": {
+            "rate": {
+              "order": "desc"
+            }
+          }
+        }
+      ],
+      "got": [
+        "vod_search_all",
+        {
+          "action": "search",
+          "retext": "日韩高分电视剧",
+          "query": {
+            "and": [
+              {
+                "field": "area",
+                "values": [
+                  "日本",
+                  "韩国"
+                ],
+                "operator": "or"
+              },
+              {
+                "field": "category",
+                "value": "电视剧"
+              }
+            ]
+          },
+          "sort": {
+            "rate": {
+              "order": "desc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "query": "高于8.8分的电视剧",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "高于8点8分的电视剧",
+          "query": {
+            "and": [
+              {
+                "field": "rate",
+                "from": "8.8",
+                "to": "*"
+              },
+              {
+                "field": "category",
+                "value": "电视剧"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "高于8.8分的电视剧",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "电视剧"
+              },
+              {
+                "field": "rate",
+                "from": "8.8",
+                "to": "*"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "帮我打开关于鲨鱼的电影",
+      "hit_source": "llm_onecall",
+      "ok_t": false,
+      "exp": [
+        "vod_fuzzy_search",
+        {
+          "retext": "帮我打开关于鲨鱼的电影"
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "play",
+          "retext": "帮我打开关于鲨鱼的电影",
+          "query": {
+            "and": [
+              {
+                "field": "category",
+                "value": "电影"
+              },
+              {
+                "field": "tag",
+                "value": "鲨鱼"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "query": "吕剧龙凤面",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "吕剧龙凤面",
+          "query": {
+            "and": [
+              {
+                "field": "tag",
+                "value": "吕剧"
+              },
+              {
+                "field": "title",
+                "value": "龙凤面"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "吕剧龙凤面",
+          "query": {
+            "field": "title",
+            "value": "龙凤面"
+          }
+        }
+      ]
+    },
+    {
+      "query": "快点我要看超级马里奥兄弟大电影",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "快点我要看超级马里奥兄弟大电影",
+          "query": {
+            "and": [
+              {
+                "field": "title",
+                "value": "超级马里奥兄弟"
+              },
+              {
+                "field": "category",
+                "value": "电影"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "play",
+          "retext": "快点我要看超级马里奥兄弟大电影",
+          "query": {
+            "field": "title",
+            "value": "超级马里奥兄弟大电影"
+          }
+        }
+      ]
+    },
+    {
+      "query": "打仗片不是电影",
+      "hit_source": "llm_onecall",
+      "ok_t": true,
+      "exp": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "打仗片不是电影",
+          "query": {
+            "and": [
+              {
+                "field": "tag",
+                "value": "打仗"
+              },
+              {
+                "field": "category",
+                "value": "电影"
+              }
+            ]
+          }
+        }
+      ],
+      "got": [
+        "vod_search",
+        {
+          "action": "search",
+          "retext": "打仗片不是电影",
+          "query": {
+            "and": [
+              {
+                "field": "tag",
+                "value": "打仗"
+              },
+              {
+                "not": {
+                  "field": "category",
+                  "value": "电影"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

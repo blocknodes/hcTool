@@ -1,10 +1,15 @@
-"""sports（体育）域。
+"""体育（sports）域。
 
 导出唯一 Domain 实例。契约见 app.domain.Domain。
-- tools：来自同目录 schema.json（9 个工具，含依赖工具）。
-- 三层：badcase → rules.apply (L1) → fallback (L3)。
 
-加载前提：hcTools 在 sys.path 上。
+决策主轴（与 vod 同构）：**fewshot 缓存直出 + 单次 LLM 出 tool&params**，
+三层调度在 `app/pipeline_kernel.py`。本域不再挂 rule_select。
+
+- tools：来自同目录 schema.json（8 个工具）。
+- pipeline：本域整段决策（局限本目录，见 pipeline.py）；相对日期由 fix_params 确定性补全。
+- postprocess：LLM 生成参数的结构归一（缓存直出与 badcase 不经过它）。
+- badcase_lookup / fallback：L2 精确覆盖 / L3 安全网，均在 pipeline 内调用。
+- rules.py / dsl.py：不再参与决策，rules 仅作历史对照保留；dsl 仍被 pipeline/fallback 依赖。
 """
 
 from __future__ import annotations
@@ -12,18 +17,15 @@ from __future__ import annotations
 from pathlib import Path
 
 from app.domain import Domain, _load_schema_json
-from app.examples import ExampleBank
 
-from .rules import apply as _rule_apply
-from .postproc import normalize as _postproc
 from .badcase import BadcaseStore
 from .fallback import fallback as _fallback
+from .pipeline import pipeline as _pipeline
+from .postproc import normalize as _postproc
 
 _dir = Path(__file__).resolve().parent
 
 tools = _load_schema_json(_dir)
-
-_bank = ExampleBank.from_testset(_dir / "testset.json")
 
 _store = BadcaseStore.load(_dir / "badcases.json")
 
@@ -31,8 +33,7 @@ domain: Domain = Domain(
     key="sports",
     name="体育",
     tools=tools,
-    example_bank=_bank,
-    rule_select=_rule_apply,
+    pipeline=_pipeline,
     postprocess=_postproc,
     badcase_lookup=_store.lookup,
     fallback=_fallback,
