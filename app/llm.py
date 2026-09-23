@@ -1,4 +1,10 @@
-"""OpenAI 兼容网关的异步最小客户端：带超时与重试，支持 native function calling。"""
+"""OpenAI 兼容网关的异步最小客户端：带超时与重试，支持 native function calling。
+
+metadata：可选的业务上下文，原样放进 OpenAI-format 请求体的 `metadata` 字段
+（对齐 hcAgent/app/llm.py）。网关多数实现会忽略它，但 hcProxy 会据此把调用分流到
+`data/captures/<metadata.app>/` 并做链路审计。调用方用 app/metadata.py 的
+`build_llm_metadata()` 构造统一 schema；**不传则请求体里不出现 metadata**。
+"""
 
 from __future__ import annotations
 
@@ -28,8 +34,13 @@ async def chat(
     messages: list[dict[str, Any]],
     tools: list[dict[str, Any]] | None = None,
     tool_choice: Any = None,
+    metadata: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    """调用 /chat/completions，返回 choices[0].message。失败抛 LLMError。"""
+    """调用 /chat/completions，返回 choices[0].message。失败抛 LLMError。
+
+    metadata 透传到请求体的 metadata 字段（链路审计/计费标签，hcProxy 依赖它分流）；
+    不改写 messages / tools，也不参与任何决策。空 dict 视同不传。
+    """
     settings = get_settings()
     if not settings.api_base:
         raise LLMError("HC_API_BASE 未配置（网关地址）")
@@ -38,6 +49,8 @@ async def chat(
         "model": settings.model,
         "messages": messages,
     }
+    if metadata:
+        payload["metadata"] = metadata
     if not settings.model.startswith("gpt-5"):
         payload["temperature"] = TEMPERATURE
         # 参考 hcAgent / compare：禁用 thinking。baseline 不开会在 content 里只回 " thinking"。
@@ -61,11 +74,12 @@ async def chat(
                 data = resp.json()
                 message = data["choices"][0]["message"]
                 logger.info(
-                    "LLM req %s | %s\n"
+                    "LLM req %s | %s | md=%s\n"
                     "  >> IN  %s\n"
                     "  << OUT %s  (%.0fms)",
                     settings.model,
                     " ".join((m.get("role", "?") for m in messages)),
+                    json.dumps(metadata, ensure_ascii=False) if metadata else "-",
                     json.dumps(messages, ensure_ascii=False),
                     json.dumps(message, ensure_ascii=False),
                     (time.perf_counter() - started) * 1000,

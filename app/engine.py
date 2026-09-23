@@ -17,6 +17,7 @@ from typing import Any
 from .config import get_settings
 from .domain import Domain
 from .llm import chat, first_tool_call
+from .metadata import PURPOSE_FILL, PURPOSE_SELECT, build_llm_metadata
 from .models import Prediction, PredictRequest
 
 logger = logging.getLogger("hcTools.engine")
@@ -133,7 +134,10 @@ async def select_tool(req: PredictRequest, domain: Domain) -> tuple[str | None, 
             ),
         },
     ]
-    message = await chat(select_messages)
+    message = await chat(
+        select_messages,
+        metadata=build_llm_metadata(purpose=PURPOSE_SELECT, domain=domain.key),
+    )
 
     # 原生 tool_calls 优先；否则从 content 文本/JSON 里匹配工具名
     name, parsed = first_tool_call(message)
@@ -168,7 +172,10 @@ async def fill_params(req: PredictRequest, domain: Domain, tool_name: str) -> tu
         {"role": "user", "content": f"用户的话：{req.query}" + _metadata_hint(req.metadata)},
     ]
     try:
-        fill_msg = await chat(text_messages)
+        fill_msg = await chat(
+            text_messages,
+            metadata=build_llm_metadata(purpose=PURPOSE_FILL, domain=domain.key, tool=tool_name),
+        )
     except Exception as exc:  # noqa: BLE001
         return None, f"参数填充调用失败：{exc}"
 

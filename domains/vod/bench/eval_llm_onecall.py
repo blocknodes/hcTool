@@ -28,6 +28,7 @@ sys.path.insert(0, str(ROOT.parent))
 
 from app.domain import _load_schema_json  # noqa: E402
 from app.llm import chat, _parse_json_block  # noqa: E402
+from app.metadata import PURPOSE_ONECALL, build_llm_metadata  # noqa: E402
 from hcTools.domains.vod import postproc, textkey  # noqa: E402
 
 
@@ -124,7 +125,9 @@ async def one(query: str, fewshot: list[dict]) -> tuple[str, dict, str]:
         msgs.append({"role": "user", "content": f"已标注的同类样例：\n{shot_lines}\n\n用户的话：{query}\n只输出 JSON："})
     else:
         msgs.append({"role": "user", "content": f"用户的话：{query}\n只输出 JSON："})
-    msg = await chat(msgs)
+    # stage=bench：hcProxy 里可把离线定标流量与线上 /api/predict 流量区分开
+    msg = await chat(msgs, metadata=build_llm_metadata(
+        purpose=PURPOSE_ONECALL, domain="vod", stage="bench"))
     raw = str(msg.get("content") or "")
     obj = _parse_json_block(raw)
     if not isinstance(obj, dict):

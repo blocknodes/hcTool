@@ -31,6 +31,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from .llm import _parse_json_block, chat
+from .metadata import PURPOSE_ONECALL, build_llm_metadata
 from .models import PredictRequest, Prediction
 
 logger = logging.getLogger("hcTools.pipeline")
@@ -324,7 +325,14 @@ def build_pipeline(spec: KernelSpec):
         parsed = None
         for attempt in range(2):
             try:
-                msg = await chat(spec.build_msgs(domain, query, mixed))
+                msg = await chat(
+                    spec.build_msgs(domain, query, mixed),
+                    # attempt>1 才写进 metadata（见 build_llm_metadata），
+                    # 便于按 attempt 统计「首次输出不合法」的比例。
+                    metadata=build_llm_metadata(
+                        purpose=PURPOSE_ONECALL, domain=domain.key, attempt=attempt + 1
+                    ),
+                )
             except Exception as exc:  # noqa: BLE001 网关失败 → 落 L3
                 logger.error("%s 单次 LLM 调用失败：%s", spec.key, exc)
                 break
