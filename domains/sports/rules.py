@@ -709,6 +709,76 @@ def _match(q: str):
     return "sports_match_search", _pack(clean)
 
 
+# ================================================================
+# 预测（sports_match_forecast，0917 sheet 新增工具）
+# ================================================================
+_FORECAST = re.compile(r"预测|谁能赢|谁会赢|谁赢|能赢|会赢|胜率|胜负|夺冠|猜一下|打的过|打得过|压谁")
+
+
+def _forecast(q: str):
+    """预测单场比赛胜负（结果以胜负卡片呈现）。
+
+    定位比赛的条件树与 sports_match_search 完全同构（同一 QueryNode DAG、
+    同一 12 字段），仅工具名不同；时间也走与 match 相同的双基准解析。
+    """
+    base = _rel_base(q)
+    conds: list[dict] = []
+    game = _find_game(q)
+    if game:
+        conds.append({"field": "sport_game", "value": game})
+    for sp in _find_sports(q):
+        if sp != game:
+            conds.append({"field": "sport_name", "value": sp})
+    stars = _find_stars(q)
+    for st_ in stars:
+        conds.append({"field": "sport_star", "value": st_})
+    teams = _team_tokens(q)
+    if len(teams) >= 2 and re.search(r"对|vs|against|pk|与|和", q):
+        # 「皇马对巴萨」→ 主客队按提到顺序：home=皇马 guest=巴萨（对齐 0917 sheet 例）
+        conds.append({"field": "sport_team_home", "value": _strip_team(teams[0])})
+        conds.append({"field": "sport_team_guest", "value": _strip_team(teams[1])})
+    elif len(teams) >= 2:
+        conds.extend(_home_guest(q, [_strip_team(t) for t in teams]))
+    elif teams:
+        conds.append({"field": "sport_team", "value": _strip_team(teams[0])})
+    phase = _phase(q)
+    if phase:
+        conds.append({"field": "sport_competition_phase", "value": phase})
+    lv = _live(q)
+    if lv:
+        conds.append(lv)
+    # 相对轮次（预测也支持 上一轮/下一轮/下场）
+    if re.search(r"上一轮|上轮", q):
+        conds.append({"field": "round_offset", "value": "-1"})
+    elif re.search(r"下一轮|下轮", q):
+        conds.append({"field": "round_offset", "value": "1"})
+    elif re.search(r"下一场|下场比赛|下场球赛|下场", q):
+        conds.append({"field": "round_offset", "value": "1"})
+    d = _parse_date_cn(q, base)
+    if d:
+        conds.append({"field": "sport_time", "value": d})
+    else:
+        t = _today_time(q, base)
+        if t:
+            conds.append({"field": "sport_time", "value": t})
+        wd = _weekday_date(q, base)
+        if wd:
+            conds.append({"field": "sport_time", "value": wd})
+        else:
+            rng = _time_mod_range(q, base)
+            if rng:
+                conds.append(rng)
+            else:
+                rngw = _week_range(q, base)
+                if rngw:
+                    conds.append(rngw)
+    clean = _dedup(conds)
+    if not clean and stars:
+        # sheet 例「预测某球星本场胜负」→ sport_star 单叶
+        return "sports_match_forecast", {"query": {"field": "sport_star", "value": stars[0]}}
+    return "sports_match_forecast", _pack(clean)
+
+
 def _dedup(conds: list[dict]) -> list[dict]:
     seen: set[tuple] = set()
     out: list[dict] = []
@@ -758,7 +828,7 @@ def _live(q: str) -> dict | None:
 _STAR_ORDER = ("泰勒·弗里茨", "张本智和", "王楚钦", "王曼昱", "孙颖莎", "文班亚马", "杨家玉",
                "覃海洋", "全红婵", "丁俊晖", "库里", "詹姆斯", "C罗", "科比", "柯瑞",
                "斯波莎", "莎拉波娃", "亚马尔", "哈兰德", "邹敬园", "查韦斯", "萨鲁吉安",
-               "霍克", "卡恩")
+               "霍克", "卡恩", "梅西")
 _NBA_STARS = {"文班亚马", "库里", "詹姆斯", "科比", "柯瑞"}
 _NBA_STAR_RE = re.compile("文班亚马|库里|詹姆斯|科比|柯瑞")
 
@@ -790,6 +860,11 @@ def apply(query: str) -> tuple[str, dict | None] | None:
     if _CARD_EVENT.search(q):
         return "sports_match_event_card_search", {}
 
+    # 1.5) 预测（0917 新增 sports_match_forecast）
+    if _FORECAST.search(q):
+        r = _forecast(q)
+        if r is not None:
+            return r
     # 2) 预约
     if _RESERVE.search(q):
         r = _reserve(q)

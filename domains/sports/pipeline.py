@@ -2,13 +2,14 @@
 
 三层调度在 `app/pipeline_kernel.py`（与 vod/children/education/music 同构）。域特有部分：
 
-- **8 个工具，三类参数形态**：
+- **9 个工具，三类参数形态**：
     * 条件树（`{"query": <QueryNode>}`）—— sports_match_search / sports_vod_search /
-      sports_match_reservation
+      sports_match_reservation / sports_match_forecast
     * 扁平槽位 —— sports_team_search（sport_team）、sports_rank_search（sport_game +
       sport_rank_type）
-    * 无参（params 恒为 `{}`）—— sports_match_lineup_search / sports_match_event_card_search /
-      sports_match_statistics_card_search（都作用于「上下文已锁定的那场比赛」）
+    * matchId 卡 —— sports_match_lineup_search / sports_match_event_card_search /
+      sports_match_statistics_card_search（0917 schema 起带 matchId；golden 仍恒 {}，
+      LLM 可用 matchId 定位上下文锁定的那场比赛）
   工具之间**没有包含关系** → 无 umbrella、无下钻，由 LLM 直接选。
 
 - **相对日期必须确定性解析**：testset 里 32 条含 `sport_time` / `sport_time_range` /
@@ -38,7 +39,7 @@ _ALL_FIELDS = {
 # 时间类字段：取值由 fix_params 确定性补全，不依赖 LLM 推算
 _TIME_FIELDS = {"sport_time", "sport_time_range", "round_offset"}
 
-# 无参工具（golden 恒为 {}）
+# 卡工具（golden 恒为 {}；0917 schema 起虽带 matchId，golden 契约不变）
 _NO_PARAM_TOOLS = {
     "sports_match_lineup_search",
     "sports_match_event_card_search",
@@ -77,9 +78,13 @@ _SYSTEM_TMPL = """你是电视语音助手的体育意图解析器。读用户�
 3. 「**积分榜/排名/排行榜/榜单**」→ sports_rank_search（同时要 sport_game + sport_rank_type）。
 4. 上下文里**已锁定一场比赛**，问「**阵容/首发/大名单**」→ sports_match_lineup_search。
 5. 上下文里**已锁定一场比赛**，问「**赛况/战况/比分/发生了什么**」→ sports_match_event_card_search。
-6. 上下文里**已锁定一场比赛**，问「**技术统计/控球率/射门数/数据**」→ sports_match_statistics_card_search。
-7. 要**看视频**（视频/录像/集锦/回放/精彩瞬间/纪录片/颁奖/开幕式）→ sports_vod_search。
-8. 其余「**查赛程/对阵/比赛安排**」（找比赛、看有什么比赛、某队某赛事的比赛）
+6. 上下文「赛事已锁定一场」问「**技术统计/控球率/射门数/数据**」→ sports_match_statistics_card_search。
+7. 「**预测/谁能赢/能赢吗/胜率/胜负**」某一(些)具体比赛 → sports_match_forecast
+   （条件树定位要预测的比赛，维度同 sports_match_search；已结束的比赛可做赛果复盘）。
+   **注意**：只有用户明确表达了「预测/谁赢/能赢吗/胜率/胜负」等预测词才算 forecast；
+   只报「X对Y的比赛」「X vs Y」这类对阵，是查赛程 → sports_match_search。
+8. 要**看视频**（视频/录像/集锦/回放/精彩瞬间/纪录片/颁奖/开幕式）→ sports_vod_search。
+9. 其余「**查赛程/对阵/比赛安排**」（找比赛、看有什么比赛、某队某赛事的比赛）
    → sports_match_search。
 
 注意「比赛回放/比赛回看/比赛录像」属于 **sports_match_search**（按 live_state 过滤已结束比赛），
@@ -93,10 +98,10 @@ B) sports_rank_search：`{{"sport_game":"赛事","sport_rank_type":"榜单类型
    （如 积分榜/射手榜/抢断榜/金牌榜/排行榜）
 
 C) sports_match_lineup_search / sports_match_event_card_search /
-   sports_match_statistics_card_search：**params 输出 `{{}}`**（它们作用于上下文里那场已锁定的比赛）
+   sports_match_statistics_card_search：**params 输出 `{{}}`**（它们作用于上面那场已锁定的比赛）
 
-D) sports_match_search / sports_vod_search / sports_match_reservation：
-   `{{"query": <条件树>}}`
+D) sports_match_search / sports_vod_search / sports_match_reservation /
+   sports_match_forecast：`{{"query": <条件树>}}`
 
 【query 条件树】
 可用字段（**只写 field 名，取值按用户原话或最接近的常用说法填**）：
@@ -113,6 +118,9 @@ D) sports_match_search / sports_vod_search / sports_match_reservation：
   具体日期由后处理补全，你只需填 `{{"field":"sport_time","value":""}}` 占位即可。
   用户说「上一轮/下一轮/下场」用 `round_offset`（"-1"/"1"）。
 - 「X主场」用 sport_team_home；「X客场」用 sport_team_guest。
+- **forecast 双队对阵**（如「预测皇马对巴萨」）：用
+  `{{"and":[{{"field":"sport_team_home","value":"皇马"}},{{"field":"sport_team_guest","value":"巴萨"}}]}}`，
+  不要用 sport_team 的 values+and。
 - 说了球队/球星就别重复给运动项目，除非用户也说了。
 - 字段无法归一化到常用值时不传该字段，不要自造新值。
 

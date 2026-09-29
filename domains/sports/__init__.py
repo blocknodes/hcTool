@@ -5,7 +5,7 @@
 决策主轴（与 vod 同构）：**fewshot 缓存直出 + 单次 LLM 出 tool&params**，
 三层调度在 `app/pipeline_kernel.py`。本域不再挂 rule_select。
 
-- tools：来自同目录 schema.json（8 个工具）。
+- tools：来自同目录 schema.json（9 个工具，0917 sheet 新增 sports_match_forecast）。
 - pipeline：本域整段决策（局限本目录，见 pipeline.py）；相对日期由 fix_params 确定性补全。
 - postprocess：LLM 生成参数的结构归一（缓存直出与 badcase 不经过它）。
 - badcase_lookup / fallback：L2 精确覆盖 / L3 安全网，均在 pipeline 内调用。

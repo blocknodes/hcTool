@@ -74,6 +74,28 @@ _FIELD_PRIORITY = {
 }
 
 
+_FEE_MAP = {"免费": "0", "不要钱": "0", "不用钱": "0", "非会员": "0", "不是会员": "0",
+            "付费": "1", "收费": "1", "要会员": "1", "会员": "1", "花钱": "1",
+            "非免费": "1", "不免费": "1"}
+
+
+def _walk_norm(node: Any) -> Any:
+    """递归归一 query 树：叶子 is_fee 中文噪音统一为 0/1（值驱动，不影响结构）。"""
+    if isinstance(node, list):
+        return [_walk_norm(x) for x in node]
+    if not isinstance(node, dict):
+        return node
+    if node.get("field") == "is_fee":
+        v = node.get("value")
+        if isinstance(v, str) and v in _FEE_MAP:
+            node["value"] = _FEE_MAP[v]
+        vals = node.get("values")
+        if isinstance(vals, list):
+            node["values"] = [_FEE_MAP.get(x, x) if isinstance(x, str) else x
+                              for x in vals]
+    return {k: _walk_norm(v) for k, v in node.items()}
+
+
 def rebuild_query(query_node: Any) -> Any:
     """叶子去重 + 按优先级重排成统一 and 结构。非叶子（or/not 嵌套）保留原位不深排。"""
     if not isinstance(query_node, dict):
@@ -164,7 +186,11 @@ def normalize(tool: str, params: dict) -> dict:
         else:
             result["action"] = _determine_action(q)
 
-    # 3) query 顶层 and 结构重排 + 去重（保留 operator：多值 values 需 or/and 语义）
+    # 3) query 顶层 and 结构重排 + 去重（保留 operator：多值 values 需 or/and 语义）。
+    #    先递归归一数值状态字段（is_fee 中文噪音→"0"/"1"），再做结构重排。
+    qn = result.get("query")
+    if isinstance(qn, (dict, list)):
+        result["query"] = _walk_norm(qn)
     qn = result.get("query")
     if isinstance(qn, dict) and ("field" in qn or "and" in qn or "or" in qn):
         result["query"] = rebuild_query(qn)
