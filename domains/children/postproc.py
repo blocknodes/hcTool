@@ -21,8 +21,8 @@ def normalize(tool: str, params: dict) -> dict:
     qn = params.get("query")
     if isinstance(qn, (dict, list)):
         params["query"] = _collapse(qn)
-    # retext：search/search_all/fuzzy 提供；relate/history 不带 retext（golden 实证）
-    if tool in ("educ_search", "educ_search_all", "educ_fuzzy_search"):
+    # retext：search_all/fuzzy 提供；relate/history 不带 retext（golden 实证）
+    if tool in ("educ_search_all", "educ_fuzzy_search"):
         params.setdefault("retext", params.get("retext") or "")
     elif tool == "educ_relate_search":
         params.pop("retext", None)

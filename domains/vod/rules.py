@@ -71,6 +71,12 @@ _PLAY_VERB = re.compile(
 )
 _SEEK = re.compile(r"第[0-9一二两三四五六七八九十]+(?:集|季|期|分钟|秒)")
 
+# 演员|主持人二栖人名命中（张云雷）→ 走 dsl 的 actor|entertainer 双 or。
+# 这类 query（「请播放张云雷的相声」）既无 _TITLES 具名标题（_title_tail_branch 落空），
+# 也无 _SQL_CTRL 载体/检索词（_search_branch 落空，因为只说“相声”），原先直落 LLM；
+# 由本规则接住，保证 dsl 的确定性结果不被 LLM 覆盖。
+_AMBIG_PERSON = tuple(dsl._OR_PERSON_AE)
+
 # 地区/语言/年代（具体年份）→ search_all 全库多维筛选
 # （注意：最新/最近/近期/今年 等时间副词、4K/3D 等版型属 search，不在此列）
 _ALL_DIM = re.compile(
@@ -357,6 +363,16 @@ def _fuzzy_strong_branch(q: str):
     return None
 
 
+def _ambig_person_branch(q: str):
+    """演员|主持人二栖人名（张云雷）→ dsl 结构化。语义同 _title_tail_branch，只是锚点是
+    人名而非具名标题：命中即整句交 dsl，避免掉进 LLM 两段式导致 params 不一致。"""
+    if dsl._known_in(q, _AMBIG_PERSON):
+        tool = dsl.route_tool(q)
+        if tool != "vod_fuzzy_search":
+            return (tool, dsl.build_search_dsl(q) or None)
+    return None
+
+
 def _title_tail_branch(q: str):
     _t = dsl._find_title(q)
     if _t and not _ALL_SIGNAL.search(q):
@@ -489,13 +505,16 @@ _RULE_SET = RuleSet(
         Rule(id="vod_fuzzy_strong", tool="vod_fuzzy_search", priority=9,
              title="fuzzy 强信号", explain="片段/台词/型型等无法结构化 → fuzzy 原话",
              decide=_fuzzy_strong_branch),
-        Rule(id="vod_title_tail", tool="vod_search", priority=10,
+        Rule(id="vod_ambig_person", tool="vod_search", priority=10,
+             title="人物二栖锚点", explain="演员|主持人二栖人名(张云雷) + 曲艺 tag → dsl 结构化",
+             decide=_ambig_person_branch),
+        Rule(id="vod_title_tail", tool="vod_search", priority=11,
              title="具体片名+尾部", explain="具名剧名 + 尾部 → search 锚定标题",
              decide=_title_tail_branch),
-        Rule(id="vod_search", tool="vod_search", priority=11,
+        Rule(id="vod_search", tool="vod_search", priority=12,
              title="结构化多维检索", explain="播放动词/筛选维度 → 三级路由 search/search_all/fuzzy",
              decide=_search_branch),
-        Rule(id="vod_search_all", tool="vod_search_all", priority=12,
+        Rule(id="vod_search_all", tool="vod_search_all", priority=13,
              title="search_all 专属维度", explain="出品/卫视/地区/语言/获奖 → 优先 search_all",
              decide=_search_all_branch),
     ],

@@ -1,13 +1,12 @@
 """少儿(children)域确定性规则层（L1）。
 
 工具：
-- educ_search：结构化浏览（title/动画/年龄/免费/故事 等维度）
-- educ_search_all：含 国家/公司/语言/发行年份 等全库维度
+- educ_search_all：结构化检索，含 title/年龄/免费/国家/公司/语言/发行年份 等全部维度
 - educ_fuzzy_search：描述/台词/喜好 整句模糊检索（query=原文）
 - educ_relate_search：类似/相似 X 推荐
 - educ_history：看过的历史记录（time 范围）
 
-判定顺序：history → relate → fuzzy → search/search_all（dsl 三级）。
+判定顺序：history → relate → fuzzy → search_all（dsl 兜底 fuzzy）。
 """
 from __future__ import annotations
 
@@ -104,7 +103,7 @@ def _branch_fuzzy(q: str):
 
 
 def _branch_search(q: str):
-    # search / search_all
+    # 结构化检索 → educ_search_all（route_tool 抽不出维度/遇表外字段时返回 fuzzy）
     tool = dsl.route_tool(q)
     if tool == "educ_fuzzy_search":
         return ("educ_fuzzy_search", {"retext": dsl._norm_retext(q)})
@@ -125,8 +124,8 @@ RULE_SET = RuleSet(
         Rule(id="children_fuzzy", tool="educ_fuzzy_search", priority=3,
              title="描述/台词模糊", explain="命中 台词/描述/喜好 等无法结构化信号 → 整句模糊检索",
              decide=_branch_fuzzy),
-        Rule(id="children_search", tool="educ_search/search_all", priority=4,
-             title="结构化浏览", explain="dsl 路由到 educ_search/educ_search_all（route 到 fuzzy 或组装成功均交由该规则）",
+        Rule(id="children_search", tool="educ_search_all", priority=4,
+             title="结构化检索", explain="dsl 路由到 educ_search_all（route 到 fuzzy 或组装成功均交由该规则）",
              decide=_branch_search),
     ],
 )

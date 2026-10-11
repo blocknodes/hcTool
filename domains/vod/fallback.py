@@ -16,6 +16,7 @@ from __future__ import annotations
 import re
 
 from . import dsl
+from .pipeline import _CLIP_WORDS  # 片段/名场面词表（L1 守卫与 L3 兜底共用一份，避免口径漂移）
 from .rules import _FUZZY_HINT, _FUZZY_STRONG  # 复用 fuzzy 信号
 
 # L3 里应 fuzzy 的表达型提示（无具体槽位可拆，只能整句检索）：
@@ -30,11 +31,23 @@ _FUZZY_TOTAL = re.compile(
 )
 
 
+def _is_clip(query: str) -> bool:
+    """碎片化定位表达（片段/名场面/桥段/高光…）→ 整句 fuzzy。
+
+    与 L1 守卫（pipeline.SPEC.clip_words）同一份词表：L3 是"没稳才落"的网，
+    不应比 L1 更容易把 clip query 拼成结构化 query（如「这电影有什么精彩桥段」
+    曾被拼成 vod_search）。口径集中在 _CLIP_WORDS，避免两处各自演化。
+    """
+    return any(w in query for w in _CLIP_WORDS)
+
+
 def fallback(query: str) -> tuple[str, dict]:
     """语义模糊先判（表达型/片段/台词/推荐…看/出自/哪一部，只能整句检索，
     即使能挤出 category 也归 fuzzy）→ 剩余结构化 query 走三级覆盖判定：
     search 命中 → search；仅 search_all 命中 → search_all；
     两者都不覆盖、或槽位值不在枚举范围内 → fuzzy。"""
+    if _is_clip(query):
+        return "vod_fuzzy_search", {"query": query}
     if _FUZZY_TOTAL.search(query):
         return "vod_fuzzy_search", {"query": query}
     tool = dsl.route_tool(query)

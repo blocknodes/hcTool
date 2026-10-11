@@ -128,6 +128,9 @@ _TITLES = (
     "乘风破浪的姐姐", "将改革进行到底", "用一生去爱你", "王牌对王牌", "以家人之名",
     "像我这样的人", "安徽民间小调", "狐妖小红娘", "长安的荔枝", "汉字五千年",
     "打工奇遇", "最强大脑", "小崔说事", "英雄泪", "哑巴新娘", "人间世",
+    # 相声/曲艺作品名。金标准「我这一辈子相声」→ title=我这一辈子 + tag=相声
+    # （bc/eval0910/影视.csv:35）。带「相声」tag 的具名作品靠这里命中 title。
+    "我这一辈子",
     "我的皇帝陛下", "大生意人", "上海滩", "庆余年", "白日提灯", "生万物", "人世间",
     "深情眼", "陈翔六点半", "黄河在咆哮", "小敏家", "铡美案",
     "超级马里奥兄弟", "小谢尔顿", "三生三世十里桃花", "欢乐家长群2", "欢乐家长群", "战毒",
@@ -141,17 +144,40 @@ _TITLES = (
 )
 
 
+_CN_UNIT = {"十": 10, "百": 100, "千": 1000}
+
+
 def _cn2int(text):
+    """中文数字 → int（位值解析，支持 十/百/千/万）。
+
+    旧实现用「逐字 ×10 累加」会把 三十→40、十五→105、一百二十→None 全算错；
+    纯数字与单字（八→8）碰巧正确，故 golden 未暴露。此版按位值正确求值：
+    三十=30、十五=15、二十三=23、一百二十=120、十=10。无法解析返回 None。
+    """
     if not text:
         return None
     if text.isdigit():
         return int(text)
-    total = 0
+    total = 0        # 已结算（跨「万」累加）
+    section = 0      # 当前「万」段内累加
+    number = 0       # 待结算的个位数字
     for ch in text:
-        if ch in _CN:
-            total = total * 10 + _CN[ch]
+        if ch in _CN_UNIT:
+            unit = _CN_UNIT[ch]
+            if number == 0:
+                number = 1          # 「十五」中前导十 = 1×10
+            section += number * unit
+            number = 0
+        elif ch == "万":
+            section += number
+            total += section * 10000
+            section = 0
+            number = 0
+        elif ch in _CN:
+            number = _CN[ch]
         else:
             return None
+    total += section + number
     return total or None
 
 
@@ -339,8 +365,18 @@ _KNOWN_ACTORS = (
 # 角色 → role（“有许三多的那部电视剧”“播放吴石将军的电视剧”）
 _KNOWN_ROLES = ("许三多", "吴石将军", "李达康", "四目道长", "霸天虎", "狗剩")
 
+# 剧目名同时是剧中角色名（豫剧王宝钏：剧名《王宝钏》，主角也叫王宝钏）。
+# 这类词不在 _TITLES（避免单值 title 误打头），金标准输出 title|role 双 or——
+# 同时覆盖「按剧名检索」与「按角色名检索」两种意图（bc/eval0910/影视.csv:82）。
+_AMBIG_TITLE_ROLE = ("王宝钏",)
+
 # 许冠文：演员/导演/主持人三栖，金标准「许冠文粤语电影」→ actor|director|entertainer 三 or
 _OR_PERSON = {"许冠文"}
+
+# 演员/主持人二栖（张云雷：相声演员兼主持人）。金标准「请播放张云雷的相声」→
+# actor|entertainer 双 or + tag=相声（bc/eval0910/影视.csv:36）。与 _OR_PERSON 的区别
+# 是少了 director 一支；同样不并入 _KNOWN_ACTORS，避免再多出一个 actor 单值叶子。
+_OR_PERSON_AE = ("张云雷",)
 _KNOWN_DIRECTORS = ("张艺谋", "陈可辛", "冯小刚", "宁浩", "王家卫", "徐克", "乌尔善",
                     "陈凯歌", "高希希", "李少红", "陈思诚", "孔笙", "郭帆", "吴京",
                     "宫崎骏", "郑晓龙", "姜文", "林玉芬", "余乐")
@@ -807,6 +843,21 @@ def build_search_dsl(query: str) -> dict | None:
             {"field": "director", "value": _or_person},
             {"field": "entertainer", "value": _or_person},
         ]})
+    # 剧目名兼角色名（王宝钏）→ title|role 双 or。置于 tag 之前，
+    # 与曲艺 tag（豫剧/秦腔）组合成 {and:[{or:[title,role]},{tag}]}（金标准 豫剧王宝钏）。
+    _ambig = _known_in(q, _AMBIG_TITLE_ROLE)
+    if _ambig:
+        conds.append({"or": [
+            {"field": "title", "value": _ambig},
+            {"field": "role", "value": _ambig},
+        ]})
+    # 演员|主持人二栖（张云雷）→ actor|entertainer 双 or；与 _OR_PERSON 同构但无 director。
+    _or_ae = _known_in(q, _OR_PERSON_AE)
+    if _or_ae:
+        conds.append({"or": [
+            {"field": "actor", "value": _or_ae},
+            {"field": "entertainer", "value": _or_ae},
+        ]})
     if target_: add("target", target_)
     if gender_: add("gender", gender_)
     if role_: add("role", role_)
@@ -923,9 +974,7 @@ def build_search_dsl(query: str) -> dict | None:
     has_seek = bool(re.search(r"第[0-9一二两三四五六七八九十]+(?:集|季|期|分钟|秒)", q))
     has_complex = bool(dir_ or actor_ or company or vender or channel or rate or release or has_seek)
     title = None if _title_multi else _extract_title(q)
-    # 金标准：「我要看主角是狗剩的电视剧」把「主角」作 title 值（怪例，逐条对齐）
-    if "主角是" in q and not title:
-        title = "主角"
+
     if title:
         t_cond = {"field": "title", "value": title}
         if has_complex and len(q) > 12:

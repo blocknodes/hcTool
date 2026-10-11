@@ -180,6 +180,11 @@ class KernelSpec:
     all_fields: set[str] = field(default_factory=set)     # 条件树已知字段全集
     fuzzy_tool: str = ""                                  # 表外维度改判目标
     oor_words: tuple[str, ...] = ()                       # 表外维度指标词
+    # 「整句语义检索」强信号词表：命中即改判 fuzzy（丢掉半截条件树，原话整句交给 fuzzy）。
+    # 与 oor_words 同形、同一插入点，区别只在语义：oor_words 是"结构化表达不了的维度名"，
+    # clip_words 是"碎片化定位表达"（片段/名场面/台词…）。域内自供，词表由域按自己的
+    # golden 口径确定，内核不猜。
+    clip_words: tuple[str, ...] = ()                      # 片段/名场面类强信号词
     shot_k: int = 8
     pool_path: Path | None = None
     build_messages: Callable[[Any, str, list], list] | None = None  # 覆盖默认消息构造
@@ -200,6 +205,9 @@ class KernelSpec:
 
     def is_oor(self, query: str) -> bool:
         return bool(self.oor_words) and any(w in query for w in self.oor_words)
+
+    def is_clip(self, query: str) -> bool:
+        return bool(self.clip_words) and any(w in query for w in self.clip_words)
 
     def build_msgs(self, domain, query: str, shots: list[dict]) -> list[dict]:
         if self.build_messages is not None:
@@ -368,6 +376,14 @@ def build_pipeline(spec: KernelSpec):
             # 放在下钻之后：下钻只决定窄工具，改判会把它整个覆盖掉。
             if spec.fuzzy_tool and tool in spec.search_family and spec.is_oor(query):
                 logger.info("%s 表外维度改判 fuzzy：%s", spec.key, query)
+                tool = spec.fuzzy_tool
+                params = _post(domain, tool, {"retext": spec.norm_retext(query)})
+            # 碎片化定位表达兜底（片段/名场面/台词…）：这类话里常夹一个具体片名，LLM 会
+            # 抓住片名、把"高光片段"丢掉，出结构化条件树 → 下钻成 vod_search。但 golden
+            # 口径是整句语义检索，故只要落回搜索族就改判 fuzzy，原话整句交出。
+            # 与 OOR 同一位置（下钻之后）：下钻只决定窄工具，改判会把它整个覆盖。
+            elif spec.fuzzy_tool and tool in spec.search_family and spec.is_clip(query):
+                logger.info("%s 片段/名场面信号改判 fuzzy：%s", spec.key, query)
                 tool = spec.fuzzy_tool
                 params = _post(domain, tool, {"retext": spec.norm_retext(query)})
             return _pred(domain, tool, params, "llm_onecall")

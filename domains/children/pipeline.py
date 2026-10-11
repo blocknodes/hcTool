@@ -1,8 +1,7 @@
 """少儿（children）域决策主轴：fewshot 缓存直出 + 单次 LLM 出 tool&params。
 
 与 vod 同构（三层调度在 `app/pipeline_kernel.py`），域特有部分：
-- 工具族：`educ_search` ⊂ `educ_search_all`（16 ⊆ 18 字段），另有 fuzzy/relate/history。
-  与 vod 一样只把 umbrella（`educ_search_all`）暴露给 LLM，落库时按字段集下钻。
+- 搜索族只有 `educ_search_all`（字段最全），窄工具 `educ_search` 已下线，另有 fuzzy/relate/history。
 - `_FIELD_CATALOG`：children 的字段目录（不给枚举值，靠 fewshot 示范）。
 - `retext` 归一复用 `dsl._norm_retext`（词表 + 正则 + 标点切除，已与 golden 对齐）。
 
@@ -19,11 +18,11 @@ from app.pipeline_kernel import KernelSpec, build_pipeline
 from . import dsl, textkey
 from .dsl import _SEARCH_ALL_FIELDS, _SEARCH_FIELDS
 
-# 搜索族 umbrella：educ_search_all 包含 educ_search 的全部能力（字段集是严格超集）
+# 搜索族唯一工具：educ_search_all（字段最全，窄工具 educ_search 已下线）
 _UMBRELLA = "educ_search_all"
 
 # 需要 retext 的工具（educ_relate_search / educ_history 不带，见 golden 实证）
-_RETEXT_TOOLS = {"educ_search", "educ_search_all", "educ_fuzzy_search"}
+_RETEXT_TOOLS = {"educ_search_all", "educ_fuzzy_search"}
 
 # 「找内容」族：表外维度改判 fuzzy 时只对这些工具生效
 _SEARCH_FAMILY = _RETEXT_TOOLS
@@ -92,26 +91,6 @@ _SYSTEM_TMPL = """你是电视语音助手的少儿内容意图解析器。读�
 """
 
 
-def exposed_tools(domain) -> list:
-    """暴露给 LLM 的候选工具：搜索族只留 educ_search_all（educ_search 是其子集）。"""
-    return [t for t in domain.tools if t.name != "educ_search"]
-
-
-def normalize_tool_name(tool: str) -> str:
-    return _UMBRELLA if tool == "educ_search" else tool
-
-
-def drill_search_tool(params: dict) -> str:
-    """下钻到 golden 契约的窄工具：用了 search_all 独有维度（country/release_time）
-    → educ_search_all，否则 educ_search。与 golden 的分工一致（实测 268/274，其余 6 条
-    是 golden 自身的边界噪声）。
-    """
-    from app.pipeline_kernel import iter_fields
-
-    fields = iter_fields(params.get("query"), set())
-    return _UMBRELLA if (fields & _SEARCH_ALL_FIELDS) else "educ_search"
-
-
 def _tool_briefs(tools) -> str:
     lines = []
     for t in tools:
@@ -131,9 +110,7 @@ SPEC = KernelSpec(
     norm_retext=lambda q: dsl._norm_retext(q),
     retext_tools=_RETEXT_TOOLS,
     search_family=_SEARCH_FAMILY,
-    exposed_tools=exposed_tools,
-    normalize_tool=normalize_tool_name,
-    drill=drill_search_tool,
+    # exposed_tools/normalize_tool/drill 均默认：schema 已只剩 educ_search_all，无需隐藏窄工具
     umbrella=_UMBRELLA,
     all_fields=_ALL_FIELDS,
     fuzzy_tool="educ_fuzzy_search",

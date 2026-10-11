@@ -441,12 +441,50 @@
     {
       "query": "我这一辈子相声",
       "expected_tool": "vod_search",
-      "expected_params": {}
+      "expected_params": {
+        "action": "search",
+        "retext": "我这一辈子相声",
+        "query": {
+          "and": [
+            {
+              "field": "title",
+              "value": "我这一辈子"
+            },
+            {
+              "field": "tag",
+              "value": "相声"
+            }
+          ]
+        }
+      }
     },
     {
       "query": "请播放张云雷的相声",
       "expected_tool": "vod_search",
-      "expected_params": {}
+      "expected_params": {
+        "action": "play",
+        "retext": "请播放张云雷的相声",
+        "query": {
+          "and": [
+            {
+              "or": [
+                {
+                  "field": "actor",
+                  "value": "张云雷"
+                },
+                {
+                  "field": "entertainer",
+                  "value": "张云雷"
+                }
+              ]
+            },
+            {
+              "field": "tag",
+              "value": "相声"
+            }
+          ]
+        }
+      }
     },
     {
       "query": "中产人群喜欢看什么类型的影片",
@@ -904,7 +942,30 @@
     {
       "query": "豫剧王宝钏",
       "expected_tool": "vod_search",
-      "expected_params": {}
+      "expected_params": {
+        "action": "search",
+        "retext": "豫剧王宝钏",
+        "query": {
+          "and": [
+            {
+              "or": [
+                {
+                  "field": "title",
+                  "value": "王宝钏"
+                },
+                {
+                  "field": "role",
+                  "value": "王宝钏"
+                }
+              ]
+            },
+            {
+              "field": "tag",
+              "value": "豫剧"
+            }
+          ]
+        }
+      }
     },
     {
       "query": "王鹤棣演的电影",
@@ -1446,12 +1507,38 @@
     {
       "query": "推荐和《盗墓笔记》相似的电视剧",
       "expected_tool": "vod_relate_search",
-      "expected_params": {}
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "title",
+              "value": "盗墓笔记"
+            },
+            {
+              "field": "category",
+              "value": "电视剧"
+            }
+          ]
+        }
+      }
     },
     {
       "query": "有没有类似于《与青春有关的日志》的剧",
       "expected_tool": "vod_relate_search",
-      "expected_params": {}
+      "expected_params": {
+        "query": {
+          "and": [
+            {
+              "field": "title",
+              "value": "与青春有关的日志"
+            },
+            {
+              "field": "category",
+              "value": "电视剧"
+            }
+          ]
+        }
+      }
     },
     {
       "query": "像《漫长的季节》这种类型的剧还有吗？",
@@ -2047,7 +2134,27 @@
     {
       "query": "豆瓣高分的喜剧电影",
       "expected_tool": "vod_search",
-      "expected_params": {}
+      "expected_params": {
+        "action": "search",
+        "retext": "豆瓣高分的喜剧电影",
+        "sort": {
+          "rate": {
+            "order": "desc"
+          }
+        },
+        "query": {
+          "and": [
+            {
+              "field": "category",
+              "value": "电影"
+            },
+            {
+              "field": "tag",
+              "value": "喜剧"
+            }
+          ]
+        }
+      }
     },
     {
       "query": "豆瓣高分的电视剧",
@@ -2337,7 +2444,27 @@
     {
       "query": "热度的喜剧综艺",
       "expected_tool": "vod_search",
-      "expected_params": {}
+      "expected_params": {
+        "action": "search",
+        "retext": "热度的喜剧综艺",
+        "sort": {
+          "hot": {
+            "order": "desc"
+          }
+        },
+        "query": {
+          "and": [
+            {
+              "field": "category",
+              "value": "综艺"
+            },
+            {
+              "field": "tag",
+              "value": "喜剧"
+            }
+          ]
+        }
+      }
     },
     {
       "query": "热度的竞技综艺",
@@ -3347,7 +3474,27 @@
     {
       "query": "火的竞技综艺",
       "expected_tool": "vod_search",
-      "expected_params": {}
+      "expected_params": {
+        "action": "search",
+        "retext": "火的竞技综艺",
+        "sort": {
+          "hot": {
+            "order": "desc"
+          }
+        },
+        "query": {
+          "and": [
+            {
+              "field": "category",
+              "value": "综艺"
+            },
+            {
+              "field": "tag",
+              "value": "竞技"
+            }
+          ]
+        }
+      }
     },
     {
       "query": "很火的电影",
@@ -4243,10 +4390,6 @@
             {
               "field": "category",
               "value": "电视剧"
-            },
-            {
-              "field": "title",
-              "value": "主角"
             },
             {
               "field": "role",

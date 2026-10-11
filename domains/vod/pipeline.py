@@ -47,6 +47,28 @@ _OOR_DIM_WORDS = (
     "排片", "场次", "下载量", "销量",
 )
 
+# 碎片化定位表达 → 兜底改判 fuzzy 的词表（与 _OOR_DIM_WORDS 同一插入点）。
+# 动机：这类话常夹一个具体片名（「狂飙高光片段」「肖申克的救赎逆袭高光桥段汇总」），
+# LLM 抓住片名、把「高光片段」整段丢掉，出一棵看着合法的条件树 →
+# drill_search_tool 按字段收窄成 vod_search。但 golden 口径**整句语义检索**：
+# 这些是"定位某一段内容"，不是"按维度筛作品"，故落回搜索族即改判 fuzzy，原话交出。
+#
+# 词表口径（2026-09-30 按全量 golden 校准，136/136 clip 行皆 vod_fuzzy_search）：
+# - 只收**自行成义**的片段类名词；不收"那段/那段戏"这类纯指代 —— 多轮里
+#   「武打戏好的」类续接靠指代+上下文覆盖，裸指代会误伤（见下 打斗 条目）。
+# - 打斗/武打 只收**复合形式**（打斗场面/打斗片段/武打片段…）：裸「打斗精彩的」
+#   「武打戏好的」「打斗好看的」在 sheet_multiturn_1000groups_gold 里 golden 是
+#   vod_search（武侠 tag/category 的结构化续接），必须留给 LLM。
+# - 高光/台词/名场面 裸词安全：vod 域内 golden 全 fuzzy；跨域的「屏幕高光细节」(device)、
+#   「…是哪个动画片的台词」(children/education) 在本域外，detect 判域已挡住。
+# - 不收「花絮」：sheet0901_vod.csv:1965「我们的当打之年花絮」golden 是 vod_search
+#   （按 title 检索该片的花絮栏目），与"定位正片某一段"不是一回事。
+_CLIP_WORDS = (
+    "片段", "名场面", "桥段", "高光", "台词", "哭戏", "经典场面",
+    "打斗场面", "打斗片段", "打斗名场面", "武打场面", "武打片段",
+    "对打场面", "精彩片段", "精彩桥段", "高燃片段", "爆燃",
+)
+
 # 字段目录：**只给字段名 + 语义，不给枚举取值**。枚举取值靠 fewshot 样例示范，
 # 否则 32 个字段 × 各自的长枚举会把 prompt 撑爆且淹掉判别信息。
 _FIELD_CATALOG = """- title 作品名（电影/剧/综艺/动漫/相声/戏曲/晚会…）
@@ -216,6 +238,7 @@ SPEC = KernelSpec(
     all_fields=_ALL_FIELDS,
     fuzzy_tool="vod_fuzzy_search",
     oor_words=_OOR_DIM_WORDS,
+    clip_words=_CLIP_WORDS,
     pool_path=Path(__file__).resolve().parent / "testset.json",
 )
 

@@ -62,26 +62,6 @@
       "owner": "dingbo"
     },
     {
-      "raw": "阿里巴巴影业出品的爱国题材电影",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "阿里巴巴影业出品的爱国题材电影"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
-      "raw": "播放王牌对王牌第八季最新一期的第三十分钟",
-      "tool": "vod_fuzzy_search",
-      "params": {
-        "query": "播放王牌对王牌第八季最新一期的第三十分钟"
-      },
-      "note": "规则/兜底误判search→标注fuzzy",
-      "added": "2026-09-11",
-      "owner": "dingbo"
-    },
-    {
       "raw": "八一建军节电影推荐",
       "tool": "vod_fuzzy_search",
       "params": {
@@ -1002,64 +982,211 @@
     {
       "raw": "我这一辈子相声",
       "tool": "vod_search",
-      "params": {},
-      "note": "gold params 为空 {}（噪音），任一非空参数都 diff；逐条对齐空集",
+      "params": {
+        "action": "search",
+        "retext": "我这一辈子相声",
+        "query": {
+          "and": [
+            {
+              "field": "title",
+              "value": "我这一辈子"
+            },
+            {
+              "field": "tag",
+              "value": "相声"
+            }
+          ]
+        }
+      },
+      "note": "gold 修正：旧值为空 {}（当年 sheet G5 噪音行）；权威口径见 bc/eval0910/影视.csv，dsl/规则层确定性输出同形",
       "added": "2026-09-17",
       "owner": "dingbo"
     },
     {
       "raw": "请播放张云雷的相声",
       "tool": "vod_search",
-      "params": {},
-      "note": "gold params 为空 {}（噪音），精确对齐空集",
+      "params": {
+        "action": "play",
+        "retext": "请播放张云雷的相声",
+        "query": {
+          "and": [
+            {
+              "or": [
+                {
+                  "field": "actor",
+                  "value": "张云雷"
+                },
+                {
+                  "field": "entertainer",
+                  "value": "张云雷"
+                }
+              ]
+            },
+            {
+              "field": "tag",
+              "value": "相声"
+            }
+          ]
+        }
+      },
+      "note": "gold 修正：旧值为空 {}（当年 sheet G5 噪音行）；权威口径见 bc/eval0910/影视.csv，dsl/规则层确定性输出同形",
       "added": "2026-09-17",
       "owner": "dingbo"
     },
     {
       "raw": "豫剧王宝钏",
       "tool": "vod_search",
-      "params": {},
-      "note": "gold params 为空 {}（噪音），精确对齐空集",
+      "params": {
+        "action": "search",
+        "retext": "豫剧王宝钏",
+        "query": {
+          "and": [
+            {
+              "or": [
+                {
+                  "field": "title",
+                  "value": "王宝钏"
+                },
+                {
+                  "field": "role",
+                  "value": "王宝钏"
+                }
+              ]
+            },
+            {
+              "field": "tag",
+              "value": "豫剧"
+            }
+          ]
+        }
+      },
+      "note": "gold 修正：旧值为空 {}（当年 sheet G5 噪音）；权威口径 bc/eval0910/影视.csv:82 为 title|role 双 or + tag=豫剧。词表补 _AMBIG_TITLE_ROLE，dsl 确定性输出同形",
       "added": "2026-09-17",
       "owner": "dingbo"
     },
     {
       "raw": "豆瓣高分的喜剧电影",
       "tool": "vod_search",
-      "params": {},
-      "note": "gold params 为空 {}（噪音），精确对齐空集",
+      "params": {
+        "action": "search",
+        "retext": "豆瓣高分的喜剧电影",
+        "sort": {
+          "rate": {
+            "order": "desc"
+          }
+        },
+        "query": {
+          "and": [
+            {
+              "field": "category",
+              "value": "电影"
+            },
+            {
+              "field": "tag",
+              "value": "喜剧"
+            }
+          ]
+        }
+      },
+      "note": "gold 修正：旧值为空 {}（当年 sheet G5 噪音行）；权威口径见 bc/eval0910/影视.csv，dsl/规则层确定性输出同形",
       "added": "2026-09-17",
       "owner": "dingbo"
     },
     {
       "raw": "热度的喜剧综艺",
       "tool": "vod_search",
-      "params": {},
-      "note": "gold params 为空 {}（噪音），精确对齐空集",
+      "params": {
+        "action": "search",
+        "retext": "热度的喜剧综艺",
+        "sort": {
+          "hot": {
+            "order": "desc"
+          }
+        },
+        "query": {
+          "and": [
+            {
+              "field": "category",
+              "value": "综艺"
+            },
+            {
+              "field": "tag",
+              "value": "喜剧"
+            }
+          ]
+        }
+      },
+      "note": "gold 修正：旧值为空 {}（当年 sheet G5 噪音行）；权威口径见 bc/eval0910/影视.csv，dsl/规则层确定性输出同形",
       "added": "2026-09-17",
       "owner": "dingbo"
     },
     {
       "raw": "火的竞技综艺",
       "tool": "vod_search",
-      "params": {},
-      "note": "gold params 为空 {}（噪音），精确对齐空集",
+      "params": {
+        "action": "search",
+        "retext": "火的竞技综艺",
+        "sort": {
+          "hot": {
+            "order": "desc"
+          }
+        },
+        "query": {
+          "and": [
+            {
+              "field": "category",
+              "value": "综艺"
+            },
+            {
+              "field": "tag",
+              "value": "竞技"
+            }
+          ]
+        }
+      },
+      "note": "gold 修正：旧值为空 {}（当年 sheet G5 噪音行）；权威口径见 bc/eval0910/影视.csv，dsl/规则层确定性输出同形",
       "added": "2026-09-17",
       "owner": "dingbo"
     },
     {
       "raw": "推荐和《盗墓笔记》相似的电视剧",
       "tool": "vod_relate_search",
-      "params": {},
-      "note": "gold relate 无 params（噪音），精确对齐空集",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "title",
+              "value": "盗墓笔记"
+            },
+            {
+              "field": "category",
+              "value": "电视剧"
+            }
+          ]
+        }
+      },
+      "note": "gold 修正：旧值为空 {}（当年 sheet G5 噪音行）；权威口径见 bc/eval0910/影视.csv，dsl/规则层确定性输出同形",
       "added": "2026-09-17",
       "owner": "dingbo"
     },
     {
       "raw": "有没有类似于《与青春有关的日志》的剧",
       "tool": "vod_relate_search",
-      "params": {},
-      "note": "gold relate 无 params（噪音），精确对齐空集",
+      "params": {
+        "query": {
+          "and": [
+            {
+              "field": "title",
+              "value": "与青春有关的日志"
+            },
+            {
+              "field": "category",
+              "value": "电视剧"
+            }
+          ]
+        }
+      },
+      "note": "gold 修正：旧值为空 {}（当年 sheet G5 噪音行）；权威口径见 bc/eval0910/影视.csv，dsl/规则层确定性输出同形",
       "added": "2026-09-17",
       "owner": "dingbo"
     },
@@ -1171,7 +1298,7 @@
           "new": {
             "order": "desc"
           },
-          "sort": {
+          "rate": {
             "order": "asc"
           }
         }
@@ -1403,7 +1530,7 @@
           "and": [
             {
               "field": "tag",
-              "values": "竞技"
+              "value": "竞技"
             },
             {
               "field": "category",

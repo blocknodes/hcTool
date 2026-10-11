@@ -1,13 +1,14 @@
-"""少儿(children)确定性 DSL 生成器：从 query 抽确定性槽位，组装 educ_search/search_all。
+"""少儿(children)确定性 DSL 生成器：从 query 抽确定性槽位，组装 educ_search_all。
 
 结构与 vod dsl 同构：字段/取值对齐 schema（ExactFieldCondition）。
 build_search_dsl(query) -> (params | None)，无法精确合成返回 None → fuzzy。
 build_query_dsl(query) -> (query_node | None)：仅合成 query 子节点（供 relate 复用）。
 
-字段集（educ_search 可表达）：
+搜索族只有 educ_search_all，可表达全部字段：
   title, content_type, children_second_genre, children_third_genre, training_objectives,
-  role, is_fee, age_range, language, gender, festival, company, multiple_intelligences
-educ_search_all 额外：country(国家), release_time(年份)
+  role, is_fee, age_range, language, gender, festival, company, multiple_intelligences,
+  country(国家), release_time(年份)
+（_SEARCH_FIELDS / _SEARCH_ALL_FIELDS 仅作 route_tool 的已知字段校验，不再区分工具）
 """
 from __future__ import annotations
 
@@ -700,23 +701,22 @@ _SEARCH_ALL_FIELDS = {"country", "release_time"}
 
 
 def route_tool(query: str) -> str:
+    # 搜索族统一走 umbrella educ_search_all（字段最全）；窄工具 educ_search 已弃用。
+    # 仍需 fuzzy 兜底：抽不出结构化维度、或出现表外字段时整句交给 fuzzy。
     qn = build_query_dsl(query)
     if not qn:
         return "educ_fuzzy_search"
-    need_all = False
+    _KNOWN = _SEARCH_FIELDS | _SEARCH_ALL_FIELDS
     stack = [qn]
     while stack:
         n = stack.pop()
         if isinstance(n, dict):
             f = n.get("field")
-            if f:
-                if f in _SEARCH_ALL_FIELDS:
-                    need_all = True
-                elif f not in _SEARCH_FIELDS:
-                    return "educ_fuzzy_search"
+            if f and f not in _KNOWN:
+                return "educ_fuzzy_search"
             for v in n.values():
                 if isinstance(v, (dict, list)):
                     stack.append(v)
         elif isinstance(n, list):
             stack.extend(n)
-    return "educ_search_all" if need_all else "educ_search"
+    return "educ_search_all"

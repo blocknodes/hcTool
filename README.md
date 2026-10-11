@@ -247,12 +247,13 @@ python domains/<key>/bench/run_bench.py --json # JSON 输出（写 result.latest
   golden 数据噪声，不扩散 => 99%（远超 90% 门槛）。
 
 ### children（少儿）—— 100%（327 条，最需要工具边界判断）
-- 用 edu_schema 语义（educ_search 5 工具），核心是 **`educ_search` vs `educ_fuzzy_search` vs
-  `educ_search_all` 的工具边界**：
-  - 有可落槽的出生槽 / 已知 genre（`绘本`/`动漫`）→ 结构化 `educ_search`；
-  - 自由叙事/长描述（`猫咪演绎中国历史事件…动画`）→ 语义 `educ_fuzzy_search`；
-  - 宽泛/全查（`情绪管理`、`中文版`、`英语启蒙`）→ `educ_search_all`；但 `今年上映` 却要
-  → `educ_search`。逐条读 golden 学到的决策。
+- 用 edu_schema 语义（4 工具：search_all/fuzzy/relate/history），核心是
+  **`educ_search_all` vs `educ_fuzzy_search` 的工具边界**（窄工具 `educ_search` 已下线，
+  搜索族统一走字段最全的 `educ_search_all`）：
+  - 能抽出结构化槽位（title / 已知 genre `绘本`/`动漫` / 年龄 / 国家 / 发行年份…）
+    → `educ_search_all`；
+  - 自由叙事/长描述（`猫咪演绎中国历史事件…动画`）→ 语义 `educ_fuzzy_search`。
+  逐条读 golden 学到的决策。
 - `启蒙` 标题贪婪抑制：`英语启蒙/早教启蒙/认知启蒙` 中 `启蒙` 不当独立 title 槽；
   历史路由不激进（真「历史看过 X」才 `educ_history`）。
 - 参数易错点：`第一季` 不作为独立 title（做和主轴同列）；「不要英语」→ `not` 槽；

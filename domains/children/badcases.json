@@ -33,7 +33,7 @@
     },
     {
       "raw": "播放免费宝宝巴士汉字",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "播放免费宝宝巴士汉字",
         "query": {
@@ -79,7 +79,7 @@
     },
     {
       "raw": "今年上映的动画片",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "今年上映的动画",
         "query": {
@@ -106,7 +106,7 @@
     },
     {
       "raw": "免费的海底小纵队不要英语的",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "免费的海底小纵队不要英语的",
         "query": {
@@ -158,12 +158,12 @@
     },
     {
       "raw": "适合儿童看的动画",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {}
     },
     {
       "raw": "汪汪队小砾工程队不用VIP中文版的",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "汪汪队小砾与工程家族免费国语版的",
         "query": {
@@ -224,7 +224,7 @@
     },
     {
       "raw": "我要看少儿免费的动画片大货车",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "query": {
           "and": [
@@ -247,7 +247,7 @@
     },
     {
       "raw": "我要看兔子警官第2季",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "我要看兔子警官第2季",
         "query": {
@@ -274,7 +274,7 @@
     },
     {
       "raw": "辛普森一家中文版",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "辛普森一家国语版",
         "query": {
@@ -350,7 +350,7 @@
     },
     {
       "raw": "给我讲丑小鸭的故事",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "给我讲丑小鸭的故事",
         "query": {
@@ -369,7 +369,7 @@
     },
     {
       "raw": "找一下科普海洋知识的儿童绘本",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "搜索科普海洋知识的儿童绘本",
         "query": {
@@ -392,7 +392,7 @@
     },
     {
       "raw": "播放1岁半宝宝听的歌曲",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "播放1岁半宝宝听的歌曲",
         "query": {
@@ -412,7 +412,7 @@
     },
     {
       "raw": "我要听虫儿飞",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "我要听虫儿飞",
         "query": {
@@ -423,7 +423,7 @@
     },
     {
       "raw": "巴士儿歌",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "巴士儿歌",
         "query": {
@@ -442,7 +442,7 @@
     },
     {
       "raw": "拔萝卜儿歌",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "拔萝卜儿歌",
         "query": {
@@ -461,7 +461,7 @@
     },
     {
       "raw": "白龙马儿歌",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "白龙马儿歌",
         "query": {
@@ -480,7 +480,7 @@
     },
     {
       "raw": "宝宝巴士儿歌免费",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "宝宝巴士儿歌免费",
         "query": {
@@ -499,7 +499,7 @@
     },
     {
       "raw": "播放不花钱的儿歌",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "播放不花钱的儿歌",
         "query": {
@@ -518,7 +518,7 @@
     },
     {
       "raw": "怎么给3岁的小朋友选适合听的儿歌",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "怎么给3岁的小朋友选适合听的儿歌",
         "query": {
@@ -538,7 +538,7 @@
     },
     {
       "raw": "贝乐虎儿歌",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "贝乐虎儿歌",
         "query": {
@@ -557,7 +557,7 @@
     },
     {
       "raw": "小兔子乖乖儿歌",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "小兔子乖乖儿歌",
         "query": {
@@ -576,7 +576,7 @@
     },
     {
       "raw": "英语启蒙儿歌",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "英语启蒙儿歌",
         "query": {
@@ -587,7 +587,7 @@
     },
     {
       "raw": "播放儿歌爸爸妈妈去上班",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "播放儿歌爸爸妈妈去上班",
         "query": {
@@ -673,7 +673,7 @@
     },
     {
       "raw": "推荐适合3岁孩子跟唱的中文版儿歌",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "query": {
           "and": [
@@ -699,7 +699,7 @@
     },
     {
       "raw": "推荐适合3岁孩子跟唱的儿歌",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "query": {
           "and": [
@@ -721,7 +721,7 @@
     },
     {
       "raw": "推荐适合5到6岁的孩子跟唱的中文版儿歌",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "query": {
           "and": [
@@ -747,7 +747,7 @@
     },
     {
       "raw": "搜索中文版学龄前英语启蒙动画",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "query": {
           "and": [
@@ -772,7 +772,7 @@
     },
     {
       "raw": "搜索免费中文版学龄前英语启蒙动画",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "query": {
           "and": [
@@ -801,7 +801,7 @@
     },
     {
       "raw": "搜索适合学龄前孩子学英语的动画",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "query": {
           "and": [
@@ -849,7 +849,7 @@
     },
     {
       "raw": "有啥3岁小孩听的儿歌",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "query": {
           "and": [
@@ -871,7 +871,7 @@
     },
     {
       "raw": "有适合小孩学英语的动画吗",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "query": {
           "and": [
@@ -892,7 +892,7 @@
     },
     {
       "raw": "推荐适合5到6岁孩子跟唱的中文版儿歌",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "query": {
           "and": [
@@ -918,7 +918,7 @@
     },
     {
       "raw": "超级宝贝JOJO全屏播放第1集",
-      "tool": "educ_search",
+      "tool": "educ_search_all",
       "params": {
         "retext": "播放秀儿欢乐玩游戏第一季",
         "query": {
