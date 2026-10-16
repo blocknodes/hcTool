@@ -33,6 +33,47 @@ _RETEXT_TOOLS = {"vod_search", "vod_search_all", "vod_fuzzy_search"}
 # 合法字段名全集（含 schema 侧叫 voice_start_pos、dsl 侧叫 voiceStartPos 的同一字段）
 _ALL_FIELDS = _SEARCH_FIELDS | _SEARCH_ALL_FIELDS | {"voice_start_pos"}
 
+# ---- 参数合法性校验（params_violation）----
+# definition（清晰度）在 schema 里是 **固定候选**：is_3d / is_4k / hdr 三个枚举值。
+# LLM 偶尔值域外自造（如 is_1080p、hd、1080p）→ 这类"值非法"无法靠 query 词表命中，
+# 只能检查 params 里的 definition 叶子取值。检出即改判 fuzzy（原话整句交出，不自造）。
+# schema 声明（domains/vod/schema.json:319,925）："清晰度（固定候选）。枚举：is_3d、is_4k、hdr。"
+_DEFINITION_VALUES = {"is_3d", "is_4k", "hdr"}
+
+
+def _params_violation(tool: str, params: dict) -> bool:
+    """校验 LLM 自造的 params：definition 叶子值不在固定候选内 → True（改判 fuzzy）。
+
+    只对搜索族工具生效（fuzzy 本身无字段）。按 golden 口径，definition 只可能在
+    vod_search / vod_search_all 的 query 条件树里出现，故只扫 query 树。
+    """
+    if tool not in _RETEXT_TOOLS:
+        return False
+    if not isinstance(params, dict) or not isinstance(params.get("query"), (dict, list)):
+        return False
+    bad = False
+
+    def walk(node: Any) -> None:
+        nonlocal bad
+        if bad:
+            return
+        if isinstance(node, dict):
+            if node.get("field") == "definition":
+                for k in ("value",):
+                    v = node.get(k)
+                    if isinstance(v, str) and v not in _DEFINITION_VALUES:
+                        bad = True
+                        return
+            for v in node.values():
+                walk(v)
+        elif isinstance(node, list):
+            for x in node:
+                walk(x)
+
+    walk(params["query"])
+    return bad
+
+
 # 表外维度 → 兜底改判 fuzzy 的词表。
 # 只在 **LLM 已经给出搜索族之后** 生效，属后处理兜底，不短路 LLM：
 # 模型对「票房/收视率」这类词常常静默丢维度、或拿表内 sort 维度顶替（播放量顶替观看人数），
@@ -239,6 +280,7 @@ SPEC = KernelSpec(
     fuzzy_tool="vod_fuzzy_search",
     oor_words=_OOR_DIM_WORDS,
     clip_words=_CLIP_WORDS,
+    params_violation=_params_violation,
     pool_path=Path(__file__).resolve().parent / "testset.json",
 )
 

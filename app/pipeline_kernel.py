@@ -386,6 +386,16 @@ def build_pipeline(spec: KernelSpec):
                 logger.info("%s 片段/名场面信号改判 fuzzy：%s", spec.key, query)
                 tool = spec.fuzzy_tool
                 params = _post(domain, tool, {"retext": spec.norm_retext(query)})
+            # 参数合法性校验兜底：模型在 schema 固定候选之外自造值（如 definition=is_1080p，
+            # schema 只允许 is_3d/is_4k/hdr）→ 只能 LLC 结构性表达，不能靠词表命中
+            # （is_1080p 这种是值域外取值，不是表外维度名的出现）。故以 **params** 为判据
+            # 而不是 query。同一插入点（下钻之后、返回前），与 above 同级串联。
+            elif (spec.fuzzy_tool and tool in spec.search_family
+                    and spec.params_violation is not None
+                    and spec.params_violation(tool, params)):
+                logger.info("%s 参数非法改判 fuzzy：%s", spec.key, query)
+                tool = spec.fuzzy_tool
+                params = _post(domain, spec.fuzzy_tool, {"retext": spec.norm_retext(query)})
             return _pred(domain, tool, params, "llm_onecall")
 
         # ---- ③ L3 兜底 ----
