@@ -243,7 +243,7 @@
     },
     {
       "raw": "给我放庆余年",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "play",
         "retext": "给我放庆余年",
@@ -255,7 +255,7 @@
     },
     {
       "raw": "播放三体",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "play",
         "retext": "播放三体",
@@ -267,7 +267,7 @@
     },
     {
       "raw": "播放偷偷藏不住",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "play",
         "retext": "播放偷偷藏不住",
@@ -279,7 +279,7 @@
     },
     {
       "raw": "帮我播放风起洛阳",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "play",
         "retext": "帮我播放风起洛阳",
@@ -291,7 +291,7 @@
     },
     {
       "raw": "打开斗罗大陆大结局那一集",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "play",
         "retext": "打开斗罗大陆大结局那一集",
@@ -303,7 +303,7 @@
     },
     {
       "raw": "给我放西游记第六集",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "play",
         "retext": "给我放西游记第六集",
@@ -323,7 +323,7 @@
     },
     {
       "raw": "播放觉醒年代",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "play",
         "retext": "播放觉醒年代",
@@ -335,7 +335,7 @@
     },
     {
       "raw": "播放三国演义火烧赤壁",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "play",
         "retext": "播放三国演义火烧赤壁",
@@ -351,7 +351,7 @@
     },
     {
       "raw": "给我放雪中悍刀行",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "play",
         "retext": "给我放雪中悍刀行",
@@ -363,7 +363,7 @@
     },
     {
       "raw": "直接播三体第二部",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "play",
         "retext": "直接播三体第二部",
@@ -383,7 +383,7 @@
     },
     {
       "raw": "播放虫儿飞",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "play",
         "retext": "播放虫儿飞",
@@ -395,7 +395,7 @@
     },
     {
       "raw": "送你一朵小红花",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "play",
         "retext": "送你一朵小红花",
@@ -407,7 +407,7 @@
     },
     {
       "raw": "播放情深深雨濛濛",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "play",
         "retext": "播放情深深雨濛濛",
@@ -419,7 +419,7 @@
     },
     {
       "raw": "想看美食纪录片",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "query": {
@@ -473,7 +473,7 @@
     },
     {
       "raw": "推荐几部动作片",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "query": {
@@ -781,7 +781,7 @@
     },
     {
       "raw": "搜索好看的悬疑电影",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "query": {
@@ -961,7 +961,7 @@
     },
     {
       "raw": "现在热的剧有哪些？",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "retext": "现在口碑好的剧有哪些",
@@ -981,7 +981,7 @@
     },
     {
       "raw": "我这一辈子相声",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "retext": "我这一辈子相声",
@@ -1004,7 +1004,7 @@
     },
     {
       "raw": "请播放张云雷的相声",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "play",
         "retext": "请播放张云雷的相声",
@@ -1035,7 +1035,7 @@
     },
     {
       "raw": "豫剧王宝钏",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "retext": "豫剧王宝钏",
@@ -1066,7 +1066,7 @@
     },
     {
       "raw": "豆瓣高分的喜剧电影",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "retext": "豆瓣高分的喜剧电影",
@@ -1094,7 +1094,7 @@
     },
     {
       "raw": "热度的喜剧综艺",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "retext": "热度的喜剧综艺",
@@ -1122,7 +1122,7 @@
     },
     {
       "raw": "火的竞技综艺",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "retext": "火的竞技综艺",
@@ -1204,7 +1204,7 @@
     },
     {
       "raw": "最近播放量高的新剧",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "retext": "最近播放量高的新剧",
@@ -1231,7 +1231,7 @@
     },
     {
       "raw": "最近爆火的新剧有哪些",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "retext": "最近爆火的新剧有哪些",
@@ -1286,7 +1286,7 @@
     },
     {
       "raw": "刚上线但评分拉胯的新片",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "retext": "刚上线但评分拉胯的新片",
@@ -1343,7 +1343,7 @@
     },
     {
       "raw": "口碑好、很火、刚上线的新剧",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "retext": "口碑好、很火、刚上线的新剧",
@@ -1424,7 +1424,7 @@
     },
     {
       "raw": "余乐执导的纪录片视频",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "retext": "香港动作片",
@@ -1447,7 +1447,7 @@
     },
     {
       "raw": "播放哦我的皇帝陛下第二季",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "play",
         "retext": "播放哦我的皇帝陛下第二季",
@@ -1470,7 +1470,7 @@
     },
     {
       "raw": "免费且评分高的国产纪录片",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "retext": "免费且评分高的国产纪录片",
@@ -1502,7 +1502,7 @@
     },
     {
       "raw": "高分的电视剧",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "retext": "高分的电视剧",
@@ -1522,7 +1522,7 @@
     },
     {
       "raw": "高分的竞技综艺",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "retext": "高分的竞技综艺",
@@ -1600,7 +1600,7 @@
     },
     {
       "raw": "我要看免费的霸天虎",
-      "tool": "vod_search",
+      "tool": "vod_search_all",
       "params": {
         "action": "search",
         "retext": "我要看免费的霸天虎",

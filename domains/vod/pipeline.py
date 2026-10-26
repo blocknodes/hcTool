@@ -6,7 +6,8 @@
 
 本文件保留的域特有部分：
 - `_FIELD_CATALOG` / `_SYSTEM_TMPL`：vod 的字段目录与提示词。
-- `_VOD_SEARCH_UMBRELLA` + `drill_search_tool`：搜索族包含关系（vod_search ⊂ vod_search_all）。
+- `_VOD_SEARCH_UMBRELLA`：搜索族统一出口 vod_search_all（vod_search 已下线，
+  其字段集是 search_all 严格子集，不再需要下钻）。
 - `_OOR_DIM_WORDS`：表外维度词表（票房/收视率…），命中即改判 fuzzy。
 - `norm_retext`：retext 的轻量归一（去标点/空格，保护小数点）。
 """
@@ -16,19 +17,17 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-from app.pipeline_kernel import KernelSpec, ShotPool, build_pipeline, iter_fields
+from app.pipeline_kernel import KernelSpec, ShotPool, build_pipeline
 
 from . import textkey
 from .dsl import _SEARCH_ALL_FIELDS, _SEARCH_FIELDS
 
-# 搜索族只暴露 vod_search_all（它包含 vod_search 的全部能力：字段集是其严格超集，
-# 且 vod_search 的 field 枚举 18 个 ⊂ vod_search_all 的 32 个）。golden 里
-# vod_search / vod_search_all 的分工可由「用了哪些字段」100% 还原（实测 178/179），
-# 故不需要让 LLM 区分二者——出结构化参数即 search_all，描述性表达即 fuzzy。
+# 搜索族只暴露 vod_search_all（vod_search 已下线：其字段集是 search_all 的严格子集，
+# 无需要让 LLM 区分二者——出结构化参数即 search_all，描述性表达即 fuzzy）。
 _VOD_SEARCH_UMBRELLA = "vod_search_all"
 
-# retext 为 required 的工具
-_RETEXT_TOOLS = {"vod_search", "vod_search_all", "vod_fuzzy_search"}
+# retext 为 required 的工具（vod_search 已下线，搜索族只剩 search_all）
+_RETEXT_TOOLS = {"vod_search_all", "vod_fuzzy_search"}
 
 # 合法字段名全集（含 schema 侧叫 voice_start_pos、dsl 侧叫 voiceStartPos 的同一字段）
 _ALL_FIELDS = _SEARCH_FIELDS | _SEARCH_ALL_FIELDS | {"voice_start_pos"}
@@ -89,20 +88,20 @@ _OOR_DIM_WORDS = (
 )
 
 # 碎片化定位表达 → 兜底改判 fuzzy 的词表（与 _OOR_DIM_WORDS 同一插入点）。
-# 动机：这类话常夹一个具体片名（「狂飙高光片段」「肖申克的救赎逆袭高光桥段汇总」），
-# LLM 抓住片名、把「高光片段」整段丢掉，出一棵看着合法的条件树 →
-# drill_search_tool 按字段收窄成 vod_search。但 golden 口径**整句语义检索**：
-# 这些是"定位某一段内容"，不是"按维度筛作品"，故落回搜索族即改判 fuzzy，原话交出。
+# 动机：这类话常夹一个具体片名（「狂飙高光片段」「肖申克的救赎逆袭高光桥段汇总」，
+# LLM 抓住片名、把「高光片段」整段丢掉，出一棵看着合法的条件树（search_all）。
+# 但 golden 口径**整句语义检索**：这些是"定位某一段内容"，不是"按维度筛作品"，
+# 故落回搜索族即改判 fuzzy，原话交出。
 #
-# 词表口径（2026-09-30 按全量 golden 校准，136/136 clip 行皆 vod_fuzzy_search）：
-# - 只收**自行成义**的片段类名词；不收"那段/那段戏"这类纯指代 —— 多轮里
+# 词表口径（2026-09-30 按全量 golden 校准，136 条 clip 行皆 vod_fuzzy_search）：
+# - 只收**自行成片段类**名词；不收"那段/那段戏"这类纯指代 —— 多轮里
 #   「武打戏好的」类续接靠指代+上下文覆盖，裸指代会误伤（见下 打斗 条目）。
 # - 打斗/武打 只收**复合形式**（打斗场面/打斗片段/武打片段…）：裸「打斗精彩的」
 #   「武打戏好的」「打斗好看的」在 sheet_multiturn_1000groups_gold 里 golden 是
-#   vod_search（武侠 tag/category 的结构化续接），必须留给 LLM。
+#   vod_search_all（武侠 tag/category 的结构化续接），必须留给 LLM。
 # - 高光/台词/名场面 裸词安全：vod 域内 golden 全 fuzzy；跨域的「屏幕高光细节」(device)、
 #   「…是哪个动画片的台词」(children/education) 在本域外，detect 判域已挡住。
-# - 不收「花絮」：sheet0901_vod.csv:1965「我们的当打之年花絮」golden 是 vod_search
+# - 不收「花絮」：sheet0901_vod.csv:1965「我们的当打之年花絮」golden 是 vod_search_all
 #   （按 title 检索该片的花絮栏目），与"定位正片某一段"不是一回事。
 _CLIP_WORDS = (
     "片段", "名场面", "桥段", "高光", "台词", "哭戏", "经典场面",
@@ -232,24 +231,17 @@ def norm_retext(text: str) -> str:
 
 
 def exposed_tools(domain) -> list:
-    """暴露给 LLM 的候选工具：搜索族只留 vod_search_all（vod_search 是其子集，不下发）。"""
-    return [t for t in domain.tools if t.name != "vod_search"]
+    """暴露给 LLM 的候选工具：搜索族只留 vod_search_all。
+
+    vod_search 已下线（与 children/education 的 educ_search 下线同构）：它的字段集是
+    vod_search_all 的严格子集，schema.json 里已删掉 vod_search 定义，这里无需再按名排除。
+    """
+    return list(domain.tools)
 
 
 def normalize_tool_name(tool: str) -> str:
-    """模型若仍输出被隐藏的 vod_search，统一并到 vod_search_all（下游再按字段下钻）。"""
+    """兼容残引：模型若仍输出被删的 vod_search，统一并到 vod_search_all（不再下钻）。"""
     return _VOD_SEARCH_UMBRELLA if tool == "vod_search" else tool
-
-
-def drill_search_tool(params: dict) -> str:
-    """收窄搜索族工具：用了 search_all 独有维度 → vod_search_all，否则 vod_search。
-
-    LLM 只面对 vod_search_all（不再区分二者，避免选错），但 golden 契约里两者分工明确，
-    且该分工可由「用了哪些字段」100% 还原（实测 178/179）。故在此确定性下钻，
-    让输出形态与既有契约一致。空条件树 → vod_search（与 golden 6 条空 params 一致）。
-    """
-    fields = iter_fields(params.get("query"), set())
-    return "vod_search_all" if (fields & _SEARCH_ALL_FIELDS) else "vod_search"
 
 
 def _tool_briefs(tools) -> str:
@@ -274,7 +266,7 @@ SPEC = KernelSpec(
     search_family=_RETEXT_TOOLS,
     exposed_tools=exposed_tools,
     normalize_tool=normalize_tool_name,
-    drill=drill_search_tool,
+    # drill 已去掉：vod_search 下线后搜索族只有 search_all 一档，无需再按字段下钻
     umbrella=_VOD_SEARCH_UMBRELLA,
     all_fields=_ALL_FIELDS,
     fuzzy_tool="vod_fuzzy_search",

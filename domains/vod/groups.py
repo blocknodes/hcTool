@@ -26,6 +26,7 @@ def tool_to_group(tool_name: str) -> str:
     """兼容旧接口：工具 → 组名（仅用于日志/审计，不再参与决策）。"""
     if tool_name in {"vod_search", "vod_search_all", "vod_fuzzy_search"}:
         return "search"
+    # 注：vod_search 已下线（schema 里已删），此分支仅兼容历史日志里残留的工具名
     return {
         "vod_history": "history",
         "vod_relate_search": "relate",

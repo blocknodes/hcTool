@@ -118,10 +118,13 @@ D) sports_match_search / sports_vod_search / sports_match_reservation /
   具体日期由后处理补全，你只需填 `{{"field":"sport_time","value":""}}` 占位即可。
   用户说「上一轮/下一轮/下场」用 `round_offset`（"-1"/"1"）。
 - 「X主场」用 sport_team_home；「X客场」用 sport_team_guest。
+- **预约双队**（如「预约拜仁慕尼黑对多特蒙德的球赛」「预约曼联和勇士的比赛」，含 vs/对战/和）：用
+  `{{"and":[{{"field":"sport_team","value":"拜仁慕尼黑"}},{{"field":"sport_team","value":"多特蒙德"}}]}}`，
+  两队各一个 sport_team 叶子，**不要**用 values+or。
 - **forecast 双队对阵**（如「预测皇马对巴萨」）：用
   `{{"and":[{{"field":"sport_team_home","value":"皇马"}},{{"field":"sport_team_guest","value":"巴萨"}}]}}`，
   不要用 sport_team 的 values+and。
-- 说了球队/球星就别重复给运动项目，除非用户也说了。
+- 说了球队 或 球星就别重复给运动项目，除非用户也说了。
 - 字段无法归一化到常用值时不传该字段，不要自造新值。
 
 【输出】

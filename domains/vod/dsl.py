@@ -1082,7 +1082,12 @@ def _is_desc_fuzzy(query: str) -> bool:
 
 
 def route_tool(query: str) -> str:
-    """三级判定：vod_search | vod_search_all | vod_fuzzy_search。"""
+    """搜索族路由：vod_search_all | vod_fuzzy_search（vod_search 已下线）。
+
+    与 children/education 的 educ_search 下线同构：窄工具 vod_search 的字段集（18 个）
+    是 vod_search_all（32 个）的严格子集，不需要再区分二者 —— 结构化检索统一走
+    vod_search_all，抽不出结构化维度或槽位值越界时才落 fuzzy 整句。
+    """
     if _is_desc_fuzzy(query):
         return "vod_fuzzy_search"
     d = build_search_dsl(query)
@@ -1090,28 +1095,23 @@ def route_tool(query: str) -> str:
         return "vod_fuzzy_search"
     conds = d.get("query") or {}
     stack: list[Any] = [conds]
-    need_all = False
     while stack:
         node = stack.pop()
         if isinstance(node, dict):
             fld = node.get("field")
             if fld:
-                if fld in _SEARCH_FIELDS:
+                if fld in (_SEARCH_FIELDS | _SEARCH_ALL_FIELDS):
                     if not _field_value_valid(fld, node):
                         return "vod_fuzzy_search"   # 值越界
-                elif fld in _SEARCH_ALL_FIELDS:
-                    need_all = True                  # search 装不下 → 至少 search_all
-                    if not _field_value_valid(fld, node):
-                        return "vod_fuzzy_search"
                 else:
                     return "vod_fuzzy_search"        # 根本不覆盖 → fuzzy
             for v in node.values():
                 stack.append(v)
         elif isinstance(node, list):
             stack.extend(node)
-    return "vod_search_all" if need_all else "vod_search"
+    return "vod_search_all"
 
 
 def needs_search_all(query: str) -> bool:
-    """兼容旧引用：是否只需到 search_all（非 fuzzy）。"""
+    """兼容旧引用：vod_search 下线后，搜索族只有 search_all 一档（非 fuzzy 即 all）。"""
     return route_tool(query) == "vod_search_all"

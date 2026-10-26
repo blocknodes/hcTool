@@ -185,6 +185,12 @@ class KernelSpec:
     # clip_words 是"碎片化定位表达"（片段/名场面/台词…）。域内自供，词表由域按自己的
     # golden 口径确定，内核不猜。
     clip_words: tuple[str, ...] = ()                      # 片段/名场面类强信号词
+    # 参数合法性校验：LLM 出的 params（tool+params）经 postproc 后，仍可能有
+    # schema 固定候选之外的自造值（如 definition=is_1080p，schema 只允许 is_3d/is_4k/hdr）。
+    # 返回 True 表示"参数非法"→ 整体改判 fuzzy（原话整句交给 fuzzy，不加猜想）。
+    # 与 oor/clip 同一插入点（下钻之后），但以 **params** 为判据而不是 query 词表。
+    # 只有域自己实现（签名：(tool, params) -> bool）；None 表示不启用。
+    params_violation: Callable[[str, dict], bool] | None = None
     shot_k: int = 8
     pool_path: Path | None = None
     build_messages: Callable[[Any, str, list], list] | None = None  # 覆盖默认消息构造
@@ -378,10 +384,10 @@ def build_pipeline(spec: KernelSpec):
                 logger.info("%s 表外维度改判 fuzzy：%s", spec.key, query)
                 tool = spec.fuzzy_tool
                 params = _post(domain, tool, {"retext": spec.norm_retext(query)})
-            # 碎片化定位表达兜底（片段/名场面/台词…）：这类话里常夹一个具体片名，LLM 会
+            # 碎片化定位表达兜底（片段/名场面/台词…）：这类话里常夹一个具体片名，LLM会
             # 抓住片名、把"高光片段"丢掉，出结构化条件树 → 下钻成 vod_search。但 golden
             # 口径是整句语义检索，故只要落回搜索族就改判 fuzzy，原话整句交出。
-            # 与 OOR 同一位置（下钻之后）：下钻只决定窄工具，改判会把它整个覆盖。
+            # 与 malformed 同一位置（下钻之后）：下钻只决定窄工具，改判会把它整个覆盖。
             elif spec.fuzzy_tool and tool in spec.search_family and spec.is_clip(query):
                 logger.info("%s 片段/名场面信号改判 fuzzy：%s", spec.key, query)
                 tool = spec.fuzzy_tool

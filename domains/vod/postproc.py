@@ -7,7 +7,7 @@
 4. sort 推导（新出的/最新→new desc，好看/热播→hot desc）；
 5. retext 缺失时用 query 补。
 
-仅对 vod_search / vod_search_all 生效，其余 tool 原样返回。字段名与 schema 对齐（snake_case）。
+仅对 vod_search_all 生效（vod_search 已下线），其余 tool 原样返回。字段名与 schema 对齐（snake_case）。
 
 约定：normalize(tool, params) -> dict
 """
@@ -153,13 +153,13 @@ def _apply_sort(result: dict, query: str) -> None:
 
 
 def normalize(tool: str, params: dict) -> dict:
-    """规范化 vod_search / vod_search_all / vod_fuzzy_search 的 DSL 参数结构。"""
+    """规范化 vod_search_all / vod_fuzzy_search 的 DSL 参数结构（vod_search 已下线）。"""
     if not isinstance(params, dict):
         return params
     # fuzzy：整句语义检索，param=去标点的 retext（金标准口径；含口语归一：追剧→电视剧、
     # 影片→电影、半角数字→中文，由 dsl._fuzzy_retext_norm 提供）
     if tool == "vod_fuzzy_search":
-        # 模型偶尔把条件树写进 query（fuzzy 只吃整句），此时必须让位给 retext，
+        # 模型可能把条件树写进 query（fuzzy 只吃整句），此时必须让位给 retext，
         # 否则下面 _strip_punct 会收到 dict 抛 TypeError。
         q = params.get("retext") or params.get("query") or ""
         if not isinstance(q, str):
@@ -167,7 +167,7 @@ def normalize(tool: str, params: dict) -> dict:
         q = _strip_punct(q)
         q = _dsl._fuzzy_retext_norm(q)
         return {"retext": q}
-    if tool not in {"vod_search", "vod_search_all"}:
+    if tool != "vod_search_all":
         return params
 
     result = dict(params)

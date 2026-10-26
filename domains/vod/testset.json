@@ -131,7 +131,7 @@
     },
     {
       "query": "最近播放量高的新剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "最近播放量高的新剧",
@@ -155,7 +155,7 @@
     },
     {
       "query": "最近爆火的新剧有哪些",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "最近爆火的新剧有哪些",
@@ -186,7 +186,7 @@
     },
     {
       "query": "帮我搜索播放量高的电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "帮我搜索播放量高的电影",
@@ -203,7 +203,7 @@
     },
     {
       "query": "播放次数多的综艺节目",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "播放次数多的综艺节目",
@@ -259,7 +259,7 @@
     },
     {
       "query": "冷门电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "冷门电影",
@@ -304,7 +304,7 @@
     },
     {
       "query": "近期有什么新出的高播放量综艺？",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "近期有什么新出的高播放量综艺",
@@ -324,7 +324,7 @@
     },
     {
       "query": "刚上线但评分拉胯的新片",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "刚上线但评分拉胯的新片",
@@ -372,7 +372,7 @@
     },
     {
       "query": "口碑好、很火、刚上线的新剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "口碑好、很火、刚上线的新剧",
@@ -395,7 +395,7 @@
     },
     {
       "query": "现在热的剧有哪些？",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "现在口碑好的剧有哪些",
@@ -440,7 +440,7 @@
     },
     {
       "query": "我这一辈子相声",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "我这一辈子相声",
@@ -460,7 +460,7 @@
     },
     {
       "query": "请播放张云雷的相声",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "play",
         "retext": "请播放张云雷的相声",
@@ -495,7 +495,7 @@
     },
     {
       "query": "中年人爱看什么",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "中年人爱看什么",
@@ -507,7 +507,7 @@
     },
     {
       "query": "中老年人爱看的电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "中老年人爱看的电视剧",
@@ -527,7 +527,7 @@
     },
     {
       "query": "女性应该看的电影和电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "女性应该看的电影和电视剧",
@@ -572,7 +572,7 @@
     },
     {
       "query": "推荐电影，适合与家人一起观看的",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "推荐电影适合与家人一起观看的",
@@ -592,7 +592,7 @@
     },
     {
       "query": "播放老年电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "play",
         "retext": "播放老年电视剧",
@@ -753,7 +753,7 @@
     },
     {
       "query": "余乐执导的纪录片视频",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "余乐执导的纪录片视频",
@@ -773,7 +773,7 @@
     },
     {
       "query": "推荐一下姜文导演的电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "推荐一下姜文导演的电影",
@@ -793,7 +793,7 @@
     },
     {
       "query": "林玉芬导演的古装剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "林玉芬导演的古装剧",
@@ -817,7 +817,7 @@
     },
     {
       "query": "播放不会员的诡娃娃",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "play",
         "retext": "播放不会员的诡娃娃",
@@ -837,7 +837,7 @@
     },
     {
       "query": "播放关于哈利波特的视频",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "play",
         "retext": "播放关于哈利波特的视频",
@@ -849,7 +849,7 @@
     },
     {
       "query": "播放哦我的皇帝陛下第二季",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "play",
         "retext": "播放哦我的皇帝陛下第二季",
@@ -869,7 +869,7 @@
     },
     {
       "query": "播放小谢尔顿第五季",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "play",
         "retext": "播放小谢尔顿第五季",
@@ -889,7 +889,7 @@
     },
     {
       "query": "电视连续剧狄仁杰免费",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "电视连续剧狄仁杰免费",
@@ -913,7 +913,7 @@
     },
     {
       "query": "老九门盗墓笔记",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "老九门盗墓笔记",
@@ -929,7 +929,7 @@
     },
     {
       "query": "请换薛仁贵传奇",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "请换薛仁贵传奇",
@@ -941,7 +941,7 @@
     },
     {
       "query": "豫剧王宝钏",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "豫剧王宝钏",
@@ -969,7 +969,7 @@
     },
     {
       "query": "王鹤棣演的电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "王鹤棣演的电影",
@@ -1025,7 +1025,7 @@
     },
     {
       "query": "剧版三生三世十里桃花",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "剧版三生三世十里桃花",
@@ -1115,7 +1115,7 @@
     },
     {
       "query": "免费高分电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "免费高分电视剧",
@@ -1140,7 +1140,7 @@
     },
     {
       "query": "高分谍战剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "高分谍战剧",
@@ -1165,7 +1165,7 @@
     },
     {
       "query": "豆瓣评分8.9分以上的大片有哪些？",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "豆瓣评分8.9分以上的大片有哪些？",
@@ -1186,7 +1186,7 @@
     },
     {
       "query": "我想看豆瓣8.0评分以上的综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "我想看豆瓣8.0评分以上的综艺",
@@ -1207,7 +1207,7 @@
     },
     {
       "query": "豆瓣评分高的综艺节目",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "豆瓣评分高的综艺节目",
@@ -1224,7 +1224,7 @@
     },
     {
       "query": "高分亲子综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "高分亲子综艺",
@@ -1249,7 +1249,7 @@
     },
     {
       "query": "9分以上的纪录片",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "9分以上的纪录片",
@@ -1270,7 +1270,7 @@
     },
     {
       "query": "免费且评分高的国产纪录片",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "免费且评分高的国产纪录片",
@@ -1299,7 +1299,7 @@
     },
     {
       "query": "免费观看的纪录片，要9分以上的",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "免费观看的纪录片，要9分以上的",
@@ -1378,7 +1378,7 @@
     },
     {
       "query": "近期播出的综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "近期播出的综艺",
@@ -1395,7 +1395,7 @@
     },
     {
       "query": "最新的剧集",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "最新的剧集",
@@ -1412,7 +1412,7 @@
     },
     {
       "query": "找张凌赫的新剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "找张凌赫的新剧",
@@ -1437,7 +1437,7 @@
     },
     {
       "query": "刚上的新片",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "刚上的新片",
@@ -1454,7 +1454,7 @@
     },
     {
       "query": "这几天电视上刚更新的电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "这几天电视上刚更新的电视剧",
@@ -1471,7 +1471,7 @@
     },
     {
       "query": "新片推荐",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "新片推荐",
@@ -1822,7 +1822,7 @@
     },
     {
       "query": "我要看知否",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "我要看知否",
@@ -1834,7 +1834,7 @@
     },
     {
       "query": "白发第一集播放",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "play",
         "retext": "白发第一集播放",
@@ -1854,7 +1854,7 @@
     },
     {
       "query": "有没有免费的欢乐家长群二的视频",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "有没有免费的欢乐家长群二的视频",
@@ -1878,7 +1878,7 @@
     },
     {
       "query": "英雄诀播放",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "play",
         "retext": "英雄诀播放",
@@ -1890,7 +1890,7 @@
     },
     {
       "query": "高分的电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "高分的电影",
@@ -1907,7 +1907,7 @@
     },
     {
       "query": "高分的悬疑电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "高分的悬疑电影",
@@ -1932,7 +1932,7 @@
     },
     {
       "query": "高分的喜剧电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "高分的喜剧电影",
@@ -1957,7 +1957,7 @@
     },
     {
       "query": "高分的电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "高分的电视剧",
@@ -1974,7 +1974,7 @@
     },
     {
       "query": "高分的古装电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "高分的古装电视剧",
@@ -1999,7 +1999,7 @@
     },
     {
       "query": "高分的都市电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "高分的都市电视剧",
@@ -2024,7 +2024,7 @@
     },
     {
       "query": "高分的综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "高分的综艺",
@@ -2041,7 +2041,7 @@
     },
     {
       "query": "高分的喜剧综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "高分的喜剧综艺",
@@ -2066,7 +2066,7 @@
     },
     {
       "query": "高分的竞技综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "高分的竞技综艺",
@@ -2091,7 +2091,7 @@
     },
     {
       "query": "豆瓣高分的电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "豆瓣高分的电影",
@@ -2108,7 +2108,7 @@
     },
     {
       "query": "豆瓣高分的悬疑电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "豆瓣高分的悬疑电影",
@@ -2133,7 +2133,7 @@
     },
     {
       "query": "豆瓣高分的喜剧电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "豆瓣高分的喜剧电影",
@@ -2158,7 +2158,7 @@
     },
     {
       "query": "豆瓣高分的电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "豆瓣高分的电视剧",
@@ -2175,7 +2175,7 @@
     },
     {
       "query": "豆瓣高分的古装电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "豆瓣高分的古装电视剧",
@@ -2200,7 +2200,7 @@
     },
     {
       "query": "豆瓣高分的都市电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "豆瓣高分的都市电视剧",
@@ -2225,7 +2225,7 @@
     },
     {
       "query": "豆瓣高分的综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "豆瓣高分的综艺",
@@ -2242,7 +2242,7 @@
     },
     {
       "query": "豆瓣高分的喜剧综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "豆瓣高分的喜剧综艺",
@@ -2267,7 +2267,7 @@
     },
     {
       "query": "豆瓣高分的竞技综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "豆瓣高分的竞技综艺",
@@ -2292,7 +2292,7 @@
     },
     {
       "query": "热度的电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度的电影",
@@ -2309,7 +2309,7 @@
     },
     {
       "query": "热度的悬疑电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度的悬疑电影",
@@ -2334,7 +2334,7 @@
     },
     {
       "query": "热度的喜剧电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度的喜剧电影",
@@ -2359,7 +2359,7 @@
     },
     {
       "query": "热度的电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度的电视剧",
@@ -2376,7 +2376,7 @@
     },
     {
       "query": "热度的古装电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度的古装电视剧",
@@ -2401,7 +2401,7 @@
     },
     {
       "query": "热度的都市电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度的都市电视剧",
@@ -2426,7 +2426,7 @@
     },
     {
       "query": "热度的综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度的综艺",
@@ -2443,7 +2443,7 @@
     },
     {
       "query": "热度的喜剧综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度的喜剧综艺",
@@ -2468,7 +2468,7 @@
     },
     {
       "query": "热度的竞技综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度的竞技综艺",
@@ -2493,7 +2493,7 @@
     },
     {
       "query": "爆款的电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "爆款的电影",
@@ -2510,7 +2510,7 @@
     },
     {
       "query": "爆款的悬疑电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "爆款的悬疑电影",
@@ -2535,7 +2535,7 @@
     },
     {
       "query": "爆款的喜剧电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "爆款的喜剧电影",
@@ -2560,7 +2560,7 @@
     },
     {
       "query": "爆款的电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "爆款的电视剧",
@@ -2577,7 +2577,7 @@
     },
     {
       "query": "爆款的古装电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "爆款的古装电视剧",
@@ -2602,7 +2602,7 @@
     },
     {
       "query": "爆款的都市电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "爆款的都市电视剧",
@@ -2627,7 +2627,7 @@
     },
     {
       "query": "爆款的综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "爆款的综艺",
@@ -2644,7 +2644,7 @@
     },
     {
       "query": "爆款的喜剧综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "爆款的喜剧综艺",
@@ -2669,7 +2669,7 @@
     },
     {
       "query": "爆款的竞技综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "爆款的竞技综艺",
@@ -2694,7 +2694,7 @@
     },
     {
       "query": "热门的电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热门的电影",
@@ -2711,7 +2711,7 @@
     },
     {
       "query": "热门的悬疑电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热门的悬疑电影",
@@ -2736,7 +2736,7 @@
     },
     {
       "query": "热门的喜剧电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热门的喜剧电影",
@@ -2761,7 +2761,7 @@
     },
     {
       "query": "热门的电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热门的电视剧",
@@ -2778,7 +2778,7 @@
     },
     {
       "query": "热门的古装电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热门的古装电视剧",
@@ -2803,7 +2803,7 @@
     },
     {
       "query": "热门的都市电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热门的都市电视剧",
@@ -2828,7 +2828,7 @@
     },
     {
       "query": "热门的综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热门的综艺",
@@ -2845,7 +2845,7 @@
     },
     {
       "query": "热门的喜剧综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热门的喜剧综艺",
@@ -2870,7 +2870,7 @@
     },
     {
       "query": "热门的竞技综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热门的竞技综艺",
@@ -2895,7 +2895,7 @@
     },
     {
       "query": "最热的电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "最热的电影",
@@ -2912,7 +2912,7 @@
     },
     {
       "query": "最热的悬疑电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "最热的悬疑电影",
@@ -2937,7 +2937,7 @@
     },
     {
       "query": "最热的喜剧电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "最热的喜剧电影",
@@ -2962,7 +2962,7 @@
     },
     {
       "query": "最热的电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "最热的电视剧",
@@ -2979,7 +2979,7 @@
     },
     {
       "query": "最热的古装电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "最热的古装电视剧",
@@ -3004,7 +3004,7 @@
     },
     {
       "query": "最热的都市电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "最热的都市电视剧",
@@ -3029,7 +3029,7 @@
     },
     {
       "query": "最热的综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "最热的综艺",
@@ -3046,7 +3046,7 @@
     },
     {
       "query": "最热的喜剧综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "最热的喜剧综艺",
@@ -3071,7 +3071,7 @@
     },
     {
       "query": "最热的竞技综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "最热的竞技综艺",
@@ -3096,7 +3096,7 @@
     },
     {
       "query": "热播的电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热播的电影",
@@ -3113,7 +3113,7 @@
     },
     {
       "query": "热播的悬疑电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热播的悬疑电影",
@@ -3138,7 +3138,7 @@
     },
     {
       "query": "热播的喜剧电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热播的喜剧电影",
@@ -3163,7 +3163,7 @@
     },
     {
       "query": "热播的电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热播的电视剧",
@@ -3180,7 +3180,7 @@
     },
     {
       "query": "热播的古装电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热播的古装电视剧",
@@ -3205,7 +3205,7 @@
     },
     {
       "query": "热播的都市电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热播的都市电视剧",
@@ -3230,7 +3230,7 @@
     },
     {
       "query": "热播的综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热播的综艺",
@@ -3247,7 +3247,7 @@
     },
     {
       "query": "热播的喜剧综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热播的喜剧综艺",
@@ -3272,7 +3272,7 @@
     },
     {
       "query": "热播的竞技综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热播的竞技综艺",
@@ -3297,7 +3297,7 @@
     },
     {
       "query": "火的电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "火的电影",
@@ -3314,7 +3314,7 @@
     },
     {
       "query": "火的悬疑电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "火的悬疑电影",
@@ -3339,7 +3339,7 @@
     },
     {
       "query": "火的喜剧电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "火的喜剧电影",
@@ -3364,7 +3364,7 @@
     },
     {
       "query": "火的电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "火的电视剧",
@@ -3381,7 +3381,7 @@
     },
     {
       "query": "火的古装电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "火的古装电视剧",
@@ -3406,7 +3406,7 @@
     },
     {
       "query": "火的都市电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "火的都市电视剧",
@@ -3431,7 +3431,7 @@
     },
     {
       "query": "火的综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "火的综艺",
@@ -3448,7 +3448,7 @@
     },
     {
       "query": "火的喜剧综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "火的喜剧综艺",
@@ -3473,7 +3473,7 @@
     },
     {
       "query": "火的竞技综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "火的竞技综艺",
@@ -3498,7 +3498,7 @@
     },
     {
       "query": "很火的电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "很火的电影",
@@ -3515,7 +3515,7 @@
     },
     {
       "query": "很火的悬疑电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "很火的悬疑电影",
@@ -3540,7 +3540,7 @@
     },
     {
       "query": "很火的喜剧电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "很火的喜剧电影",
@@ -3565,7 +3565,7 @@
     },
     {
       "query": "很火的电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "很火的电视剧",
@@ -3582,7 +3582,7 @@
     },
     {
       "query": "很火的古装电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "很火的古装电视剧",
@@ -3607,7 +3607,7 @@
     },
     {
       "query": "很火的都市电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "很火的都市电视剧",
@@ -3632,7 +3632,7 @@
     },
     {
       "query": "很火的综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "很火的综艺",
@@ -3649,7 +3649,7 @@
     },
     {
       "query": "很火的喜剧综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "很火的喜剧综艺",
@@ -3674,7 +3674,7 @@
     },
     {
       "query": "很火的竞技综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "很火的竞技综艺",
@@ -3699,7 +3699,7 @@
     },
     {
       "query": "热度高的电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度高的电影",
@@ -3716,7 +3716,7 @@
     },
     {
       "query": "热度高的悬疑电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度高的悬疑电影",
@@ -3741,7 +3741,7 @@
     },
     {
       "query": "热度高的喜剧电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度高的喜剧电影",
@@ -3766,7 +3766,7 @@
     },
     {
       "query": "热度高的电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度高的电视剧",
@@ -3783,7 +3783,7 @@
     },
     {
       "query": "热度高的古装电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度高的古装电视剧",
@@ -3808,7 +3808,7 @@
     },
     {
       "query": "热度高的都市电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度高的都市电视剧",
@@ -3833,7 +3833,7 @@
     },
     {
       "query": "热度高的综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度高的综艺",
@@ -3850,7 +3850,7 @@
     },
     {
       "query": "热度高的喜剧综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度高的喜剧综艺",
@@ -3875,7 +3875,7 @@
     },
     {
       "query": "热度高的竞技综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "热度高的竞技综艺",
@@ -4361,7 +4361,7 @@
     },
     {
       "query": "我要看免费的霸天虎",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "我要看免费的霸天虎",
@@ -4381,7 +4381,7 @@
     },
     {
       "query": "我要看主角是狗剩的电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "我要看主角是狗剩的电视剧",
@@ -4401,7 +4401,7 @@
     },
     {
       "query": "我要看李达康",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "我要看李达康",
@@ -4413,7 +4413,7 @@
     },
     {
       "query": "我想看四目道长",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "我想看四目道长",
@@ -4425,7 +4425,7 @@
     },
     {
       "query": "评分比较好的影片",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "评分比较好的影片",
@@ -4442,7 +4442,7 @@
     },
     {
       "query": "评分8到9分的电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "评分8到9分的电视剧",
@@ -4513,7 +4513,7 @@
     },
     {
       "query": "高于8.8分的电视剧",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "高于8点8分的电视剧",
@@ -4583,7 +4583,7 @@
     },
     {
       "query": "有没有选秀类的综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "有没有选秀类的综艺",
@@ -4603,7 +4603,7 @@
     },
     {
       "query": "最新的脱口秀综艺",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "最新的脱口秀综艺",
@@ -4628,7 +4628,7 @@
     },
     {
       "query": "吕剧龙凤面",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "吕剧龙凤面",
@@ -4648,7 +4648,7 @@
     },
     {
       "query": "快点我要看超级马里奥兄弟大电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "快点我要看超级马里奥兄弟大电影",
@@ -4675,7 +4675,7 @@
     },
     {
       "query": "我想看2022年狙击手电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "我想看2022年狙击手电影",
@@ -4700,7 +4700,7 @@
     },
     {
       "query": "打仗片不是电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "打仗片不是电影",
@@ -4720,7 +4720,7 @@
     },
     {
       "query": "23年上映的影片",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "23年上映的影片",
@@ -4741,7 +4741,7 @@
     },
     {
       "query": "2020年之后拍的电影",
-      "expected_tool": "vod_search",
+      "expected_tool": "vod_search_all",
       "expected_params": {
         "action": "search",
         "retext": "2020年之后拍的电影",

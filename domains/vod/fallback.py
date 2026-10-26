@@ -43,9 +43,8 @@ def _is_clip(query: str) -> bool:
 
 def fallback(query: str) -> tuple[str, dict]:
     """语义模糊先判（表达型/片段/台词/推荐…看/出自/哪一部，只能整句检索，
-    即使能挤出 category 也归 fuzzy）→ 剩余结构化 query 走三级覆盖判定：
-    search 命中 → search；仅 search_all 命中 → search_all；
-    两者都不覆盖、或槽位值不在枚举范围内 → fuzzy。"""
+    即使能挤出 category 也归 fuzzy）→ 剩余结构化 query 统一走 search_all
+    （search_all 覆盖全部字段；槽位值抽不出/越界时 route_tool 已落 fuzzy）。"""
     if _is_clip(query):
         return "vod_fuzzy_search", {"query": query}
     if _FUZZY_TOTAL.search(query):
